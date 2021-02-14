@@ -67,7 +67,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'timezone' => 'UTC',
+=======
+    'timezone' => 'Europe/Madrid',
+>>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +84,11 @@ return [
     |
     */
 
+<<<<<<< HEAD
     'locale' => 'en',
+=======
+    'locale' => 'es',
+>>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
 
     /*
     |--------------------------------------------------------------------------
@@ -215,7 +223,11 @@ return [
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
+<<<<<<< HEAD
         // 'Redis' => Illuminate\Support\Facades\Redis::class,
+=======
+        'Redis' => Illuminate\Support\Facades\Redis::class,
+>>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
         'Request' => Illuminate\Support\Facades\Request::class,
         'Response' => Illuminate\Support\Facades\Response::class,
         'Route' => Illuminate\Support\Facades\Route::class,

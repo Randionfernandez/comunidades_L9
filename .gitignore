@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
 /node_modules
 /public/hot
 /public/storage
@@ -6,8 +10,39 @@
 .env
 .env.backup
 .phpunit.result.cache
+<<<<<<< HEAD
 docker-compose.override.yml
+=======
+>>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+<<<<<<< HEAD
+=======
+=======
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
+
+storage/*.key
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
+>>>>>>> 316a6597f69ca903155ec4ace2a6247cc32d8d71
+>>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
