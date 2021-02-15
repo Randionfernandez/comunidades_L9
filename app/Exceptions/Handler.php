@@ -27,7 +27,6 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-<<<<<<< HEAD
      * Register the exception handling callbacks for the application.
      *
      * @return void
@@ -36,8 +35,10 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (Throwable $e) {
             //
-        });
-=======
+	});
+    }
+
+    /**
      * Report or log an exception.
      *
      * @param  \Throwable  $exception
@@ -62,6 +63,5 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
     {
         return parent::render($request, $exception);
->>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
     }
 }
