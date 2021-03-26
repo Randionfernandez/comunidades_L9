@@ -103,6 +103,7 @@ class Handler implements ExceptionHandlerContract
      * @var string[]
      */
     protected $dontFlash = [
+        'current_password',
         'password',
         'password_confirmation',
     ];
@@ -138,6 +139,10 @@ class Handler implements ExceptionHandlerContract
      */
     public function reportable(callable $reportUsing)
     {
+        if (! $reportUsing instanceof Closure) {
+            $reportUsing = Closure::fromCallable($reportUsing);
+        }
+
         return tap(new ReportableHandler($reportUsing), function ($callback) {
             $this->reportCallbacks[] = $callback;
         });
@@ -151,6 +156,10 @@ class Handler implements ExceptionHandlerContract
      */
     public function renderable(callable $renderUsing)
     {
+        if (! $renderUsing instanceof Closure) {
+            $renderUsing = Closure::fromCallable($renderUsing);
+        }
+
         $this->renderCallbacks[] = $renderUsing;
 
         return $this;
@@ -277,6 +286,10 @@ class Handler implements ExceptionHandlerContract
      */
     protected function exceptionContext(Throwable $e)
     {
+        if (method_exists($e, 'context')) {
+            return $e->context();
+        }
+
         return [];
     }
 

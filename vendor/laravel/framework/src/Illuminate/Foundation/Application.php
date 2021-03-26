@@ -33,7 +33,7 @@ class Application extends Container implements ApplicationContract, CachesConfig
      *
      * @var string
      */
-    const VERSION = '8.27.0';
+    const VERSION = '8.34.0';
 
     /**
      * The base path for the Laravel installation.
@@ -484,6 +484,21 @@ class Application extends Container implements ApplicationContract, CachesConfig
     public function resourcePath($path = '')
     {
         return $this->basePath.DIRECTORY_SEPARATOR.'resources'.($path ? DIRECTORY_SEPARATOR.$path : $path);
+    }
+
+    /**
+     * Get the path to the views directory.
+     *
+     * This method returns the first configured path in the array of view paths.
+     *
+     * @param  string  $path
+     * @return string
+     */
+    public function viewPath($path = '')
+    {
+        $basePath = $this['config']->get('view.paths')[0];
+
+        return rtrim($basePath, DIRECTORY_SEPARATOR).($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     /**
@@ -1287,9 +1302,9 @@ class Application extends Container implements ApplicationContract, CachesConfig
             'cache.psr6'           => [\Symfony\Component\Cache\Adapter\Psr16Adapter::class, \Symfony\Component\Cache\Adapter\AdapterInterface::class, \Psr\Cache\CacheItemPoolInterface::class],
             'config'               => [\Illuminate\Config\Repository::class, \Illuminate\Contracts\Config\Repository::class],
             'cookie'               => [\Illuminate\Cookie\CookieJar::class, \Illuminate\Contracts\Cookie\Factory::class, \Illuminate\Contracts\Cookie\QueueingFactory::class],
-            'encrypter'            => [\Illuminate\Encryption\Encrypter::class, \Illuminate\Contracts\Encryption\Encrypter::class],
             'db'                   => [\Illuminate\Database\DatabaseManager::class, \Illuminate\Database\ConnectionResolverInterface::class],
             'db.connection'        => [\Illuminate\Database\Connection::class, \Illuminate\Database\ConnectionInterface::class],
+            'encrypter'            => [\Illuminate\Encryption\Encrypter::class, \Illuminate\Contracts\Encryption\Encrypter::class, \Illuminate\Contracts\Encryption\StringEncrypter::class],
             'events'               => [\Illuminate\Events\Dispatcher::class, \Illuminate\Contracts\Events\Dispatcher::class],
             'files'                => [\Illuminate\Filesystem\Filesystem::class],
             'filesystem'           => [\Illuminate\Filesystem\FilesystemManager::class, \Illuminate\Contracts\Filesystem\Factory::class],

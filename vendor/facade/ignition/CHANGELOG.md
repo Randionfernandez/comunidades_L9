@@ -2,6 +2,22 @@
 
 All notable changes to `ignition` will be documented in this file
 
+## 2.6.0 - 2021-03-24
+
+- add extra output to test command when executing verbosely.
+
+## 2.5.14 - 2021-03-03
+
+- fix ignition not working when there is no argv
+
+## 2.5.13 - 2021-02-16
+
+- remove custom grouping
+
+## 2.5.12 - 2021-02-15
+
+- fix wrong config usage (#354)
+
 ## 2.5.11 - 2021-02-05
 
 - fix memory leaks caused by log and query recorder (#344)
@@ -50,6 +66,10 @@ All notable changes to `ignition` will be documented in this file
 
 - add PHP 8.0-dev support
 - remove unnecessary `scrivo/highlight.php` dependency
+
+## 2.4.2 - 2021-03-08
+
+- fix `MakeViewVariableOptionalSolution` to disallow stream wrappers and files that do not end in .blade.php (#356)
 
 ## 2.4.1 - 2020-10-14
 
