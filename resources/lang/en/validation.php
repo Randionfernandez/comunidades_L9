@@ -90,10 +90,8 @@ return [
         'string' => 'The :attribute must be at least :min characters.',
         'array' => 'The :attribute must have at least :min items.',
     ],
-<<<<<<< HEAD
     'multiple_of' => 'The :attribute must be a multiple of :value.',
-=======
->>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
+
     'not_in' => 'The selected :attribute is invalid.',
     'not_regex' => 'The :attribute format is invalid.',
     'numeric' => 'The :attribute must be a number.',

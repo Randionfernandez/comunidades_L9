@@ -1,22 +1,21 @@
 <?php
 
-<<<<<<< HEAD
+
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
-=======
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
  * @package  Laravel
  * @author   Taylor Otwell <taylor@laravel.com>
  */
->>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
+
 
 define('LARAVEL_START', microtime(true));
 
 /*
 |--------------------------------------------------------------------------
-<<<<<<< HEAD
 | Check If Application Is Under Maintenance
 |--------------------------------------------------------------------------
 |
@@ -41,9 +40,7 @@ if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
 |
 */
 
-require __DIR__.'/../vendor/autoload.php';
-=======
-| Register The Auto Loader
+/* Register The Auto Loader
 |--------------------------------------------------------------------------
 |
 | Composer provides a convenient, automatically generated class loader for
@@ -68,28 +65,19 @@ require __DIR__.'/../vendor/autoload.php';
 */
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
->>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
 
 /*
 |--------------------------------------------------------------------------
 | Run The Application
 |--------------------------------------------------------------------------
-|
-<<<<<<< HEAD
 | Once we have the application, we can handle the incoming request using
 | the application's HTTP kernel. Then, we will send the response back
 | to this client's browser, allowing them to enjoy our application.
 |
 */
 
-$app = require_once __DIR__.'/../bootstrap/app.php';
 
-$kernel = $app->make(Kernel::class);
-
-$response = tap($kernel->handle(
-    $request = Request::capture()
-))->send();
-=======
+/*
 | Once we have the application, we can handle the incoming request
 | through the kernel, and send the associated response back to
 | the client's browser allowing them to enjoy the creative
@@ -97,13 +85,13 @@ $response = tap($kernel->handle(
 |
 */
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
 
-$response->send();
->>>>>>> d7b36bbefd2c49b64ba9be84858b50028599f384
+$kernel = $app->make(Kernel::class);
+
+$response = tap($kernel->handle(
+    $request = Request::capture()
+))->send();
 
 $kernel->terminate($request, $response);
+
