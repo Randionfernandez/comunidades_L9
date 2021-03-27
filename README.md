@@ -10,18 +10,20 @@
 
 <h2>La documentación puede consultarse en la wiki del proyecto</h2>
 
-Una vez clonado el proyecto ejecuta 
-	composer install
+Una vez clonado el proyecto ejecuta
+<ul>
+    <li>composer install</li>
 o 
-	 composer update
+	<li>composer update</li>
+</ul>
 Para saber más sobre la diferencia de uno u otro comando puedes consultar
 
 https://styde.net/diferencias-entre-composer-install-y-composer-update/
 
-Para acceder a la base de datos postgres accede a:
+Base de datos postgres en
 g1.ifc33b.cifpfbmoll.eu/adminer.php
 
-Nombre de la B.D.: simulacion_db
-Usuario: simulacion_usr
+Nombre de la B.D.: simulacion_db<br/>
+Usuario: simulacion_usr<br/>
 Password: se informará en la tutoría
 
