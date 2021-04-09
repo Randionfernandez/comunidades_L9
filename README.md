@@ -12,8 +12,10 @@ Para saber más sobre la diferencia de uno u otro comando puedes consultar
 
 https://styde.net/diferencias-entre-composer-install-y-composer-update/
 
+Luego, desde la raíz del proyecto ejecuta: php artisan key:generate
+
 Despliegue: http://randion.ddns.net
-  (misma máquina virtual que la base de datos)
+  (misma IP que la máquina virtual de la base de datos)
   
 Base de datos postgres en
 g1.ifc33b.cifpfbmoll.eu/adminer.php
