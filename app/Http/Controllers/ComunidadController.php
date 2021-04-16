@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Comunidad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class ComunidadController extends Controller
-{
+class ComunidadController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index() {
+        $resultado = DB::select('select * from comunidades');
+        return $resultado;
     }
 
     /**
@@ -22,8 +23,7 @@ class ComunidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -33,8 +33,7 @@ class ComunidadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -44,8 +43,7 @@ class ComunidadController extends Controller
      * @param  \App\Models\Comunidad  $comunidad
      * @return \Illuminate\Http\Response
      */
-    public function show(Comunidad $comunidad)
-    {
+    public function show(Comunidad $comunidad) {
         //
     }
 
@@ -55,8 +53,7 @@ class ComunidadController extends Controller
      * @param  \App\Models\Comunidad  $comunidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comunidad $comunidad)
-    {
+    public function edit(Comunidad $comunidad) {
         //
     }
 
@@ -67,8 +64,7 @@ class ComunidadController extends Controller
      * @param  \App\Models\Comunidad  $comunidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comunidad $comunidad)
-    {
+    public function update(Request $request, Comunidad $comunidad) {
         //
     }
 
@@ -78,8 +74,8 @@ class ComunidadController extends Controller
      * @param  \App\Models\Comunidad  $comunidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comunidad $comunidad)
-    {
+    public function destroy(Comunidad $comunidad) {
         //
     }
+
 }

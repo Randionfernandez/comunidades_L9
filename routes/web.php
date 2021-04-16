@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
   |
  */
 
-DB::listen(function ($e) {
-    dump($e->sql);
-});
+//DB::listen(function ($e) {
+//    dump($e->sql);
+//});
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +27,10 @@ Route::get('listar',function () {
     return 'Listado de comunidades';
     
 });
+
+
+Route::middleware('auth')->resource('/comunidades', ComunidadController::class);
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
