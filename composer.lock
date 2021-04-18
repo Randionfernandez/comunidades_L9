@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1878b5ca28e2a708187f6e76d62251c6",
+    "content-hash": "22777c67d30fedd821102b357ab1b125",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1092,62 +1092,6 @@
             "time": "2020-06-13T08:05:20+00:00"
         },
         {
-            "name": "laravel/breeze",
-            "version": "v1.1.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/breeze.git",
-                "reference": "b6e804b6b8e6f87e510622ed6ab9771e8219e4c2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/breeze/zipball/b6e804b6b8e6f87e510622ed6ab9771e8219e4c2",
-                "reference": "b6e804b6b8e6f87e510622ed6ab9771e8219e4c2",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/filesystem": "^8.0",
-                "illuminate/support": "^8.0",
-                "php": "^7.3|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Laravel\\Breeze\\BreezeServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Breeze\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Minimal Laravel authentication scaffolding with Blade and Tailwind.",
-            "keywords": [
-                "auth",
-                "laravel"
-            ],
-            "support": {
-                "issues": "https://github.com/laravel/breeze/issues",
-                "source": "https://github.com/laravel/breeze"
-            },
-            "time": "2021-04-13T14:54:44+00:00"
-        },
-        {
             "name": "laravel/fortify",
             "version": "v1.7.10",
             "source": {
@@ -1897,16 +1841,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b"
+                "reference": "69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/2495387841a3eb03ac62b2c984ccd2574303285b",
-                "reference": "2495387841a3eb03ac62b2c984ccd2574303285b",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3",
+                "reference": "69575f50bb7f8a49a41f9bd6bd16c73a6ef4fda3",
                 "shasum": ""
             },
             "require": {
@@ -1957,7 +1901,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.4.2"
+                "source": "https://github.com/livewire/livewire/tree/v2.4.3"
             },
             "funding": [
                 {
@@ -1965,7 +1909,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-04T15:46:50+00:00"
+            "time": "2021-04-16T14:27:45+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",

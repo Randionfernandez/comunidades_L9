@@ -55,8 +55,8 @@ class Person extends Base
         } else {
             $format = static::randomElement(array_merge(static::$maleNameFormats, static::$femaleNameFormats));
         }
-return 'PericoDelgado';
-     //   return $this->generator->parse($format);
+
+        return $this->generator->parse($format);
     }
 
     /**
