@@ -12,7 +12,7 @@ class Comunidad extends Model {
     use SoftDeletes;
 
     protected $table = 'comunidades';
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];   // registramos la nueva columna ¿necesario en laravel 8?
     protected $fillable = [
         'cif',
         'fechalta',
@@ -29,6 +29,14 @@ class Comunidad extends Model {
 
     public function propiedades() {
         return $this->hasMany(Propiedad::class);
+    }
+
+    public function cuentas() {
+        return $this->hasMany(Cuenta::class);
+    }
+
+    public function usuarios() {
+        return $this->belongsToMany(User::class, 'comunidad_user','comunidad_id','user_id')->withTimestamps();
     }
 
 }

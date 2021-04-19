@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
+
+//use App\Services\Transistor;
+use Psr\Container\ContainerInterface;
+
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -34,3 +38,11 @@ Route::middleware('auth')->resource('/comunidades', ComunidadController::class);
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+
+Route::get('/contenedor', function (ContainerInterface $container) {
+    return dd($container);
+
+    //
+});
