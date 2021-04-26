@@ -21,6 +21,8 @@ class CreateRolesTable extends Migration
             $table->string('descripcion')->nullable();
             $table->boolean('activo')->default(true);
             
+            $table->index('role');
+            
         });
     }
 

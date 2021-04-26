@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ComunidadController;
 
 
 //use App\Services\Transistor;
@@ -26,14 +27,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('listar',function () {
-    $resultado= DB::select('select * from comunidades');
-    return 'Listado de comunidades';
-    
-});
-
-
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class);
+//Route::resource('/comunidades', ComunidadController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

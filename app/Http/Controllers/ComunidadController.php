@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comunidad;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +15,17 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $resultado = DB::select('select * from comunidades');
-        return $resultado;
+        // Obtenemos la instancia del usuario autenticado
+        //$user = auth()->user();
+
+        //también podemos obtener solo el identificador
+        //$user_id = auth()->id();
+
+       // obtenemos todas las comunidades de las que es miembro el usuario autenticado
+        return auth()->user()->comunidades;
+
+//      $resultado = DB::select('select otroscampos, p.role from comunidades c, comunidad_usr p ....');
+//      return $resultado;
     }
 
     /**

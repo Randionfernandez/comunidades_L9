@@ -17,6 +17,8 @@ class Comunidad extends Model {
         'cif',
         'fechalta',
         'activa',
+        'gratuita',
+        'partes',
         'denom',
         'direccion',
         'localidad',

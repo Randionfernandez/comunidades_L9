@@ -17,7 +17,9 @@ class CreateComunidadesTable extends Migration {
 
             $table->string('cif', 12)->unique();
             $table->date('fechalta');
-            $table->boolean('activa')->default('true');
+            $table->boolean('activa')->default(true);
+            $table->boolean('gratuita')->default(true);
+            
             $table->integer('partes')->default(10)->comment('Cantidad de unidades registrales que componen la comunidad');
             
             $table->string('denom', 35);
