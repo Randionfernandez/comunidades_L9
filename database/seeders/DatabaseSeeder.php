@@ -17,6 +17,14 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run() {
+        
+        User::create([
+            'name' => 'prueba',
+            'email' => 'prueba@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('prueba123'),
+            'remember_token' => Str::random(10),
+        ]);
 
        $user= User::create([
             'name' => 'randion',
@@ -25,9 +33,16 @@ class DatabaseSeeder extends Seeder {
             'password' => Hash::make('secretos'),
             'remember_token' => Str::random(10),
         ]);
-
+        
+        \App\Models\Team::create([
+            'name' => 'pruebas\'s Team',
+            'user_id' => 1,
+            'personal_team' => true,
+        ]);
+       
         $this->call([RoleSeeder::class]);
         \App\Models\User::factory(10)->create();
+        \App\Models\Team::factory(10)->create();
         $this->call([ComunidadSeeder::class]);
 
        $miscomunidades = Comunidad::all();
