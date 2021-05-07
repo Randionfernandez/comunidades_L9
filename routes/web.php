@@ -35,6 +35,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);
-
-    //
 })->name('contenedor');
