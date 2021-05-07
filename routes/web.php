@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ComunidadController;
-
-
 //use App\Services\Transistor;
 use Psr\Container\ContainerInterface;
 
@@ -27,7 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->resource('/comunidades', ComunidadController::class);
+Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades' => 'comunidad'])->names('comunidades');
 //Route::resource('/comunidades', ComunidadController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
