@@ -13,6 +13,24 @@
                                     <x-jet-application-mark class="block h-9 w-auto" />
                                 </a>
                             </div>
+                            
+                            @php($navLinks = [
+                                ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Dashboard'],
+                                ['href' => 'contenedor', 'name' => 'contenedor', 'text' => 'Contenedor'],
+                                ['href' => 'comunidades.index', 'name' => 'comunidades.*', 'text' => 'Communities'],
+                            ])
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                @forelse($navLinks as $link)
+                                <x-jet-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
+                                    {{ __($link['text']) }}
+                                </x-jet-nav-link>
+                                @empty
+                                    <h1>No hay menú</h1>
+                                @endforelse
+                            </div>
+                            
+                            
+                            
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -75,7 +93,7 @@
 
                             <!-- Settings Dropdown -->
                             <div class="ml-3 relative">
-                                <x-jet-dropdown align="right" width="48">
+                                <x-jet-dropdown align="right" width="48" contentClasses="pb-2">
                                     <x-slot name="trigger">
                                         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                         <button class="flex text-sm bg-purple-500 border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
@@ -96,7 +114,7 @@
 
                                     <x-slot name="content">
                                         <!-- Account Management -->
-                                        <div class="block px-4 py-2 text-center text-xs bg-black text-white">
+                                        <div class="block px-4 py-2 text-center text-xs bg-black text-white rounded-t">
                                             {{ Auth::user()->email }}
                                         </div>
 
