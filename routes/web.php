@@ -37,4 +37,4 @@ Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);
 
     //
-});
+})->name('contenedor');

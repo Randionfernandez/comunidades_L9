@@ -1,8 +1,8 @@
 <x-app-layout>
 
-    <div class="grid grid-cols-12 gap-x-2">
+    <div class="grid grid-cols-12">
         <!-- component -->
-        <div class="col-span-3 bg-black shadow w-64">
+        <div class="col-span-2 bg-black">
             <ul class="list-reset">
                 <li >
                     <a href="#" class="block p-4 text-white font-bold border-purple hover:bg-grey-lighter border-r-4">Home</a>
@@ -18,7 +18,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-span-9 bg-white overflow-hidden shadow-xl sm:rounded-lg">
+        <div class="col-span-10 bg-white overflow-hidden sm:rounded-lg">
             <!-- Añadir aquí un dashboard -->
         </div>
     </div>
