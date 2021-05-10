@@ -11,4 +11,9 @@ class Comunidad_User extends Model {
 
     protected $table = 'comunidad_user';
 
+    protected $fillable = [
+        'comunidad_id',
+        'user_id',
+        'role_id'
+    ]; 
 }

@@ -13,6 +13,7 @@ class CreateComunidadesTable extends Migration {
      */
     public function up() {
         Schema::create('comunidades', function (Blueprint $table) {
+            
             $table->id();
 
             $table->string('cif', 12)->unique();

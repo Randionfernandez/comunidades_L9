@@ -8,8 +8,9 @@
         </button>
     </div>
     @endif
-
-    <x-jet-button onclick="location.href ='{{ route('comunidades.create') }}'">@lang('New')</x-jet-button>
+    @if( auth()->user()->comunidades->count() < env('APP_LIMIT_MAX', 2))
+        <x-jet-button onclick="location.href ='{{ route('comunidades.create') }}'">@lang('New')</x-jet-button>
+    @endif
 
 
     <!--  con button no funciona no coge href y usamos la etiqueta a
@@ -18,8 +19,8 @@
     <button class="btn btn-primary btn-lg btn-block"> @lang('Delete')</button>
     </div>
     -->
-
-        <table class="table">
+    @if ($user->comunidades->count() > 0)
+        <table class="table table-responsive">
             <thead>
                 <tr>
                     <th>@lang('id')</th>
@@ -30,7 +31,7 @@
                     <th>@lang('responsable')</th>
                 </tr>
             </thead>
-            @forelse($comunidades as $comunidad)
+            @forelse($user->comunidades as $comunidad )
             <tbody>
 
                 <tr>
@@ -41,14 +42,17 @@
                     <td>{{$comunidad->secretary}}</td>
                     <td>{{$comunidad->responsable}}</td>
                     <td><x-jet-button onclick="location.href ='{{ route('comunidades.edit', $comunidad) }}'">{{ __('Edit') }}</x-jet-button></td>
-            <td><x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button></td>
+                    <td><x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button></td>
             </tr>
 
             </tbody>
             @empty
-            <h1>@lang('There are not communities created yet')</h1>
+                <h1>@lang('There are not communities created yet')</h1>
             @endforelse
         </table>
+    @else
+        <h1>@lang('There are not communities created yet')</h1>
+    @endif
 
-    {{ $comunidades->links() }}
+        {{ $comunidades->links() }}
 </x-app-layout>

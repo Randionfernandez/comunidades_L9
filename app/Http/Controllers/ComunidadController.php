@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comunidad;
 use App\Models\User;
+use \App\Models\Comunidad_User;
 use App\Http\Requests\SaveComunidadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,7 +24,9 @@ class ComunidadController extends Controller {
         // obtenemos todas las comunidades de las que es miembro el usuario autenticado
         //return auth()->user()->comunidades;
         return view('comunidades.index', [// llamamos al Modelo
-            'comunidades' => Comunidad::orderBy('id', 'asc')->latest()->paginate(15)
+            'comunidades' => Comunidad::orderBy('id', 'asc')->latest()->paginate(15),
+            'user' => auth()->user()
+                
         ]);
 
 //      $resultado = DB::select('select otroscampos, p.role from comunidades c, comunidad_usr p ....');
@@ -49,6 +52,16 @@ class ComunidadController extends Controller {
     public function store(SaveComunidadRequest $request) {
         //
         Comunidad::create($request->validated());
+        
+        $new_comunidad = Comunidad::orderBy('created_at', 'desc')->first();
+        
+        Comunidad_User::create([
+            'comunidad_id' => $new_comunidad->id,
+            'user_id' => auth()->user()->id,
+            'role_id' => '2',
+            'created_at' => $new_comunidad->created_at,
+            'updated_at' => $new_comunidad->updated_at
+        ]);
 
         return redirect()->route('comunidades.index')->with('status', 'La comunidad fué creada con éxito');
     }
@@ -103,6 +116,10 @@ class ComunidadController extends Controller {
         //
         $comunidad->delete();
         return redirect()->route('comunidades.index', $comunidad)->with('status', 'La comunidad fué eliminada con éxito');
+    }
+    
+    public function select(Comunidad $comunidad) {
+        return "Has seleccionado la comunidad" . $comunidad;
     }
 
 }

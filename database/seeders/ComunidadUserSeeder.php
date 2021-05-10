@@ -13,6 +13,8 @@ class ComunidadUserSeeder extends Seeder
      */
     public function run()
     {
-        //
+        \App\Models\Comunidad_User::factory()
+                ->count(15)
+                ->create();
     }
 }
