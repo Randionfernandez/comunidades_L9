@@ -53,6 +53,7 @@
     @else
         <h1>@lang('There are not communities created yet')</h1>
     @endif
-
-        {{ $comunidades->links() }}
+    @if( auth()->user()->comunidades->count() < 15)
+        {{ auth()->user()->comunidades->paginate() }}
+    @endif
 </x-app-layout>

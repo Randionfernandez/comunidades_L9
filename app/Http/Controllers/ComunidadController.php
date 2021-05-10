@@ -121,5 +121,4 @@ class ComunidadController extends Controller {
     public function select(Comunidad $comunidad) {
         return "Has seleccionado la comunidad" . $comunidad;
     }
-
 }
