@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comunidad;
 use App\Models\User;
 use \App\Models\Comunidad_User;
+use App\Models\TeamUser;
 use App\Http\Requests\SaveComunidadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,6 +17,7 @@ class ComunidadController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index() {
         // Obtenemos la instancia del usuario autenticado
         //$user = auth()->user();
@@ -23,8 +25,9 @@ class ComunidadController extends Controller {
         //$user_id = auth()->id();
         // obtenemos todas las comunidades de las que es miembro el usuario autenticado
         //return auth()->user()->comunidades;
+        //dd(auth()->user()->currentTeam);
+        
         return view('comunidades.index', [// llamamos al Modelo
-            'comunidades' => Comunidad::orderBy('id', 'asc')->latest()->paginate(15),
             'user' => auth()->user()
                 
         ]);
@@ -55,13 +58,25 @@ class ComunidadController extends Controller {
         
         $new_comunidad = Comunidad::orderBy('created_at', 'desc')->first();
         
-        Comunidad_User::create([
-            'comunidad_id' => $new_comunidad->id,
-            'user_id' => auth()->user()->id,
-            'role_id' => '2',
-            'created_at' => $new_comunidad->created_at,
-            'updated_at' => $new_comunidad->updated_at
-        ]);
+        if (Comunidad_User::where('comunidad_id', '=', $new_comunidad->ida, 'and', 'user_id', '=', auth()->user()->id)->count() == 0) {
+            Comunidad_User::create([
+                'comunidad_id' => $new_comunidad->id,
+                'user_id' => auth()->user()->id,
+                'role_id' => '2',
+                'created_at' => $new_comunidad->created_at,
+                'updated_at' => $new_comunidad->updated_at
+            ]);        
+        }
+        
+        if (TeamUser::where('team_id', '=', auth()->user()->currentTeam->id, 'and', 'user_id', '=', auth()->user()->id)->count() == 0) {
+            TeamUser::create($request->validated() ,[
+                'team_id' => auth()->user()->currentTeam->id,
+                'user_id' => auth()->user()->id,
+                'role' => '2',
+                'created_at' => $new_comunidad->created_at,
+                'updated_at' => $new_comunidad->updated_at
+            ]);
+        }
 
         return redirect()->route('comunidades.index')->with('status', 'La comunidad fué creada con éxito');
     }
