@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ComunidadController extends Controller {
+    
+    private $msj = '';
 
     /**
      * Display a listing of the resource.
@@ -42,7 +44,11 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        
+        if ( !auth()->user()->hasTeamPermission(Team::find(auth()->user()->team), 'create')) {
+            abort(401, 'You cannot see');
+        }
+        
         return view('comunidades.create', ['comunidad' => new Comunidad]);
     }
 
@@ -53,32 +59,42 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(SaveComunidadRequest $request) {
-        //
-        Comunidad::create($request->validated());
         
-        $new_comunidad = Comunidad::orderBy('created_at', 'desc')->first();
+        $this->msj = 'La comunidad fué creada con éxito';
         
-        if (Comunidad_User::where('comunidad_id', '=', $new_comunidad->ida, 'and', 'user_id', '=', auth()->user()->id)->count() == 0) {
-            Comunidad_User::create([
-                'comunidad_id' => $new_comunidad->id,
-                'user_id' => auth()->user()->id,
-                'role_id' => '2',
-                'created_at' => $new_comunidad->created_at,
-                'updated_at' => $new_comunidad->updated_at
-            ]);        
-        }
         
-        if (TeamUser::where('team_id', '=', auth()->user()->currentTeam->id, 'and', 'user_id', '=', auth()->user()->id)->count() == 0) {
-            TeamUser::create($request->validated() ,[
-                'team_id' => auth()->user()->currentTeam->id,
-                'user_id' => auth()->user()->id,
-                'role' => '2',
-                'created_at' => $new_comunidad->created_at,
-                'updated_at' => $new_comunidad->updated_at
-            ]);
-        }
+        if (Comunidad::where('cif', '=', $request->input('cif'))->count() == 0) {
+            
+            Comunidad::create($request->validated());
+            
+            $new_comunidad = Comunidad::orderBy('created_at', 'desc')->first();
+            
+            $user = auth()->user();
+                        
+            if (Comunidad_User::where('comunidad_id', '=', $new_comunidad->id, 'and', 'user_id', '=', $user->id)->count() == 0) {
+                Comunidad_User::create([
+                    'comunidad_id' => $new_comunidad->id,
+                    'user_id' => $user->id,
+                    'role_id' => '2',
+                    'created_at' => $new_comunidad->created_at,
+                    'updated_at' => $new_comunidad->updated_at
+                ]);        
+            }
 
-        return redirect()->route('comunidades.index')->with('status', 'La comunidad fué creada con éxito');
+            if (TeamUser::where('team_id', '=', $user->currentTeam->id, 'and', 'user_id', '=', $user->id)->count() == 0) {
+                TeamUser::create($request->validated(), [
+                    'team_id' => $user->currentTeam->id,
+                    'user_id' => $user->id,
+                    'role' => '2',
+                    'created_at' => $new_comunidad->created_at,
+                    'updated_at' => $new_comunidad->updated_at
+                ]);
+            }
+        } else {
+            $msj = 'La comunidad no ha podido ser creada con éxito';
+        }
+        
+        return redirect()->route('comunidades.index')->with('status', $this->msj);
     }
 
     /**
@@ -115,10 +131,12 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Comunidad $comunidad, SaveComunidadRequest $request) {
-        //
+        
+        $this->msj = 'La comunidad fué actualizada con éxito';
+        
         $comunidad->update();
 
-        return redirect()->route('comunidades.show', $community)->with('status', 'La comunidad fué actualizada con éxito');
+        return redirect()->route('comunidades.show', $community)->with('status', $this->msj);
     }
 
     /**
@@ -128,12 +146,17 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comunidad $comunidad) {
-        //
+        
+        $this->msj = 'La comunidad fué eliminada con éxito';
+        
         $comunidad->delete();
-        return redirect()->route('comunidades.index', $comunidad)->with('status', 'La comunidad fué eliminada con éxito');
+        return redirect()->route('comunidades.index', $comunidad)->with('status', $this->msj);
     }
     
     public function select(Comunidad $comunidad) {
-        return "Has seleccionado la comunidad" . $comunidad;
+        
+        $this->msj = "Has seleccionado la comunidad ";
+        
+        return $this->msj . $comunidad;
     }
 }
