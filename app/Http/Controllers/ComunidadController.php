@@ -89,7 +89,7 @@ class ComunidadController extends Controller {
             ]);
         }
         
-        return redirect()->route('comunidades.index')->with('status', $this->msj);
+        return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-primary']);
     }
 
     /**
@@ -131,7 +131,7 @@ class ComunidadController extends Controller {
         
         $comunidad->update();
 
-        return redirect()->route('comunidades.show', $community)->with('status', $this->msj);
+        return redirect()->route('comunidades.show', $community)->with('status', [$this->msj, 'alert-primary']);
     }
 
     /**
@@ -145,7 +145,7 @@ class ComunidadController extends Controller {
         $this->msj = 'La comunidad fué eliminada con éxito';
         
         $comunidad->delete();
-        return redirect()->route('comunidades.index', $comunidad)->with('status', $this->msj);
+        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-danger']);
     }
     
     public function select(Comunidad $comunidad) {
