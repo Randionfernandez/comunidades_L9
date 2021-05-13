@@ -5,18 +5,16 @@
                
         <div class="flex justify-between h-16">
             <div class="flex">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center mr-2">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
-                    </a>
-                </div>
                 
-                <x-jet-nav-link class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
-                    @lang('imagen')
-                </x-jet-nav-link>
+                <button @click="open = ! open" :class="hidden sm:-my-px sm:ml-10 sm:flex" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                    <svg class="h-16 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                     
                     @forelse($navLinks as $link)
                     <x-jet-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
                         {{ __($link['text']) }}

@@ -20,22 +20,15 @@
     </head>
     <body class="container-fluid">
     <x-jet-banner />
-    <div class="row d-block">
-        @livewire('navigation-menu')
-    </div>
-    <!-- Page Heading -->
-    @if (isset($header))
-    <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            {{ $header }}
-        </div>
-    </header>
-    @endif
-    
+
     <div class="row">
         <!-- component aside navbar -->
-        <div class="col-12 col-sm-3 col-lg-2 p-0 bg-black collapse show" id="collapseExample">
-
+        <div class="col-12 col-sm-12 col-lg-2 p-0 bg-black collapse show" id="collapseExample">
+            
+            <x-jet-nav-link href="{{ route('dashboard') }}" class="h-16">
+                @lang('RandiFincas')
+            </x-jet-nav-link>
+            
             <div id="accordion">
                 <div class="bg-dark card">
                     <div class="card-header" id="headingOne">
@@ -77,12 +70,26 @@
             </div>
 
         </div>
-        <!-- Page Content -->
-        <div class="col-12 col-sm-9 col-lg-10 p-2">
-            {{ $slot }}
-        </div>
         
-        <footer class="col-12 col-sm-12 col-lg-12 mt-auto p-2 bg-white text-center text-black-50 py-3 shadow">
+        <!-- navigationbar -->
+
+        <div class="col px-0">
+            @livewire('navigation-menu')
+
+            <!-- Page Heading -->
+            @if (isset($header))
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+            @endif
+            <div class="py-2 px-2">
+                {{ $slot }}
+            </div>
+        </div>
+
+        <footer class="fixed-bottom col-12 col-sm-12 col-lg-12 mt-auto p-2 bg-white text-center text-black-50 py-3 shadow">
             {{ config('app.name') }} | Copyright @ {{ date('Y') }}
         </footer>
     </div>
@@ -90,6 +97,7 @@
     @stack('modals')
 
     @livewireScripts
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
