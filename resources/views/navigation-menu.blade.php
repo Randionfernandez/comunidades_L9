@@ -2,14 +2,19 @@
 
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl bg-purple-500 mx-auto px-4 sm:px-6 lg:px-8">
+               
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
+                <div class="flex-shrink-0 flex items-center mr-2">
                     <a href="{{ route('dashboard') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
+                
+                <x-jet-nav-link class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
+                    @lang('imagen')
+                </x-jet-nav-link>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     @forelse($navLinks as $link)

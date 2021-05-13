@@ -27,7 +27,7 @@ class SaveComunidadRequest extends FormRequest
     public function rules()
     {
         return [
-            'cif' => 'required',
+            'cif' => 'required|unique:comunidades,cif',
             'fechalta' => 'required|date',
             'activa' => 'boolean',
             'gratuita' => 'boolean',
@@ -51,7 +51,8 @@ class SaveComunidadRequest extends FormRequest
             'door' => 'required',
             'countrycode' => 'required'
     ];
-    }    
+    }
+    
     public function messages() {
         return [
             'name.required' => __('The community needs a name'),

@@ -32,14 +32,14 @@ class AppServiceProvider extends ServiceProvider
         
         \Illuminate\Support\Facades\View::share('navDarkLinks', [
             ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Dashboard'],
-            ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Incidencias tabla'],
-            ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Comunidades'],
-            ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Acciones'],
-            ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Personas'],
-            ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Proveedores'],
-            ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Inmuebles'],
-            ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Presupuestos'],
-            ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Honorarios'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Incidencias tabla'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.create', 'text' => 'Comunidades'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.show', 'text' => 'Acciones'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.edit', 'text' => 'Personas'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.update', 'text' => 'Proveedores'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.delete', 'text' => 'Inmuebles'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.restore', 'text' => 'Presupuestos'],
+            ['href' => 'comunidades.index', 'name' => 'comunidades.eliminar', 'text' => 'Honorarios'],
             ]);
     }
 }

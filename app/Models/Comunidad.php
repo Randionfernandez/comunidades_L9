@@ -36,9 +36,13 @@ class Comunidad extends Model {
     public function cuentas() {
         return $this->hasMany(Cuenta::class);
     }
+    
+    public function comunidades_user() {
+        return $this->hasMany(Comunidad_User::class);
+    }
 
     public function usuarios() {
-        return $this->belongsToMany(User::class, 'comunidad_user','comunidad_id','user_id')->withTimestamps();
+        return $this->belongsToMany('user')->withTimestamps();
     }
 
 }

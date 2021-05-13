@@ -31,25 +31,60 @@
         </div>
     </header>
     @endif
-
+    
     <div class="row">
         <!-- component aside navbar -->
-        <div class="col-12 col-sm-3 col-lg-2 p-0 bg-black">
+        <div class="col-12 col-sm-3 col-lg-2 p-0 bg-black collapse show" id="collapseExample">
 
-            @forelse($navDarkLinks as $link)
-            <x-jet-responsive-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
-                {{ __($link['text']) }}
-            </x-jet-responsive-nav-link>
-            @empty
-            <h1>El menú no esta disponible</h1>
-            @endforelse
+            <div id="accordion">
+                <div class="bg-dark card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link bg-black" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                @lang('ADMINISTRATOR')
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="bg-black collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            @forelse($navDarkLinks as $link)
+                            <x-jet-responsive-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
+                                {{ __($link['text']) }}
+                            </x-jet-responsive-nav-link>
+                            @empty
+                            <h1>El menú no esta disponible</h1>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-dark">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                @lang('OWNER')
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse bg-black" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            <x-jet-responsive-nav-link href="{{ route('comunidades.index') }}" :active="request()->routeIs('comunidades.index')">
+                                @lang('Propiedades')
+                            </x-jet-responsive-nav-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-
         <!-- Page Content -->
         <div class="col-12 col-sm-9 col-lg-10 p-2">
             {{ $slot }}
         </div>
+        
+        <footer class="col-12 col-sm-12 col-lg-12 mt-auto p-2 bg-white text-center text-black-50 py-3 shadow">
+            {{ config('app.name') }} | Copyright @ {{ date('Y') }}
+        </footer>
     </div>
 
     @stack('modals')
