@@ -1,4 +1,5 @@
 <div>
+    
     @if (Gate::check('addTeamMember', $team))
         <x-jet-section-border />
 
@@ -41,7 +42,7 @@
                                             <!-- Role Name -->
                                             <div class="flex items-center">
                                                 <div class="text-sm text-gray-600 {{ $addTeamMemberForm['role'] == $role->key ? 'font-semibold' : '' }}">
-                                                    {{ $role->name }}
+                                                   {{ $role->name }}
                                                 </div>
 
                                                 @if ($addTeamMemberForm['role'] == $role->key)
@@ -128,6 +129,7 @@
                 <!-- Team Member List -->
                 <x-slot name="content">
                     <div class="space-y-6">
+                        
                         @foreach ($team->users->sortBy('name') as $user)
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
@@ -136,10 +138,10 @@
                                 </div>
 
                                 <div class="flex items-center">
-                                    <!-- Manage Team Member Role -->
+                                    Manage Team Member Role
                                     @if (Gate::check('addTeamMember', $team) && Laravel\Jetstream\Jetstream::hasRoles())
                                         <button class="ml-2 text-sm text-gray-400 underline" wire:click="manageRole('{{ $user->id }}')">
-                                            {{ Laravel\Jetstream\Jetstream::findRole($user->membership->role)->name }}
+                                           {{ Laravel\Jetstream\Jetstream::findRole($user->membership->role)->name }}
                                         </button>
                                     @elseif (Laravel\Jetstream\Jetstream::hasRoles())
                                         <div class="ml-2 text-sm text-gray-400">

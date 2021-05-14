@@ -14,6 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -22,7 +23,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
+            
             $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));
+            
             $table->timestamps();
         });
     }

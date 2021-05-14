@@ -29,7 +29,6 @@ class CreateComunidadesTable extends Migration {
             $table->string('pais')->default('ES');
             $table->string('logo')->nullable()->comment('Imagen con el logo de la comunidad');
             $table->string('observaciones')->nullable();
-            $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));
 
             $table->timestamps();
             $table->softDeletes();
