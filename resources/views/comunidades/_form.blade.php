@@ -4,30 +4,22 @@
 
 <div class="form-group">
     <label for="denom">@lang('denom')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="text" name="denom" placeholder=@lang('denom') value="{{ old('denom', $comunidad->denom) }}" required>
+    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="denom" placeholder=@lang('denom') value="{{ old('denom', $comunidad->denom) }}" required>
     @if ($errors->has('denom'))
         <span class="error-message">{{ $errors->first('denom') }}</span>
     @endif
 </div>
 <div class="form-group">
-    <label for="nif">@lang('cif')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="text" name="cif" placeholder=@lang('cif') value="{{ old('cif', $comunidad->cif) }}" required>
+    <label for="cif">@lang('cif')</label>
+    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="9" name="cif" placeholder=@lang('cif') value="{{ old('cif', $comunidad->cif) }}" required>
 </div>
 <div class="form-group">
-    <label for="president">@lang('president')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="text" name="president" placeholder=@lang('president') value="{{ old('president', $comunidad->president) }}">
+    <label for="fechalta">@lang('Create Date')</label>
+    <input class="form-control border-0 bg-light shadow-sm" type="date" name="fechalta" placeholder=@lang('fechalta') value="{{ old('fechalta', $comunidad->fechalta) }}" required>
 </div>
 <div class="form-group">
-    <label for="secretary">@lang('secretary')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="text" name="secretary" placeholder=@lang('secretary') value="{{ old('secretary', $comunidad->secretary) }}">
-</div>
-<div class="form-group">
-    <label for="responsable">@lang('responsable')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="text" name="responsable" placeholder=@lang('responsable') value="{{ old('responsable', $comunidad->responsable) }}">
-</div>
-<div class="form-group">
-    <label for="banksuf">@lang('banksuf')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="text" name="banksuf" placeholder=@lang('banksuf') value="{{ old('banksuf', $comunidad->banksuf) }}" required>
+    <label for="partes">@lang('partes')</label>
+    <input class="form-control border-0 bg-light shadow-sm" type="number" name="partes" placeholder=@lang('partes') value="{{ old('partes', $comunidad->partes) }}">
 </div>
 <div class="panel panel-default top-spaced">
     <div class="panel-heading ng-binding">
@@ -35,86 +27,55 @@
     </div>
     <div class="panel-body">
         <div class="row form-group">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="form-group">
-                    <label for="direccion">@lang('direccion')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="direccion" placeholder=@lang('direccion') value="{{ old('direccion', $comunidad->direccion) }}" required>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="doorway">@lang('doorway')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="doorway" placeholder=@lang('doorway') value="{{ old('doorway', $comunidad->doorway) }}" required>
-                </div>
-            </div>
-
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="block">@lang('block')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="block" placeholder=@lang('block') value="{{ old('block', $comunidad->block) }}" required>
+                    <label for="direccion">@lang('direction')</label>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="direccion" placeholder=@lang('direction') value="{{ old('direccion', $comunidad->direccion) }}" required>
                 </div>
             </div>
 
         </div>
 
-        <div class="row form-group">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="stair">@lang('stair')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="stair" placeholder=@lang('stair') value="{{ old('stair', $comunidad->stair) }}" required>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="floor">@lang('floor')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="floor" placeholder=@lang('floor') value="{{ old('floor', $comunidad->floor) }}" required>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="door">@lang('door')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="door" placeholder=@lang('door') value="{{ old('door', $comunidad->door) }}" required>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="countrycode">@lang('countrycode')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="countrycode" placeholder=@lang('countrycode') value="{{ old('countrycode', $comunidad->countrycode) }}" required>
-                </div>
-            </div>
-        </div>
         <div class="row form-group">
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="cp">@lang('cp')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="cp" placeholder=@lang('cp') value="{{ old('cp', $comunidad->cp) }}" required>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="5" name="cp" placeholder=@lang('cp') value="{{ old('cp', $comunidad->cp) }}" required>
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="pais">@lang('pais')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="pais" placeholder=@lang('pais') value="{{ old('pais', $comunidad->pais) }}" required>
+                    <label for="pais">@lang('Country')</label>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="pais" placeholder=@lang('Country') value="{{ old('pais', $comunidad->pais) }}">
                 </div>
             </div>
 
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="provincia">@lang('provincia')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('provincia') value="{{ old('provincia', $comunidad->provincia) }}" required>
+                    <label for="provincia">@lang('province')</label>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('province') value="{{ old('provincia', $comunidad->provincia) }}">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="localidad">@lang('localidad')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="localidad" placeholder=@lang('localidad') value="{{ old('localidad', $comunidad->localidad) }}" required>
+                    <label for="localidad">@lang('locality')</label>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="localidad" placeholder=@lang('locality') value="{{ old('localidad', $comunidad->localidad) }}">
                 </div>
             </div>
-            <div class="form-group" hidden>
-                <input class="form-control border-0 bg-light shadow-sm" type="text" name="fechalta"  value="<?php echo date('Y-m-d') ?>">
+        </div>
+        <div class="row form-group">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="logo">@lang('logo')</label>
+                    <input class="form-control border-0 bg-light shadow-sm" type="image" name="logo" placeholder=@lang('logo') value="{{ old('logo', $comunidad->logo) }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="observaciones">@lang('observaciones')</label>
+                    <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="name" rows="5" cols="10" " name="observaciones" placeholder=@lang('observaciones') value="{{ old('observaciones', $comunidad->observaciones) }}"> </textarea>
+                </div>
             </div>
         </div>
     </div>

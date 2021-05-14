@@ -27,20 +27,21 @@ class SaveComunidadRequest extends FormRequest
     public function rules()
     {
         return [
-            'cif' => 'required|unique:comunidades,cif',
+            'cif' => ['required', 'alpha_num', 'size:9' ,'unique:comunidades,cif'],
             'fechalta' => 'required|date',
             'activa' => 'boolean',
             'gratuita' => 'boolean',
-            'partes' => 'integer',
-            'denom' => 'required|string',
+            'partes' => 'integer|nullable',
+            'denom' => 'required|string|max:35',
             'direccion' => 'required|string',
-            'localidad' => 'required|string',
-            'provincia' => 'required|string',
+            'localidad' => 'string|nullable',
+            'provincia' => 'string|nullable',
             'cp' => 'required|size:5',
-            'pais' => 'required|string',
-            'logo' => '',
-            'observaciones' => 'string',
-            'president' => 'string',
+            'pais' => 'string|nullable',
+            'logo' => 'nullable',
+            'observaciones' => 'string||nullable',
+            'limitMaxFreeCommunities' => 'integer'
+            /*'president' => 'string',
             'secretary' => 'string',
             'responsable' => 'string',
             'banksuf' => 'required',
@@ -49,14 +50,14 @@ class SaveComunidadRequest extends FormRequest
             'stair' => '',
             'floor' => 'required|integer',
             'door' => 'required',
-            'countrycode' => 'required'
+            'countrycode' => 'required'*/
     ];
     }
     
     public function messages() {
         return [
-            'name.required' => __('The community needs a name'),
-            'cif.required' => __('The community needs an cif')
+            'denom.required' => __('The community needs a name'),
+            'cif.required' => __('The community needs an unique cif')
         ];
     }
 }

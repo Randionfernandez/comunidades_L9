@@ -63,6 +63,16 @@ class ComunidadController extends Controller {
         
         $this->msj = 'La comunidad fué creada con éxito';
         
+        $gratuita = true;
+        
+        if (auth()->user()->comunidades->count() >= auth()->user()->limitMaxFreeCommunities) {
+            $gratuita = false;
+        }
+        
+        $request->merge([
+            'activa' => true,
+            'gratuita' => $gratuita
+        ]);
             
         Comunidad::create($request->validated());
 
@@ -141,6 +151,10 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comunidad $comunidad) {
+        
+        $request->merge([
+            'activa' => false
+        ]);
         
         $this->msj = 'La comunidad fué eliminada con éxito';
         

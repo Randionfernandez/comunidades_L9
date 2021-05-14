@@ -16,21 +16,20 @@ class CreateComunidadesTable extends Migration {
             
             $table->id();
 
-            $table->string('cif', 12)->unique();
+            $table->string('cif', 9)->unique();
             $table->date('fechalta');
             $table->boolean('activa')->default(true);
             $table->boolean('gratuita')->default(true);
-            
-            $table->integer('partes')->default(10)->comment('Cantidad de unidades registrales que componen la comunidad');
-            
+            $table->integer('partes')->nullable()->default(10)->comment('Cantidad de unidades registrales que componen la comunidad');
             $table->string('denom', 35);
             $table->string('direccion', 40);
-            $table->string('localidad', 35);
+            $table->string('localidad', 35)->nullable();
             $table->string('provincia')->nullable();
             $table->char('cp', 5)->comment('Código postal');
-            $table->string('pais')->default('ES');
+            $table->string('pais')->nullable()->default('ES');
             $table->string('logo')->nullable()->comment('Imagen con el logo de la comunidad');
             $table->string('observaciones')->nullable();
+            $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));
 
             $table->timestamps();
             $table->softDeletes();
