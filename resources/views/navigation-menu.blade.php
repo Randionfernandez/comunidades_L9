@@ -44,6 +44,15 @@
 
                         <x-slot name="content">
                             <div class="w-60">
+                                
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ __('Setting') }}
+                                </div>
+                                
+                                <x-jet-dropdown-link href="{{ route('comunidades.index') }}">
+                                    {{ __('Setting') }}
+                                </x-jet-dropdown-link>
+                                
                                 <!-- Team Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Manage Team') }}

@@ -24,6 +24,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::middleware('auth')->get('/', function() { return view('comunidades.index', ['user' => auth()->user(), 'comunidad' => 'comunidad']); } );
+
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades' => 'comunidad'])->names('comunidades');
 //Route::resource('/comunidades', ComunidadController::class);
 

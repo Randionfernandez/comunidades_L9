@@ -8,7 +8,8 @@
         </button>
     </div>
     @endif
-    @if( auth()->user()->comunidades->count() < env('APP_LIMIT_MAX', 2))
+    
+    @if( auth()->user()->comunidades->count() < auth()->user()->limitMaxFreeCommunities)
         <x-jet-button onclick="location.href ='{{ route('comunidades.create') }}'">@lang('New')</x-jet-button>
     @endif
 
@@ -47,7 +48,7 @@
 
             </tbody>
             @empty
-                <h1>@lang('There are not communities created yet')</h1>
+            <div class="alert alert-danger">@lang('There are not communities created yet')</div>
             @endforelse
         </table>
     @else

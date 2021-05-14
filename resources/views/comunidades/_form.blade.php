@@ -68,7 +68,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="logo">@lang('logo')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="image" name="logo" placeholder=@lang('logo') value="{{ old('logo', $comunidad->logo) }}">
+                    <input type="file" id="avatar" class="form-control border-0 bg-light shadow-sm" name="logo">
                 </div>
             </div>
             <div class="col-md-6">

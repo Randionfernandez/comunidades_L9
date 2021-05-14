@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
             ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Dashboard'],
             ['href' => 'contenedor', 'name' => 'contenedor', 'text' => 'Contenedor'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.*', 'text' => 'Communities'],
+            ['href' => 'comunidades.index', 'name' => 'Mi cuenta', 'text' => 'Mi cuenta'],
             ]);
         
         \Illuminate\Support\Facades\View::share('navDarkLinks', [

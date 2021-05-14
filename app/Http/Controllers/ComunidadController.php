@@ -65,7 +65,7 @@ class ComunidadController extends Controller {
         
         $gratuita = true;
         
-        if (auth()->user()->comunidades->count() >= auth()->user()->limitMaxFreeCommunities) {
+        if (auth()->user()->comunidades->count() >= env('APP_LIMIT_MAX_FREE_COMMUNITIES')) {
             $gratuita = false;
         }
         
