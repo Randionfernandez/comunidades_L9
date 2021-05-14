@@ -6,24 +6,33 @@
     <label for="denom">@lang('denom')</label>
     <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="denom" placeholder=@lang('denom') value="{{ old('denom', $comunidad->denom) }}" required>
     @if ($errors->has('denom'))
-        <span class="error-message">{{ $errors->first('denom') }}</span>
+    <span class="error-message">{{ $errors->first('denom') }}</span>
     @endif
 </div>
-<div class="form-group">
-    <label for="cif">@lang('cif')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="9" name="cif" placeholder=@lang('cif') value="{{ old('cif', $comunidad->cif) }}" required>
+<div class="row form-group">
+    <div class="col-4">
+        <label for="cif">@lang('cif')</label>
+        <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="9" name="cif" placeholder=@lang('cif') value="{{ old('cif', $comunidad->cif) }}" required>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="fechalta">@lang('Create Date')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="date" name="fechalta" placeholder=@lang('fechalta') value="{{ old('fechalta', $comunidad->fechalta) }}" required>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="partes">@lang('partes')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="number" name="partes" min="1" placeholder=@lang('partes') value="{{ old('partes', $comunidad->partes) }}">
+        </div>
+    </div>
 </div>
-<div class="form-group">
-    <label for="fechalta">@lang('Create Date')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="date" name="fechalta" placeholder=@lang('fechalta') value="{{ old('fechalta', $comunidad->fechalta) }}" required>
-</div>
-<div class="form-group">
-    <label for="partes">@lang('partes')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="number" name="partes" placeholder=@lang('partes') value="{{ old('partes', $comunidad->partes) }}">
-</div>
+
+
 <div class="panel panel-default top-spaced">
     <div class="panel-heading ng-binding">
-        @lang('notifications direction')
+        <b>@lang('Notifications direction')</b>
+        <hr>
     </div>
     <div class="panel-body">
         <div class="row form-group">
@@ -65,13 +74,13 @@
             </div>
         </div>
         <div class="row form-group">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label for="logo">@lang('logo')</label>
                     <input type="file" id="avatar" class="form-control border-0 bg-light shadow-sm" name="logo">
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label for="observaciones">@lang('observaciones')</label>
                     <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="name" rows="5" cols="10" " name="observaciones" placeholder=@lang('observaciones') value="{{ old('observaciones', $comunidad->observaciones) }}"> </textarea>
@@ -81,4 +90,5 @@
     </div>
 </div>
 <x-jet-button>{{ __($btnText1) }}</x-jet-button>
-<x-jet-danger-button onclick="location.href='{{ route('comunidades.index') }}'">{{ __($btnText2) }}</x-jet-danger-button>
+<x-jet-danger-button onclick="location.href ='{{ route('comunidades.index') }}'">{{ __($btnText2) }}</x-jet-danger-button>
+<br><br>
