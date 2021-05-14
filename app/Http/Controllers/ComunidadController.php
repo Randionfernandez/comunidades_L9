@@ -90,7 +90,7 @@ class ComunidadController extends Controller {
 
 
         if (TeamUser::where('team_id', '=', $user->currentTeam->id, 'and', 'user_id', '=', $user->id)->count() == 0) {
-            TeamUser::create($request->validated(), [
+            TeamUser::create([
                 'team_id' => $user->currentTeam->id,
                 'user_id' => $user->id,
                 'role' => '2',
@@ -152,13 +152,14 @@ class ComunidadController extends Controller {
      */
     public function destroy(Comunidad $comunidad) {
         
-        $request->merge([
-            'activa' => false
-        ]);
+        $comunidad->activa = false;
+        
+        $comunidad->update();
         
         $this->msj = 'La comunidad fué eliminada con éxito';
         
         $comunidad->delete();
+        
         return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-danger']);
     }
     
