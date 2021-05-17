@@ -48,3 +48,7 @@ Route::resource('ingresos', IngresosController::class);
 Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);
 })->name('contenedor');
+
+Route::get('/pruebas', function (App\Models\User $user) {
+    return dd($user);
+})->name('pruebas');

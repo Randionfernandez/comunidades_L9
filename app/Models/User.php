@@ -28,6 +28,12 @@ class User extends Authenticatable {
     protected $fillable = [
         'name', 'email', 'password',
     ];
+    
+    protected $table = 'users';
+    
+    protected $role = ['super', 'admin', 'user'];
+    
+    protected $permissions = ['read','create', 'edit', 'delete'];
 
 
     /**
