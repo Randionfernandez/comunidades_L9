@@ -17,7 +17,7 @@ class CreateMovimientosTable extends Migration {
             $table->softDeletes();
             $table->timestamps();
             
-            $table->integer('n_op')->comment('Número de operación, a veces no esta disponible, depende de la cuenta y de loslistados');
+            $table->integer('n_op')->comment('Número de operación, a veces no esta disponible, depende de la cuenta y de los listados');
             $table->date('fecha');
             $table->date('fechavalor')->comment('Si no se conoce, se repite coincidiendo con el valor del campo fecha');
             $table->decimal('importe', 8, 2);
