@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration {
 
             $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));
 
-            $table->enum("Tratamiento", ["Sr", "Sra"]);
+            /*$table->enum("Tratamiento", ["Sr", "Sra"]);
             $table->string('Apellido1', 30);
             $table->string('Apellido2', 30);
             $table->enum("Tipo", ["Fisica", "Juridica"]);
@@ -42,7 +42,7 @@ class CreateUsersTable extends Migration {
             $table->string('CP', 5);
             $table->string('Pais', 20);
             $table->string('Provincia', 20);
-            $table->string('Localidad', 20);
+            $table->string('Localidad', 20);*/
 
             $table->timestamps();
         });

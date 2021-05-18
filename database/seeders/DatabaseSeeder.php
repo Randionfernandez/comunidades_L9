@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder {
             'remember_token' => Str::random(10),
         ]);
         
-        User::create([
+        $user2 = User::create([
             'name' => 'prueba',
             'email' => 'prueba@gmail.com',
             'email_verified_at' => now(),
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder {
         ]);
         
         \App\Models\Team::create([
-            'name' => 'pruebas\'s Team',
+            'name' => $user2->name .  '\'s Team',
             'user_id' => 2,
             'personal_team' => true,
         ]);
