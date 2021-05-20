@@ -27,7 +27,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->resource('/comunidades', ComunidadController::class);
+Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
 //Route::resource('/comunidades', ComunidadController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

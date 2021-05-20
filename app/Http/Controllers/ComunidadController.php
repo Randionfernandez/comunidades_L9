@@ -16,14 +16,16 @@ class ComunidadController extends Controller {
      */
     public function index() {
         // Obtenemos la instancia del usuario autenticado
-        //$user = auth()->user();
+        $user = auth()->user();
 
         //también podemos obtener solo el identificador
         //$user_id = auth()->id();
 
        // obtenemos todas las comunidades de las que es miembro el usuario autenticado
-        return auth()->user()->comunidades;
-
+       // return auth()->user()->comunidades;
+return view('comunidades.index',['user'=> $user,
+    'comunidades' => $user->comunidades]);
+        
 //      $resultado = DB::select('select otroscampos, p.role from comunidades c, comunidad_usr p ....');
 //      return $resultado;
     }
@@ -54,7 +56,9 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Comunidad $comunidad) {
-        //
+        return view('comunidades.show', [
+            'comunidad' => $comunidad,
+        ]);
     }
 
     /**

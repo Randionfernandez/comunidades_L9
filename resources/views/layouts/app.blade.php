@@ -13,34 +13,39 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-        @livewireStyles
+       
 
-        <!-- Scripts -->
+        <!-- Scripts  @livewireStyles -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
+    
     <body class="font-sans antialiased">
-        <x-jet-banner />
+    <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+    <div class="min-h-screen bg-gray-100">
+        @livewire('navigation-menu')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+        <!-- Page Heading -->
+        @if (isset($header))
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                {{ $header }}
+            </div>
+        </header>
+        @endif
+        
+        <div class="py-2 px-2">
+            {{ $slot }}
         </div>
+    </div>
 
-        @stack('modals')
+    <footer class="fixed-bottom col-12 col-sm-12 col-lg-12 mt-auto p-2 bg-white text-center text-black-50 py-3 shadow">
+        {{ config('app.name') }} | Copyright @ {{ date('Y') }}
+    </footer>
+</div>
 
-        @livewireScripts
-    </body>
+@stack('modals')
+
+@livewireScripts
+</body>
 </html>
