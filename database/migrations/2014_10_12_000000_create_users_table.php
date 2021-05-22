@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration {
             $user = new User();
 
             $table->id();
-            $table->string('name', 30);
+            $table->string('name', 60);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -26,7 +26,7 @@ class CreateUsersTable extends Migration {
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
 
-            $table->integer('limitMaxFreeCommunities')->default($user->limitMaxCommunities());
+            $table->integer('limitCommunities')->default($user->limitMaxCommunities());
 
             /*$table->enum("Tratamiento", ["Sr", "Sra"]);
             $table->string('Apellido1', 30);

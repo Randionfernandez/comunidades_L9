@@ -9,7 +9,7 @@
     </div>
     @endif
     
-    @if( auth()->user()->comunidades->count() < auth()->user()->limitMaxFreeCommunities)
+    @if( auth()->user()->comunidades->count() < auth()->user()->limitCommunities)
         <x-jet-button onclick="location.href ='{{ route('comunidades.create') }}'">@lang('New')</x-jet-button>
     @endif
 
