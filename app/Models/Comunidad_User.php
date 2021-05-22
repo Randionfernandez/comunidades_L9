@@ -11,4 +11,17 @@ class Comunidad_User extends Model {
 
     protected $table = 'comunidad_user';
 
+    protected $fillable = [
+        'comunidad_id',
+        'user_id',
+        'role_id'
+    ];
+    
+    public function comunidades() {
+        return $this->belongsToMany('comunidad')->withTimestamps();
+    }
+    
+    public function usuarios() {
+        return $this->belongsToMany('user')->withTimestamps();
+    }
 }

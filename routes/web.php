@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ComunidadController;
-
-
 //use App\Services\Transistor;
 use Psr\Container\ContainerInterface;
 
@@ -27,17 +24,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
+//Route::middleware('auth')->get('/', function() { return view('comunidades.index', ['user' => auth()->user(), 'comunidad' => 'comunidad']); } );
+
+Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades' => 'comunidad'])->names('comunidades');
+=======
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
+>>>>>>> master
 //Route::resource('/comunidades', ComunidadController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::resource('gastos', GastosController::class);
 
+Route::resource('distribucion', DistribucionGastosController::class);
+
+Route::resource('cuentasBancarias', CuentasBancariasController::class);
+
+Route::resource('liquidacion', LiquidacionController::class);
+
+Route::resource('movimientos', MovimientosController::class);
+
+Route::resource('ingresos', IngresosController::class);
 
 Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);
-
-    //
-});
+})->name('contenedor');

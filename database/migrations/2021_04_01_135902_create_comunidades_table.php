@@ -13,18 +13,17 @@ class CreateComunidadesTable extends Migration {
      */
     public function up() {
         Schema::create('comunidades', function (Blueprint $table) {
+            
             $table->id();
 
-            $table->string('cif', 12)->unique();
+            $table->string('cif', 9)->unique();
             $table->date('fechalta');
             $table->boolean('activa')->default(true);
             $table->boolean('gratuita')->default(true);
-            
             $table->integer('partes')->default(10)->comment('Cantidad de unidades registrales que componen la comunidad');
-            
             $table->string('denom', 35);
             $table->string('direccion', 40);
-            $table->string('localidad', 35);
+            $table->string('localidad', 35)->nullable();
             $table->string('provincia')->nullable();
             $table->char('cp', 5)->comment('Código postal');
             $table->string('pais')->default('ES');

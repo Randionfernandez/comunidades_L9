@@ -51,17 +51,22 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         Jetstream::defaultApiTokenPermissions(['read']);
 
-        Jetstream::role('admin', __('Administrator'), [
+        Jetstream::role('super', __('Super'), [
             'create',
             'read',
             'update',
-            'delete',
-        ])->description(__('Administrator users can perform any action.'));
+            'delete'
+        ])->description(__('Super users can perform any action.'));
 
-        Jetstream::role('editor', __('Editor'), [
-            'read',
+        Jetstream::role('admin', __('Admin'), [
             'create',
+            'read',
             'update',
-        ])->description(__('Editor users have the ability to read, create, and update.'));
+            'delete'
+        ])->description(__('Admin users have the ability to read, create, update and delete.'));
+
+        Jetstream::role('user', __('User'), [
+            'read',
+        ])->description(__('Just  read'));
     }
 }
