@@ -86,7 +86,7 @@
             </div>
         </div>
 
-        <footer class="fixed-bottom col-12 col-sm-12 col-lg-12 mt-auto p-2 bg-white text-center text-black-50 py-3 shadow">
+        <footer class="col-12 col-sm-12 col-lg-12 fixed-bottom bg-white text-center text-black-50 mt-auto p-2 py-3 shadow">
             {{ config('app.name') }} | Copyright @ {{ date('Y') }}
         </footer>
     </div>

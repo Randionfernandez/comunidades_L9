@@ -2,6 +2,9 @@
 
 <x-jet-validation-errors></x-jet-validation-errors>
 
+<x-jet-button>{{ __($btnText1) }}</x-jet-button>
+<x-jet-danger-button onclick="location.href ='{{ route('comunidades.index') }}'">{{ __($btnText2) }}</x-jet-danger-button>
+
 <div class="form-group">
     <label for="denom">@lang('denom')</label>
     <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="denom" placeholder=@lang('denom') value="{{ old('denom', $comunidad->denom) }}" required>
@@ -46,30 +49,33 @@
         </div>
 
         <div class="row form-group">
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="cp">@lang('cp')</label>
                     <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="5" name="cp" placeholder=@lang('cp') value="{{ old('cp', $comunidad->cp) }}" required>
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="pais">@lang('Country')</label>
                     <input class="form-control border-0 bg-light shadow-sm" type="text" name="pais" placeholder=@lang('Country') value="{{ old('pais', $comunidad->pais) }}">
                 </div>
             </div>
-
-            <div class="col-md-3">
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('province') value="{{ old('provincia', $comunidad->provincia) }}">
-                </div>
             </div>
-
-            <div class="col-md-3">
-                <div class="form-group d-none">
+        <div class="row form-group">
+            <div class="col-md-6 py-2">
+                <label for="provincia">@lang('Province')</label>
+                <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('province') value="{{ old('provincia', $comunidad->provincia) }}">
+            </div>
+            
+             <div class="col-md-6 py-2">
+                <div class="form-group">
+                    <label for="localidad">@lang('Locality')</label>
                     <input class="form-control border-0 bg-light shadow-sm" type="text" name="localidad" placeholder=@lang('locality') value="{{ old('localidad', $comunidad->localidad) }}">
                 </div>
             </div>
+        </div>
         </div>
         <div class="row form-group">
             <div class="col-md-12">
@@ -87,6 +93,3 @@
         </div>
     </div>
 </div>
-<x-jet-button>{{ __($btnText1) }}</x-jet-button>
-<x-jet-danger-button onclick="location.href ='{{ route('comunidades.index') }}'">{{ __($btnText2) }}</x-jet-danger-button>
-<br><br>
