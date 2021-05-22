@@ -26,6 +26,7 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+<<<<<<< HEAD
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                 <div class="ml-3 relative">
@@ -84,6 +85,8 @@
                     </x-jet-dropdown>
                 </div>
                 @endif
+=======
+>>>>>>> master
 
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">

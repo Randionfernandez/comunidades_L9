@@ -1,22 +1,10 @@
-<<<<<<< HEAD
 <x-app-layout>
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Community Show | ' . $comunidad->denom ) }}
+            {{ __('Community Show | ') . $comunidad->denom }}
         </h2>
     </x-slot>
-=======
-<x-layout>
-
-    @section('title')
-    {{ __('Community Show | ') . $comunidad->denom }}
-    @endsection
-
-
-
-    @section('content')
->>>>>>> master
 
     <div class="bg-white p-5 shadow rounded">
 
@@ -34,10 +22,10 @@
             @endauth
         </div>
 
-<<<<<<< HEAD
         <label for="denom"><h1>@lang('Denomination')</h1></label>
         <h1> {{ $comunidad->denom }} </h1>
 
+        
         <div class="d-flex justify-content-between align-items-center">
             <div class=" col-12 panel-body">
                 <div class="row form-group">
@@ -150,13 +138,3 @@
         </div>
     </div>
 </x-app-layout>
-=======
-        <h3>@lang('Denomination') {{ $comunidad->denom }}</h3>
-
-        @include('comunidades._comunidad')
-
-    </div>
-    @endsection
-
-</x-layout>
->>>>>>> master

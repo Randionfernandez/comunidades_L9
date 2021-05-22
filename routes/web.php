@@ -24,9 +24,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 //Route::middleware('auth')->get('/', function() { return view('comunidades.index', ['user' => auth()->user(), 'comunidad' => 'comunidad']); } );
 
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades' => 'comunidad'])->names('comunidades');
+=======
+Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
+>>>>>>> master
 //Route::resource('/comunidades', ComunidadController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
