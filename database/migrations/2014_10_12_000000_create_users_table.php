@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 class CreateUsersTable extends Migration {
 
@@ -13,6 +14,8 @@ class CreateUsersTable extends Migration {
      */
     public function up() {
         Schema::create('users', function (Blueprint $table) {
+            
+            $user = new User();
 
             $table->id();
             $table->string('name', 30);
@@ -23,7 +26,7 @@ class CreateUsersTable extends Migration {
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
 
-            $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));
+            $table->integer('limitMaxFreeCommunities')->default($user->limitMaxCommunities());
 
             /*$table->enum("Tratamiento", ["Sr", "Sra"]);
             $table->string('Apellido1', 30);

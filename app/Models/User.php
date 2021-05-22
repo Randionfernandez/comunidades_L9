@@ -52,6 +52,8 @@ class User extends Authenticatable {
     
     protected $table = 'users';
     
+    protected $limitCommunities = 2;
+    
     protected $role = ['super', 'admin', 'user'];
     
     protected $permissions = ['read','create', 'edit', 'delete'];
@@ -94,5 +96,12 @@ class User extends Authenticatable {
     public function role() {
         return $this->belongsToMany(Role::class, 'comunidad_user','user_id','role_id')->withTimestamps();
     }
-
+    
+    public function limitMaxCommunities($limitcommunities = null) {
+        if ($limitcommunities !== null) {
+            $this->limitCommunities = $limitcommunities;
+        }
+        
+        return $this->limitCommunities;
+    }
 }
