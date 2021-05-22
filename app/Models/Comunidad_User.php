@@ -16,12 +16,4 @@ class Comunidad_User extends Model {
         'user_id',
         'role_id'
     ];
-    
-    public function comunidades() {
-        return $this->belongsToMany('comunidad')->withTimestamps();
-    }
-    
-    public function usuarios() {
-        return $this->belongsToMany('user')->withTimestamps();
-    }
 }

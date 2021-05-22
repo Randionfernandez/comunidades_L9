@@ -34,25 +34,30 @@ class DatabaseSeeder extends Seeder {
             'remember_token' => Str::random(10),
         ]);
         
-        \App\Models\Team::create([
-            'name' => $user2->name .  '\'s Team',
-            'user_id' => 2,
-            'personal_team' => true,
-        ]);
+        foreach ([$user, $user2] as $usr) {
+            \App\Models\Team::create([
+                'name' => $usr->name .  '\'s Team',
+                'user_id' => $usr->id,
+                'personal_team' => true,
+            ]);
+        }
+        
+        
        
         $this->call([RoleSeeder::class]);
         \App\Models\User::factory(15)->create();
         \App\Models\Team::factory(15)->create();
         $this->call([ComunidadSeeder::class]);
         
-        Comunidad_User::create([
-            'comunidad_id' => 1,
-            'user_id' => 2,
-            'role_id' => 2,
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
-        
+        foreach ([$user, $user2] as $usr) {
+            Comunidad_User::create([
+                'comunidad_id' => $usr->id,
+                'user_id' => $usr->id,
+                'role_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
         //$this->call([ComunidadUserSeeder::class]);
 
        $miscomunidades = Comunidad::all();

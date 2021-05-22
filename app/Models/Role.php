@@ -15,7 +15,7 @@ class Role extends Model {
         'activo',
     ];
 
-    public function usuarios() {
-        return $this->belongsToMany('user')->withTimestamps();
+    public function usuario() {
+        return $this->belongsToMany(User::class, 'comunidad_user','role_id','user_id')->withTimestamps();
     }
 }

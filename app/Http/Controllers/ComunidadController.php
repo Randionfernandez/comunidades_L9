@@ -7,6 +7,7 @@ use App\Models\User;
 use \App\Models\Comunidad_User;
 use App\Models\TeamUser;
 use App\Models\Team;
+use App\Models\Pais;
 use App\Http\Requests\SaveComunidadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,10 +30,10 @@ class ComunidadController extends Controller {
         // obtenemos todas las comunidades de las que es miembro el usuario autenticado
         //return auth()->user()->comunidades;
         //dd(auth()->user()->currentTeam);
+        //dd(auth()->user()->role[0]);
         
         return view('comunidades.index', [// llamamos al Modelo
             'user' => auth()->user()
-                
         ]);
 
 //      $resultado = DB::select('select otroscampos, p.role from comunidades c, comunidad_usr p ....');
@@ -50,7 +51,9 @@ class ComunidadController extends Controller {
             abort(401, 'You cannot see');
         }*/
         
-        return view('comunidades.create', ['comunidad' => new Comunidad]);
+        $paises = Pais::all();
+        
+        return view('comunidades.create', ['comunidad' => new Comunidad, 'paises' => $paises]);
     }
 
     /**

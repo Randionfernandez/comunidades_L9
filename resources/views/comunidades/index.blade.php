@@ -24,27 +24,28 @@
         <table class="table table-responsive">
             <thead>
                 <tr>
-                    <th>@lang('id')</th>
                     <th>@lang('denom')</th>
                     <th>@lang('cif')</th>
                     <th>@lang('president')</th>
                     <th>@lang('secretary')</th>
                     <th>@lang('responsable')</th>
+                    <th>@lang('Actions')</th>
                 </tr>
             </thead>
             @forelse($user->comunidades as $comunidad )
             <tbody>
 
                 <tr>
-                    <td>{{$comunidad->id}}</td>
                     <td>{{$comunidad->denom}}</td>
                     <td>{{$comunidad->cif}}</td>
                     <td>{{$comunidad->president}}</td>
                     <td>{{$comunidad->secretary}}</td>
                     <td>{{$comunidad->responsable}}</td>
-                    <td><x-jet-button onclick="location.href ='{{ route('comunidades.edit', $comunidad) }}'">{{ __('Edit') }}</x-jet-button></td>
-                    <td><x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button></td>
-            </tr>
+                    <td>
+                        <x-jet-button onclick="location.href ='{{ route('comunidades.index', $comunidad) }}'">{{ __('Select') }}</x-jet-button>
+                        <x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button>
+                    </td>
+                </tr>
 
             </tbody>
             @empty

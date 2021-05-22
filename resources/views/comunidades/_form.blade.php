@@ -61,14 +61,12 @@
             </div>
 
             <div class="col-md-3">
-                <div class="form-group">
-                    <label for="provincia">@lang('province')</label>
                     <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('province') value="{{ old('provincia', $comunidad->provincia) }}">
                 </div>
             </div>
+
             <div class="col-md-3">
-                <div class="form-group">
-                    <label for="localidad">@lang('locality')</label>
+                <div class="form-group d-none">
                     <input class="form-control border-0 bg-light shadow-sm" type="text" name="localidad" placeholder=@lang('locality') value="{{ old('localidad', $comunidad->localidad) }}">
                 </div>
             </div>

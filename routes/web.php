@@ -45,6 +45,8 @@ Route::resource('movimientos', MovimientosController::class);
 
 Route::resource('ingresos', IngresosController::class);
 
+Route::resource('localidades', LocalidadController::class)->parameters(['localidades' => 'localidad'])->only('index');
+
 Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);
 })->name('contenedor');

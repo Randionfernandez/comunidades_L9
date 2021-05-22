@@ -92,7 +92,7 @@ class User extends Authenticatable {
     }
     
     public function role() {
-        return $this->belongsToMany(Comunidad_User::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
+        return $this->belongsToMany(Role::class, 'comunidad_user','user_id','role_id')->withTimestamps();
     }
 
 }

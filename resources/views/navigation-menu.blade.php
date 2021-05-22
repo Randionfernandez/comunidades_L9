@@ -2,19 +2,23 @@
 
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl bg-purple-500 mx-auto px-4 sm:px-6 lg:px-8">
-               
+
         <div class="flex justify-between h-16">
             <div class="flex">
                 
-                <button @click="open = ! open" :class="hidden sm:-my-px sm:ml-10 sm:flex" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
-                    <svg class="h-16 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
+                
+                <nav class="navbar navbar-dark bg-purple-500 border-gray-500">
+                  <div class="container-fluid">
+                    <button class="navbar-toggler border-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="true" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  </div>
+                </nav>
+
+               
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                     
+
                     @forelse($navLinks as $link)
                     <x-jet-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
                         {{ __($link['text']) }}
@@ -44,15 +48,15 @@
 
                         <x-slot name="content">
                             <div class="w-60">
-                                
+
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Setting') }}
                                 </div>
-                                
+
                                 <x-jet-dropdown-link href="{{ route('comunidades.index') }}">
                                     {{ __('Setting') }}
                                 </x-jet-dropdown-link>
-                                
+
                                 <!-- Team Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Manage Team') }}
