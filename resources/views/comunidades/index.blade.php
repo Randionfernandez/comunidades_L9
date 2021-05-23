@@ -14,7 +14,7 @@
     @endif
 
 
-    <!--  con button no funciona no coge href y usamos la etiqueta a
+    <!--  con button no funciona no coge href y usamos la etiqueta a -->
 
      <div class="col-12 col-sm-10 col-lg-6 mx-auto">
     <button class="btn btn-primary btn-lg btn-block"> @lang('Delete')</button>
@@ -52,5 +52,5 @@
     @else
         <h1>@lang('There are not communities created yet')</h1>
     @endif
-        -->
+       
 </x-app-layout>

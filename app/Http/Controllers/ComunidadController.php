@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ComunidadController extends Controller {
-    
+
     private $msj = '';
 
     /**
@@ -20,34 +20,25 @@ class ComunidadController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function index() {
-        // Obtenemos la instancia del usuario autenticado
-<<<<<<< HEAD
-        //$user = auth()->user();
-        //también podemos obtener solo el identificador
-        //$user_id = auth()->id();
-        // obtenemos todas las comunidades de las que es miembro el usuario autenticado
-        //return auth()->user()->comunidades;
-        //dd(auth()->user()->currentTeam);
-        
-        return view('comunidades.index', [// llamamos al Modelo
-            'user' => auth()->user()
-                
-        ]);
+// Obtenemos la instancia del usuario autenticado
+//$user = auth()->user();
+//también podemos obtener solo el identificador
+//$user_id = auth()->id();
+// obtenemos todas las comunidades de las que es miembro el usuario autenticado
+//return auth()->user()->comunidades;
+//dd(auth()->user()->currentTeam);
 
-=======
+
         $user = auth()->user();
 
-        //también podemos obtener solo el identificador
-        //$user_id = auth()->id();
+//también podemos obtener solo el identificador
+//$user_id = auth()->id();
+// obtenemos todas las comunidades de las que es miembro el usuario autenticado
+// return auth()->user()->comunidades;
+        return view('comunidades.index', ['user' => $user,
+            'comunidades' => $user->comunidades]);
 
-       // obtenemos todas las comunidades de las que es miembro el usuario autenticado
-       // return auth()->user()->comunidades;
-return view('comunidades.index',['user'=> $user,
-    'comunidades' => $user->comunidades]);
-        
->>>>>>> master
 //      $resultado = DB::select('select otroscampos, p.role from comunidades c, comunidad_usr p ....');
 //      return $resultado;
     }
@@ -58,11 +49,11 @@ return view('comunidades.index',['user'=> $user,
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        
-        /*if ( !auth()->user()->hasTeamPermission(Team::find(auth()->user()->current_team_id), 'server:create')) {
-            abort(401, 'You cannot see');
-        }*/
-        
+
+        /* if ( !auth()->user()->hasTeamPermission(Team::find(auth()->user()->current_team_id), 'server:create')) {
+          abort(401, 'You cannot see');
+          } */
+
         return view('comunidades.create', ['comunidad' => new Comunidad]);
     }
 
@@ -73,20 +64,20 @@ return view('comunidades.index',['user'=> $user,
      * @return \Illuminate\Http\Response
      */
     public function store(SaveComunidadRequest $request) {
-        
+
         $this->msj = 'La comunidad fué creada con éxito';
-        
+
         $gratuita = true;
-        
+
         if (auth()->user()->comunidades->count() >= env('APP_LIMIT_MAX_FREE_COMMUNITIES')) {
             $gratuita = false;
         }
-        
+
         $request->merge([
             'activa' => true,
             'gratuita' => $gratuita
         ]);
-            
+
         Comunidad::create($request->validated());
 
         $new_comunidad = Comunidad::orderBy('created_at', 'desc')->first();
@@ -101,7 +92,6 @@ return view('comunidades.index',['user'=> $user,
             'updated_at' => $new_comunidad->updated_at
         ]);
 
-
         if (TeamUser::where('team_id', '=', $user->currentTeam->id, 'and', 'user_id', '=', $user->id)->count() == 0) {
             TeamUser::create([
                 'team_id' => $user->currentTeam->id,
@@ -111,7 +101,7 @@ return view('comunidades.index',['user'=> $user,
                 'updated_at' => $new_comunidad->updated_at
             ]);
         }
-        
+
         return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-primary']);
     }
 
@@ -122,14 +112,9 @@ return view('comunidades.index',['user'=> $user,
      * @return \Illuminate\Http\Response
      */
     public function show(Comunidad $comunidad) {
-<<<<<<< HEAD
-        //
-        return view('comunidades.show', [
-            'comunidad' => $comunidad
-=======
+
         return view('comunidades.show', [
             'comunidad' => $comunidad,
->>>>>>> master
         ]);
     }
 
@@ -154,9 +139,9 @@ return view('comunidades.index',['user'=> $user,
      * @return \Illuminate\Http\Response
      */
     public function update(Comunidad $comunidad, SaveComunidadRequest $request) {
-        
+
         $this->msj = 'La comunidad fué actualizada con éxito';
-        
+
         $comunidad->update();
 
         return redirect()->route('comunidades.show', $community)->with('status', [$this->msj, 'alert-primary']);
@@ -169,22 +154,23 @@ return view('comunidades.index',['user'=> $user,
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comunidad $comunidad) {
-        
+
         $comunidad->activa = false;
-        
+
         $comunidad->update();
-        
+
         $this->msj = 'La comunidad fué eliminada con éxito';
-        
+
         $comunidad->delete();
-        
+
         return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-danger']);
     }
-    
+
     public function select(Comunidad $comunidad) {
-        
+
         $this->msj = "Has seleccionado la comunidad ";
-        
+
         return $this->msj . $comunidad;
     }
+
 }
