@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+//use \App\Models\Comunidad;
+
 
 class ComunidadRequest extends FormRequest
 {
@@ -27,7 +30,8 @@ class ComunidadRequest extends FormRequest
     public function rules()
     {
         return [
-            'cif' => ['required', 'alpha_num', 'size:9' ,'unique:comunidades,cif'],
+            'cif' => ['required', 'alpha_num', 'size:9' ,
+               Rule::unique('comunidades')->ignore($this->route('comunidad'))],
             'fechalta' => 'required|date',
             'activa' => 'boolean',
             'gratuita' => 'boolean',

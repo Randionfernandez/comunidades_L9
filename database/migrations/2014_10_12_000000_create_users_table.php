@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
             
-            $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));
+            $table->integer('MaxFreeCommunities')->default(env('APP_MAX_FREE_COMMUNITIES',3));
             
             $table->timestamps();
         });

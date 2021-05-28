@@ -23,23 +23,15 @@ Route::get('/', function () {
 
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
 
-//Route::resource('/comunidades', ComunidadController::class);
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('gastos', GastosController::class);
 
-Route::resource('distribucion', DistribucionGastosController::class);
+Route::resource('cuentas', CuentaController::class);
 
-Route::resource('cuentasBancarias', CuentasBancariasController::class);
+Route::resource('movimientos', MovimientoController::class);
 
-Route::resource('liquidacion', LiquidacionController::class);
-
-Route::resource('movimientos', MovimientosController::class);
-
-Route::resource('ingresos', IngresosController::class);
 
 Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);
