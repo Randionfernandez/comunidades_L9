@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comunidad;
 use App\Models\User;
-use \App\Models\Comunidad_User;
+use App\Models\Comunidad_User;
 use App\Models\TeamUser;
 use App\Models\Team;
 use App\Http\Requests\SaveComunidadRequest;
