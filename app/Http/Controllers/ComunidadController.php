@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comunidad;
 use App\Models\User;
 use App\Models\Comunidad_User;
-use App\Models\TeamUser;
-use App\Models\Team;
-use App\Http\Requests\SaveComunidadRequest;
+use App\Http\Requests\ComunidadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,26 +19,11 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-// Obtenemos la instancia del usuario autenticado
-//$user = auth()->user();
-//también podemos obtener solo el identificador
-//$user_id = auth()->id();
-// obtenemos todas las comunidades de las que es miembro el usuario autenticado
-//return auth()->user()->comunidades;
-//dd(auth()->user()->currentTeam);
-
 
         $user = auth()->user();
 
-//también podemos obtener solo el identificador
-//$user_id = auth()->id();
-// obtenemos todas las comunidades de las que es miembro el usuario autenticado
-// return auth()->user()->comunidades;
         return view('comunidades.index', ['user' => $user,
             'comunidades' => $user->comunidades]);
-
-//      $resultado = DB::select('select otroscampos, p.role from comunidades c, comunidad_usr p ....');
-//      return $resultado;
     }
 
     /**
@@ -49,11 +32,6 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-
-        /* if ( !auth()->user()->hasTeamPermission(Team::find(auth()->user()->current_team_id), 'server:create')) {
-          abort(401, 'You cannot see');
-          } */
-
         return view('comunidades.create', ['comunidad' => new Comunidad]);
     }
 
@@ -63,7 +41,7 @@ class ComunidadController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaveComunidadRequest $request) {
+    public function store(ComunidadRequest $request) {
 
         $this->msj = 'La comunidad fué creada con éxito';
 
@@ -113,7 +91,7 @@ class ComunidadController extends Controller {
      */
     public function show(Comunidad $comunidad) {
 
-        return view('comunidades.show', [
+        return view('comunidades.fran_show', [
             'comunidad' => $comunidad,
         ]);
     }
@@ -138,7 +116,7 @@ class ComunidadController extends Controller {
      * @param  \App\Models\Comunidad  $comunidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Comunidad $comunidad, SaveComunidadRequest $request) {
+    public function update(Comunidad $comunidad, ComunidadRequest $request) {
 
         $this->msj = 'La comunidad fué actualizada con éxito';
 
@@ -154,23 +132,21 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comunidad $comunidad) {
-
-        $comunidad->activa = false;
-
-        $comunidad->update();
+//     No es necesario pasarla a false, no es lo mismo desactivar que borrar. Eliminar estos comentarios en versión final
+//        $comunidad->activa = false;
+//        $comunidad->update();
 
         $this->msj = 'La comunidad fué eliminada con éxito';
 
         $comunidad->delete();
 
-        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-danger']);
+        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-info']);
     }
 
-    public function select(Comunidad $comunidad) {
+    public function seleccionar(Comunidad $comunidad) {
+        session(['cmd_seleccionada'=>$comunidad]);
 
-        $this->msj = "Has seleccionado la comunidad ";
-
-        return $this->msj . $comunidad;
+        return view('dashboard',['denominacion'=> $comunidad->denom]);
     }
 
 }

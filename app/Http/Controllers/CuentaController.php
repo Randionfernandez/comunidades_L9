@@ -14,7 +14,7 @@ class CuentaController extends Controller
      */
     public function index()
     {
-        //
+        return "Entrando en cuentas";
     }
 
     /**

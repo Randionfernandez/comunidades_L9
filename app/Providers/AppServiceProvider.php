@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        \Illuminate\Support\Facades\View::share('denom','Rua del percebe');
         \Illuminate\Support\Facades\View::share('navLinks', [
             ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Dashboard'],
             ['href' => 'contenedor', 'name' => 'contenedor', 'text' => 'Contenedor'],
