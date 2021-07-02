@@ -22,7 +22,7 @@ class ComunidadFactory extends Factory {
         public function definition() {
             return [
                 'cif' => $this->faker->unique()->dni(),
-                'denom' => 'C.P. ' . $this->faker->name,
+                'denom' => 'C.P. ' . substr($this->faker->name, 0, 30),  // denom: máximo 35 char
                 'fechalta' => $this->faker->dateTimeBetween('-2 year'),
                 'direccion' => $this->faker->streetAddress(), //secondaryAddress(),
                 'localidad' => $this->faker->asciify(),
