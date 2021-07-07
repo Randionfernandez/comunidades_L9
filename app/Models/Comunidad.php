@@ -38,12 +38,12 @@ class Comunidad extends Model {
         return $this->hasMany(Cuenta::class);
     }
     
-    public function comunidades_user() {
-        return $this->hasMany(Comunidad_User::class);
-    }
+//    public function comunidades_user() {
+//        return $this->hasMany(Comunidad_User::class);
+//    }
 
     public function usuarios() {
-        return $this->belongsToMany('user')->withTimestamps();
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
 
 }

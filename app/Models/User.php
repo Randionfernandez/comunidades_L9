@@ -15,10 +15,9 @@ class User extends Authenticatable {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
-    use HasTeams;
     use Notifiable;
     use TwoFactorAuthenticatable;
-
+    use \Illuminate\Database\Eloquent\SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -65,8 +64,8 @@ class User extends Authenticatable {
         return $this->belongsToMany(Comunidad::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
     }
     
-    public function role() {
-        return $this->belongsToMany(Comunidad_User::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
-    }
+//    public function role() {
+//        return $this->belongsToMany(Comunidad_User::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
+//    }
 
 }

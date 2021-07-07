@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Cuenta;
 use App\Models\Comunidad;
 use App\Models\Comunidad_User;
 
@@ -38,10 +39,8 @@ class DatabaseSeeder extends Seeder {
             'updated_at' => now()
         ]);
 
-        //$this->call([ComunidadUserSeeder::class]);
-        $miscomunidades = Comunidad::all();
-        //      dd($miscomunidades);
-        foreach ($miscomunidades as $comunidad) {
+        $comunidades = Comunidad::all();
+        foreach ($comunidades as $comunidad) {
             Comunidad_User::create([
                 'comunidad_id' => $comunidad->id,
                 'user_id' => $user->id,

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComunidadUsersTable extends Migration {
+class CreateComunidadUserTable extends Migration {
 
     /**
      * Run the migrations.
@@ -14,20 +14,14 @@ class CreateComunidadUsersTable extends Migration {
     public function up() {
         Schema::create('comunidad_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('comunidad_id');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('role_id');
-
-            $table->foreign('comunidad_id')->references('id')->on('comunidades')
+            $table->foreignId('comunidad_id')->constrained('comunidades')
                     ->onDelete('cascade');
-
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->foreignId('user_id')->constrained()
                     ->onDelete('cascade');
+            $table->foreignId('role_id')->constrained('roles')
+                    ->onUpdate('cascade');
 
-            $table->foreign('role_id')->references('id')->on('roles')
-                    ->onDelete('cascade');
-
-            $table->index(['comunidad_id', 'user_id']);
+            $table->unique(['comunidad_id', 'user_id']);
         
             $table->timestamps();
         });

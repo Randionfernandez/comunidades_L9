@@ -18,8 +18,8 @@ class CreateComunidadesTable extends Migration {
 
             $table->string('cif', 9)->unique();
             $table->date('fechalta');
-            $table->boolean('activa')->default(true);
-            $table->boolean('gratuita')->default(true);
+            $table->boolean('activa')->default(true)->comment('Si no está activa, no se pueden realizar operaciones sobre esta comunidad');
+            $table->boolean('gratuita')->default(true)->comment('Indica si esta comnidad es de pago o gratuita');  
             $table->integer('partes')->default(10)->comment('Cantidad de unidades registrales que componen la comunidad');
             $table->string('denom', 35);
             $table->string('direccion', 40);
