@@ -7,6 +7,7 @@ use Psr\Container\ContainerInterface;
 use App\Http\Controllers\ComunidadController;
 use App\Http\Controllers\CuentaController;
 use App\Http\Controllers\MovimientoController;
+use App\Models\User;
 
 /*
   |--------------------------------------------------------------------------
@@ -19,9 +20,13 @@ use App\Http\Controllers\MovimientoController;
   |
  */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
+
+
+Route::get('/user/{id}/roles', function(User $id){
+    $roles= $id->roles();
+    return $roles;
+} )->name('user.roles');
  
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

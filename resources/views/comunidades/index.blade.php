@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('adminlte.layout')
 
 <?php $title = 'Comunidades'; ?>
 @section('title', $title )
@@ -34,7 +34,7 @@
             <td>{{ $comunidad->denom }}</td>
 
             <td class="flex border-2 text-center">
-                <a class="btn btn-small btn-info btn-block" href="{{ route('comunidades.seleccionar', $comunidad) }}">@lang('Seleccionar')</a>
+                <a class="btn btn-small btn-info btn-block" href="{{ route('comunidades.seleccionar', $comunidad) }}">@lang('Selec')</a>
                 <a class="btn btn-small btn-success btn-block" href="{{ route('comunidades.show', $comunidad) }}">@lang('Mostrar')</a>
             </td>
         </tr>

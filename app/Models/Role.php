@@ -17,7 +17,7 @@ class Role extends Model {
     ];
     
 // Eliminar si no se justifica la relación usuarios
-//    public function usuarios() {
-//        return $this->belongsToMany('user')->withTimestamps();
-//    }
+    public function usuarios() {
+        return $this->belongsToMany('user')->withTimestamps();
+    }
 }
