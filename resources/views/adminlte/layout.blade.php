@@ -172,7 +172,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <div class="image">
                             <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                         </div>
-                         <div class="info">
+                        <div class="info">
                             <a href="#" class="d-block">{{ auth()->user()->name }}</a>
                         </div>
                     </div>
@@ -240,7 +240,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0">Starter Page</h1>
+                                <h1 class="m-0">@yield('title')</h1>
                             </div><!-- /.col -->
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
@@ -256,6 +256,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Main content -->
                 <div class="content">
                     <div class="container-fluid">
+                        <div class="row">
+
+                            @yield('cabecera')    
+
+                        </div>
+                        <!-- /.row -->
+
                         <div class="row">
 
                             @yield('content')    
@@ -296,7 +303,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
         <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+        @yield('datatables')
         <!-- AdminLTE App -->
         <script src="/adminlte/js/adminlte.min.js"></script>
+
     </body>
 </html>
