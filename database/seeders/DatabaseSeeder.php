@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder {
                     'password' => Hash::make('secretos'),
                     'remember_token' => Str::random(10),
         ]);
-
+        $this->call([PaisSeeder::class]);
         $this->call([RoleSeeder::class]);
         \App\Models\User::factory(15)->create();
         $this->call([ComunidadSeeder::class]);

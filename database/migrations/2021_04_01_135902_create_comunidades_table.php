@@ -26,12 +26,14 @@ class CreateComunidadesTable extends Migration {
             $table->string('localidad', 35)->nullable();
             $table->string('provincia')->nullable();
             $table->char('cp', 5)->comment('Código postal');
-            $table->string('pais')->default('ES');
+            $table->char('pais',3)->default('ESP')->comment('Código ISO del país, 3 caracteres');
             $table->string('logo')->nullable()->comment('Imagen con el logo de la comunidad');
             $table->string('observaciones')->nullable();
 
+            $table->foreign('pais')->references('codigoISO')->on('paises');
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 

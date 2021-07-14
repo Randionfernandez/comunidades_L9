@@ -24,10 +24,11 @@ class ComunidadFactory extends Factory {
                 'cif' => $this->faker->unique()->dni(),
                 'denom' => 'C.P. ' . substr($this->faker->name, 0, 30),  // denom: máximo 35 char
                 'fechalta' => $this->faker->dateTimeBetween('-2 year'),
-                'direccion' => $this->faker->streetAddress(), //secondaryAddress(),
+                'direccion' => '"' . $this->faker->streetAddress() . '"', //secondaryAddress(),
                 'localidad' => $this->faker->asciify(),
                 'provincia' => $this->faker->community(),
                 'cp' => '07' . $this->faker->randomNumber(3, true),
+                'pais'=>'ESP'
             ];
         }
 
