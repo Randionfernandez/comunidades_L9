@@ -31,5 +31,4 @@ class ComunidadFactory extends Factory {
                 'pais'=>'ESP'
             ];
         }
-
     }

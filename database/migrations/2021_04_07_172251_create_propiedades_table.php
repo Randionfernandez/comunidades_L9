@@ -22,9 +22,10 @@ class CreatePropiedadesTable extends Migration
             $table->string('denominacion',10)->comment("Nombre por el que se conoce la parte, p.e., 1 izda. Ent-B, etc.");
             $table->integer('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");
             $table->decimal('coeficiente',5,2)->comment("Porcentaje de participación en el total de la comunidad, según registro de la propiedad");
+            $table->bool('domiciliada')->default('false')->comment("Cierto si la propiedad tiene domiciliado el cobro de recibos");
+            $table->char('iban',24)->nullable()->comment("IBAN de la cuenta en la que se cargan los recibos domiciliados");
 
-          // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
-            $table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
+            $table->unsignedBigInteger('tipo')->comment("Tipo de propiedad: piso, ático, local,...");
             $table->string('observaciones')->nullable();
             
 
