@@ -15,6 +15,7 @@ class TiposPropiedadSeeder extends Seeder
     public function run()
     {
         DB::table('tipos_propiedad')->insert([
+            ['codigo' => 'NOC', 'descripcion' => 'No consta'],
             ['codigo' => 'APT', 'descripcion' => 'Apartamento'],
             ['codigo' => 'DUP', 'descripcion' => 'Dúplex'],
             ['codigo' => 'VIV', 'descripcion' => 'Vivienda'],
