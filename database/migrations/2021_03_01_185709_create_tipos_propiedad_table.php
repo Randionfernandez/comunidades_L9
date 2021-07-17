@@ -31,6 +31,6 @@ class CreateTiposPropiedadTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipos_propiedades');
+        Schema::dropIfExists('tipos_propiedad');
     }
 }
