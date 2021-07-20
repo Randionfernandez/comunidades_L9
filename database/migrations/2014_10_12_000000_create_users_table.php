@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration {
              */
             $table->enum('tratamiento',['Sr.','Sra.'])->default('Sr.')->nullable();
             $table->enum('tipo',['física','jurídica'])->nullable()->comment('Tipo de persona');
-            $table->string('DOI',12)->nullable()->comment('Doc oficial de identidad: passp, dni, nie, cif');
+            $table->string('doi',12)->nullable()->comment('Doc oficial de identidad: passp, dni, nie, cif');
             $table->string('telefono1')->nullable();
             $table->string('telefono2')->nullable();
             // Dirección postal
