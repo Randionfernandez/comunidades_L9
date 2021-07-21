@@ -26,28 +26,28 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('juntas.index')}" class="nav-link {{ SetActiveRoute('juntas.*') }}">
+                    <a href="{{ route('juntas.index')}}" class="nav-link {{ SetActiveRoute('juntas.*') }}">
                         <i class="fa fa-car-crash nav-icon"></i>
                         <p>Convocatorias</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('proveedores.index')}" class="nav-link {{ SetActiveRoute('proveedores') }}">
+                    <a href="{{ route('proveedores.index')}}" class="nav-link {{ SetActiveRoute('proveedores') }}">
                         <i class="fa fa-concierge-bell nav-icon"></i>
                         <p>Proveedores</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('cuentas.index')}" class="nav-link {{ SetActiveRoute('cuentas.*') }}">
+                    <a href="{{ route('cuentas.index')}}" class="nav-link {{ SetActiveRoute('cuentas.*') }}">
                         <i class="fa fa-euro-sign nav-icon"></i>
                         <p>Cuentas</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('usuarios.index')}" class="nav-link {{ SetActiveRoute('usuarios.*') }}">
+                    <a href="{{ route('usuarios.index')}}" class="nav-link {{ SetActiveRoute('usuarios.*') }}">
                         <i class="fa fa-users nav-icon"></i>
                         <p>Usuarios</p>
                     </a>
