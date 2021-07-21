@@ -17,15 +17,18 @@ class Comunidad_User extends Model {
         'role_id'
     ];
 
-    public function comunidades() {
-        return $this->belongsToMany('comunidad')->withTimestamps();
-    }
-
-    public function usuarios() {
-        return $this->belongsToMany('user')->withTimestamps();
-    }
-
-    public function roles() {
-        return $this->belongsToMany('role')->withTimestamps();
-    }
+    
+    // Revisar la necesidad de las 3 siguientes relaciones
+    // Añadidas por Fran, pero me parecen innecesarias. Comentar con Fran
+//    public function comunidades() {
+//        return $this->belongsToMany('comunidad')->withTimestamps();
+//    }
+//
+//    public function usuarios() {
+//        return $this->belongsToMany('user')->withTimestamps();
+//    }
+//
+//    public function roles() {
+//        return $this->belongsToMany('role')->withTimestamps();
+//    }
 }     

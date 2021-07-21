@@ -23,7 +23,7 @@ class Proveedor extends Model {
         'telefono2',
         'dir_postal',
         'cp',
-        'tipo_proveedor',
+        'actividad',
         'pais',
         'localidad',
         'iban',
@@ -31,17 +31,6 @@ class Proveedor extends Model {
     ];
 
     public function comunidades() {
-        return $this->belongsToMany(Comunidad::class, 'comunidades_proveedores', 'proveedor_id', 'comunidad_id')->withTimestamps();
+        return $this->belongsToMany(Comunidad::class, 'comunidad_proveedor', 'proveedor_id', 'comunidad_id')->withTimestamps();
     }
-
-    public function tipoGasto() {
-        return $this->belongsTo(TipoGasto::class, 'id', 'tipoGasto');
-    }
-
-    public function nombreTipoGasto($id) {
-        // $nombre_tipo = Tipo::findOrFail($id, ['nombreTipo']); 
-        //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
-        return $nombreTipo = Proveedor::join('tipos_gastos', 'proveedores.tipoGasto', '=', 'tipos_gastos.id')->where('proveedores.id', '=', $id)->get()->pluck('nombreTipo')->last();
-    }
-
 }

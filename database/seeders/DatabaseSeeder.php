@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder {
         $this->call([TiposPropiedadSeeder::class]);
         $this->call([PaisSeeder::class]);
         $this->call([RoleSeeder::class]);
+        $this->call([ActividadSeeder::class]);
         
         $user = User::create([
                     'name' => 'Rafael',
