@@ -21,7 +21,7 @@ class ComunidadController extends Controller {
 
         $user = auth()->user();
 
-        return view('comunidades.index', ['user' => $user,
+        return view('comunidades.fran_index', ['user' => $user,
             'comunidades' => $user->comunidades]);
     }
 
@@ -80,8 +80,7 @@ class ComunidadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Comunidad $comunidad) {
-
-        return view('comunidades.fran_show', [
+        return view('comunidades.show', [
             'comunidad' => $comunidad,
         ]);
     }

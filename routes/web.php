@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Route;
 use Psr\Container\ContainerInterface;
 use App\Http\Controllers\ComunidadController;
 use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\PropiedadController;
+use App\Http\Controllers\JuntaController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\MovimientoController;
+use App\Http\Controllers\UserController;
 use App\Models\User;
 
 /*
@@ -38,8 +42,12 @@ Route::middleware('auth')->get('/seleccionar', [ComunidadController::class, 'sel
 
 
 Route::middleware('auth')->resource('cuentas', CuentaController::class);
-
+Route::middleware('auth')->resource('propiedades', PropiedadController::class);
+Route::middleware('auth')->resource('juntas', JuntaController::class);
+Route::middleware('auth')->resource('proveedores', ProveedorController::class);
 Route::middleware('auth')->resource('movimientos', MovimientoController::class);
+Route::middleware('auth')->resource('usuarios', UserController::class);
+
 
 
 Route::get('/contenedor', function (ContainerInterface $container) {
