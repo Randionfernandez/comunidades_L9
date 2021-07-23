@@ -77,11 +77,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Main content -->
                 <div class="content">
                     <div class="container-fluid">
-                        <div class="row">
-
-                            @yield('cabecera')    
-
-                        </div>
+                        <!--                        <div class="row">
+                        
+                                                    @yield('cabecera')    
+                        
+                                                </div>-->
                         <!-- /.row -->
 
                         <div class="row">

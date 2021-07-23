@@ -21,7 +21,7 @@ class ComunidadController extends Controller {
 
         $user = auth()->user();
 
-        return view('comunidades.fran_index', ['user' => $user,
+        return view('comunidades.index', ['user' => $user,
             'comunidades' => $user->comunidades]);
     }
 

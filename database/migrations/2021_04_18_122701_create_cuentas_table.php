@@ -22,7 +22,7 @@ class CreateCuentasTable extends Migration {
             $table->boolean('activa')->default(true);
             $table->decimal('saldo', 10, 2)->default(0);
             $table->string('bic')->nullable();
-            $table->char('divisa', 5)->default('EUR');
+            $table->char('divisa', 3)->default('EUR')->comment('Código ISO 4217 de la divisa');
             $table->text('comentarios')->nullable();
 
             $table->unsignedBigInteger('comunidad_id');

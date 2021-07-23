@@ -38,7 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
-Route::middleware('auth')->get('/seleccionar', [ComunidadController::class, 'seleccionar'])->name('comunidades.seleccionar');
+Route::middleware('auth')->get('/seleccionar/{comunidad}', [ComunidadController::class, 'seleccionar'])->name('comunidades.seleccionar');
 
 
 Route::middleware('auth')->resource('cuentas', CuentaController::class);
