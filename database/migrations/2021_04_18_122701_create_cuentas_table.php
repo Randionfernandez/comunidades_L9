@@ -32,6 +32,9 @@ class CreateCuentasTable extends Migration {
 
             $table->foreign('comunidad_id')->references('id')->on('comunidades')
                     ->onDelete('cascade');
+            
+            $table->foreign('divisa')->references('codigo')->on('divisas')
+                    ->onUpdate('cascade');
         });
     }
 

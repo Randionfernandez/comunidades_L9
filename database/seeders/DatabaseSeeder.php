@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run() {
+        $this->call([DivisaSeeder::class]);
         $this->call([TiposPropiedadSeeder::class]);
         $this->call([PaisSeeder::class]);
         $this->call([RoleSeeder::class]);
