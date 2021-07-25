@@ -13,8 +13,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
+
+        <link rel="stylesheet" href="/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+        <link rel="stylesheet" href="/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
         <!-- Theme style -->
         <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
+
+
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -39,7 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <img src="/adminlte/img/user8-128x128.jpg" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+                            <a href="#" class="d-block">{{ auth()->user()->email }}</a>
                         </div>
                     </div>
 
@@ -55,45 +62,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </aside>
 
             <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <div class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1 class="m-0">@yield('title')</h1>
-                            </div><!-- /.col -->
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                    <li class="breadcrumb-item active">Starter Page</li>
-                                </ol>
-                            </div><!-- /.col -->
-                        </div><!-- /.row -->
-                    </div><!-- /.container-fluid -->
-                </div>
-                <!-- /.content-header -->
-
-                <!-- Main content -->
-                <div class="content">
-                    <div class="container-fluid">
-                        <!--                        <div class="row">
-                        
-                                                    @yield('cabecera')    
-                        
-                                                </div>-->
-                        <!-- /.row -->
-
-                        <div class="row">
-
-                            @yield('content')    
-
-                        </div>
-                        <!-- /.row -->
-                    </div><!-- /.container-fluid -->
-                </div>
-                <!-- /.content -->
-            </div>
+            @include('adminlte._partials.content_wrapper')
             <!-- /.content-wrapper -->
 
             <!-- Control Sidebar -->
@@ -124,10 +93,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
         <script src="/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Datatables & plugins  -->
         <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
-        @yield('datatables')
+        <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+
         <!-- AdminLTE App -->
         <script src="/adminlte/js/adminlte.min.js"></script>
+
+        @yield('datatables')
 
     </body>
 </html>

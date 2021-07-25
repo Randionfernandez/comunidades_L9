@@ -1,13 +1,13 @@
-<x-app-layout>
+@extends('adminlte.layout')
 
-    <x-slot name="header">
+@section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit Community') }}
         </h2>
-    </x-slot>
 
-    <div class="container">
-        <div class="row">
+@endsection
+
+@section('content')
             <div class="col-12 col-sm-10 col-lg-10 mx-auto">
 
                 <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('comunidades.update', $comunidad) }}">
@@ -20,6 +20,4 @@
 
                 </form>
             </div>
-        </div>
-    </div>
-</x-app-layout>
+@endsection
