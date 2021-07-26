@@ -31,6 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
+            @if (session('cmd_seleccionada'))  
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="index3.html" class="brand-link">
@@ -56,10 +57,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                     <!-- Sidebar Menu -->
                     @include('adminlte._partials.sidebarMenu')
+
                     <!-- /.sidebar-menu -->
                 </div>
                 <!-- /.sidebar -->
             </aside>
+            @endif
 
             <!-- Content Wrapper. Contains page content -->
             @include('adminlte._partials.content_wrapper')
@@ -79,10 +82,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <footer class="main-footer">
                 <!-- To the right -->
                 <div class="float-right d-none d-sm-inline">
-                    Anything you want
+                    Aplicación en fase de desarrollo
                 </div>
                 <!-- Default to the left -->
-                <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2021 <a href="https://github.com/randionfernandez/comunidades"></a>Randion</strong>
             </footer>
         </div>
         <!-- ./wrapper -->
@@ -100,7 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- AdminLTE App -->
         <script src="/adminlte/js/adminlte.min.js"></script>
 
-        @yield('datatables')
+        @stack('datatables')
 
     </body>
 </html>

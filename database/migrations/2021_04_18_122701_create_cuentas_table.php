@@ -15,7 +15,7 @@ class CreateCuentasTable extends Migration {
         Schema::create('cuentas', function (Blueprint $table) {
             $table->id();
 
-            $table->char('iban', 25)->unique();
+            $table->char('iban', 24)->unique();
             $table->char('siglas', 4)->default('BBVA');
             $table->string('denominacion', 35)->default('Banco Bilbao Vizcaya Argentaria');
             $table->date('fecha_apertura');

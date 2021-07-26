@@ -1,36 +1,5 @@
 @extends('adminlte.layout')
 
-@section('datatables')
-<script>
-    $(function () {
-        $('#tcmd').DataTable({
-            "responsive": true,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-//    $('#tcmd').DataTable({
-//        "paging": true,
-//        "lengthChange": true,
-//        "searching": true,
-//        "ordering": true,
-//        "info": true,
-//        "autoWidth": false,
-//        "responsive": true,
-//    });
-    });
-</script>
-@endsection
-
-
-<!--@section('datatables')
-<script>
-    $(document).ready(function () {
-        $('#tcmd').DataTable();
-    });
-</script>
-@endsection-->
-
-
-
 @section('header')
 <div class="row mb-2">
     <div class="col-sm-6">
@@ -69,22 +38,30 @@
         <tr>
             <td>{{ $comunidad->cp }}</td> 
             <td>{{ $comunidad->cif }}</td>
-            <td>{{ $comunidad->activa }}</td>
-            <td>{{ $comunidad->gratuita }}</td>
+            <td>@if ( $comunidad->activa ) @lang('Sí') @else @lang('No') @endif</td>
+            <td>@if ( $comunidad->gratuita ) {{ __('Sí') }} @else {{ __('No') }} @endif</td>
             <td>{{ $comunidad->denom }}</td>
 
             <td class="flex border-2 text-center">
+
+                <!-- Seleccionar comunidad -->
                 <a class="btn btn-sm btn-success" href="{{ route('comunidades.seleccionar',['comunidad' => $comunidad ])}}">
                     <span class="fa fa-check-circle"></span>
                 </a>
-                
+
+                <!-- Actualizar comunidad -->
                 <a class="btn btn-sm btn-info" href="{{ route('comunidades.edit',['comunidad' => $comunidad ])}}">
                     <span class="fa fa-edit"></span>
                 </a>
-                
-                <a class="btn btn-sm btn-danger" href="{{ route('comunidades.destroy',['comunidad' => $comunidad ])}}">
-                    <span class="fa fa-trash"></span>
-                </a>
+
+                <!-- Eliminar comunidad
+                 Una forma de enviar peticiones http diferentes de get y post -->
+                <form method="post" style="display:inline-table;" action="{{ route('comunidades.destroy', $comunidad)}}">
+                    @csrf @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        <span class="fa fa-trash"></span>
+                    </button>
+                </form>
             </td> 
 
         </tr>
@@ -92,7 +69,36 @@
 
     </tbody>
 </table>
-{{-- $comunidades->links() --}}
+
 @endif
 
 @endsection
+
+<!--@section('datatables')
+<script>
+    $(document).ready(function () {
+        $('#tcmd').DataTable();
+    });
+</script>
+@endsection-->
+
+@push('datatables')
+<script>
+    $(document).ready(function () {
+//    $(function () {
+//        $('#tcmd').DataTable({
+//            "responsive": true,
+//            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+//        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#tcmd').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true,
+        });
+    });
+</script>
+@endpush

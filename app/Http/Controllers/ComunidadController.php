@@ -110,7 +110,7 @@ class ComunidadController extends Controller {
 
         $comunidad->update();
 
-        return redirect()->route('comunidades.show', $community)->with('status', [$this->msj, 'alert-primary']);
+        return redirect()->route('comunidades.show', $comunidad)->with('status', [$this->msj, 'alert-primary']);
     }
 
     /**
