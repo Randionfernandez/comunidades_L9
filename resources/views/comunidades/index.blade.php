@@ -12,6 +12,16 @@
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
+
+<div class="box-header">
+    <div class='row'>
+    <div class='col-sm-12'>
+    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">
+        <i class="fa fa-plus"></i>  Crear comunidad
+    </button>
+    </div>
+    </div>
+</div>
 @endsection
 
 
@@ -49,19 +59,6 @@
                     <span class="fa fa-check-circle"></span>
                 </a>
 
-                <!-- Actualizar comunidad -->
-                <a class="btn btn-sm btn-info" href="{{ route('comunidades.edit',['comunidad' => $comunidad ])}}">
-                    <span class="fa fa-edit"></span>
-                </a>
-
-                <!-- Eliminar comunidad
-                 Una forma de enviar peticiones http diferentes de get y post -->
-                <form method="post" style="display:inline-table;" action="{{ route('comunidades.destroy', $comunidad)}}">
-                    @csrf @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-danger">
-                        <span class="fa fa-trash"></span>
-                    </button>
-                </form>
             </td> 
 
         </tr>

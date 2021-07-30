@@ -6,13 +6,20 @@
             <a href="{{ route('comunidades.index')}}" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
-                    Comunidades
+                    Administrador
                     <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('comunidades.index')}}" class="nav-link {{ SetActiveRoute('comunidades.*') }}">
+                    <a href="{{ route('dashboard', $comunidad ?? '')}}" class="nav-link {{ SetActiveRoute('dashboard') }}">
+                        <i class="fas fa-warehouse nav-icon"></i>
+                        <p>@lang('Panel')</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('comunidades.show', $comunidad)}}" class="nav-link">
                         <i class="fas fa-warehouse nav-icon"></i>
                         <p>Comunidad</p>
                     </a>
@@ -28,7 +35,7 @@
                 <li class="nav-item">
                     <a href="{{ route('juntas.index')}}" class="nav-link {{ SetActiveRoute('juntas.*') }}">
                         <i class="fa fa-car-crash nav-icon"></i>
-                        <p>Convocatorias</p>
+                        <p>Juntas de propietarios</p>
                     </a>
                 </li>
 
@@ -52,17 +59,43 @@
                         <p>Usuarios</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('usuarios.index')}}" class="nav-link {{ SetActiveRoute('usuarios.*') }}">
+                        <i class="fa fa-users nav-icon"></i>
+                        <p>Incidencias</p>
+                    </a>
+                </li>
             </ul>
         </li>
-
-        <!--        <li class="nav-item">
-                    <a href="/comunidades" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Enlace Sencillo
-                            <span class="right badge badge-danger">New</span>
-                        </p>
+        <li class="nav-item">
+            <a href="{{ route('comunidades.index')}}" class="nav-link active">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                    Propietarios
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('dashboard', $comunidad ?? '')}}" class="nav-link {{ SetActiveRoute('dashboard') }}">
+                        <i class="fas fa-warehouse nav-icon"></i>
+                        <p>@lang('Panel')</p>
                     </a>
-                </li>-->
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('propiedades.index')}}" class="nav-link {{ SetActiveRoute('propiedades') }}">
+                        <i class="fas fa-house-user nav-icon"></i>
+                        <p>Mis propiedades</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('juntas.index')}}" class="nav-link {{ SetActiveRoute('juntas.*') }}">
+                        <i class="fa fa-car-crash nav-icon"></i>
+                        <p>Juntas de propietarios</p>
+                    </a>
+                </li>
+            </ul>
     </ul>
 </nav>

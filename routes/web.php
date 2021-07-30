@@ -1,17 +1,18 @@
 <?php
-
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Route;
 //use App\Services\Transistor;
-use Psr\Container\ContainerInterface;
+
+
 use App\Http\Controllers\ComunidadController;
 use App\Http\Controllers\CuentaController;
-use App\Http\Controllers\PropiedadController;
 use App\Http\Controllers\JuntaController;
-use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\MovimientoController;
+use App\Http\Controllers\PropiedadController;
+use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UserController;
+use App\Models\Comunidad;
 use App\Models\User;
+use Illuminate\Support\Facades\Route;
+use Psr\Container\ContainerInterface;
 
 /*
   |--------------------------------------------------------------------------
@@ -32,8 +33,9 @@ Route::get('/user/{id}/roles', function(User $id){
     return $roles;
 } )->name('user.roles');
  
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Comunidad $comunidad) {
+    $comunidad= session('cmd_seleccionada');
+    return view('dashboard', compact('comunidad'));
 })->name('dashboard');
 
 

@@ -134,7 +134,7 @@ class ComunidadController extends Controller {
     public function seleccionar(Comunidad $comunidad) {
         session(['cmd_seleccionada'=>$comunidad]);
 
-        return view('dashboard',['denominacion'=> $comunidad->denom]);
+        return view('dashboard',compact('comunidad'));
     }
 
 }
