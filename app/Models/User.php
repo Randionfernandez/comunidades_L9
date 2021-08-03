@@ -8,8 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Jetstream\HasTeams;
+// use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable {
 
@@ -17,6 +18,7 @@ class User extends Authenticatable {
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
+    use HasRoles;
     use TwoFactorAuthenticatable;
     use \Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -78,8 +80,11 @@ class User extends Authenticatable {
         return $this->belongsToMany(Comunidad::class, 'comunidad_user', 'user_id', 'comunidad_id')->withTimestamps();
     }
 
-    public function roles() {
-        return $this->belongsToMany(Role::class, 'comunidad_user', 'user_id', 'role_id')->withTimestamps();
-    }
+    // Instalado paquete Spatie/laravel-permission que es incompatible con el método roles().
+    // Tampoco puede haber una propiedad role o roles en este modelo ni en la tabla correspondiente de la B.D.
+    // Lo mismo sucede con las propiedades permission, permissions, y el método permissions()
+//    public function roles() {
+//        return $this->belongsToMany(Role::class, 'comunidad_user', 'user_id', 'role_id')->withTimestamps();
+//    }
 
 }

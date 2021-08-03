@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder {
         $this->call([DivisaSeeder::class]);
         $this->call([TiposPropiedadSeeder::class]);
         $this->call([PaisSeeder::class]);
-        $this->call([RoleSeeder::class]);
         $this->call([ActividadSeeder::class]);
         
         $user = User::create([
@@ -33,8 +32,19 @@ class DatabaseSeeder extends Seeder {
                     'password' => Hash::make('secretos'),
                     'remember_token' => Str::random(10),
         ]);
+        
+        User::create([
+                    'name' => 'invitado',
+                    'apellidos' => 'Invitado',
+                    'fechalta' => "2010-05-01",
+                    'email' => 'randionfernandez@gmail.com',
+                    'email_verified_at' => now(),
+                    'password' => Hash::make('secretos'),
+                    'remember_token' => Str::random(10),
+        ]);
 
         \App\Models\User::factory(15)->create();
+        
         $this->call([ComunidadSeeder::class]);
 
         Comunidad_User::create([

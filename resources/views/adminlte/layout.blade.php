@@ -18,6 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
         <link rel="stylesheet" href="/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
+        @stack('styles')
         <!-- Theme style -->
         <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
 
@@ -31,7 +32,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- /.navbar -->
 
             <!-- Main Sidebar Container -->
-            @if (session('cmd_seleccionada'))  
+
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
                 <a href="index3.html" class="brand-link">
@@ -56,13 +57,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     -->
 
                     <!-- Sidebar Menu -->
+                    @if (session('cmd_seleccionada'))  
                     @include('adminlte._partials.sidebarMenu')
+                    @endif
 
                     <!-- /.sidebar-menu -->
                 </div>
                 <!-- /.sidebar -->
             </aside>
-            @endif
+
 
             <!-- Content Wrapper. Contains page content -->
             @include('adminlte._partials.content_wrapper')
@@ -103,7 +106,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- AdminLTE App -->
         <script src="/adminlte/js/adminlte.min.js"></script>
 
-        @stack('datatables')
+        @stack('scripts')
 
     </body>
 </html>

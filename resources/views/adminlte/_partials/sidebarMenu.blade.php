@@ -4,9 +4,9 @@
              with font-awesome or any other icon font library -->
         <li class="nav-item menu-open">
             <a href="{{ route('comunidades.index')}}" class="nav-link active">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-cog"></i>
                 <p>
-                    Administrador
+                    Configuración
                     <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
@@ -34,7 +34,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('juntas.index')}}" class="nav-link {{ SetActiveRoute('juntas.*') }}">
-                        <i class="fa fa-car-crash nav-icon"></i>
+                        <i class="fa fa-compass nav-icon"></i>
                         <p>Juntas de propietarios</p>
                     </a>
                 </li>
@@ -59,14 +59,60 @@
                         <p>Usuarios</p>
                     </a>
                 </li>
+
+            </ul>
+        </li>
+        
+        
+        <li class="nav-item">
+            <a href="{{ route('comunidades.index')}}" class="nav-link active">
+                <i class="nav-icon fas fa-cog"></i>
+                <p>
+                    Administración
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                    <a href="{{ route('dashboard', $comunidad ?? '')}}" class="nav-link {{ SetActiveRoute('dashboard') }}">
+                        <i class="fas fa-warehouse nav-icon"></i>
+                        <p>@lang('Panel')</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('juntas.index')}}" class="nav-link {{ SetActiveRoute('juntas.*') }}">
+                        <i class="fa fa-compass nav-icon"></i>
+                        <p>Juntas de propietarios</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('proveedores.index')}}" class="nav-link {{ SetActiveRoute('proveedores') }}">
+                        <i class="fa fa-concierge-bell nav-icon"></i>
+                        <p>Proveedores</p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('usuarios.index')}}" class="nav-link {{ SetActiveRoute('usuarios.*') }}">
                         <i class="fa fa-users nav-icon"></i>
+                        <p>Usuarios</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('usuarios.index')}}" class="nav-link {{ SetActiveRoute('usuarios.*') }}">
+                        <i class="fa fa-tools nav-icon"></i>
                         <p>Incidencias</p>
                     </a>
                 </li>
             </ul>
-        </li>
+        
+        
+        
+        
+        
+        
         <li class="nav-item">
             <a href="{{ route('comunidades.index')}}" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>

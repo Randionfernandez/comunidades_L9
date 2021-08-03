@@ -79,7 +79,7 @@
 </script>
 @endsection-->
 
-@push('datatables')
+@push('scripts')
 <script>
     $(document).ready(function () {
 //    $(function () {
