@@ -14,7 +14,7 @@ class Comunidad_User extends Model {
     protected $fillable = [
         'comunidad_id',
         'user_id',
-        'role_id'
+      // 'role_id'    // Revisar una vez Spatie/larvel-permission este funcionando
     ];
 
     

@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder {
         Comunidad_User::create([
             'comunidad_id' => 1,
             'user_id' => 2,
-            'role_id' => 2,
+          //  'role_id' => 2,    // Revisar cuando se sustituya por Spatie/laravel-permission
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder {
             Comunidad_User::create([
                 'comunidad_id' => $comunidad->id,
                 'user_id' => $user->id,
-                'role_id' => '2',
+             //   'role_id' => '2',  // Revisar cuando se sustituya por Spatie/laravel-permission
             ]);
         }
     }
