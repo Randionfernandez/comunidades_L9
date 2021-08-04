@@ -47,7 +47,7 @@ class CreateUsersTable extends Migration {
 
             $table->text('comentario')->nullable();
 
-            $table->foreign('pais')->references('codigoISO')->on('paises');
+            $table->foreign('pais')->references('codigoISO3')->on('paises');
         });
     }
 

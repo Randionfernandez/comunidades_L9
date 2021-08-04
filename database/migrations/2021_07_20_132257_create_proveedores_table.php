@@ -33,7 +33,7 @@ class CreateProveedoresTable extends Migration {
             $table->char('iban', 24);
             $table->text('comentario')->nullable();
             
-            $table->foreign('pais')->references('codigoISO')->on('paises');
+            $table->foreign('pais')->references('codigoISO3')->on('paises');
             $table->foreign('actividad')->references('codigo')->on('actividades');
         });
     }

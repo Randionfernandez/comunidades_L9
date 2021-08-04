@@ -31,7 +31,7 @@ class CreateComunidadesTable extends Migration {
             $table->string('logo')->nullable()->comment('Imagen con el logo de la comunidad');
             $table->string('observaciones')->nullable();
 
-            $table->foreign('pais')->references('codigoISO')->on('paises');
+            $table->foreign('pais')->references('codigoISO3')->on('paises');
             $table->timestamps();
             $table->softDeletes();
         });

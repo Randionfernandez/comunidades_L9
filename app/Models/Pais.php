@@ -11,12 +11,12 @@ class Pais extends Model {
 
     protected $table = 'paises';
     protected $keyType = 'string';
-    protected $primaryKey= 'codigoISO';
+    protected $primaryKey = 'codigoISO3';
     public $timestamps = false;
-    
     protected $fillable = [
-        'codigoISO',
-        'codigoANSI',
+        'codigoISO3',
+        'codigoISO2',
+        'cod_numerico',
         'nombre',
     ];
 
