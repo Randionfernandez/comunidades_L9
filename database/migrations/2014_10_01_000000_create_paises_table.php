@@ -19,8 +19,7 @@ class CreatePaisesTable extends Migration
             $table->decimal('cod_numerico','3','0');
             $table->string('nombre','50');
 
-            // no se cumple unicidad con este campo, p.e., 'TH' está repetido
-            //$table->unique('codigoISO2');
+            $table->unique('codigoISO2');
         });
     }
 

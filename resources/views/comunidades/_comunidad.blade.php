@@ -1,7 +1,5 @@
 <!-- Main content -->
 <!--<section class="content">-->
-<!-- general form elements -->
-
 <form>
     <div class="row">
         <div class="col-md-8">
@@ -26,76 +24,90 @@
                             onclick="document.getElementById('delete-comunidad').submit()">@lang('Dar de baja')</button>
                 </div>
 
-                <!-- fecha de alta -->
 
-                <!-- CIF -->
-
-                <!-- email de la comunidad -->
-                <div class="form-group">
-                    <label for="Email_cmd">@lang('Correo electrónico')</label>
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                        <input type="email" class="form-control" placeholder="Email">
+                <div class="card-body">
+                    <!-- fecha de alta -->
+                    <div class="form-group">
+                        <label>Fecha de alta</label>
+                        <input type="date" class="form-control" placeholder="">
+                    </div>
+                    <!-- CIF -->
+                    <div class="form-group">
+                        <label>CIF</label>
+                        <input type="text" class="form-control" placeholder="">
                     </div>
 
-                </div>
 
-
-                <!-- denominación -->
-                <div class="form-group">
-                    <label>Text</label>
-                    <input type="text" class="form-control" placeholder="entre la dirección con número, piso, etc incluido">
-                </div>
-
-                <!-- status de la comunidad -->
-                <div class="form-group">
-                    <!-- activa -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox">
-                        <label class="form-check-label">Activa</label>
+                    <!-- denominación -->
+                    <div class="form-group">
+                        <label>Denominación</label>
+                        <input type="text" class="form-control" placeholder="">
                     </div>
-                    <!-- gratuita: No se le cobra cuota -->
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" checked>
-                        <label class="form-check-label">Gratuita checked</label>
+                    <!-- email de la comunidad -->
+                    <div class="form-group">
+                        <label for="Email_cmd">@lang('Correo electrónico')</label>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+
+                    </div>
+
+                    <!-- status de la comunidad -->
+                    <div class="form-group">
+                        <!-- activa -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">Activa</label>
+                        </div>
+                        <!-- gratuita: No se le cobra cuota -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" checked>
+                            <label class="form-check-label">Gratuita</label>
+                        </div>
+                    </div>
+
+
+                    <!-- dirección postal -->
+                    <div class="form-group">
+                        <label>Dirección postal</label>
+                        <input type="text" class="form-control" required  placeholder="Entre la dirección con número, piso, etc., incluido">
+                    </div>
+                    <!-- código postal -->
+                    <div class="form-group">
+                        <label>Código postal</label>
+                        <input type="text" maxlength="5" class="form-control" required placeholder="Código postal">
+                    </div>
+                    <!-- localidad -->
+                    <div class="form-group">
+                        <label>Localidad</label>
+                        <input type="text" class="form-control" required placeholder="Localidad">
+                    </div>
+                    <!-- localidad -->
+                    <div class="form-group">
+                        <label>Municipio</label>
+                        <input type="text" class="form-control" placeholder="">
+                    </div>
+                    <!-- logo -->
+
+                    <!-- propiedades, cuentas, tipos de gasto, grupos de reparto, propietarios -->
+
+                    <!-- propiedades -->
+                    <div class="form-group">
+                        <label>Propiedades</label>
+                        <select class="form-control">
+                            <option>option 1</option>
+                            <option>option 2</option>
+                        </select>
+                    </div>
+
+
+                    <!-- comentarios -->
+                    <div class="form-group">
+                        <label>Comentarios</label>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
                     </div>
                 </div>
-
-
-                <!-- dirección postal -->
-
-                <!-- código postal -->
-
-                <!-- localidad -->
-
-                <!-- logo -->
-
-                <!-- propiedades, cuentas, tipos de gasto, grupos de reparto, propietarios -->
-
-                <!-- propiedades -->
-                <div class="form-group">
-                    <label>Propiedades</label>
-                    <select class="form-control">
-                        <option>option 1</option>
-                        <option>option 2</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
-                        <option>option 5</option>
-                    </select>
-                </div>
-
-                <!-- presidente -->
-
-                <!-- secretario -->
-
-                <!-- administrador -->
-
-                <!-- comentarios -->
-                <div class="form-group">
-                    <label>Comentarios</label>
-                    <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                </div>
-
             </div> <!-- ./card card-warning -->
 
 
@@ -107,7 +119,7 @@
                 <div class="card-header"><!-- comment -->
                     <h3 class="card-title">Anexar documento</h3>
                 </div> <!-- ./card-header -->
-                
+
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputFile">@lang('Anexar documento')</label>
@@ -125,17 +137,46 @@
 
             </div>
 
+            <div class="card card-warning">
+                <div class="card-header"><!-- comment -->
+                    <h3 class="card-title">Cargos</h3>
+                </div> <!-- ./card-header -->
+
+                <div class="card-body">
+                    <div class="form-group">
+                    <!-- presidente -->
+                        <div class="form-group">
+                            <label>Presidente</label>
+                            <input type="text" class="form-control" required placeholder="">
+                        </div>             
+                    <!-- secretario -->
+                        <div class="form-group">
+                            <label>Secretario</label>
+                            <input type="text" class="form-control" placeholder="">
+                        </div>
+                    <!-- administrador -->
+                        <div class="form-group">
+                            <label>Administrador</label>
+                            <input type="text" class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                </div> <!-- card-body -->
+
+            </div>
+
         </div>
         <!-- ./col-md-4 -->
     </div>
     <!-- ./row -->
 
 </form>
+
+
 <form class="d-none" id="delete-comunidad" method="POST" action="{{ route('comunidades.destroy', $comunidad) }}">
     @csrf @method('DELETE')
 </form>
 <!-- /.content -->
-
+<!-- ./Main content -->
 
 @push('scripts')
 <!-- bs-custom-file-input -->

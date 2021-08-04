@@ -3,19 +3,16 @@
     <div class="content-header">
         <div class="container">
             @yield('header')
-        </div><!-- /.container-fluid -->
+        </div><!-- /.container -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
     <div class="content">
         <div class="container">
-            <div class="row">
-
+           
                 @yield('content')    
 
-            </div>
-            <!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
