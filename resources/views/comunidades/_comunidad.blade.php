@@ -8,10 +8,10 @@
                 <div class="card-header">
                     <h3 class="card-title">Ficha de la comunidad</h3>
                 </div>
-
+                <!--
                 <div class="card-body">
                     <h3 class="card-title">Denominación: {{$comunidad->denom}}</h3>
-                </div>
+                </div>-->
                 <!-- /.card-header -->
 
                 <div class="card-footer">
@@ -19,30 +19,52 @@
                        href="{{ route('comunidades.index') }}">@lang('Regresar')</a>
 
                     <button type="submit" class="btn btn-secondary"
-                            href="{{ route('comunidades.edit', $comunidad) }}">@lang('Editar')</button>
+                            href="{{ route('comunidades.edit', $comunidad) }}">@lang('Editar')
+                    </button>
+                    
                     <button type="submit" class="btn btn-danger"
-                            onclick="document.getElementById('delete-comunidad').submit()">@lang('Dar de baja')</button>
+                            onclick="document.getElementById('delete-comunidad').submit()">@lang('Dar de baja')
+                    </button>
+
+                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#odal">
+                        <i class="fa fa-info"></i> Ayuda
+                    </button>
                 </div>
 
 
                 <div class="card-body">
-                    <!-- fecha de alta -->
-                    <div class="form-group">
-                        <label>Fecha de alta</label>
-                        <input type="date" class="form-control" placeholder="">
-                    </div>
-                    <!-- CIF -->
-                    <div class="form-group">
-                        <label>CIF</label>
-                        <input type="text" class="form-control" placeholder="">
-                    </div>
 
 
-                    <!-- denominación -->
-                    <div class="form-group">
-                        <label>Denominación</label>
-                        <input type="text" class="form-control" placeholder="">
-                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <!-- fecha de alta -->
+                            <div class="form-group">
+                                <label>Fecha de alta</label>
+                                <input type="date" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                        <!-- CIF -->
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label>CIF</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+
+                        <!-- denominación -->
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Denominación</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                    </div><!-- ./row -->
+
+
+
                     <!-- email de la comunidad -->
                     <div class="form-group">
                         <label for="Email_cmd">@lang('Correo electrónico')</label>
@@ -67,39 +89,65 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <!-- dirección postal -->
+                        <div class="col-10">
+                            <div class="form-group">
+                                <label>Dirección postal</label>
+                                <input type="text" class="form-control" required  placeholder="Entre la dirección completa, incluido número, piso, etc.">
+                            </div>
+                        </div>
+                        <!-- País -->
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label>País</label>
+                                <input type="text" class="form-control" value="ESP" required  placeholder="">
+                            </div>
+                        </div>
+                    </div>
 
-                    <!-- dirección postal -->
-                    <div class="form-group">
-                        <label>Dirección postal</label>
-                        <input type="text" class="form-control" required  placeholder="Entre la dirección con número, piso, etc., incluido">
+                    <div class="row">
+                        <!-- código postal -->
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label>Código postal</label>
+                                <input type="text" maxlength="5" class="form-control" required>
+                            </div>
+                        </div>
+                        <!-- Municipio -->
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label>Municipio</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <!-- localidad -->
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label>Localidad</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+
                     </div>
-                    <!-- código postal -->
-                    <div class="form-group">
-                        <label>Código postal</label>
-                        <input type="text" maxlength="5" class="form-control" required placeholder="Código postal">
-                    </div>
-                    <!-- localidad -->
-                    <div class="form-group">
-                        <label>Localidad</label>
-                        <input type="text" class="form-control" required placeholder="Localidad">
-                    </div>
-                    <!-- localidad -->
-                    <div class="form-group">
-                        <label>Municipio</label>
-                        <input type="text" class="form-control" placeholder="">
-                    </div>
+
+
+
+
                     <!-- logo -->
 
-                    <!-- propiedades, cuentas, tipos de gasto, grupos de reparto, propietarios -->
 
-                    <!-- propiedades -->
-                    <div class="form-group">
-                        <label>Propiedades</label>
-                        <select class="form-control">
-                            <option>option 1</option>
-                            <option>option 2</option>
-                        </select>
-                    </div>
+
+                    <!-- propiedades, cuentas, tipos de gasto, grupos de reparto, propietarios -->
+                    <!--  propiedades 
+                        <div class="form-group">
+                                            <label>Propiedades</label>
+                                            <select class="form-control">
+                                                <option>option 1</option>
+                                                <option>option 2</option>
+                                            </select>
+                        </div>
+                    -->
 
 
                     <!-- comentarios -->
@@ -107,35 +155,11 @@
                         <label>Comentarios</label>
                         <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
                     </div>
-                </div>
+                </div>     
             </div> <!-- ./card card-warning -->
-
-
         </div> <!-- ./col-md-8 -->
 
         <div class="col-md-4">
-
-            <div class="card card-warning">
-                <div class="card-header"><!-- comment -->
-                    <h3 class="card-title">Anexar documento</h3>
-                </div> <!-- ./card-header -->
-
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputFile">@lang('Anexar documento')</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">Subir</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- card-body -->
-
-            </div>
 
             <div class="card card-warning">
                 <div class="card-header"><!-- comment -->
@@ -144,20 +168,43 @@
 
                 <div class="card-body">
                     <div class="form-group">
-                    <!-- presidente -->
+                        <!-- presidente -->
                         <div class="form-group">
                             <label>Presidente</label>
                             <input type="text" class="form-control" required placeholder="">
                         </div>             
-                    <!-- secretario -->
+                        <!-- secretario -->
                         <div class="form-group">
                             <label>Secretario</label>
                             <input type="text" class="form-control" placeholder="">
                         </div>
-                    <!-- administrador -->
+                        <!-- administrador -->
                         <div class="form-group">
                             <label>Administrador</label>
                             <input type="text" class="form-control" required placeholder="">
+                        </div>
+                    </div>
+                </div> <!-- card-body -->
+
+            </div>
+
+
+            <div class="card card-warning">
+                <div class="card-header"><!-- comment -->
+                    <h3 class="card-title">Anexar documento</h3>
+                </div> <!-- ./card-header -->
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputFile">@lang('Logo')</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Elige un archivo</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">Subir</span>
+                            </div>
                         </div>
                     </div>
                 </div> <!-- card-body -->

@@ -14,7 +14,7 @@ class PropiedadController extends Controller
      */
     public function index()
     {
-        //
+       return "Entrando en propieades";
     }
 
     /**

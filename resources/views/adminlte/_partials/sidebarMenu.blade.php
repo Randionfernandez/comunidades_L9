@@ -12,13 +12,6 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('dashboard', $comunidad ?? '')}}" class="nav-link {{ SetActiveRoute('dashboard') }}">
-                        <i class="fas fa-warehouse nav-icon"></i>
-                        <p>@lang('Panel')</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a href="{{ route('comunidades.show', $comunidad)}}" class="nav-link">
                         <i class="fas fa-warehouse nav-icon"></i>
                         <p>Comunidad</p>

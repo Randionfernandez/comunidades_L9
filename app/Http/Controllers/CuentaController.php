@@ -5,16 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Cuenta;
 use Illuminate\Http\Request;
 
-class CuentaController extends Controller
-{
+class CuentaController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return "Entrando en cuentas";
+    public function index() {
+       // $user = auth()->user();
+
+        $comunidad = session('cmd_seleccionada');
+        //$cuentas = $cmd_seleccionada->cuentas;
+        return view('cuentas.index', ['cuentas' => $comunidad->cuentas,
+                'comunidad' => $comunidad]);
     }
 
     /**
@@ -22,8 +26,7 @@ class CuentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
@@ -33,8 +36,7 @@ class CuentaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -44,8 +46,7 @@ class CuentaController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function show(Cuenta $cuenta)
-    {
+    public function show(Cuenta $cuenta) {
         //
     }
 
@@ -55,9 +56,8 @@ class CuentaController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cuenta $cuenta)
-    {
-        //
+    public function edit(Cuenta $cuenta) {
+       return "entrado en edit";
     }
 
     /**
@@ -67,8 +67,7 @@ class CuentaController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cuenta $cuenta)
-    {
+    public function update(Request $request, Cuenta $cuenta) {
         //
     }
 
@@ -78,8 +77,8 @@ class CuentaController extends Controller
      * @param  \App\Models\Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cuenta $cuenta)
-    {
+    public function destroy(Cuenta $cuenta) {
         //
     }
+
 }
