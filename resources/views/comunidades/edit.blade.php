@@ -1,23 +1,52 @@
 @extends('adminlte.layout')
 
 @section('header')
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Community') }}
-        </h2>
-
+<div class="row mb-2">
+    <div class="col-sm-6">
+        <h1 class="m-0">Comunidad seleccionada</h1>
+    </div><!-- /.col -->
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ route('comunidades.index') }}">Comunidades</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('comunidades.edit',$comunidad) }}">{{ $comunidad->denom }}</a></li>
+            <li class="breadcrumb-item">Ficha de la comunidad</li>
+        </ol>
+    </div><!-- /.col -->
+</div><!-- /.row -->
 @endsection
 
 @section('content')
-            <div class="col-12 col-sm-10 col-lg-10 mx-auto">
 
-                <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('comunidades.update', $comunidad) }}">
-                    @csrf @method('PATCH')
+<!-- Main content -->
+<!--<section class="content">-->
+<form method="post" id="update-comunidad" action="{{route('comunidades.update', $comunidad) }}">
+    @csrf @method('PUT')
 
-                    <h1 class="display-4"> @lang('Edit Comunidad') </h1>
-                    <hr>
+    @include('partials.validation-errors')
+    @include('comunidades._comunidad')
 
-                    @include('comunidades._form', ['btnText1' =>'Update', 'btnText2' => 'Cancel'])
 
-                </form>
-            </div>
+</form>
+
+
+<form class="d-none" id="delete-comunidad" method="POST" action="{{ route('comunidades.destroy', $comunidad) }}">
+    @csrf @method('DELETE')
+</form>
+<!-- /.content -->
+<!-- ./Main content -->
+
+@push('scripts')
+<!-- bs-custom-file-input -->
+<script src="/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+
+<!-- Page specific script -->
+<script>
+$(function () {
+    bsCustomFileInput.init();
+});
+</script>
+
+@endpush
+
 @endsection
+

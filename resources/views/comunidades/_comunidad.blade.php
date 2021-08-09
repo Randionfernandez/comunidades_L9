@@ -1,242 +1,241 @@
-<!-- Main content -->
-<!--<section class="content">-->
-<form>
-    <div class="row">
-        <div class="col-md-8">
+<div class="row">
+    <div class="col-md-8">
 
-            <div class= "card card-warning"> 
-                <div class="card-header">
-                    <h3 class="card-title">Ficha de la comunidad</h3>
-                </div>
-                <!--
-                <div class="card-body">
-                    <h3 class="card-title">Denominación: {{$comunidad->denom}}</h3>
-                </div>-->
-                <!-- /.card-header -->
-
-                <div class="card-footer">
-                    <a class="btn btn-primary"
-                       href="{{ route('comunidades.index') }}">@lang('Regresar')</a>
-
-                    <button type="submit" class="btn btn-secondary"
-                            href="{{ route('comunidades.edit', $comunidad) }}">@lang('Editar')
-                    </button>
-                    
-                    <button type="submit" class="btn btn-danger"
-                            onclick="document.getElementById('delete-comunidad').submit()">@lang('Dar de baja')
-                    </button>
-
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#odal">
-                        <i class="fa fa-info"></i> Ayuda
-                    </button>
-                </div>
-
-
-                <div class="card-body">
-
-
-                    <div class="row">
-                        <div class="col-3">
-                            <!-- fecha de alta -->
-                            <div class="form-group">
-                                <label>Fecha de alta</label>
-                                <input type="date" class="form-control" placeholder="">
-                            </div>
-                        </div>
-
-                        <!-- CIF -->
-                        <div class="col-3">
-                            <div class="form-group">
-                                <label>CIF</label>
-                                <input type="text" class="form-control" placeholder="">
-                            </div>
-                        </div>
-
-
-                        <!-- denominación -->
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Denominación</label>
-                                <input type="text" class="form-control" placeholder="">
-                            </div>
-                        </div>
-
-                    </div><!-- ./row -->
-
-
-
-                    <!-- email de la comunidad -->
-                    <div class="form-group">
-                        <label for="Email_cmd">@lang('Correo electrónico')</label>
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            <input type="email" class="form-control" placeholder="Email">
-                        </div>
-
-                    </div>
-
-                    <!-- status de la comunidad -->
-                    <div class="form-group">
-                        <!-- activa -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">Activa</label>
-                        </div>
-                        <!-- gratuita: No se le cobra cuota -->
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" checked>
-                            <label class="form-check-label">Gratuita</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- dirección postal -->
-                        <div class="col-10">
-                            <div class="form-group">
-                                <label>Dirección postal</label>
-                                <input type="text" class="form-control" required  placeholder="Entre la dirección completa, incluido número, piso, etc.">
-                            </div>
-                        </div>
-                        <!-- País -->
-                        <div class="col-2">
-                            <div class="form-group">
-                                <label>País</label>
-                                <input type="text" class="form-control" value="ESP" required  placeholder="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <!-- código postal -->
-                        <div class="col-2">
-                            <div class="form-group">
-                                <label>Código postal</label>
-                                <input type="text" maxlength="5" class="form-control" required>
-                            </div>
-                        </div>
-                        <!-- Municipio -->
-                        <div class="col-5">
-                            <div class="form-group">
-                                <label>Municipio</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <!-- localidad -->
-                        <div class="col-5">
-                            <div class="form-group">
-                                <label>Localidad</label>
-                                <input type="text" class="form-control" required>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-
-                    <!-- logo -->
-
-
-
-                    <!-- propiedades, cuentas, tipos de gasto, grupos de reparto, propietarios -->
-                    <!--  propiedades 
-                        <div class="form-group">
-                                            <label>Propiedades</label>
-                                            <select class="form-control">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-                                            </select>
-                        </div>
-                    -->
-
-
-                    <!-- comentarios -->
-                    <div class="form-group">
-                        <label>Comentarios</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                    </div>
-                </div>     
-            </div> <!-- ./card card-warning -->
-        </div> <!-- ./col-md-8 -->
-
-        <div class="col-md-4">
-
-            <div class="card card-warning">
-                <div class="card-header"><!-- comment -->
-                    <h3 class="card-title">Cargos</h3>
-                </div> <!-- ./card-header -->
-
-                <div class="card-body">
-                    <div class="form-group">
-                        <!-- presidente -->
-                        <div class="form-group">
-                            <label>Presidente</label>
-                            <input type="text" class="form-control" required placeholder="">
-                        </div>             
-                        <!-- secretario -->
-                        <div class="form-group">
-                            <label>Secretario</label>
-                            <input type="text" class="form-control" placeholder="">
-                        </div>
-                        <!-- administrador -->
-                        <div class="form-group">
-                            <label>Administrador</label>
-                            <input type="text" class="form-control" required placeholder="">
-                        </div>
-                    </div>
-                </div> <!-- card-body -->
-
+        <div class= "card card-warning"> 
+            <div class="card-header">
+                <h3 class="card-title">Ficha de la comunidad</h3>
             </div>
 
+            <div class="card-body">
 
-            <div class="card card-warning">
-                <div class="card-header"><!-- comment -->
-                    <h3 class="card-title">Anexar documento</h3>
-                </div> <!-- ./card-header -->
 
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputFile">@lang('Logo')</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">Elige un archivo</label>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">Subir</span>
-                            </div>
+                <div class="row">
+                    <div class="col-3">
+                        <!-- fecha de alta -->
+                        <div class="form-group">
+                            <label>Fecha de alta</label>
+                            <input type="date" class="form-control"
+                                   name="fechalta" value="{{ old('fechalta', $comunidad->fechalta ?? '') }}">
                         </div>
                     </div>
-                </div> <!-- card-body -->
 
-            </div>
+                    <!-- CIF -->
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label>CIF</label>
+                            <input type="text" name="cif" value="{{ old('cif', $comunidad->cif ?? '') }}" class="form-control">
+                        </div>
+                    </div>
+
+
+                    <!-- denominación -->
+                    <div class="col-5">
+                        <div class="form-group">
+                            <label>Denominación</label>
+                            <input type="text" class="form-control" name="denom" value="{{ old('denom', $comunidad->denom ?? '')}}">
+                        </div>
+                    </div>
+
+                    <!-- Número de propiedades, es decir, unidades registrales -->
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label>Núm. partes</label>
+                            <input type="number" class="form-control" min="2" max="1000"
+                                   name="partes" value="{{ old('partes', $comunidad->partes ?? '') }}">
+                        </div>
+                    </div>
+                </div><!-- ./row -->
+
+                <div class="row">
+                    <div class="col-6">
+                        <!-- email de la comunidad -->
+                        <div class="form-group">
+                            <label for="email">@lang('Correo electrónico')</label>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $comunidad->email ?? '') }}">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Retirados los checkbox de activa y gratuita. Código guardado en activa_gratuita.blade.php -->
+
+
+                </div>
+
+                <div class="row">
+                    <!-- dirección postal -->
+                    <div class="col-10">
+                        <div class="form-group">
+                            <label>Dirección postal</label>
+                            <input type="text" class="form-control" maxlength="35" required
+                                   name="direccion" value="{{ old('direccion', $comunidad->direccion ??'') }}"
+                                   placeholder="Entre la dirección completa, incluido número, piso, etc.">
+                        </div>
+                    </div>
+                    <!-- País -->
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label>País</label>
+                            <input type="text" class="form-control" maxlength="3" required
+                                   name="pais" value="{{ old('pais', $comunidad->pais??'ESP') }}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- código postal -->
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label>Código postal</label>
+                            <input type="text" maxlength="5" class="form-control" required
+                                   name="cp" value="{{ old('cp', $comunidad->cp ?? '') }}">
+                        </div>
+                    </div>
+                    <!-- Municipio -->
+                    <div class="col-5">
+                        <div class="form-group">
+                            <label>Municipio</label>
+                            <input type="text" class="form-control"
+                                   name="municipio"  value="{{ old('municipio', $comunidad->municipio ?? '') }}">
+                        </div>
+                    </div>
+                    <!-- localidad -->
+                    <div class="col-5">
+                        <div class="form-group">
+                            <label>Localidad</label>
+                            <input type="text" class="form-control" required
+                                   name="localidad" value="{{ old('localidad', $comunidad->localidad ?? '') }}">
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <!-- logo -->
+
+
+                <!-- observaciones -->
+                <div class="form-group">
+                    <label>Observaciones</label>
+                    <textarea class="form-control" rows="3"
+                              name="observaciones">{{ old('observaciones', $comunidad->observaciones ?? '') }}
+                    </textarea>
+                </div>
+            </div>   <!-- ./card-body -->  
+        </div> <!-- ./card card-warning -->
+
+
+        <div class="card-footer">
+            <a class="btn btn-primary"
+               href="{{ route('comunidades.index') }}">@lang('Ver todas')</a>
+
+
+
+            @if ((Request::route()->getName()=='comunidades.create'))
+            <button type="button" name="guardar" class="btn btn-secondary"
+                    onclick="document.getElementById('create-comunidad').submit()"
+                    >@lang('Guardar')</button>
+            @else
+            <button type="button" name="guardar" class="btn btn-secondary"
+                    onclick="document.getElementById('update-comunidad').submit()"
+                    >@lang('Guardar')</button>
+            <button type='button' class="btn btn-danger"
+                    onclick="document.getElementById('delete-comunidad').submit()">@lang('Dar de baja')
+            </button>
+            @endif
+            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#ayuda">
+                <i class="fa fa-info"></i> Ayuda
+            </button>
+
+            <!-- The Modal -->
+            <div class="modal" id="ayuda">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ayuda</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Blablabla <b>blabla</b> blabla
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Continuar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>      <!-- the modal ayuda -->  
+
+
+        </div><!-- ./card-footer -->
+
+
+
+
+    </div> <!-- ./col-md-8 -->
+
+    <div class="col-md-4">
+
+        <div class="card card-warning">
+            <div class="card-header"><!-- comment -->
+                <h3 class="card-title">Cargos</h3>
+            </div> <!-- ./card-header -->
+
+            <div class="card-body">
+                <div class="form-group">
+                    <!-- presidente -->
+                    <div class="form-group">
+                        <label>Presidente</label>
+                        <input type="text" class="form-control" maxlength="35"
+                               name="presidente" value="{{ old('presidente', $comunidad->presidente ?? '') }}">
+                    </div>             
+                    <!-- secretario -->
+                    <div class="form-group">
+                        <label>Secretario</label>
+                        <input type="text" class="form-control" maxlength="35"
+                               name="secretario" value="{{ old('secretario', $comunidad->secretario ?? '' ) }}">
+                    </div>
+                    <!-- administrador -->
+                    <div class="form-group">
+                        <label>Administrador</label>
+                        <input type="text" class="form-control"  maxlength="35"
+                               name="administrador" value="{{ old('administrador', $comunidad->administrador ?? '') }}">
+                    </div>
+                </div>
+            </div> <!-- card-body -->
 
         </div>
-        <!-- ./col-md-4 -->
-    </div>
-    <!-- ./row -->
-
-</form>
 
 
-<form class="d-none" id="delete-comunidad" method="POST" action="{{ route('comunidades.destroy', $comunidad) }}">
-    @csrf @method('DELETE')
-</form>
-<!-- /.content -->
-<!-- ./Main content -->
+        <div class="card card-warning">
+            <div class="card-header"><!-- comment -->
+                <h3 class="card-title">Anexar documento</h3>
+            </div> <!-- ./card-header -->
 
-@push('scripts')
-<!-- bs-custom-file-input -->
-<script src="/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="exampleInputFile">@lang('Logo')</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="exampleInputFile">
+                            <label class="custom-file-label" for="exampleInputFile">Elige un archivo</label>
+                        </div>
+                        <div class="input-group-append">
+                            <span class="input-group-text">Subir</span>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- card-body -->
 
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-
-<!-- Page specific script -->
-<script>
-                                $(function () {
-                                    bsCustomFileInput.init();
-                                });
-</script>
-
-@endpush
+        </div>
+    </div><!-- ./col-md-4 -->
+</div>   <!-- ./row -->

@@ -16,21 +16,25 @@ class Comunidad extends Model {
     protected $fillable = [
         'cif',
         'fechalta',
-        'activa',
-        'gratuita',
-        'partes',
         'denom',
+//        'activa',
+//        'gratuita',
+        'partes',
+        'email',
         'direccion',
+        'cp',
+        'municipio',
         'localidad',
         'provincia',
-        'cp',
         'pais',
         'logo',
         'observaciones',
-        'limitMaxFree'
+        'presidente',
+        'secretario',
+        'administrador',
     ];
 
-    public function propiedades() {
+    public function propiedads() {
         return $this->hasMany(Propiedad::class);
     }
 
@@ -46,4 +50,7 @@ class Comunidad extends Model {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
+    public function pais(){
+        return $this->belongsTo(Pais::class);
+    }
 }

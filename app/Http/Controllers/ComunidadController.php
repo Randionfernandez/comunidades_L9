@@ -1,12 +1,17 @@
 <?php
+
 namespace App\Http\Controllers;
 
-use App\Models\Comunidad;
-use App\Models\User;
-use App\Models\Comunidad_User;
 use App\Http\Requests\ComunidadRequest;
+use App\Models\Comunidad;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+use function auth;
+use function back;
+use function redirect;
+use function session;
+use function view;
 
 class ComunidadController extends Controller {
 
@@ -15,7 +20,7 @@ class ComunidadController extends Controller {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index() {
 
@@ -27,114 +32,90 @@ class ComunidadController extends Controller {
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create() {
-        return view('comunidades.create', ['comunidad' => new Comunidad]);
+//
+//        if (auth()->user()->comunidades->count() >= env('APP_MAX_FREE_COMMUNITIES', 2)) {
+//
+//            // comprobar si tiene licencia para crear comunidades de pago (pendiente)
+//        } else {
+
+        return view('comunidades.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
-    public function store(ComunidadRequest $request) {
+    public function store(Comunidad $comunidad, ComunidadRequest $request) {
+        $cmd = Comunidad::create($request->validated());
+        $cmd->usuarios()->attach(auth()->user()->id);
 
-        $this->msj = 'La comunidad fué creada con éxito';
-
-        $gratuita = true;
-
-        if (auth()->user()->comunidades->count() >= env('APP_LIMIT_MAX_FREE_COMMUNITIES')) {
-            $gratuita = false;
-        }
-
-        $request->merge([
-            'activa' => true,
-            'gratuita' => $gratuita
-        ]);
-
-        Comunidad::create($request->validated());
-
-        $new_comunidad = Comunidad::orderBy('created_at', 'desc')->first();
-
-        $user = auth()->user();
-
-        Comunidad_User::create([
-            'comunidad_id' => $new_comunidad->id,
-            'user_id' => $user->id,
-            'role_id' => '2',
-            'created_at' => $new_comunidad->created_at,
-            'updated_at' => $new_comunidad->updated_at
-        ]);
-
-
-        return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-primary']);
+        return redirect()->route('comunidades.index')->with('status', "La comunidad ha sido creada correctamente");
     }
 
     /**
+     * Eliminado este método, solo considero 'edit'
+     * 
+     * 
      * Display the specified resource.
      *
-     * @param  \App\Models\Comunidad  $comunidad
-     * @return \Illuminate\Http\Response
+     * @param  Comunidad  $comunidad
+     * @return Response
      */
-    public function show(Comunidad $comunidad) {
-        return view('comunidades.show', [
-            'comunidad' => $comunidad,
-        ]);
-    }
+//    public function show(Comunidad $comunidad) {
+//        //
+//    }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Comunidad  $comunidad
-     * @return \Illuminate\Http\Response
+     * @param  Comunidad  $comunidad
+     * @return Response
      */
     public function edit(Comunidad $comunidad) {
-        //
-        return view('comunidades.edit', [
-            'comunidad' => $comunidad
-        ]);
+        return view('comunidades.edit', ['comunidad' => $comunidad]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comunidad  $comunidad
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  Comunidad  $comunidad
+     * @return Response
      */
     public function update(Comunidad $comunidad, ComunidadRequest $request) {
 
         $this->msj = 'La comunidad fué actualizada con éxito';
 
-        $comunidad->update();
+        $comunidad->update($request->validated());
 
-        return redirect()->route('comunidades.show', $comunidad)->with('status', [$this->msj, 'alert-primary']);
+        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-primary']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comunidad  $comunidad
-     * @return \Illuminate\Http\Response
+     * @param  Comunidad  $comunidad
+     * @return Response
      */
     public function destroy(Comunidad $comunidad) {
-//     No es necesario pasarla a false, no es lo mismo desactivar que borrar. Eliminar estos comentarios en versión final
-//        $comunidad->activa = false;
-//        $comunidad->update();
 
         $this->msj = 'La comunidad fué eliminada con éxito';
 
         $comunidad->delete();
+        session()->forget('cmd_seleccionada');
 
-        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-info']);
+        return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-info']);
     }
 
-    public function seleccionar(Comunidad $comunidad) {
-        session(['cmd_seleccionada'=>$comunidad]);
+    public function seleccionar(Comunidad $comunidad, Request $request) {
+        session(['cmd_seleccionada' => $comunidad]);
 
-        return view('dashboard',compact('comunidad'));
+        return view('dashboard', compact('comunidad'));
     }
 
 }

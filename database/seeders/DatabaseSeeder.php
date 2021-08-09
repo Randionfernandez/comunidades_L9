@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder {
                     'remember_token' => Str::random(10),
         ]);
 
-        \App\Models\User::factory(15)->create();
+        \App\Models\User::factory(10)->create();
         
         $this->call([ComunidadSeeder::class]);
 

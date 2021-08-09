@@ -4,18 +4,18 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+
 //use \App\Models\Comunidad;
 
 
-class ComunidadRequest extends FormRequest
-{
+class ComunidadRequest extends FormRequest {
+
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return TRUE;
         // podemos acceder al usuario con $this->user()
         // podemos verificar que es administrador con
@@ -27,30 +27,36 @@ class ComunidadRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            'cif' => ['required', 'alpha_num', 'size:9' ,
-               Rule::unique('comunidades')->ignore($this->route('comunidad'))],
+            'cif' => ['required', 'alpha_num', 'size:9',
+                //  Rule::unique('comunidades')->ignore($this->route('comunidades'))],
+                Rule::unique('comunidades')->ignore($this->route('comunidad'))],
             'fechalta' => 'required|date',
-            'activa' => 'boolean',
-            'gratuita' => 'boolean',
-            'partes' => 'integer|nullable',
+//            'activa' => ['boolean'], // Estos dos checkbox ya no se manejan por el usuario.
+//            'gratuita' => ['boolean'],
+            'partes' => ['required', 'integer', 'min:2','max:1000'],
             'denom' => 'required|string|max:35',
+            'email' => 'nullable',
             'direccion' => 'required|string',
+            'municipio' => 'nullable',
             'localidad' => 'string|nullable',
             'provincia' => 'string|nullable',
-            'cp' => 'required|size:5',
-            'pais' => 'string|nullable',
+            'cp' => 'required|string|size:5',
+            'pais' => 'required|string|size:3',
             'logo' => 'nullable',
             'observaciones' => 'string||nullable',
-    ];
+            'presidente' => 'nullable|string|max:35',
+            'secretario' => 'nullable|string|max:35',
+            'administrador' => 'nullable|string|max:35',
+        ];
     }
-    
+
     public function messages() {
         return [
             'denom.required' => __('The community needs a name'),
             'cif.required' => __('The community needs an unique cif')
         ];
     }
+
 }

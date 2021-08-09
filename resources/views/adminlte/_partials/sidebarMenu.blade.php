@@ -12,7 +12,7 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="{{ route('comunidades.show', $comunidad)}}" class="nav-link">
+                    <a href="{{ route('comunidades.edit', session('cmd_seleccionada'))}}" class="nav-link">
                         <i class="fas fa-warehouse nav-icon"></i>
                         <p>Comunidad</p>
                     </a>

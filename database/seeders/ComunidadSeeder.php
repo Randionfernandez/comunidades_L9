@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Comunidad;
 use App\Models\Cuenta;
+use App\Models\Propiedad;
 
 class ComunidadSeeder extends Seeder {
 
@@ -17,8 +18,8 @@ class ComunidadSeeder extends Seeder {
 
         Comunidad::factory()
                 ->has(Cuenta::factory()->count(1))
-          //      ->has(Propiedad::factory()->count(10))
-                ->count(15)
+                ->has(Propiedad::factory()->count(10))
+                ->count(10)
                 ->create();
     }
 
