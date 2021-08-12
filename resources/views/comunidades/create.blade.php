@@ -12,7 +12,8 @@
 @include('partials.validation-errors')
 <!-- Main content -->
 <!--<section class="content">-->
-<form method="post" id="create-comunidad" action="{{route('comunidades.store')}}">
+<form method="post" id="create-comunidad" enctype="multipart/form-data"
+      action="{{route('comunidades.store')}}">
     @csrf 
 
     @include('comunidades._comunidad')
@@ -22,6 +23,9 @@
 
 <!-- /.content -->
 <!-- ./Main content -->
+@endsection
+
+
 
 @push('scripts')
 <!-- bs-custom-file-input -->
@@ -35,7 +39,3 @@ $(function () {
 </script>
 
 @endpush
-
-
-
-@endsection

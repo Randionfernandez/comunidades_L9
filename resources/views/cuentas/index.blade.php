@@ -16,10 +16,10 @@
 
 <div class="box-header">
     <div class='row'>
-
-        <button class="btn btn-primary pull-right mr-2" data-toggle="modal" data-target="#myModal">
-            <i class="fa fa-plus"></i> Crear cuenta
-        </button>
+        <a class="btn btn-primary mr-2"
+           href="{{ route('cuentas.create') }}">
+            <i class="fa fa-plus"></i>  Crear cuenta
+        </a>
 
         <button type="button" class="btn btn-primary pull-right" id="ayuda" data-toggle="modal" data-target="#help_cuentas">
             <i class="fa fa-info"></i> Ayuda
@@ -38,7 +38,7 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        Blablabla <b>blabla</b> blabla
+                        cuentas <b>blabla</b> blabla
                     </div>
 
                     <!-- Modal footer -->

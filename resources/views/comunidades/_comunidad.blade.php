@@ -36,7 +36,10 @@
                         </div>
                     </div>
 
-                    <!-- Número de propiedades, es decir, unidades registrales -->
+                    <!-- Número de propiedades, es decir, unidades registrales 
+                         min y max validan pero solo si usamos las flechas del widget; al menos en firefox y chrome
+                    Admite valor 1 y negativos en validación cliente. Validar limites en lado servidor.
+                    -->
                     <div class="col-2">
                         <div class="form-group">
                             <label>Núm. partes</label>
@@ -217,21 +220,21 @@
 
 
         <div class="card card-warning">
-            <div class="card-header"><!-- comment -->
-                <h3 class="card-title">Anexar documento</h3>
+            <div class="card-header">
+                <h3 class="card-title">Documentos</h3>
             </div> <!-- ./card-header -->
 
             <div class="card-body">
                 <div class="form-group">
-                    <label for="exampleInputFile">@lang('Logo')</label>
+                    <label for="doc_comunidad">@lang('Nuevo documento')</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                            <label class="custom-file-label" for="exampleInputFile">Elige un archivo</label>
+                            <input name="doc" type="file" class="custom-file-input" id="doc_comunidad">
+                            <label class="custom-file-label" for="doc_comunidad">Elige un archivo</label>
                         </div>
-                        <div class="input-group-append">
+<!--                        <div class="input-group-append">
                             <span class="input-group-text">Subir</span>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div> <!-- card-body -->

@@ -50,7 +50,12 @@ class Comunidad extends Model {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
-    public function pais(){
+    public function pais() {
         return $this->belongsTo(Pais::class);
     }
+
+    public function documentos() {
+        return $this->hasMany(Documento::class);
+    }
+
 }

@@ -45,7 +45,7 @@ Route::middleware('auth')->get('/seleccionar/{comunidad}', [ComunidadController:
 
 
 Route::middleware('auth')->resource('cuentas', CuentaController::class);
-Route::middleware('auth')->resource('propiedades', PropiedadController::class);
+Route::middleware('auth')->resource('propiedades', PropiedadController::class)->parameters(['propiedades' => 'propiedad']);
 Route::middleware('auth')->resource('juntas', JuntaController::class);
 Route::middleware('auth')->resource('proveedores', ProveedorController::class);
 Route::middleware('auth')->resource('movimientos', MovimientoController::class);

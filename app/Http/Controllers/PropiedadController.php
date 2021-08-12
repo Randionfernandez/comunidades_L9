@@ -5,16 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Propiedad;
 use Illuminate\Http\Request;
 
-class PropiedadController extends Controller
-{
+class PropiedadController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-       return "Entrando en propieades";
+    public function index() {
+        $cmd = session('cmd_seleccionada');
+        return view('propiedades.index', ['propiedades' => $cmd->propiedads,
+        'comunidad' => $cmd]);
     }
 
     /**
@@ -22,9 +23,8 @@ class PropiedadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        return view('propiedades.create');
     }
 
     /**
@@ -33,8 +33,7 @@ class PropiedadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -44,9 +43,8 @@ class PropiedadController extends Controller
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function show(Propiedad $propiedad)
-    {
-        //
+    public function show(Propiedad $propiedad) {
+        $this->edit($propiedad);
     }
 
     /**
@@ -55,8 +53,7 @@ class PropiedadController extends Controller
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Propiedad $propiedad)
-    {
+    public function edit(Propiedad $propiedad) {
         //
     }
 
@@ -67,8 +64,7 @@ class PropiedadController extends Controller
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Propiedad $propiedad)
-    {
+    public function update(Request $request, Propiedad $propiedad) {
         //
     }
 
@@ -78,8 +74,8 @@ class PropiedadController extends Controller
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Propiedad $propiedad)
-    {
+    public function destroy(Propiedad $propiedad) {
         //
     }
+
 }

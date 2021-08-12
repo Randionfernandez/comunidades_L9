@@ -16,7 +16,6 @@ class CuentaController extends Controller {
        // $user = auth()->user();
 
         $comunidad = session('cmd_seleccionada');
-        //$cuentas = $cmd_seleccionada->cuentas;
         return view('cuentas.index', ['cuentas' => $comunidad->cuentas,
                 'comunidad' => $comunidad]);
     }
@@ -27,7 +26,7 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        //
+        return view('cuentas.create');
     }
 
     /**
@@ -47,7 +46,7 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Cuenta $cuenta) {
-        //
+        $this->edit($cuenta);
     }
 
     /**

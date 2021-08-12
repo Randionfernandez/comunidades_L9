@@ -26,6 +26,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('cuentas.index')}}" class="nav-link {{ SetActiveRoute('cuentas.*') }}">
+                        <i class="fa fa-euro-sign nav-icon"></i>
+                        <p>Cuentas</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('juntas.index')}}" class="nav-link {{ SetActiveRoute('juntas.*') }}">
                         <i class="fa fa-compass nav-icon"></i>
                         <p>Juntas de propietarios</p>
@@ -36,13 +43,6 @@
                     <a href="{{ route('proveedores.index')}}" class="nav-link {{ SetActiveRoute('proveedores') }}">
                         <i class="fa fa-concierge-bell nav-icon"></i>
                         <p>Proveedores</p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{ route('cuentas.index')}}" class="nav-link {{ SetActiveRoute('cuentas.*') }}">
-                        <i class="fa fa-euro-sign nav-icon"></i>
-                        <p>Cuentas</p>
                     </a>
                 </li>
 

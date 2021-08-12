@@ -4,14 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ComunidadRequest;
 use App\Models\Comunidad;
+use App\Models\Documento;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Log;
-use function auth;
-use function back;
-use function redirect;
-use function session;
-use function view;
 
 class ComunidadController extends Controller {
 
@@ -23,10 +18,7 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function index() {
-
-        $user = auth()->user();
-
-        return view('comunidades.index', ['comunidades' => $user->comunidades]);
+        return view('comunidades.index', ['comunidades' => auth()->user()->comunidades]);
     }
 
     /**
@@ -35,7 +27,7 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function create() {
-//
+//  (pendiente) Controlar si el usuario tiene permiso para crear comunidades y no supera su límite
 //        if (auth()->user()->comunidades->count() >= env('APP_MAX_FREE_COMMUNITIES', 2)) {
 //
 //            // comprobar si tiene licencia para crear comunidades de pago (pendiente)
@@ -51,7 +43,17 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function store(Comunidad $comunidad, ComunidadRequest $request) {
+
         $cmd = Comunidad::create($request->validated());
+
+        if (request()->hasFile('doc')) {
+            // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
+            $comunidad->documentos()->create([
+                'name' => $request->file('doc')->getClientOriginalName(),
+                'hash_name' => $request->file('doc')->store(request()->cif),
+            ]);
+        }
+
         $cmd->usuarios()->attach(auth()->user()->id);
 
         return redirect()->route('comunidades.index')->with('status', "La comunidad ha sido creada correctamente");
@@ -89,11 +91,18 @@ class ComunidadController extends Controller {
      */
     public function update(Comunidad $comunidad, ComunidadRequest $request) {
 
-        $this->msj = 'La comunidad fué actualizada con éxito';
+        if (request()->hasFile('doc')) {
+            // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
+            $comunidad->documentos()->create([
+                'name' => $request->file('doc')->getClientOriginalName(),
+                'hash_name' => $request->file('doc')->store(request()->cif),
+            ]);
+        }
 
         $comunidad->update($request->validated());
+        $this->msj = 'La comunidad fué actualizada con éxito';
 
-        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-primary']);
+        return redirect()->route('comunidades.index', $comunidad)->with('flash', [$this->msj, 'alert-primary']);
     }
 
     /**

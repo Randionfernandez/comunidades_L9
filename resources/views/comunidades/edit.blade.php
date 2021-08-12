@@ -19,7 +19,8 @@
 
 <!-- Main content -->
 <!--<section class="content">-->
-<form method="post" id="update-comunidad" action="{{route('comunidades.update', $comunidad) }}">
+<form method="post" id="update-comunidad" enctype="multipart/form-data"
+      action="{{route('comunidades.update', $comunidad) }}">
     @csrf @method('PUT')
 
     @include('partials.validation-errors')
