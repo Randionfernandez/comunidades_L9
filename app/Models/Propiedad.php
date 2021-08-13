@@ -19,7 +19,9 @@ class Propiedad extends Model {
         'coeficiente',
         'domiciliada',
         'iban',
+        'bic',
         'tipo',
+        'valor_catastral',
         'observaciones',
     ];
 

@@ -22,13 +22,18 @@ class CreatePropiedadesTable extends Migration {
             $table->decimal('coeficiente', 5, 2)->comment("Porcentaje de participación en el total de la comunidad, según registro de la propiedad");
             $table->boolean('domiciliada')->default('false')->comment("Cierto, si la propiedad tiene domiciliado el cobro de recibos");
             $table->char('iban', 24)->nullable()->comment("IBAN de la cuenta en la que se cargan los recibos domiciliados");
+            $table->char('BIC', 11)->nullable()
+                    ->comment("El código BIC (Bank Identifier Code) o SWIFT sirve para identificar al banco beneficiario de una "
+                            . "transferencia (o banco destino). Se trata de un código internacional alfanumérico que puede constar"
+                            . " de 8 u 11 caracteres: Código de ocho caracteres: incluye información de la entidad, de cada país y"
+                            . " de la localidad");
             $table->char('tipo', 4)->default('NCN')->comment("Tipo de propiedad: piso, ático, local,...; el default 'NCN' significa 'No consta'");
+            $table->decimal('valor_catastral', 10, 2)->nullable();
             $table->string('observaciones')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
-            
-            
+
             // Las opciones de una FK se pueden consultar en la fuente:
             //    https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Schema/ForeignKeyDefinition.php
             $table->foreign('user_id')->references('id')->on('users')

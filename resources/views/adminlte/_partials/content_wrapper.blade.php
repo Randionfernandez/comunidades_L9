@@ -6,12 +6,16 @@
         </div><!-- /.container -->
     </div>
     <!-- /.content-header -->
-
+    @if (session('status'))
+    <div class='alert alert-info'>
+        {{ session('status') }}
+    </div>
+    @endif
     <!-- Main content -->
     <div class="content">
         <div class="container">
-           
-                @yield('content')    
+
+            @yield('content')    
 
         </div><!-- /.container-fluid -->
     </div>

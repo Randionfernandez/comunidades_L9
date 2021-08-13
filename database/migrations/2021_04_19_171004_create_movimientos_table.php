@@ -22,7 +22,7 @@ class CreateMovimientosTable extends Migration {
             $table->date('fechavalor')->comment('Si no se conoce, su valor se copia del campo fecha');
             $table->decimal('importe', 10, 2);
             $table->decimal('saldo', 10, 2)->comment('Saldo resultante después de aplicar este movimiento. Solo informativo, sirve para comprobaciones');
-            $table->string('concepto', 70);
+            $table->string('concepto', 38)->comment('Longitud según norma CSB43');
             $table->boolean('contabilizado')->default('false');
 
             $table->unsignedBigInteger('user_id')->nullable()->comment('Identifica al usuario que creó o editó el movimiento. Posteriormente no será nullable');

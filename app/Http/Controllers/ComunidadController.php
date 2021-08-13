@@ -42,9 +42,9 @@ class ComunidadController extends Controller {
      * @param  Request  $request
      * @return Response
      */
-    public function store(Comunidad $comunidad, ComunidadRequest $request) {
+    public function store(ComunidadRequest $request) {
 
-        $cmd = Comunidad::create($request->validated());
+        $comunidad = Comunidad::create($request->all());
 
         if (request()->hasFile('doc')) {
             // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
@@ -54,7 +54,7 @@ class ComunidadController extends Controller {
             ]);
         }
 
-        $cmd->usuarios()->attach(auth()->user()->id);
+        $comunidad->usuarios()->attach(auth()->user()->id);
 
         return redirect()->route('comunidades.index')->with('status', "La comunidad ha sido creada correctamente");
     }
