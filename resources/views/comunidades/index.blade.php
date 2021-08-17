@@ -15,11 +15,12 @@
 
 <div class="box-header">
     <div class='row'>
-        <a class="btn btn-primary mr-2
-           ç"
+        @can('crear-comunidad')
+        <a class="btn btn-primary mr-2"
            href="{{ route('comunidades.create') }}">
             <i class="fa fa-plus"></i>  Crear comunidad
         </a>
+        @endcan
 
         <button type="button" class="btn btn-primary pull-right" id="ayuda" data-toggle="modal" data-target="#help_comunidades">
             <i class="fa fa-info"></i> Ayuda

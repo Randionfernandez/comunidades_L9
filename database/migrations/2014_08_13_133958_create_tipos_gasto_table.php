@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TipoGastos extends Migration
+class CreateTiposGastoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class TipoGastos extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_gastos', function (Blueprint $table) {
+        Schema::create('tipos_gasto', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             
-            $table->number('orden');
+            $table->integer('orden');
             $table->char('codigo');
             $table->char('grupo_id', 3)->comment('Grupo de distribución al que pertenece');
             $table->string('concepto');
             
-            $table->foreign('grupo_id')->references('codigo')->on('grupos_distristribucion');
+            $table->foreign('grupo_id')->references('id')->on('grupos_distribucion');
         });
     }
 
@@ -33,6 +33,6 @@ class TipoGastos extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_gastos');
+        Schema::dropIfExists('tipos_gasto');
     }
 }

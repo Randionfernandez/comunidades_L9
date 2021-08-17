@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class GruposDistribucion extends Seeder {
+class GruposDistribucionSeeder extends Seeder {
 
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class GruposDistribucion extends Seeder {
     public function run() {
 
         DB::table('grupos_distribucion')->insert([
-            ['orden' => '1',  'codigo' => 'COE', 'nombre' => 'Coeficiente'],
-            ['orden' => '2',  'codigo' => 'UR', 'nombre' => 'Unidad registral'],
-            ['orden' => '3',  'codigo' => 'ESC', 'nombre' => 'Escalera'],
+            ['orden' => '1',  'codigo' => 'COEF', 'nombre' => 'Coeficiente'],
+            ['orden' => '2',  'codigo' => 'UREG', 'nombre' => 'Unidad registral'],
+            ['orden' => '3',  'codigo' => 'ESCL', 'nombre' => 'Escalera'],
         ]);
     }
 

@@ -11,7 +11,6 @@ class Proveedor extends Model {
     use SoftDeletes;
 
     protected $table = 'proveedores';
-    protected $dates = ['delete_at'];
     protected $fillable = [
         'fechalta',
         'doi', // documento oficial de identidad: pasaporte, dni, cif, nie

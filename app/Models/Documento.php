@@ -11,7 +11,6 @@ class Documento extends Model {
     use HasFactory;
     use SoftDeletes;
 
-    protected $dates = ['deleted_at'];   // registramos la nueva columna ¿necesario en laravel 8
     protected $fillable = [
         'name',
         'hash_name',

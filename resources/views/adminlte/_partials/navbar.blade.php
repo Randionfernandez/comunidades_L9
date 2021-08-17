@@ -14,13 +14,13 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-        
+
         <!-- Visualización de la comunidad seleccionada, si es el caso -->
         <li class='nav-item mt-1'>
             <input type='text' value="{{ session('cmd_seleccionada')->denom ??'' }}" disabled>
-            
+
         </li>
-        
+
         <!-- Navbar Search -->
         <li class="nav-item">
             <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -96,6 +96,55 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li>
+        
+        
+        <!-- Logout descargado de github/ColorlibHQ/AdminLTE -->
+        
+        <li class="nav-item dropdown user user-menu">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                <img src="/adminlte/img/user2-160x160.jpg" class="user-image img-circle elevation-2 alt="User Image">
+                <span class="hidden-xs">{{ auth()->user()->name}}</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                <!-- User image -->
+                <li class="user-header bg-primary">
+                    <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+
+                    <p>
+                        {{ auth()->user()->name}} - Web Developer
+                        <small>Member since Nov. 2012</small>
+                    </p>
+                </li>
+                <!-- Menu Body 
+                <li class="user-body">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <a href="#">Followers</a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="#">Sales</a>
+                        </div>
+                        <div class="col-4 text-center">
+                            <a href="#">Friends</a>
+                        </div>
+                    </div>
+                   
+                </li>   /.user-body -->
+                
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                    <div class="pull-left">
+                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    </div>
+                    <div class="pull-right">
+                        <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                </li> <!-- ./Menu footer -->
+            </ul>
+        </li><!-- ./logout -->
+
+
+
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>

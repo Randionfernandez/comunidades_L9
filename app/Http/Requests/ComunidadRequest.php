@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
@@ -15,6 +16,7 @@ class ComunidadRequest extends FormRequest {
      * @return bool
      */
     public function authorize() {
+               
         return TRUE;
         // podemos acceder al usuario con $this->user()
         // podemos verificar que es administrador con
@@ -27,7 +29,6 @@ class ComunidadRequest extends FormRequest {
      * @return array
      */
     public function rules() {
-       Log::debug($this->route('comunidad'));
         return [
             'cif' => ['required', 'alpha_num', 'size:9',
                 Rule::unique('comunidades')->ignore($this->route('comunidad'))],

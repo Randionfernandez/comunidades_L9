@@ -30,7 +30,8 @@
 </form>
 
 
-<form class="d-none" id="delete-comunidad" method="POST" action="{{ route('comunidades.destroy', $comunidad) }}">
+<form class="d-none" id="delete-comunidad" onsubmit="return confirm('Estas seguro de querer eliminar esta comnidad')"
+      method="POST" action="{{ route('comunidades.destroy', $comunidad) }}">
     @csrf @method('DELETE')
 </form>
 <!-- /.content -->

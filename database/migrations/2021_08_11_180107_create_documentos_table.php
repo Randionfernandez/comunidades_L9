@@ -18,7 +18,7 @@ class CreateDocumentosTable extends Migration {
             $table->string('carpeta', 15)->default('General')
                     ->comment('Clasifica el documento: general, comunidad, facturas, presupuestos, juntas, etc.');
             $table->string('descripcion')->nullable();
-            $table->bool('visible')->default('true')
+            $table->boolean('visible')->default('true')
                     ->comment('Si es visible en el portal del propietario.- No está claro si se mantendrá este campo');
             $table->unsignedBigInteger('comunidad_id');
             $table->string('name');

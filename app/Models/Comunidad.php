@@ -12,7 +12,7 @@ class Comunidad extends Model {
     use SoftDeletes;
 
     protected $table = 'comunidades';
-    protected $dates = ['deleted_at'];   // registramos la nueva columna ¿necesario en laravel 8?
+
     protected $fillable = [
         'cif',
         'fechalta',

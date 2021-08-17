@@ -12,7 +12,6 @@ class Propiedad extends Model {
     use SoftDeletes;
 
     protected $table = "propiedades";
-    protected $dates = ['deleted_at'];
     protected $fillable = [
         'denominacion',
         'parte',

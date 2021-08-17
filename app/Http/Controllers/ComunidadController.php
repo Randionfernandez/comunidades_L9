@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ComunidadRequest;
 use App\Models\Comunidad;
-use App\Models\Documento;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
+
 
 class ComunidadController extends Controller {
 
@@ -43,7 +44,6 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function store(ComunidadRequest $request) {
-
         $comunidad = Comunidad::create($request->all());
 
         if (request()->hasFile('doc')) {
@@ -56,7 +56,7 @@ class ComunidadController extends Controller {
 
         $comunidad->usuarios()->attach(auth()->user()->id);
 
-        return redirect()->route('comunidades.index')->with('status', "La comunidad ha sido creada correctamente");
+        return redirect()->route('comunidades.index')->with('status', ['msj' => "La comunidad ha sido creada correctamente", 'alert' => 'alert-success']);
     }
 
     /**
@@ -79,7 +79,12 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function edit(Comunidad $comunidad) {
-        return view('comunidades.edit', ['comunidad' => $comunidad]);
+        Abort_unless(Gate::allows('crear-comunidad'), 403);
+        
+        if (Gate::allows('crear-comunidad')) {
+            return view('comunidades.edit', ['comunidad' => $comunidad]);
+        }
+        Abort(403);
     }
 
     /**
@@ -102,7 +107,7 @@ class ComunidadController extends Controller {
         $comunidad->update($request->validated());
         $this->msj = 'La comunidad fué actualizada con éxito';
 
-        return redirect()->route('comunidades.index', $comunidad)->with('flash', [$this->msj, 'alert-primary']);
+        return redirect()->route('comunidades.index', $comunidad)->with('status', ['msj'=> $this->msj, 'alert'=> 'alert-info']);
     }
 
     /**
@@ -118,7 +123,7 @@ class ComunidadController extends Controller {
         $comunidad->delete();
         session()->forget('cmd_seleccionada');
 
-        return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-info']);
+        return redirect()->route('comunidades.index')->with('status', ['msj' => $this->msj,'alert' => 'alert-danger']);
     }
 
     public function seleccionar(Comunidad $comunidad, Request $request) {

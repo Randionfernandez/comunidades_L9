@@ -36,6 +36,10 @@
                 @endauth
             </div>
             @endif
-            <h1>Bienvenido a la aplicación de Comunidades</h1>
+            @yield('content')
+<!--            <h1>Bienvenido a la aplicación de Comunidades</h1>-->
+        </div>
+
+
     </body>
 </html>

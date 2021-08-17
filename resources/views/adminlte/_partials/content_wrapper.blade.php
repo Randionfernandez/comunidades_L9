@@ -6,15 +6,16 @@
         </div><!-- /.container -->
     </div>
     <!-- /.content-header -->
-    @if (session('status'))
-    <div class='alert alert-info'>
-        {{ session('status') }}
-    </div>
-    @endif
+
     <!-- Main content -->
     <div class="content">
         <div class="container">
-
+            @if (session('status'))
+            <div class="alert {{ session('status')['alert'] }}">
+                {{ session('status')['msj'] }}
+            </div>
+            @endif
+            
             @yield('content')    
 
         </div><!-- /.container-fluid -->
