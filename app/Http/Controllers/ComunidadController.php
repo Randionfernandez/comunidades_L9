@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 
-
 class ComunidadController extends Controller {
 
     private $msj = '';
@@ -34,7 +33,11 @@ class ComunidadController extends Controller {
 //            // comprobar si tiene licencia para crear comunidades de pago (pendiente)
 //        } else {
 
-        return view('comunidades.create');
+        if (Gate::allows('crear-comunidad')) {
+            return view('comunidades.create');
+        }
+
+        Abort(403);
     }
 
     /**
@@ -79,9 +82,10 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function edit(Comunidad $comunidad) {
-        Abort_unless(Gate::allows('crear-comunidad'), 403);
-        
-        if (Gate::allows('crear-comunidad')) {
+        //  Abort_unless(Gate::allows('crear-comunidad'), 403);
+        //  return view('comunidades.edit', ['comunidad' => $comunidad]);
+// Otra forma de autorizar   
+        if (Gate::allows('editar-comunidad', $comunidad)) {
             return view('comunidades.edit', ['comunidad' => $comunidad]);
         }
         Abort(403);
@@ -99,6 +103,9 @@ class ComunidadController extends Controller {
         if (request()->hasFile('doc')) {
             // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
             $comunidad->documentos()->create([
+                'carpeta' => "Comunidad",
+                'titulo' => $request->titulo,
+                'descripcion' => $request->descripcion,
                 'name' => $request->file('doc')->getClientOriginalName(),
                 'hash_name' => $request->file('doc')->store(request()->cif),
             ]);
@@ -107,7 +114,7 @@ class ComunidadController extends Controller {
         $comunidad->update($request->validated());
         $this->msj = 'La comunidad fué actualizada con éxito';
 
-        return redirect()->route('comunidades.index', $comunidad)->with('status', ['msj'=> $this->msj, 'alert'=> 'alert-info']);
+        return redirect()->route('comunidades.index', $comunidad)->with('status', ['msj' => $this->msj, 'alert' => 'alert-info']);
     }
 
     /**
@@ -123,7 +130,7 @@ class ComunidadController extends Controller {
         $comunidad->delete();
         session()->forget('cmd_seleccionada');
 
-        return redirect()->route('comunidades.index')->with('status', ['msj' => $this->msj,'alert' => 'alert-danger']);
+        return redirect()->route('comunidades.index')->with('status', ['msj' => $this->msj, 'alert' => 'alert-danger']);
     }
 
     public function seleccionar(Comunidad $comunidad, Request $request) {

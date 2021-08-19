@@ -44,7 +44,7 @@ class ComunidadPolicy {
      * @return mixed
      */
     public function create(User $user) {
-        //
+        return true;
     }
 
     /**

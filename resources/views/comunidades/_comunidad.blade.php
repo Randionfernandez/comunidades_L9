@@ -221,21 +221,36 @@
 
         <div class="card card-warning">
             <div class="card-header">
-                <h3 class="card-title">Documentos</h3>
+                <h3 class="card-title">Añadir documento</h3>
             </div> <!-- ./card-header -->
 
             <div class="card-body">
                 <div class="form-group">
-                    <label for="doc_comunidad">@lang('Nuevo documento')</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input name="doc" type="file" class="custom-file-input" id="doc_comunidad">
-                            <label class="custom-file-label" for="doc_comunidad">Elige un archivo</label>
-                        </div>
-<!--                        <div class="input-group-append">
-                            <span class="input-group-text">Subir</span>
-                        </div>-->
+
+                    <!-- Título -->
+                    <div class="form-group">
+                        <label>Título</label>
+                        <input type="text" class="form-control"  maxlength="35"
+                               name="titulo" value="{{ old('titulo')}}">
                     </div>
+
+                    <!-- Descripción -->
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea class="form-control" rows="2"
+                                  name="descripcion">{{ old('descripcion') }}
+                        </textarea>
+                    </div>
+
+
+                    <div class="custom-file">
+                        <input name="doc" type="file" class="custom-file-input" id="doc_comunidad">
+                        <label class="custom-file-label" for="doc_comunidad">Elige un archivo</label>
+                    </div>
+                    <!--                        <div class="input-group-append">
+                                                <span class="input-group-text">Subir</span>
+                    </div>-->
+
                 </div>
             </div> <!-- card-body -->
 
