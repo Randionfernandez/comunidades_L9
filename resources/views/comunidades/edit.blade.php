@@ -22,13 +22,9 @@
 <form method="post" id="update-comunidad" enctype="multipart/form-data"
       action="{{route('comunidades.update', $comunidad) }}">
     @csrf @method('PUT')
-
     @include('partials.validation-errors')
     @include('comunidades._comunidad')
-
-
 </form>
-
 
 <form class="d-none" id="delete-comunidad" onsubmit="return confirm('Estas seguro de querer eliminar esta comnidad')"
       method="POST" action="{{ route('comunidades.destroy', $comunidad) }}">

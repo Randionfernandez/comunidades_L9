@@ -244,7 +244,8 @@
 
 
                     <div class="custom-file">
-                        <input name="doc" type="file" class="custom-file-input" id="doc_comunidad">
+                        <input name="doc" type="file" class="custom-file-input"
+                               accept="image/*,.pdf" id="doc_comunidad">
                         <label class="custom-file-label" for="doc_comunidad">Elige un archivo</label>
                     </div>
                     <!--                        <div class="input-group-append">

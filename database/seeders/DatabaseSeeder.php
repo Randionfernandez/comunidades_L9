@@ -18,12 +18,17 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        $this->call([DivisaSeeder::class]);
-        $this->call([TiposPropiedadSeeder::class]);
-        $this->call([PaisSeeder::class]);
-        $this->call([ActividadSeeder::class]);
-        
-        $user = User::create([
+
+        $this->call([
+            DivisaSeeder::class,
+            TiposPropiedadSeeder::class,
+            PaisSeeder::class,
+            ActividadSeeder::class,
+            AutorizacionSeeder::class,
+            ComunidadSeeder::class,
+        ]);
+
+        $admin = User::create([
                     'name' => 'Rafael',
                     'apellidos' => 'Andión',
                     'fechalta' => "2010-05-01",
@@ -32,8 +37,8 @@ class DatabaseSeeder extends Seeder {
                     'password' => Hash::make('secretos'),
                     'remember_token' => Str::random(10),
         ]);
-        
-        User::create([
+
+        $invitado = User::create([
                     'name' => 'invitado',
                     'apellidos' => 'Invitado',
                     'fechalta' => "2010-05-01",
@@ -44,24 +49,22 @@ class DatabaseSeeder extends Seeder {
         ]);
 
         \App\Models\User::factory(10)->create();
-        
-        $this->call([ComunidadSeeder::class]);
 
-        Comunidad_User::create([
+        $cu= Comunidad_User::create([
             'comunidad_id' => 1,
-            'user_id' => 2,
-          //  'role_id' => 2,    // Revisar cuando se sustituya por Spatie/laravel-permission
-            'created_at' => now(),
-            'updated_at' => now()
+            'user_id' => $invitado->id,
+                //  'role_id' => 2,    // Revisar cuando se sustituya por Spatie/laravel-permission
         ]);
+        $cu->assignRole('Invitado');
 
         $comunidades = Comunidad::all();
         foreach ($comunidades as $comunidad) {
-            Comunidad_User::create([
+            $cu= Comunidad_User::create([
                 'comunidad_id' => $comunidad->id,
-                'user_id' => $user->id,
-             //   'role_id' => '2',  // Revisar cuando se sustituya por Spatie/laravel-permission
+                'user_id' => $admin->id,
+               // 'role_id' => '2', // Revisar cuando se sustituya por Spatie/laravel-permission
             ]);
+            $cu->assignRole('Admin');
         }
     }
 

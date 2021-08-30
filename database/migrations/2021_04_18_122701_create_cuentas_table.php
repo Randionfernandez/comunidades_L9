@@ -21,9 +21,9 @@ class CreateCuentasTable extends Migration {
             $table->date('fecha_apertura')->comment('Fecha de apertura o la del movimiento más antiguo, si se desconociese la de apertura');
             $table->boolean('activa')->default(true)->comment('Activa == true, si admite nuevos movimientos');
             $table->decimal('saldo', 10, 2)->default(0)->comment('Un trigger actualizará este dato, con cada movimiento. Especial cuidado con actualizaciones y borrados');
-            $table->string('bic')->nullable();
+            $table->string('bic', 11)->nullable();
             $table->char('divisa', 3)->default('EUR')->comment('Código ISO 4217 de la divisa');
-            $table->text('comentarios')->nullable();
+            $table->text('observaciones')->nullable();
 
             $table->unsignedBigInteger('comunidad_id');
 

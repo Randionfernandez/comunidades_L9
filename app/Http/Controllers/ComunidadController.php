@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ComunidadRequest;
 use App\Models\Comunidad;
+use App\Models\Comunidad_User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class ComunidadController extends Controller {
@@ -50,8 +52,12 @@ class ComunidadController extends Controller {
         $comunidad = Comunidad::create($request->all());
 
         if (request()->hasFile('doc')) {
-            // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
+            // guarda el fichero en una subcarpeta cuyo nombre es el cif de l
+            // a comunidad        
             $comunidad->documentos()->create([
+                'carpeta' => "Comunidad",
+                'titulo' => $request->titulo,
+                'descripcion' => $request->descripcion,
                 'name' => $request->file('doc')->getClientOriginalName(),
                 'hash_name' => $request->file('doc')->store(request()->cif),
             ]);
@@ -59,7 +65,11 @@ class ComunidadController extends Controller {
 
         $comunidad->usuarios()->attach(auth()->user()->id);
 
-        return redirect()->route('comunidades.index')->with('status', ['msj' => "La comunidad ha sido creada correctamente", 'alert' => 'alert-success']);
+        // asignamos el rol de 'Admin' en la tabla 'comunidad_user'
+        $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->first();
+        $cu->assignRole('Admin');
+
+        return redirect()->route('comunidades.index')->with('status', ['msj' => "La comunidad $comunidad->denom, fué creada correctamente", 'alert' => 'alert-success']);
     }
 
     /**
@@ -72,7 +82,7 @@ class ComunidadController extends Controller {
      * @return Response
      */
 //    public function show(Comunidad $comunidad) {
-//        //
+//        
 //    }
 
     /**
@@ -112,25 +122,49 @@ class ComunidadController extends Controller {
         }
 
         $comunidad->update($request->validated());
-        $this->msj = 'La comunidad fué actualizada con éxito';
+        $this->msj = 'La comunidad ' . $comunidad->denom . ', fué actualizada con éxito';
 
         return redirect()->route('comunidades.index', $comunidad)->with('status', ['msj' => $this->msj, 'alert' => 'alert-info']);
     }
 
     /**
      * Remove the specified resource from storage.
+     * 
+     *      Se hace un borrado lógico de la comunidad (SoftDelete) y un borrado físico de las
+     * filas de comunidad_user que contienen enlaces con esta comunidad.
+     *      También en model_has_role se borrar físicamente los roles con los 'model_id' 
+     * borrados en comunidad_user.
+     * Nota: 
+     *      Como el borrado de 'comunidad' es lógico, los borrados en 'comunidad_user' no se propagan
+     * en cascada, como consta en la migración.
+     * ToDo:
+     *      El procedimiento de borrado de una comunidad tiene fuertes implicaciones en la calidad del 
+     * servicio, por tanto, en versiones más evolucionadas debería replantearse; de momento nos sirve esto.
      *
      * @param  Comunidad  $comunidad
      * @return Response
      */
     public function destroy(Comunidad $comunidad) {
+        $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->where('user_id', auth()->user()->id)->first();
 
-        $this->msj = 'La comunidad fué eliminada con éxito';
+        if ($cu->hasRole('Admin')) {//  pendiente optimizar para evitar una consulta a la BD
+            $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->get();
 
-        $comunidad->delete();
-        session()->forget('cmd_seleccionada');
+            $this->msj = "La comunidad -- " . $comunidad->denom . " --, fué eliminada con éxito";
 
-        return redirect()->route('comunidades.index')->with('status', ['msj' => $this->msj, 'alert' => 'alert-danger']);
+            foreach ($cu as $cmd_usr) {
+                $cmd_usr->roles()->detach();
+            }
+// Elimina los enlaces de usuarios que tienen acceso a la comunidad. No aplica SoftDeletes,
+//  a pesar de constar en el modelo Comunidad_User; pendiente de solucionar para no perder esa información
+            $comunidad->usuarios()->detach();
+            $comunidad->delete();  // marca la comunidad como borrada: softDelete.
+
+            session()->forget('cmd_seleccionada');
+            return redirect()->route('comunidades.index')->with('status', ['msj' => $this->msj, 'alert' => 'alert-danger']);
+        }
+
+        Abort(403);
     }
 
     public function seleccionar(Comunidad $comunidad, Request $request) {

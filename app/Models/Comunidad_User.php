@@ -4,31 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comunidad_User extends Model {
 
     use HasFactory;
+    use SoftDeletes;
+    use \Spatie\Permission\Traits\HasRoles;
 
     protected $table = 'comunidad_user';
+    protected $guard_name='web';
 
     protected $fillable = [
         'comunidad_id',
         'user_id',
-      // 'role_id'    // Revisar una vez Spatie/larvel-permission este funcionando
     ];
-
-    
-    // Revisar la necesidad de las 3 siguientes relaciones
-    // Añadidas por Fran, pero me parecen innecesarias. Comentar con Fran
-//    public function comunidades() {
-//        return $this->belongsToMany('comunidad')->withTimestamps();
-//    }
-//
-//    public function usuarios() {
-//        return $this->belongsToMany('user')->withTimestamps();
-//    }
-//
-//    public function roles() {
-//        return $this->belongsToMany('role')->withTimestamps();
-//    }
 }     

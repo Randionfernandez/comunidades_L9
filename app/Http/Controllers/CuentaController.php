@@ -13,11 +13,11 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-       // $user = auth()->user();
+        // $user = auth()->user();
 
         $comunidad = session('cmd_seleccionada');
         return view('cuentas.index', ['cuentas' => $comunidad->cuentas,
-                'comunidad' => $comunidad]);
+            'comunidad' => $comunidad]);
     }
 
     /**
@@ -36,7 +36,23 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        $cmd = session('cmd_seleccionada');
+
+        if (request()->hasFile('doc')) {
+            // guarda el documento en una subcarpeta cuyo nombre es el cif de la comunidad        
+            $cmd->documentos()->create([
+                'carpeta' => "Cuentas",
+                'titulo' => $request->titulo,
+                'descripcion' => $request->descripcion,
+                'name' => $request->file('doc')->getClientOriginalName(),
+                'hash_name' => $request->file('doc')->store($cmd->cif),
+            ]);
+        }
+
+        $cmd->cuentas()->create($request->all());
+        $cmd->refresh();   // ver también push() en Eloquent: Relationships
+
+        return view('cuentas.index', ['cuentas' => $cmd->cuentas, 'comunidad' => $cmd])->with('status', ['msj' => "La cuenta ha sido creada correctamente", 'alert' => 'alert-success']);
     }
 
     /**
@@ -56,7 +72,7 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Cuenta $cuenta) {
-       return "entrado en edit";
+        return view('cuentas.edit', ['cuenta' => $cuenta]);
     }
 
     /**

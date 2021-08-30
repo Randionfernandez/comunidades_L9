@@ -39,6 +39,7 @@ class CreateComunidadesTable extends Migration {
             $table->foreign('pais')->references('codigoISO3')->on('paises');
             $table->timestamps();
             $table->softDeletes();
+            
         });
     }
 

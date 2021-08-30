@@ -15,10 +15,7 @@
 <form method="post" id="create-comunidad" enctype="multipart/form-data"
       action="{{route('comunidades.store')}}">
     @csrf 
-
     @include('comunidades._comunidad')
-
-
 </form>
 
 <!-- /.content -->
