@@ -94,8 +94,7 @@
                     onclick="document.getElementById('create-cuenta').submit()"
                     >@lang('Guardar')</button>
             @else
-            <button type="button" name="guardar" class="btn btn-secondary"
-                    onclick="document.getElementById('update-cuenta').submit()"
+            <button type="submit" name="guardar" class="btn btn-secondary"
                     >@lang('Guardar')</button>
             <button type='button' class="btn btn-danger"
                     onclick="document.getElementById('delete-cuenta').submit()">@lang('Dar de baja')

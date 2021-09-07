@@ -69,21 +69,12 @@ class ComunidadController extends Controller {
         $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->first();
         $cu->assignRole('Admin');
 
-        return redirect()->route('comunidades.index')->with('status', ['msj' => "La comunidad $comunidad->denom, fué creada correctamente", 'alert' => 'alert-success']);
+        return redirect()->route('comunidades.index')->with('status', ['msj' => "La comunidad $comunidad->denom, fue creada correctamente", 'alert' => 'alert-success']);
     }
 
     /**
-     * Eliminado este método, solo considero 'edit'
-     * 
-     * 
-     * Display the specified resource.
-     *
-     * @param  Comunidad  $comunidad
-     * @return Response
+     * Eliminado método show en las rutas de 'web', basta con 'edit'
      */
-//    public function show(Comunidad $comunidad) {
-//        
-//    }
 
     /**
      * Show the form for editing the specified resource.
@@ -122,7 +113,7 @@ class ComunidadController extends Controller {
         }
 
         $comunidad->update($request->validated());
-        $this->msj = 'La comunidad ' . $comunidad->denom . ', fué actualizada con éxito';
+        $this->msj = 'La comunidad ' . $comunidad->denom . ', fue actualizada con éxito';
 
         return redirect()->route('comunidades.index', $comunidad)->with('status', ['msj' => $this->msj, 'alert' => 'alert-info']);
     }
@@ -145,12 +136,12 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function destroy(Comunidad $comunidad) {
-        $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->where('user_id', auth()->user()->id)->first();
-
-        if ($cu->hasRole('Admin')) {//  pendiente optimizar para evitar una consulta a la BD
+        $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->get();
+        $aux = $cu->where('user_id', auth()->id())->first();
+        if ($aux->hasRole('Admin')) {//  $aux ¿accede a la BD? comprobar
             $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->get();
 
-            $this->msj = "La comunidad -- " . $comunidad->denom . " --, fué eliminada con éxito";
+            $this->msj = "La comunidad -- " . $comunidad->denom . " --, fue eliminada con éxito";
 
             foreach ($cu as $cmd_usr) {
                 $cmd_usr->roles()->detach();

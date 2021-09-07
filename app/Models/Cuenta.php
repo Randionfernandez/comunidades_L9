@@ -21,7 +21,7 @@ class Cuenta extends Model {
         'saldo',
         'bic',
         'divisa',
-        'comentarios',
+        'observaciones',
     ];
 
     public function comunidad() {
