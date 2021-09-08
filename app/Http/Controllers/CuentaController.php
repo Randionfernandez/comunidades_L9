@@ -116,7 +116,9 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Cuenta $cuenta) {
-        $cuenta->update(['activa' => false]);
+       // autorizar operación
+        
+        $cuenta->delete();
         
         $msj= "La cuenta con IBAN: " . $cuenta->iban . " ha sido dada de baja";
         return redirect()->route('cuentas.index')->with('status', ['msj' => $msj, 'alert' => 'alert-danger']);

@@ -32,7 +32,7 @@ class User extends Authenticatable {
         'apellidos',
         'fechalta',
         'email',
-        //'password',
+        'password',
         'tratamiento',
         'tipo',
         'doi',

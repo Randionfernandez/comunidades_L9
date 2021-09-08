@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration {
             
             $table->string('name', 35)->comment('No modificar el nombre de este campo, o dejará de funcionar la autenticación');
             $table->string('apellidos', 40)->nullable();
-            $table->date('fechalta');
+            $table->date('fechalta')->default(now());      //   ¿Es necesaria?
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
