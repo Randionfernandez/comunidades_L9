@@ -15,8 +15,8 @@
         <tr>
             <th>@lang('fechalta')</th>
             <th>@lang('DOI')</th>
-            <th>@lang('Nombre')</th>
             <th>@lang('Apellidos')</th>
+            <th>@lang('Nombre')</th>
             <th>@lang('Email')</th>
             <th>@lang('Acciones')</th>
 
@@ -28,8 +28,8 @@
         <tr>
             <td>{{ $user->fechalta }}</td> 
             <td>{{ $user->doi }}</td>
-            <td>{{ $user->name }}</td>
             <td>{{ $user->apellidos }}</td>
+            <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
 
             <td class="flex border-2 text-center">

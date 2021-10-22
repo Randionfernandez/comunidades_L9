@@ -1,18 +1,18 @@
 <?php
 
-//use App\Services\Transistor;
-
-
-use App\Http\Controllers\ComunidadController;
-use App\Http\Controllers\CuentaController;
-use App\Http\Controllers\JuntaController;
-use App\Http\Controllers\MovimientoController;
-use App\Http\Controllers\PropiedadController;
-use App\Http\Controllers\ProveedorController;
-use App\Http\Controllers\UserController;
+// Notación abreviada  a partir de la versión 7
+use App\Http\Controllers\{
+    ComunidadController,
+    CuentaController,
+    MovimientoController,
+    PropiedadController,
+    ProveedorController,
+    JuntaController,
+    UserController,
+    DocumentoController
+};
 use App\Models\Comunidad;
 use App\Models\User;
-use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use Psr\Container\ContainerInterface;
 
@@ -27,10 +27,10 @@ use Psr\Container\ContainerInterface;
   |
  */
 
-Route::get('/', function(){
+Route::get('/', function () {
     return view('welcome');
-    
 });
+
 
 Route::get('/user/{id}/roles', function (User $id) {
     $roles = $id->roles();
@@ -52,12 +52,10 @@ Route::middleware('auth')->resource('juntas', JuntaController::class);
 Route::middleware('auth')->resource('proveedores', ProveedorController::class);
 Route::middleware('auth')->resource('movimientos', MovimientoController::class);
 Route::middleware('auth')->resource('usuarios', UserController::class);
+Route::middleware('auth')->resource('documentos', DocumentoController::class);
 
 Route::get('logout', [AuthenticatedSessionController::class, 'destroy']);
 
-//Route::get('/contenedor', function (ContainerInterface $container) {
-//    return dd($container);
-//})->name('contenedor');
 
 // Ruta ejecutada cuando la ruta de la petición entrante no es reconocida por 
 // ninguna de las anteriores rutas. Mantener siempre al final de este fichero.

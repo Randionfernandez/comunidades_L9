@@ -3,13 +3,13 @@
 @section('header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">Comunidad seleccionada</h1>
+        <h1 class="m-0">Cuenta seleccionada</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('comunidades.index') }}">Comunidades</a></li>
             <li class="breadcrumb-item"><a href="{{ route('comunidades.edit',$comunidad) }}">{{ $comunidad->denom }}</a></li>
-            <li class="breadcrumb-item">Ficha de la comunidad</li>
+            <li class="breadcrumb-item"><a href="{{ route('propiedades.index') }}">Propiedades</a></li>
+            <li class="breadcrumb-item">Ficha de la propiedad</li>
         </ol>
     </div><!-- /.col -->
 </div><!-- /.row -->
@@ -19,15 +19,15 @@
 
 <!-- Main content -->
 <!--<section class="content">-->
-<form method="post" id="update-comunidad" enctype="multipart/form-data"
-      action="{{route('comunidades.update', $comunidad) }}">
+<form method="post" id="update-propiedad" enctype="multipart/form-data"
+      action="{{route('propiedades.update', $propiedad) }}">
     @csrf @method('PUT')
     @include('partials.validation-errors')
-    @include('comunidades._comunidad')
+    @include('propiedades._propiedad')
 </form>
 
-<form class="d-none" id="delete-comunidad" onsubmit="return confirm('Estas seguro de querer eliminar esta comnidad')"
-      method="POST" action="{{ route('comunidades.destroy', $comunidad) }}">
+<form class="d-none" id="delete-propiedad" onsubmit="return confirm('Estas seguro de querer eliminar esta propiedad')"
+      method="POST" action="{{ route('propiedad.destroy', $propiedad) }}">
     @csrf @method('DELETE')
 </form>
 <!-- /.content -->
@@ -39,11 +39,12 @@
 
 <!-- Page specific script -->
 <script>
-$(function () {
-    bsCustomFileInput.init();
-});
+    $(function () {
+        bsCustomFileInput.init();
+    });
 </script>
 
 @endpush
 
 @endsection
+

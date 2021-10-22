@@ -14,6 +14,7 @@ class Propiedad extends Model {
     protected $table = "propiedades";
     protected $fillable = [
         'denominacion',
+        'user_id',
         'parte',
         'coeficiente',
         'domiciliada',
@@ -26,6 +27,10 @@ class Propiedad extends Model {
 
     public function comunidad() {
         return $this->belongsTo(Comunidad::class);
+    }
+    
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 
 }

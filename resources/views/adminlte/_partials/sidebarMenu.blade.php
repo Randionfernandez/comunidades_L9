@@ -92,6 +92,12 @@
                         <p>Incidencias</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('documentos.index')}}" class="nav-link {{ SetActiveRoute('documentos.*') }}">
+                        <i class="fa fa-file-alt nav-icon"></i>
+                        <p>Documentos</p>
+                    </a>
+                </li>
             </ul>
 
 

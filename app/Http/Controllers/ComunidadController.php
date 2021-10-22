@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ComunidadRequest;
 use App\Models\Comunidad;
 use App\Models\Comunidad_User;
+//use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+//use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -34,6 +35,7 @@ class ComunidadController extends Controller {
 //
 //            // comprobar si tiene licencia para crear comunidades de pago (pendiente)
 //        } else {
+
 
         if (Gate::allows('crear-comunidad')) {
             return view('comunidades.create');
@@ -160,7 +162,7 @@ class ComunidadController extends Controller {
 
     public function seleccionar(Comunidad $comunidad, Request $request) {
         session(['cmd_seleccionada' => $comunidad]);
-
+        // dd(session('cmd_seleccionada'));
         return view('dashboard', compact('comunidad'));
     }
 

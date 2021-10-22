@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
-class UserFactory extends Factory
-{
+class UserFactory extends Factory {
+
     /**
      * The name of the factory's corresponding model.
      *
@@ -22,15 +22,15 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
-    {
+    public function definition() {
         return [
+            'doi' => $this->faker->unique()->dni(),
             'name' => $this->faker->firstname,
             'apellidos' => $this->faker->lastname,
             'fechalta' => $this->faker->dateTimeBetween('-10 years', 'now'),
             'email' => $this->faker->unique()->safeEmail,
             'email_verified_at' => now(),
-  //          'password' => Hash::make('secretos'),
+            //          'password' => Hash::make('secretos'),
             'password' => '$2y$10$QlfN7CbALaYJSTPmQ69CdeW5uFOd3pcm.Gke78.pypt.zQljlso/2', // password hardcoded to 'secretos'
             'remember_token' => Str::random(10),
         ];
@@ -41,12 +41,12 @@ class UserFactory extends Factory
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    public function unverified()
-    {
+    public function unverified() {
         return $this->state(function (array $attributes) {
-            return [
+                    return [
                 'email_verified_at' => null,
-            ];
-        });
+                    ];
+                });
     }
+
 }

@@ -2,8 +2,7 @@
 
 namespace Tests\Feature\Cuentas;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class SortComunidadesTest extends TestCase {
@@ -12,13 +11,14 @@ class SortComunidadesTest extends TestCase {
 
     /** @test */
     public function it_can_sort_comunidades() {
-        $url = route('api.v1.comunidades.index', ['sort' => 'denom']);
-        \DB::listen(function ($db) {
-           dump( $db->sql);
-        });
+        $url = route('api.v1.comunidades', ['sort' => 'denom']);
+//        DB::listen(function ($db) {
+//           dump( $db->sql);
+//        });
         $this->getJson($url);
+        $this->assertTrue(true);
 
-      //  $this->assertOrder();
+
     }
 
 }

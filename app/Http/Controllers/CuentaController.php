@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuenta;
+use App\Models\Documento;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CuentaController extends Controller {
 
@@ -19,7 +21,7 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        // $user = auth()->user();
+        $user = auth()->user();
         $cmd = session('cmd_seleccionada');
         return view('cuentas.index', ['cuentas' => $cmd->cuentas,
             'comunidad' => $cmd]);
@@ -92,13 +94,16 @@ class CuentaController extends Controller {
 
         $cmd = session('cmd_seleccionada');
         if (request()->hasFile('doc')) {
-            // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
-            $cuenta->documentos()->create([
-                'carpeta' => "Cuentas",
+            // guarda el fichero en una subcarpeta cuyo nombre es el {cif de la comunidad}/cuentas       
+            Documento::Insert([
+                'comunidad_id' => $cmd->id,
+                'model_id' => $cuenta->id,
+                'model' => "Cuenta",
+                'carpeta' => "cuentas",
                 'titulo' => $request->titulo,
                 'descripcion' => $request->descripcion,
                 'name' => $request->file('doc')->getClientOriginalName(),
-                'hash_name' => $request->file('doc')->store($cmd->cif),
+                'hash_name' => $request->file('doc')->store($cmd->cif . "/cuentas"),
             ]);
         }
 
@@ -116,11 +121,11 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Cuenta $cuenta) {
-       // autorizar operación
-        
+        // autorizar operación
+
         $cuenta->delete();
-        
-        $msj= "La cuenta con IBAN: " . $cuenta->iban . " ha sido dada de baja";
+
+        $msj = "La cuenta con IBAN: " . $cuenta->iban . " ha sido dada de baja";
         return redirect()->route('cuentas.index')->with('status', ['msj' => $msj, 'alert' => 'alert-danger']);
     }
 

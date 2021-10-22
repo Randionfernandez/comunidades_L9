@@ -80,6 +80,9 @@ class User extends Authenticatable {
         return $this->belongsToMany(Comunidad::class, 'comunidad_user', 'user_id', 'comunidad_id')->withTimestamps();
     }
 
+    public function propiedads() {
+        return $this->hasMany(Propiedad::class);
+    }
     // Instalado paquete Spatie/laravel-permission que es incompatible con el método roles().
     // Tampoco puede haber una propiedad role o roles en este modelo ni en la tabla correspondiente de la B.D.
     // Lo mismo sucede con las propiedades permission, permissions, y el método permissions()

@@ -12,6 +12,7 @@ class Documento extends Model {
     use SoftDeletes;
 
     protected $fillable = [
+        'model',
         'carpeta',
         'titulo',
         'descripcion',

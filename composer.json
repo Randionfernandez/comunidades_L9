@@ -1,28 +1,29 @@
 {
-    "name": "laravel/laravel",
+    "name": "randionfernandez/comunidades",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Gestión de comunidades de vecinos.",
     "keywords": [
         "framework",
         "laravel"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.38",
+        "laravel/framework": "^8.61",
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.0",
-        "spatie/laravel-permission": "^4.3"
+        "spatie/laravel-permission": "^4.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.14",
+        "laravel/dusk": "^6.18",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
