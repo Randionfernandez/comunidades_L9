@@ -14,7 +14,10 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        return "Entrando en proveedores";
+        $comunidad=session('cmd_seleccionada');
+        $proveedores= $comunidad->proveedores;
+        return view('proveedores.index', compact('proveedores','comunidad'));
+
     }
 
     /**

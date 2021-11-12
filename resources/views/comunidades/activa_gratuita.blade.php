@@ -1,6 +1,8 @@
-<!-- Estos valores serán tratados automaticamente por la aplicación o por el superadmin
+<!--
+Estos valores serán tratados automaticamente por la aplicación o por el superadmin
 de la aplicación. El usuario no puede manipularlos. Por eso se retiraron del
-form _comunidad.blade.php -->
+form _comunidad.blade.php-->
+
 <div class="col-3">
     <!-- status de la comunidad -->
     <div class="form-group">

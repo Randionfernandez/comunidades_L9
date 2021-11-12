@@ -14,7 +14,7 @@ class UserSeeder extends Seeder {
      */
     public function run() {
         $user = User::create([
-              //      'doi' => $this->faker->unique()->dni(),
+                    'doi' => $this->faker->unique()->dni(),
                     'name' => 'Rafael',
                     'apellidos' => 'Andión',
                     'fechalta' => "2010-05-01",
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder {
         ]);
 
         User::create([
-           // 'doi' => $this->faker->unique()->dni(),
+//            'doi' => $this->faker->unique()->dni(),
             'name' => 'invitado',
             'apellidos' => 'Invitado',
             'fechalta' => "2010-05-01",

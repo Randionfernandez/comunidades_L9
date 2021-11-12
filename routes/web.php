@@ -14,7 +14,6 @@ use App\Http\Controllers\{
 use App\Models\Comunidad;
 use App\Models\User;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
-use Psr\Container\ContainerInterface;
 
 /*
   |--------------------------------------------------------------------------

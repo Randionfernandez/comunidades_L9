@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('comunidades/{comunidad}', [ComunidadController::class, 'show'])->name('api.v1.comunidades');
+Route::get('comunidades', [ComunidadController::class, 'index'])->name('api.v1.comunidades.index');
+Route::get('comunidades/{comunidad}', [ComunidadController::class, 'show'])->name('api.v1.comunidades.show');

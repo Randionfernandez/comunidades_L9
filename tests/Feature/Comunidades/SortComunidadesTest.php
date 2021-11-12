@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Cuentas;
+namespace Tests\Feature\Comunidades;
 
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
@@ -11,7 +11,7 @@ class SortComunidadesTest extends TestCase {
 
     /** @test */
     public function it_can_sort_comunidades() {
-        $url = route('api.v1.comunidades', ['sort' => 'denom']);
+        $url = route('api.v1.comunidades.index');
 //        DB::listen(function ($db) {
 //           dump( $db->sql);
 //        });

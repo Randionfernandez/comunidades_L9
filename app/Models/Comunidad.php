@@ -34,7 +34,7 @@ class Comunidad extends Model {
         'administrador',
     ];
 
-    public function propiedads() {
+    public function propiedades() {
         return $this->hasMany(Propiedad::class);
     }
 

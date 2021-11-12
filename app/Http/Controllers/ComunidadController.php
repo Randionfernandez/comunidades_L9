@@ -160,9 +160,8 @@ class ComunidadController extends Controller {
         Abort(403);
     }
 
-    public function seleccionar(Comunidad $comunidad, Request $request) {
+    public function seleccionar( Comunidad $comunidad) {
         session(['cmd_seleccionada' => $comunidad]);
-        // dd(session('cmd_seleccionada'));
         return view('dashboard', compact('comunidad'));
     }
 

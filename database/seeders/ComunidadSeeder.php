@@ -15,10 +15,12 @@ class ComunidadSeeder extends Seeder {
      * @return void
      */
     public function run() {
-
+// Dos formas de crear relaciones: 
+//      has(Propiedad::factory()->count(5);   o bien
+//      hasPropiedades(5) Comunidad tiene una relación one to many llamada propiedades
         Comunidad::factory()
                 ->has(Cuenta::factory()->count(1))
-                ->has(Propiedad::factory()->count(5))
+                ->hasPropiedades(5)
                 ->count(5)
                 ->create();
     }

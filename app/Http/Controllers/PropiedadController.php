@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comunidad;
 use App\Models\Propiedad;
-use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,10 +11,10 @@ class PropiedadController extends Controller {
 
     var $cmd;
 
-// los metodos fallas si acceden a esta variable. No sé por qué
+// los métodos fallan si acceden a esta variable. No sé por qué
 // $cmd debe tomar el valor de session en cada método
-    public function __construct(Request $request) {
-        $this->cmd = 6;
+    public function __construct() {
+        $this->cmd = session('cmd_seleccionada');
     }
 
     /**
@@ -22,12 +22,10 @@ class PropiedadController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
-        dd($request);
+    public function index() {
         $cmd = session('cmd_seleccionada');
-        dd($this->cmd);
-        return view('propiedades.index', ['propiedades' => $this->cmd->propiedades,
-            'comunidad' => $this->cmd]);
+        return view('propiedades.index', ['propiedades' => $cmd->propiedades,
+            'comunidad' => $cmd]);
     }
 
     /**

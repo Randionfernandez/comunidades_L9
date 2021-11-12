@@ -23,13 +23,6 @@ class AppServiceProvider extends ServiceProvider {
      */
     public function boot() {
         //
-//        \Illuminate\Support\Facades\View::share('denom','Rua del percebe');
-//        \Illuminate\Support\Facades\View::share('navLinks', [
-//            ['href' => 'dashboard', 'name' => 'dashboard', 'text' => 'Dashboard'],
-//            ['href' => 'contenedor', 'name' => 'contenedor', 'text' => 'Contenedor'],
-//            ['href' => 'comunidades.index', 'name' => 'comunidades.*', 'text' => 'Communities'],
-//            ['href' => 'comunidades.index', 'name' => 'Mi cuenta', 'text' => 'Mi cuenta'],
-//            ]);
     }
 
 }

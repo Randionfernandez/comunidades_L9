@@ -21,7 +21,7 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $user = auth()->user();
+//        $user = auth()->user();
         $cmd = session('cmd_seleccionada');
         return view('cuentas.index', ['cuentas' => $cmd->cuentas,
             'comunidad' => $cmd]);
