@@ -1,20 +1,24 @@
 <?php
 
 // Notación abreviada  a partir de la versión 7
-use App\Http\Controllers\{
-    ComunidadController,
-    CuentaController,
-    MovimientoController,
-    PropiedadController,
-    ProveedorController,
-    JuntaController,
-    UserController,
-    DocumentoController
-};
+
+
+use App\Http\Controllers\ComunidadController;
+use App\Http\Controllers\CuentaController;
+use App\Http\Controllers\DocumentoController;
+use App\Http\Controllers\JuntaController;
+use App\Http\Controllers\MovimientoController;
+use App\Http\Controllers\PropiedadController;
+use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\UserController;
 use App\Models\Comunidad;
 use App\Models\User;
+use Illuminate\Support\Facades\App;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
+
+
+//use App\Services\RedisEventPusher;
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -25,11 +29,18 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
   | contains the "web" middleware group. Now create something great!
   |
  */
+Route::get('lang/{locale?}', function ($locale = 'en') {
+//    App::SetLocale($locale);
+//    $lang= App::currentLocale();
+    switch ($locale) {
+        case 'es': echo "El idiomma seleccionado es: " . App::currentLocale();break;
+        default: echo "Qué mal se me da el inglés";
+    }
+});
 
 Route::get('/', function () {
     return view('welcome');
 });
-
 
 Route::get('/user/{id}/roles', function (User $id) {
     $roles = $id->roles();
@@ -54,7 +65,6 @@ Route::middleware('auth')->resource('usuarios', UserController::class);
 Route::middleware('auth')->resource('documentos', DocumentoController::class);
 
 Route::get('logout', [AuthenticatedSessionController::class, 'destroy']);
-
 
 // Ruta ejecutada cuando la ruta de la petición entrante no es reconocida por 
 // ninguna de las anteriores rutas. Mantener siempre al final de este fichero.

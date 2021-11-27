@@ -16,6 +16,11 @@ Luego, desde la raíz del proyecto ejecuta: php artisan key:generate
 
 Despliegue: http://randion.ddns.net
   (misma IP que la máquina virtual de la base de datos)
+
+Usa la plantilla AdminLTE 3 ( que incluye bootstrap 4.3+).
+
+Instalado paquete debugbar, para depuración.
+Idioma predeterminado fallback_locale = 'es'
   
 Base de datos postgres en
 g1.ifc33b.cifpfbmoll.eu/adminer.php

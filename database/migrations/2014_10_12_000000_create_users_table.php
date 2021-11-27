@@ -24,9 +24,11 @@ class CreateUsersTable extends Migration {
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('language', 3)->default('es')->comment('Idioma preferente del usuario');
             $table->rememberToken();
             $table->text('profile_photo_path')->nullable();
             $table->integer('MaxFreeCommunities')->default(env('APP_MAX_FREE_COMMUNITIES', 3));
+            
 
             /*
              * Al integrar usuarios y propietarios en la misma tabla estos campos

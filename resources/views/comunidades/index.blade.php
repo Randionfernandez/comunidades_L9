@@ -56,7 +56,6 @@
 @endsection
 
 
-
 @section('content')
 
 @if (!count( $comunidades ))

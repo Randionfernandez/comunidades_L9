@@ -91,7 +91,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Default to the left -->
                 <strong>Copyright &copy; 2021 <a href="https://github.com/randionfernandez/comunidades"></a>Randion</strong>
             </footer>
-        </div>
+        </div>x
         <!-- ./wrapper -->
 
         <!-- REQUIRED SCRIPTS -->
