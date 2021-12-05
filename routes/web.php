@@ -38,7 +38,7 @@ Route::get('lang/{locale?}', function ($locale = 'en') {
 });
 
 Route::get('/', function () {
-    return view('portada');
+    return view('welcome');
 });
 
 // Eliminar

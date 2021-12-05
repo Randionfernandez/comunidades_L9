@@ -16,5 +16,4 @@ yarn-error.log
 node_modules/
 yarn-error.log
 storage/*.key
-storage/app/
 /nbproject/private/

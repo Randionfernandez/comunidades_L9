@@ -322,10 +322,10 @@
 
                 
                 {{-- Language  Agregamos el código siguiente:  --}}
-<!--                <li class="nav-item dropdown">-->
+<!--                <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 
-                        {{ __("Choose a language") }}
+                        {{-- __("Choose a language") --}}
 
                     </a>
 
@@ -333,7 +333,7 @@
                         <a class="dropdown-item" href="{{route('set_language', ['es'])}}">{{ __("cmd.Spanish") }}</a>
                         <a class="dropdown-item" href="{{route('set_language', ['en'])}}">{{ __("cmd.English") }}</a>
                     </div>
-                <!--</li>-->
+                </li>-->
 
 
 
