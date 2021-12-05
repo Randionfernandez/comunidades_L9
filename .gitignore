@@ -15,4 +15,4 @@ yarn-error.log
 node_modules/
 yarn-error.log
 storage/*.key
-/nbproject/private/
+/nbproject
