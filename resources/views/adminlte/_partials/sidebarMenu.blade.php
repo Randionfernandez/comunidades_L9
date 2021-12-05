@@ -20,7 +20,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('propiedades.index')}}" class="nav-link {{ SetActiveRoute('propiedades') }}">
-                        <i class="fas fa-house-user nav-icon"></i>
+                        <i class="fas fa-building nav-icon"></i>
                         <p>Propiedades</p>
                     </a>
                 </li>
@@ -115,6 +115,13 @@
                     <a href="{{ route('dashboard', $comunidad ?? '')}}" class="nav-link {{ SetActiveRoute('dashboard') }}">
                         <i class="fas fa-warehouse nav-icon"></i>
                         <p>@lang('Panel')</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{-- route('dashboard', $comunidad ?? '')--}}" class="nav-link {{ SetActiveRoute('movimientos') }}">
+                        <i class="fas fa-calculator nav-icon"></i>
+                        <p>@lang('Movimientos bancarios')</p>
                     </a>
                 </li>
 

@@ -14,7 +14,7 @@ https://styde.net/diferencias-entre-composer-install-y-composer-update/
 
 Luego, desde la raíz del proyecto ejecuta: php artisan key:generate
 
-Despliegue: http://randion.ddns.net
+Despliegue: http://cmd.ifc33b.cifpfbmoll.eu
   (misma IP que la máquina virtual de la base de datos)
 
 Usa la plantilla AdminLTE 3 ( que incluye bootstrap 4.3+).

@@ -21,7 +21,7 @@
             <i class="fa fa-plus"></i>  Subir documento
         </a>
 
-        <button type="button" class="btn btn-primary pull-right" id="ayuda" data-toggle="modal" data-target="#help_documentos">
+        <button type="button" class="btn btn-primary float-right" id="ayuda" data-toggle="modal" data-target="#help_documentos">
             <i class="fa fa-info"></i> Ayuda
         </button>
 

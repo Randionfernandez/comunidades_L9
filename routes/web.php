@@ -16,8 +16,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
-
-
 //use App\Services\RedisEventPusher;
 /*
   |--------------------------------------------------------------------------
@@ -33,14 +31,27 @@ Route::get('lang/{locale?}', function ($locale = 'en') {
 //    App::SetLocale($locale);
 //    $lang= App::currentLocale();
     switch ($locale) {
-        case 'es': echo "El idiomma seleccionado es: " . App::currentLocale();break;
+        case 'es': echo "El idiomma seleccionado es: " . App::currentLocale();
+            break;
         default: echo "Qué mal se me da el inglés";
     }
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('portada');
 });
+
+// Eliminar
+Route::get('config', function(){
+   return config('locale');
+});
+
+Route::get('set_language/{lang}', function ($language) {
+    if (array_key_exists($language, config('languages'))) {
+        session()->put('applocale', $language);
+    }
+    return back();
+})->name('set_language');
 
 Route::get('/user/{id}/roles', function (User $id) {
     $roles = $id->roles();

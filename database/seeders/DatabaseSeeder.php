@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
-use App\Models\Cuenta;
 use App\Models\Comunidad;
 use App\Models\Comunidad_User;
+use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder {
 
@@ -48,24 +48,27 @@ class DatabaseSeeder extends Seeder {
                     'remember_token' => Str::random(10),
         ]);
 
-        \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
 
-        $cu= Comunidad_User::create([
-            'comunidad_id' => 1,
-            'user_id' => $invitado->id,
-                //  'role_id' => 2,    // Revisar cuando se sustituya por Spatie/laravel-permission
+        $cu = Comunidad_User::create([
+                    'comunidad_id' => 1,
+                    'user_id' => $invitado->id,
+                        //  'role_id' => 2,    // Revisar cuando se sustituya por Spatie/laravel-permission
         ]);
         $cu->assignRole('Invitado');
 
         $comunidades = Comunidad::all();
         foreach ($comunidades as $comunidad) {
-            $cu= Comunidad_User::create([
-                'comunidad_id' => $comunidad->id,
-                'user_id' => $admin->id,
-               // 'role_id' => '2', // Revisar cuando se sustituya por Spatie/laravel-permission
+            $cu = Comunidad_User::create([
+                        'comunidad_id' => $comunidad->id,
+                        'user_id' => $admin->id,
+                            // 'role_id' => '2', // Revisar cuando se sustituya por Spatie/laravel-permission
             ]);
             $cu->assignRole('Admin');
         }
+//        Eloquent::unguard();
+//        $path = 'database/seeders/movimientos.sql';
+//        DB::unprepared(file_get_contents($path));
     }
 
 }

@@ -137,7 +137,7 @@
                     onclick="document.getElementById('delete-propiedad').submit()">@lang('Dar de baja')
             </button>
             @endif
-            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#ayuda">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#ayuda">
                 <i class="fa fa-info"></i> @lang('Ayuda')
             </button>
 
