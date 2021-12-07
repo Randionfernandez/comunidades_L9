@@ -80,11 +80,10 @@
         </div>
     </div>
 
-
-    <footer class="fixed-bottom bg-secondary text-center py-3">
-        {{ config('app.name') }} | Copyright @ {{ date('Y') }}
-    </footer>
-    <!--</div>-->
+<footer class="fixed-bottom bg-secondary text-center py-3">
+    {{ config('app.name') }} | Copyright @ {{ date('Y') }}
+</footer>
+<!--</div>-->
 </div>
 
 

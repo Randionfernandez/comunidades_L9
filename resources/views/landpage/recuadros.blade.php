@@ -19,7 +19,7 @@
     </div>
 
     <div class="col xs-col-1 sm-col-6 md-col-6 lg-col-3 xl-col-3">
-        <a href="{{-- route('user.index') --}}">
+        <a href="">
             <div class="card m-3 p-3 zoom " style="width: 16rem;">
 
                 <i style='font-size:80px' class='fas text-center m-2'>&#xf0c0;</i>
