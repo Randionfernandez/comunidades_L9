@@ -16,12 +16,12 @@
 
 <div class="box-header">
     <div class='row'>
-        <a class="btn btn-primary mr-2"
+        <a class="btn btn-primary float-left mr-2"
            href="{{ route('cuentas.create') }}">
             <i class="fa fa-plus"></i>  Crear cuenta
         </a>
 
-        <button type="button" class="btn btn-primary pull-right" id="ayuda" data-toggle="modal" data-target="#help_cuentas">
+        <button type="button" class="btn btn-primary float-right" id="ayuda" data-toggle="modal" data-target="#help_cuentas">
             <i class="fa fa-info"></i> Ayuda
         </button>
 

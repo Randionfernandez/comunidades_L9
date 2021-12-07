@@ -22,7 +22,7 @@
         </a>
         @endcan
 
-        <button type="button" class="btn btn-primary pull-right" id="ayuda" data-toggle="modal" data-target="#help_comunidades">
+        <button type="button" class="btn btn-primary float-right" id="ayuda" data-toggle="modal" data-target="#help_comunidades">
             <i class="fa fa-info"></i> Ayuda
         </button>
 

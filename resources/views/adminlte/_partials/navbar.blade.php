@@ -43,7 +43,7 @@
             </div>
         </li>
 
-        <!-- Messages Dropdown Menu .- Simplifiqué a un único mensaje de loss 3 originales -->
+        <!-- Messages Dropdown Menu .- Simplifiqué a un único mensaje de los 3 originales -->
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-comments"></i>
@@ -111,8 +111,8 @@
                     <img src="/adminlte/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 
                     <p>
-                        {{ auth()->user()->name}} - Web Developer
-                        <small>Member since Nov. 2012</small>
+                        {{ auth()->user()->name }} {{ auth()->user()->apellidos }}
+                        <small>@lang('cmd.Member from') {{ auth()->user()->fechalta }}</small>
                     </p>
                 </li>
                 <!-- Menu Body 
@@ -133,11 +133,11 @@
                 
                 <!-- Menu Footer-->
                 <li class="user-footer">
-                    <div class="pull-left">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <div class="float-left">
+                        <a href="#" class="btn btn-default">@lang('Profile')</a>
                     </div>
-                    <div class="pull-right">
-                        <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                    <div class="float-right">
+                        <a href="/logout" class="btn btn-default">@lang('Logout')</a>
                     </div>
                 </li> <!-- ./Menu footer -->
             </ul>

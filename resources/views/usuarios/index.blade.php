@@ -20,7 +20,7 @@
             <i class="fa fa-plus"></i>  Crear usuario
         </a>
 
-        <button type="button" class="btn btn-primary pull-right" id="ayuda" data-toggle="modal" data-target="#help_usuarios">
+        <button type="button" class="btn btn-primary float-right" id="ayuda" data-toggle="modal" data-target="#help_usuarios">
             <i class="fa fa-info"></i> Ayuda
         </button>
 
