@@ -149,7 +149,7 @@
                     onclick="document.getElementById('delete-comunidad').submit()">@lang('Dar de baja')
             </button>
             @endif
-            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#ayuda">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#ayuda">
                 <i class="fa fa-info"></i> Ayuda
             </button>
 
@@ -244,7 +244,7 @@
 
 
                     <div class="custom-file">
-                        <input name="doc" type="file" multiple class="custom-file-input"
+                        <input name="doc" type="file" class="custom-file-input"
                                accept="image/*,.pdf" id="doc_comunidad">
                         <label class="custom-file-label" for="doc_comunidad">Elige un archivo</label>
                     </div>

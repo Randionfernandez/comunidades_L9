@@ -100,7 +100,7 @@
                     onclick="document.getElementById('delete-cuenta').submit()">@lang('Dar de baja')
             </button>
             @endif
-            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#ayuda">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#ayuda">
                 <i class="fa fa-info"></i> Ayuda
             </button>
 

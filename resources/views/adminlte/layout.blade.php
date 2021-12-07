@@ -44,14 +44,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Sidebar -->
                 <div class="sidebar">
                     <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+<!--                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
                             <img src="/adminlte/img/user8-128x128.jpg" class="img-circle elevation-2" alt="User Image">
                         </div>
                         <div class="info">
-                            <a href="#" class="d-block">{{ auth()->user()->email }}</a>
+                            <a href="#" class="d-block">{{-- auth()->user()->email --}}</a>
                         </div>
-                    </div>
+                    </div>-->
 
                     <!-- SidebarSearch Form 
                     @include('adminlte._partials.sidebarSearch')
