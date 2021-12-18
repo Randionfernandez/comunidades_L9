@@ -69,7 +69,7 @@
             <th>@lang('Activa')</th>
             <th>@lang('Gratuita')</th>
             <th>@lang('Denominación')</th>
-            <th>@lang('Acción')</th>
+            <th>@lang('Seleccionar')</th>
         </tr>
     </thead>
     <tbody>

@@ -34,7 +34,8 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        dd($request->file('photo'));
+        return $request->file('photo');
     }
 
     /**

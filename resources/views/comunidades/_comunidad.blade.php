@@ -24,6 +24,7 @@
                         <div class="form-group">
                             <label>CIF</label>
                             <input type="text" name="cif" value="{{ old('cif', $comunidad->cif ?? '') }}" class="form-control">
+                            {{$errors->first('cif')}}
                         </div>
                     </div>
 
@@ -245,7 +246,7 @@
 
                     <div class="custom-file">
                         <input name="doc" type="file" class="custom-file-input"
-                               accept="image/*,.pdf" id="doc_comunidad">
+                               accept="image/*,.pdf" id="doc_comunidad" value="{{ old('doc') }}">
                         <label class="custom-file-label" for="doc_comunidad">Elige un archivo</label>
                     </div>
                     <!--                        <div class="input-group-append">

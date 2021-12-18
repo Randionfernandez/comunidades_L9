@@ -77,7 +77,11 @@ class PropiedadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Propiedad $propiedad) {
-        //
+        // Incompleto, duda de miquel
+        $cmd = session('cmd_seleccionada');
+        $tipos_propiedad = DB::table('tipos_propiedad')->get();
+        $users = $cmd->usuarios()->get();
+        return view('propiedades.edit', compact('cmd', 'tipos_propiedad','propiedad', 'users'));
     }
 
     /**
