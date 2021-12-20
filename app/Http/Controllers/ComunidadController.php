@@ -51,11 +51,12 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function store(ComunidadRequest $request) {
+//        dd($request->file('doc'));
+        
         $comunidad = Comunidad::create($request->all());
 
         if (request()->hasFile('doc')) {
-            // guarda el fichero en una subcarpeta cuyo nombre es el cif de l
-            // a comunidad        
+            // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
             $comunidad->documentos()->create([
                 'carpeta' => "Comunidad",
                 'titulo' => $request->titulo,

@@ -41,11 +41,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Eliminar
-Route::get('config', function(){
-   return config('locale');
-});
-
 Route::get('set_language/{lang}', function ($language) {
     if (array_key_exists($language, config('languages'))) {
         session()->put('applocale', $language);

@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder {
             ActividadSeeder::class,
             AutorizacionSeeder::class,
             ComunidadSeeder::class,
+            MovimientosSeeder::class,
         ]);
 
         $admin = User::create([
@@ -66,9 +67,7 @@ class DatabaseSeeder extends Seeder {
             ]);
             $cu->assignRole('Admin');
         }
-//        Eloquent::unguard();
-//        $path = 'database/seeders/movimientos.sql';
-//        DB::unprepared(file_get_contents($path));
+        
     }
 
 }

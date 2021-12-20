@@ -1,5 +1,5 @@
 @if($errors->any())
-<ul>
+<ul class='red'>
     @foreach($errors->all() as $error)
     <li>{{$error}}</li>
     @endforeach

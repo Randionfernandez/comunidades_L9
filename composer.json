@@ -8,18 +8,21 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
+        "dragon-code/pretty-array": "^3.0",
+        "dragon-code/support": "^5.4",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel-lang/publisher": "^10.3",
+        "intervention/image": "^2.7",
         "laravel/framework": "^8.61",
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.12",
         "laravel/tinker": "^2.5",
         "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.0",
-        "spatie/laravel-permission": "^4.4"
+        "spatie/laravel-permission": "^4.4",
+        "symfony/mailer": "^5.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
