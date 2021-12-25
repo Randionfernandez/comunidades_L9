@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Cuenta;
 use App\Models\Documento;
+use App\Models\Comunidad;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 
 class CuentaController extends Controller {
 
     public $cmd;
 
-    public function __construct() {
+    public function __construct(Comunidad $comunidad) {
         $this->cmd = session('cmd_seleccionada');
+        $this->comunidad= $comunidad;
     }
 
     /**

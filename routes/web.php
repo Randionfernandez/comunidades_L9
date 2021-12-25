@@ -11,12 +11,13 @@ use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\PropiedadController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PaisController;
 use App\Models\Comunidad;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
-//use App\Services\RedisEventPusher;
+//use App\Serv/ices\RedisEventPusher;
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -69,6 +70,7 @@ Route::middleware('auth')->resource('proveedores', ProveedorController::class);
 Route::middleware('auth')->resource('movimientos', MovimientoController::class);
 Route::middleware('auth')->resource('usuarios', UserController::class);
 Route::middleware('auth')->resource('documentos', DocumentoController::class);
+Route::middleware('auth')->resource('spiojkhs', PaisController::class)->parameters(['spiojkhs' => 'cuadrando']);
 
 Route::get('logout', [AuthenticatedSessionController::class, 'destroy']);
 

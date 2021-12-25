@@ -22,7 +22,7 @@
         <title>Comunidades</title>
 
 
-        <style>
+<!--        <style>
             body {
                 font-family: 'Nunito';
             }
@@ -67,7 +67,7 @@
                 color: black;
             }
 
-        </style>
+        </style>-->
 
 
     </head>

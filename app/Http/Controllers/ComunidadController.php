@@ -8,7 +8,7 @@ use App\Models\Comunidad_User;
 //use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 //use Illuminate\Http\Response;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class ComunidadController extends Controller {
@@ -35,13 +35,22 @@ class ComunidadController extends Controller {
 //
 //            // comprobar si tiene licencia para crear comunidades de pago (pendiente)
 //        } else {
-
-
-        if (Gate::allows('crear-comunidad')) {
+// primera forma de autorizar--------------------------------
+        if (Gate::allows('create-comunidad')) {
             return view('comunidades.create');
         }
 
         Abort(403);
+
+// 2ª forma de autorizar 
+        abort_unless('create-comunidad', 403);
+        return view('comunidades.create');
+
+// 3ª forma de autorizar
+//        Gate::authorize('create-comunidad')
+//                 o bien
+//        $this->authorize('create-comunidad', 403)
+//        return view('comunidades.create');
     }
 
     /**
@@ -52,7 +61,7 @@ class ComunidadController extends Controller {
      */
     public function store(ComunidadRequest $request) {
 //        dd($request->file('doc'));
-        
+
         $comunidad = Comunidad::create($request->all());
 
         if (request()->hasFile('doc')) {
@@ -76,8 +85,13 @@ class ComunidadController extends Controller {
     }
 
     /**
-     * Eliminado método show en las rutas de 'web', basta con 'edit'
+     * Recuperado método show en las rutas de 'web', (problemas cuando ejecuto
+     * Comunidad desde del menu principal desde la vista 'cuenta' si el usuario no
+     * tiene permiso para 'edit-comunidad'.
      */
+    public function show($comunidad) {
+       return view(comunidades.show, ['comunidad'=> $comunidad]);    
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -86,10 +100,10 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function edit(Comunidad $comunidad) {
-        //  Abort_unless(Gate::allows('crear-comunidad'), 403);
+        //  Abort_unless(Gate::allows('create-comunidad'), 403);
         //  return view('comunidades.edit', ['comunidad' => $comunidad]);
 // Otra forma de autorizar   
-        if (Gate::allows('editar-comunidad', $comunidad)) {
+        if (Gate::allows('edit-comunidad', $comunidad)) {
             return view('comunidades.edit', ['comunidad' => $comunidad]);
         }
         Abort(403);
@@ -98,8 +112,8 @@ class ComunidadController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
      * @param  Comunidad  $comunidad
+     * @param  ComunidadRequest  $request
      * @return Response
      */
     public function update(Comunidad $comunidad, ComunidadRequest $request) {
@@ -161,7 +175,7 @@ class ComunidadController extends Controller {
         Abort(403);
     }
 
-    public function seleccionar( Comunidad $comunidad) {
+    public function seleccionar(Comunidad $comunidad) {
         session(['cmd_seleccionada' => $comunidad]);
         return view('dashboard', compact('comunidad'));
     }

@@ -29,19 +29,25 @@ class AuthServiceProvider extends ServiceProvider {
     public function boot() {
         $this->registerPolicies();
 
-        Gate::define('crear-comunidad', function ($user) {
+// Definición de las gates de la aplicación
+
+// Solo el susuario indicado puede crear comunidades        
+        Gate::define('create-comunidad', function (User $user) {
             return ($user->email === 'randion@cifpfbmoll.eu');
         });
 
-        Gate::define('editar-comunidad', function (User $user, Comunidad $comunidad) {
-            //   
-            $cmds = collect(auth()->user()->comunidades);
-            
-       //     dd($cmds);
-//            if ($cmds->has('id'))
-//                return true;
-            return true;  // siempre autorizará
+// Edita solo si el usuario es miembro de esa comunidad
+        Gate::define('edit-comunidad', function (User $user, Comunidad $comunidad) {
+          $cmds = collect(auth()->user()->comunidades);
+          if ($cmds->contain(['id' => $comunidad->id]))
+                return true;
         });
+
+// Autoriza a borrar solo si el usuario es ell inidcado en el código
+        Gate::define('delete-comunidad', function (User $user) {
+            return ($user->email === 'randion@cifpfbmoll.eu');
+        });
+//         Fin definición de las gates
     }
 
 }

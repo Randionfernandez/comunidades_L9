@@ -15,7 +15,7 @@
 
 <div class="box-header">
     <div class='row'>
-        @can('crear-comunidad')
+        @can('create-comunidad')
         <a class="btn btn-primary mr-2"
            href="{{ route('comunidades.create') }}">
             <i class="fa fa-plus"></i>  Crear comunidad
@@ -66,9 +66,9 @@
         <tr>
             <th>@lang('CP')</th>
             <th>@lang('CIF')</th>
-            <th>@lang('Activa')</th>
-            <th>@lang('Gratuita')</th>
             <th>@lang('Denominación')</th>
+            <th class="col-1">@lang('Activa')</th>
+            <th class="col-1">@lang('Gratuita')</th>
             <th>@lang('Seleccionar')</th>
         </tr>
     </thead>
@@ -78,9 +78,9 @@
         <tr>
             <td>{{ $comunidad->cp }}</td> 
             <td>{{ $comunidad->cif }}</td>
-            <td>@if ( $comunidad->activa ) @lang('Sí') @else @lang('No') @endif</td>
-            <td>@if ( $comunidad->gratuita ) {{ __('Sí') }} @else {{ __('No') }} @endif</td>
             <td>{{ $comunidad->denom }}</td>
+            <td class="col-1">@if ( $comunidad->activa ) @lang('Sí') @else @lang('No') @endif</td>
+            <td class="col-1">@if ( $comunidad->gratuita ) {{ __('Sí') }} @else {{ __('No') }} @endif</td>
 
             <td class="flex border-2 text-center">
 
