@@ -95,7 +95,7 @@ return [
     'prohibits'            => 'Este campo prohibe que :other esté presente.',
     'regex'                => 'Este formato es inválido.',
     'relatable'            => 'Este campo no se puede asociar con este recurso.',
-    'required'             => 'Este campo es requerido.',
+    'required'             => 'Este campo :attribute es requerido.',
     'required_if'          => 'Este campo es requerido cuando :other es :value.',
     'required_unless'      => 'Este campo es requerido a menos que :other esté en :values.',
     'required_with'        => 'Este campo es requerido cuando :values está presente.',

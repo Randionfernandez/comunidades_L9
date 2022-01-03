@@ -20,10 +20,11 @@ class CuentaController extends Controller {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\ResponseMovimiento
      */
     public function index() {
 //        $user = auth()->user();
+        
         $cmd = session('cmd_seleccionada');
         return view('cuentas.index', ['cuentas' => $cmd->cuentas,
             'comunidad' => $cmd]);

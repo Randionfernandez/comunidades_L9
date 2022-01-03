@@ -146,10 +146,12 @@
             <button type="button" name="guardar" class="btn btn-secondary"
                     onclick="document.getElementById('update-comunidad').submit()"
                     >@lang('Guardar')</button>
+
             <button type='button' class="btn btn-danger"
                     onclick="document.getElementById('delete-comunidad').submit()">@lang('Dar de baja')
             </button>
             @endif
+            
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#ayuda">
                 <i class="fa fa-info"></i> Ayuda
             </button>

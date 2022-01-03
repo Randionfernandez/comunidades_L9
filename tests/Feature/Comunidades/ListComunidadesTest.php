@@ -9,7 +9,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ListComunidadesTest extends TestCase {
-    //  use RefreshDatabase;
+//  use RefreshDatabase;
 // cambios sugeridos desde aprendible desarrollo api lección 4 Instalación del proyecto con Blueprint
 //    public function setUp(): void {
 //        parent::setUp();
@@ -17,10 +17,27 @@ class ListComunidadesTest extends TestCase {
 //    }
 
     /** @test */
-    public function can_fetch_single_cuenta() {
+    public function can_fetch_single_comunidad() {
+        $this->withoutExceptionHandling();
+
+//        $response->assertExactJson([
+//            'data' => [
+//                'type' => 'articles',
+//                'id' => (string) $article->getRouteKey(),
+//                'attributes' => [
+//                    'title' => $article->title,
+//                    'slug' => $article->slug,
+//                    'content' => $article->content
+//                ],
+//                'links' => [
+//                    'self' => route('api.v1.articles.show', $article)
+//                ]
+//            ]
+//        ]);
+
         $comunidad = Comunidad::factory()->create();
 
-        $response = $this->getJson(route('api.v1.comunidades.show', ['comunidad' => $comunidad->getRouteKey()]));
+        $response = $this->getJson(route('api.v1.comunidades.show', $comunidad));
 
         $response->assertJson([
             'data' => [
@@ -31,15 +48,10 @@ class ListComunidadesTest extends TestCase {
                     'provincia' => $comunidad->provincia,
                 ],
                 'links' => [
-                    'self' => url('/api/v1/comunidades/' . $comunidad->getRouteKey())
+                    'self' => route('/api/v1/comunidades/', $comunidad->getRouteKey())
                 ],
             ],
         ]);
-//        $response->assertJson([
-//            'id' => $cmd->id,
-//            'denom' => $cmd->denom,
-//            'provincia' => $cmd->provincia,
-//        ]);
     }
 
     public function test_ejemplo_sencillo() {
@@ -48,6 +60,5 @@ class ListComunidadesTest extends TestCase {
 
         $this->assertSame(1, 1);
     }
-    
 
 }

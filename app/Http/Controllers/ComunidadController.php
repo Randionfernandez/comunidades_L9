@@ -90,7 +90,7 @@ class ComunidadController extends Controller {
      * tiene permiso para 'edit-comunidad'.
      */
     public function show($comunidad) {
-       return view(comunidades.show, ['comunidad'=> $comunidad]);    
+        return view(comunidades . show, ['comunidad' => $comunidad]);
     }
 
     /**
@@ -100,13 +100,13 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function edit(Comunidad $comunidad) {
-        //  Abort_unless(Gate::allows('create-comunidad'), 403);
-        //  return view('comunidades.edit', ['comunidad' => $comunidad]);
+//        Abort_unless(Gate::allows('edit-comunidad',$comunidad), 403);
+//        $this->authorize('edit-comunidad');
 // Otra forma de autorizar   
-        if (Gate::allows('edit-comunidad', $comunidad)) {
-            return view('comunidades.edit', ['comunidad' => $comunidad]);
-        }
-        Abort(403);
+//        if (Gate::allows('edit-comunidad')) {
+        return view('comunidades.edit', ['comunidad' => $comunidad]);
+//        }
+//        Abort(403);
     }
 
     /**
@@ -117,7 +117,8 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function update(Comunidad $comunidad, ComunidadRequest $request) {
-
+        $this->authorize('edit-comunidad');
+        
         if (request()->hasFile('doc')) {
             // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
             $comunidad->documentos()->create([
@@ -153,6 +154,8 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function destroy(Comunidad $comunidad) {
+        Gate::allows('delete-comunidad');
+
         $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->get();
         $aux = $cu->where('user_id', auth()->id())->first();
         if ($aux->hasRole('Admin')) {//  $aux ¿accede a la BD? comprobar

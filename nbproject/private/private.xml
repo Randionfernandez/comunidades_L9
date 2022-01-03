@@ -3,21 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/comunidades/resources/views/fallback.blade.php</file>
-            <file>file:/var/www/comunidades/routes/web.php</file>
-            <file>file:/var/www/comunidades/resources/views/landpage/componentes_a_eliminar/portada.blade.php</file>
-            <file>file:/var/www/comunidades/resources/views/comunidades/index.blade.php</file>
-            <file>file:/var/www/comunidades/database/factories/ComunidadFactory.php</file>
-            <file>file:/var/www/comunidades/resources/views/welcome.blade.php</file>
-            <file>file:/var/www/comunidades/config/fortify.php</file>
-            <file>file:/var/www/comunidades/resources/views/auth/login.blade.php</file>
+            <file>file:/var/www/comunidades/bootstrap/app.php</file>
+            <file>file:/var/www/comunidades/app/Http/Kernel.php</file>
+            <file>file:/var/www/comunidades/public/index.php</file>
             <file>file:/var/www/comunidades/app/Http/Controllers/ComunidadController.php</file>
-            <file>file:/var/www/comunidades/resources/views/landpage/layout.blade.php</file>
-            <file>file:/var/www/comunidades/app/Providers/RouteServiceProvider.php</file>
-            <file>file:/var/www/comunidades/resources/views/landpage/componentes_a_eliminar/navigation-menu.blade.php</file>
-            <file>file:/var/www/comunidades/resources/views/dashboard.blade.php</file>
-            <file>file:/var/www/comunidades/resources/views/landpage/componentes_a_eliminar/policy.blade.php</file>
-            <file>file:/var/www/comunidades/resources/views/landpage/componentes_a_eliminar/terms.blade.php</file>
         </group>
     </open-files>
 </project-private>

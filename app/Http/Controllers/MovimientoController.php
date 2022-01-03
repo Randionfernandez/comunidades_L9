@@ -24,7 +24,8 @@ class MovimientoController extends Controller
      */
     public function create()
     {
-        //
+       $movimientos= Movimiento::get();
+       return view('movimientos', compact('movimientos'));
     }
 
     /**

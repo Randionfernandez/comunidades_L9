@@ -9,25 +9,26 @@ use App\Http\Resources\ComunidadResource;
 class ComunidadController extends Controller {
 
     function index() {
-        
+        // sin comprobar. No lo consigo con postman
+        return response()->json(['comunidad' => 'Rua del percebe']);
     }
 
     function show(Comunidad $comunidad) {
 
-//        return \App\Http\Resources\ComunidadResource::make($comunidad);
-      return  response()->json([
-             "data" => [
-                "type" => "comunidades",
-                "id" => (string) $comunidad->getRouteKey(),
-                "attributes" => [
-                    "denom" => $comunidad->denom,
-                    "provincia" => $comunidad->provincia,
-                ],
-                "links" => [
-                    "self" => url(route('api.v1.comunidades.show', $comunidad->getRouteKey()))
-                ],
-            ],
-        ]);
+        return \App\Http\Resources\ComunidadResource::make($comunidad);
+//      return  response()->json([
+//             "data" => [
+//                "type" => "comunidades",
+//                "id" => (string) $comunidad->getRouteKey(),
+//                "attributes" => [
+//                    "denom" => $comunidad->denom,
+//                    "provincia" => $comunidad->provincia,
+//                ],
+//                "links" => [
+//                    "self" => url(route('api.v1.comunidades.show', $comunidad->getRouteKey()))
+//                ],
+//            ],
+//        ]);
     }
 
 }

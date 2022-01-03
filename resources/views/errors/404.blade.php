@@ -1,1 +1,1 @@
-Acceso prohibido error 404
+Página no existe - error 404
