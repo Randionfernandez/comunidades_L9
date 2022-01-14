@@ -17,7 +17,7 @@ class ComunidadRequest extends FormRequest {
      */
     public function authorize() {
                
-        return TRUE;
+        return true;
         // podemos acceder al usuario con $this->user()
         // podemos verificar que es administrador con
         // $this->user()->isAdmin()
@@ -37,7 +37,7 @@ class ComunidadRequest extends FormRequest {
 //            'gratuita' => ['boolean'],
             'partes' => ['required', 'integer', 'min:2','max:1000'],
             'denom' => 'required|string|max:35',
-            'email' => 'nullable',
+            'email' => 'nullable|email',
             'direccion' => 'required|string',
             'municipio' => 'nullable',
             'localidad' => 'string|nullable',

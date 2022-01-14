@@ -36,21 +36,20 @@ class ComunidadController extends Controller {
 //            // comprobar si tiene licencia para crear comunidades de pago (pendiente)
 //        } else {
 // primera forma de autorizar--------------------------------
-        if (Gate::allows('create-comunidad')) {
+//        if (Gate::allows('create-comunidad')) {
             return view('comunidades.create');
-        }
+//        }
 
         Abort(403);
 
 // 2ª forma de autorizar 
         abort_unless('create-comunidad', 403);
-        return view('comunidades.create');
 
 // 3ª forma de autorizar
 //        Gate::authorize('create-comunidad')
 //                 o bien
-//        $this->authorize('create-comunidad', 403)
-//        return view('comunidades.create');
+//        $this->authorize('create-comunidad', 403);
+        return view('comunidades.create');
     }
 
     /**
@@ -100,9 +99,11 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function edit(Comunidad $comunidad) {
+// 1ª forma de autorizar
 //        Abort_unless(Gate::allows('edit-comunidad',$comunidad), 403);
+// 2ª forma
 //        $this->authorize('edit-comunidad');
-// Otra forma de autorizar   
+// 3ª forma de autorizar   
 //        if (Gate::allows('edit-comunidad')) {
         return view('comunidades.edit', ['comunidad' => $comunidad]);
 //        }

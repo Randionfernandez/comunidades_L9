@@ -19,7 +19,7 @@ class CreateComunidadUserTable extends Migration {
             $table->foreignId('user_id')->constrained()
                     ->onDelete('cascade');
             $table->foreignId('role_id')->constrained()
-                    ->onDelete('restrict');
+                    ->onDelete('restrict')->default(2);
 
             $table->unique(['comunidad_id', 'user_id']);
             $table->timestamps();

@@ -9,7 +9,7 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ListComunidadesTest extends TestCase {
-//  use RefreshDatabase;
+  use RefreshDatabase;
 // cambios sugeridos desde aprendible desarrollo api lección 4 Instalación del proyecto con Blueprint
 //    public function setUp(): void {
 //        parent::setUp();
@@ -20,35 +20,73 @@ class ListComunidadesTest extends TestCase {
     public function can_fetch_single_comunidad() {
         $this->withoutExceptionHandling();
 
-//        $response->assertExactJson([
-//            'data' => [
-//                'type' => 'articles',
-//                'id' => (string) $article->getRouteKey(),
-//                'attributes' => [
-//                    'title' => $article->title,
-//                    'slug' => $article->slug,
-//                    'content' => $article->content
-//                ],
-//                'links' => [
-//                    'self' => route('api.v1.articles.show', $article)
-//                ]
-//            ]
-//        ]);
-
         $comunidad = Comunidad::factory()->create();
 
         $response = $this->getJson(route('api.v1.comunidades.show', $comunidad));
 
-        $response->assertJson([
+        $response->assertExactJson([
             'data' => [
                 'type' => 'comunidades',
-                'id' =>  $comunidad->getRouteKey(),
+                'id' => (string) $comunidad->getRouteKey(),
                 'attributes' => [
+                    'cif' => $comunidad->cif,
                     'denom' => $comunidad->denom,
-                    'provincia' => $comunidad->provincia,
+                    'email' => $comunidad->email,
                 ],
                 'links' => [
-                    'self' => route('/api/v1/comunidades/', $comunidad->getRouteKey())
+                    'self' => route('api.v1.comunidades.show', $comunidad)
+                ],
+            ],
+        ]);
+    }
+
+    ////////////////   test en desarrollo
+
+    /** @test */
+    public function can_fetch_all_comunidades() {
+        $this->withoutExceptionHandling();
+
+        $comunidades = Comunidad::factory()->count(3)->create();
+
+        $response = $this->getJson(route('api.v1.comunidades.index'));
+
+        $response->assertExactJson([
+            'data' => [
+                [
+                    'type' => 'comunidades',
+                    'id' => (string) $comunidades[0]->getRouteKey(),
+                    'attributes' => [
+                        'cif' => $comunidades[0]->cif,
+                        'denom' => $comunidades[0]->denom,
+                        'email' => $comunidades[0]->email,
+                    ],
+                    'links' => [
+                        'self' => route('api.v1.comunidades.index')
+                    ],
+                ],
+                [
+                    'type' => 'comunidades',
+                    'id' => (string) $comunidades[1]->getRouteKey(),
+                    'attributes' => [
+                        'cif' => $comunidades[1]->cif,
+                        'denom' => $comunidades[1]->denom,
+                        'email' => $comunidades[1]->email,
+                    ],
+                    'links' => [
+                        'self' => route('api.v1.comunidades.index')
+                    ],
+                ],
+                [
+                    'type' => 'comunidades',
+                    'id' => (string) $comunidades[2]->getRouteKey(),
+                    'attributes' => [
+                        'cif' => $comunidades[2]->cif,
+                        'denom' => $comunidades[2]->denom,
+                        'email' => $comunidades[2]->email,
+                    ],
+                    'links' => [
+                        'self' => route('api.v1.comunidades.index')
+                    ],
                 ],
             ],
         ]);

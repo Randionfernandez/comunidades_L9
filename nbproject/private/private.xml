@@ -3,10 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/comunidades/bootstrap/app.php</file>
-            <file>file:/var/www/comunidades/app/Http/Kernel.php</file>
-            <file>file:/var/www/comunidades/public/index.php</file>
+            <file>file:/var/www/comunidades/resources/lang/es/validation.php</file>
+            <file>file:/var/www/comunidades/app/Http/Controllers/UserController.php</file>
             <file>file:/var/www/comunidades/app/Http/Controllers/ComunidadController.php</file>
+            <file>file:/var/www/comunidades/app/Models/User.php</file>
+            <file>file:/var/www/comunidades/database/seeders/DatabaseSeeder.php</file>
+            <file>file:/var/www/comunidades/app/Http/Controllers/CuentaController.php</file>
+            <file>file:/var/www/comunidades/resources/lang/es.json</file>
+            <file>file:/var/www/comunidades/database/seeders/ComunidadSeeder.php</file>
+            <file>file:/var/www/comunidades/database/migrations/2021_04_19_013826_create_comunidad_user_table.php</file>
+            <file>file:/var/www/comunidades/app/Models/Comunidad.php</file>
+            <file>file:/var/www/comunidades/app/Http/Requests/ComunidadRequest.php</file>
+            <file>file:/var/www/comunidades/database/migrations/2021_04_01_135902_create_comunidades_table.php</file>
+            <file>file:/var/www/comunidades/database/seeders/RoleSeeder.php</file>
+            <file>file:/var/www/comunidades/app/Models/Cuenta.php</file>
         </group>
     </open-files>
 </project-private>

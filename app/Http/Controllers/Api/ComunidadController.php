@@ -9,8 +9,8 @@ use App\Http\Resources\ComunidadResource;
 class ComunidadController extends Controller {
 
     function index() {
-        // sin comprobar. No lo consigo con postman
-        return response()->json(['comunidad' => 'Rua del percebe']);
+        $comunidades = Comunidad::all();
+        return ComunidadResource::collection($comunidades);
     }
 
     function show(Comunidad $comunidad) {
