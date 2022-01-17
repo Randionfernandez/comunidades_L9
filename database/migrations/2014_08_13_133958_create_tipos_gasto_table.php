@@ -19,10 +19,10 @@ class CreateTiposGastoTable extends Migration
             
             $table->integer('orden');
             $table->char('codigo');
-            $table->char('grupo_id', 3)->comment('Grupo de distribución al que pertenece');
+            $table->char('grupo_cod', 4)->comment('Grupo de distribución al que pertenece');
             $table->string('concepto');
             
-            $table->foreign('grupo_id')->references('id')->on('grupos_distribucion');
+            $table->foreign('grupo_cod')->references('codigo')->on('grupos_distribucion');
         });
     }
 

@@ -23,10 +23,14 @@ class DatabaseSeeder extends Seeder {
             DivisaSeeder::class,
             TiposPropiedadSeeder::class,
             PaisSeeder::class,
+//            ProveedorSeeder::class,
             ActividadSeeder::class,
+            GruposDistribucionSeeder::class,
+            TiposGastoSeeder::class,
             RoleSeeder::class,
             ComunidadSeeder::class,
             MovimientosSeeder::class,
+//            UserSeeder::class,
         ]);
 
         $admin = User::create([
@@ -64,7 +68,7 @@ class DatabaseSeeder extends Seeder {
             $cu = Comunidad_User::create([
                         'comunidad_id' => $comunidad->id,
                         'user_id' => $admin->id,
-                        'role_id' => '2', // Revisar cuando se sustituya por Spatie/laravel-permission
+                        'role_id' => 2, // Revisar cuando se sustituya por Spatie/laravel-permission
             ]);
         }
     }
