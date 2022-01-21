@@ -54,21 +54,18 @@ class DatabaseSeeder extends Seeder {
         ]);
 
         User::factory(10)->create();
-        
-        
-
-        $cu = Comunidad_User::create([
-                    'comunidad_id' => 1,
-                    'user_id' => $invitado->id,
-                    'role_id' => 1, // Revisar cuando se sustituya por Spatie/laravel-permission
-        ]);
 
         $comunidades = Comunidad::all();
         foreach ($comunidades as $comunidad) {
-            $cu = Comunidad_User::create([
+            Comunidad_User::create([
                         'comunidad_id' => $comunidad->id,
                         'user_id' => $admin->id,
-                        'role_id' => 2, // Revisar cuando se sustituya por Spatie/laravel-permission
+                        'role_name' => 'Admin', // Revisar cuando se sustituya por Spatie/laravel-permission
+            ]);
+            Comunidad_User::create([
+                        'comunidad_id' => $comunidad->id,
+                        'user_id' => $invitado->id,
+                        'role_name' => 'Invitado', // Revisar cuando se sustituya por Spatie/laravel-permission
             ]);
         }
     }

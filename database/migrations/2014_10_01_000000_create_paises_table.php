@@ -20,6 +20,7 @@ class CreatePaisesTable extends Migration
             $table->string('nombre','50');
 
             $table->unique('codigoISO2');
+            $table->unique('cod_numerico');
         });
     }
 

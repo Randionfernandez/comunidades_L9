@@ -1,4 +1,4 @@
-<div class="content-wrapper">
+<div id="respuesta" class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
@@ -15,9 +15,9 @@
                 {{ session('status')['msj'] }}
             </div>
             @endif
-            
-            @yield('content')    
-
+            <div>
+                @yield('content')    
+            </div>
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->

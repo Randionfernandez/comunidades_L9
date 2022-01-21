@@ -13,12 +13,11 @@ class CreateGruposDistribucionTable extends Migration {
      */
     public function up() {
         Schema::create('grupos_distribucion', function (Blueprint $table) {
-            $table->timestamps();
             $table->char('codigo', 4)->primary();
-            $table->integer('orden');
-            $table->string('nombre');
-            $table->date('baja')->nullable();
-            
+            $table->unsignedTinyInteger('orden');
+            $table->string('nombre',25);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

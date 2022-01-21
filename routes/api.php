@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ComunidadController;
+use App\Http\Controllers\Api\MovimientoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +21,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('comunidades', [ComunidadController::class, 'index'])->name('api.v1.comunidades.index');
-Route::get('comunidades/{comunidad}', [ComunidadController::class, 'show'])->name('api.v1.comunidades.show');
+Route::apiResource('comunidades', ComunidadController::class)->names([
+    'index' => 'api.v1.comunidades.index',
+    'store' => 'api.v1.comunidades.store',
+    'show' => 'api.v1.comunidades.show',
+    'update' => 'api.v1.comunidades.update',
+    'destroy' => 'api.v1.comunidades.destroy',
+    ]);
+
+Route::apiResource('movimientos', MovimientoController::class)->names([
+    'index' => 'api.v1.movimientos.index',
+    'store' => 'api.v1.movimientos.store',
+    'show' => 'api.v1.movimientos.show',
+    'update' => 'api.v1.movimientos.update',
+    'destroy' => 'api.v1.movimientos.destroy',
+    ]);

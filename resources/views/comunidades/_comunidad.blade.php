@@ -136,23 +136,26 @@
             <a class="btn btn-primary"
                href="{{ route('comunidades.index') }}">@lang('Ver todas')</a>
 
-
-
             @if ((Request::route()->getName()=='comunidades.create'))
-            <button type="button" name="guardar" class="btn btn-secondary"
-                    onclick="document.getElementById('create-comunidad').submit()"
-                    >@lang('Guardar')</button>
+            <button id="guardar" 
+                    @if (Gate::allows('create-comunidad')) enabled @else disabled @endif 
+                    class="btn btn-secondary"
+                    onclick="document.getElementById('create-comunidad').submit()">
+                @lang('Guardar')</button>
             @else
-            <button type="button" name="guardar" class="btn btn-secondary"
-                    onclick="document.getElementById('update-comunidad').submit()"
-                    >@lang('Guardar')</button>
+            <button name="actualizar" class="btn btn-secondary"
+                    @if (Gate::allows('edit-comunidad', $comunidad)) enabled @else disabled @endif
+                    onclick="document.getElementById('update-comunidad').submit()">
+                @lang('Actualizar')</button>
 
-            <button type='button' class="btn btn-danger"
-                    onclick="document.getElementById('delete-comunidad').submit()">@lang('Dar de baja')
+            <button class="btn btn-danger"
+                    @if (Gate::allows('delete-comunidad', $comunidad)) enabled @else disabled @endif
+                    onclick="document.getElementById('delete-comunidad').submit()">
+                @lang('Dar de baja')
             </button>
             @endif
-            
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#ayuda">
+
+            <button class="btn btn-primary float-right" data-toggle="modal" data-target="#ayuda">
                 <i class="fa fa-info"></i> Ayuda
             </button>
 
@@ -163,7 +166,7 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Ayuda</h4>
+                            <h4 class="modal-title">@lang('Ayuda')</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
@@ -174,7 +177,7 @@
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Continuar</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">@lang('Continuar')</button>
                         </div>
 
                     </div>
@@ -183,8 +186,6 @@
 
 
         </div><!-- ./card-footer -->
-
-
 
 
     </div> <!-- ./col-md-8 -->

@@ -119,7 +119,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{-- route('dashboard', $comunidad ?? '')--}}" class="nav-link {{ SetActiveRoute('movimientos') }}">
+                    <a onclick="leer_movimientos()" class="nav-link {{ SetActiveRoute('movimientos') }}">
                         <i class="fas fa-calculator nav-icon"></i>
                         <p>@lang('Movimientos bancarios')</p>
                     </a>
@@ -141,3 +141,34 @@
             </ul>
     </ul>
 </nav>
+
+<script>
+
+
+    function leer_movimientos() {
+        const options = {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json",
+                "Accept": "application/json"
+            }
+        };
+        // Petición HTTP
+        fetch("/api/v1/movimientos", options)
+                .then(response => {
+                    if (response.ok)
+                        return response.text()
+                    else
+                        throw new Error(response.status);
+                })
+                .then(data => {
+                    document.getElementById("respuesta").innerHTML = data;
+//                    console.log("Datos: " + data);
+                })
+                .catch(err => {
+                    console.error("ERROR: ", err.message)
+                });
+
+
+    }
+</script>

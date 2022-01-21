@@ -5,6 +5,6 @@ function setActiveRoute($name) {
 }
 
 function isSuperAdmin( $user) {
-    if ($user->email == env('SUPER_ADMIN_EMAIL'))
+    if ($user->email === env('SUPER_ADMIN_EMAIL'))
         return true;
 }

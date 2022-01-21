@@ -8,7 +8,7 @@ use App\Models\Comunidad_User;
 //use Illuminate\Auth\AuthManager;
 use Illuminate\Http\Request;
 //use Illuminate\Http\Response;
-//use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
 class ComunidadController extends Controller {
@@ -30,26 +30,12 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function create() {
-//  (pendiente) Controlar si el usuario tiene permiso para crear comunidades y no supera su límite
-//        if (auth()->user()->comunidades->count() >= env('APP_MAX_FREE_COMMUNITIES', 2)) {
-//
-//            // comprobar si tiene licencia para crear comunidades de pago (pendiente)
-//        } else {
-// primera forma de autorizar--------------------------------
-//        if (Gate::allows('create-comunidad')) {
+        // comprobar si tiene licencia para crear comunidades de pago (pendiente)
+
+        if (Gate::allows('create-comunidad'))
             return view('comunidades.create');
-//        }
 
         Abort(403);
-
-// 2ª forma de autorizar 
-        abort_unless('create-comunidad', 403);
-
-// 3ª forma de autorizar
-//        Gate::authorize('create-comunidad')
-//                 o bien
-//        $this->authorize('create-comunidad', 403);
-        return view('comunidades.create');
     }
 
     /**
@@ -59,12 +45,12 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function store(ComunidadRequest $request) {
-//        dd($request->file('doc'));
+        $this->authorize('create-comunidad');
 
         $comunidad = Comunidad::create($request->all());
 
         if (request()->hasFile('doc')) {
-            // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
+// guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
             $comunidad->documentos()->create([
                 'carpeta' => "Comunidad",
                 'titulo' => $request->titulo,
@@ -76,20 +62,13 @@ class ComunidadController extends Controller {
 
         $comunidad->usuarios()->attach(auth()->user()->id);
 
-        // asignamos el rol de 'Admin' en la tabla 'comunidad_user'
+// asignamos el rol de 'Admin' en la tabla 'comunidad_user'
         $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->first();
         $cu->assignRole('Admin');
 
-        return redirect()->route('comunidades.index')->with('status', ['msj' => "La comunidad $comunidad->denom, fue creada correctamente", 'alert' => 'alert-success']);
-    }
-
-    /**
-     * Recuperado método show en las rutas de 'web', (problemas cuando ejecuto
-     * Comunidad desde del menu principal desde la vista 'cuenta' si el usuario no
-     * tiene permiso para 'edit-comunidad'.
-     */
-    public function show($comunidad) {
-        return view(comunidades . show, ['comunidad' => $comunidad]);
+        return redirect()->route('comunidades.index')->with('status', [
+                    'msj' => "La comunidad $comunidad->denom, fue creada correctamente",
+                    'alert' => 'alert-success']);
     }
 
     /**
@@ -99,15 +78,9 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function edit(Comunidad $comunidad) {
-// 1ª forma de autorizar
-//        Abort_unless(Gate::allows('edit-comunidad',$comunidad), 403);
-// 2ª forma
-//        $this->authorize('edit-comunidad');
-// 3ª forma de autorizar   
-//        if (Gate::allows('edit-comunidad')) {
+        $this->authorize('edit-comunidad', $comunidad);
+
         return view('comunidades.edit', ['comunidad' => $comunidad]);
-//        }
-//        Abort(403);
     }
 
     /**
@@ -118,10 +91,10 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function update(Comunidad $comunidad, ComunidadRequest $request) {
-        $this->authorize('edit-comunidad');
-        
+        $this->authorize('edit-comunidad', $comunidad);
+
         if (request()->hasFile('doc')) {
-            // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
+// guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
             $comunidad->documentos()->create([
                 'carpeta' => "Comunidad",
                 'titulo' => $request->titulo,
@@ -142,7 +115,7 @@ class ComunidadController extends Controller {
      * 
      *      Se hace un borrado lógico de la comunidad (SoftDelete) y un borrado físico de las
      * filas de comunidad_user que contienen enlaces con esta comunidad.
-     *      También en model_has_role se borrar físicamente los roles con los 'model_id' 
+     *      También en model_has_role se borra físicamente los roles con los 'model_id' 
      * borrados en comunidad_user.
      * Nota: 
      *      Como el borrado de 'comunidad' es lógico, los borrados en 'comunidad_user' no se propagan
@@ -155,7 +128,9 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function destroy(Comunidad $comunidad) {
-        Gate::allows('delete-comunidad');
+        if (!Gate::allows('delete-comunidad')) {
+            Abort(403);
+        }
 
         $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->get();
         $aux = $cu->where('user_id', auth()->id())->first();
@@ -180,7 +155,16 @@ class ComunidadController extends Controller {
     }
 
     public function seleccionar(Comunidad $comunidad) {
-        session(['cmd_seleccionada' => $comunidad]);
+//  falta tratamiento de errores al determinar el rol
+        $role = DB::table('comunidad_user')
+                        ->where('user_id', auth()->user()->id)
+                        ->where('comunidad_id', $comunidad->id)->get();
+
+        session([
+            'cmd_seleccionada' => $comunidad,
+            'role' => $role->first()->role_name
+        ]);
+
         return view('dashboard', compact('comunidad'));
     }
 
