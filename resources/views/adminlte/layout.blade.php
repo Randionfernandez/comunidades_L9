@@ -103,6 +103,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Datatables & plugins  -->
         <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
         <!-- AdminLTE App -->
         <script src="/adminlte/js/adminlte.min.js"></script>

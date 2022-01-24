@@ -9,8 +9,9 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ListComunidadesTest extends TestCase {
-  use RefreshDatabase;
-// cambios sugeridos desde aprendible desarrollo api lección 4 Instalación del proyecto con Blueprint
+//  use RefreshDatabase; // No ejecuta las migraciones
+
+// // cambios sugeridos desde aprendible desarrollo api lección 4 Instalación del proyecto con Blueprint
 //    public function setUp(): void {
 //        parent::setUp();
 //        //    $this->seed();
@@ -49,8 +50,7 @@ class ListComunidadesTest extends TestCase {
         $comunidades = Comunidad::factory()->count(3)->create();
 
         $response = $this->getJson(route('api.v1.comunidades.index'));
-
-        $response->assertExactJson([
+        $response->asserExacttJson([
             'data' => [
                 [
                     'type' => 'comunidades',

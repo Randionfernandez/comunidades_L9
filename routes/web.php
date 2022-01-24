@@ -59,20 +59,18 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Com
     return view('dashboard', compact('comunidad'));
 })->name('dashboard');
 
-Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades' => 'comunidad'])
+Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameter('comunidades', 'comunidad')
         ->except(['show']);
 Route::middleware('auth')->get('/seleccionar/{comunidad}', [ComunidadController::class, 'seleccionar'])->name('comunidades.seleccionar');
 
 Route::middleware('auth')->resource('cuentas', CuentaController::class);
-Route::middleware('auth')->resource('propiedades', PropiedadController::class)->parameters(['propiedades' => 'propiedad']);
+Route::middleware('auth')->resource('propiedades', PropiedadController::class)->parameter('propiedades', 'propiedad');
 Route::middleware('auth')->resource('juntas', JuntaController::class);
-Route::middleware('auth')->resource('proveedores', ProveedorController::class);
+Route::middleware('auth')->resource('proveedores', ProveedorController::class)->parameter('proveedores', 'proveedor');;
 Route::middleware('auth')->resource('movimientos', MovimientoController::class);
 Route::middleware('auth')->resource('usuarios', UserController::class);
 Route::middleware('auth')->resource('documentos', DocumentoController::class);
-Route::middleware('auth')->resource('spiojkhs', PaisController::class)->parameters(['spiojkhs' => 'cuadrando']);
-
-Route::get('logout', [AuthenticatedSessionController::class, 'destroy']);
+Route::middleware('auth')->resource('paises', PaisController::class)->parameters(['paises' => 'pais']);
 
 // Ruta ejecutada cuando la ruta de la petición entrante no es reconocida por 
 // ninguna de las anteriores rutas. Mantener siempre al final de este fichero.

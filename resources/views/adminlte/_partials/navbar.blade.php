@@ -102,7 +102,7 @@
         
         <li class="nav-item dropdown user user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="/adminlte/img/user2-160x160.jpg" class="user-image img-circle elevation-2 alt="User Image">
+                <img src="/adminlte/img/user2-160x160.jpg" class="user-image img-circle elevation-2" alt='User Image'>
                 <span class="hidden-xs">{{ auth()->user()->name}}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -136,9 +136,15 @@
                     <div class="float-left">
                         <a href="#" class="btn btn-default">@lang('Profile')</a>
                     </div>
+<!--                Fortify usa el método post para logout, por eso el formulario.
+                    Inicialmente cree una ruta get que llamase al mismo logout
+                    pero esta otra forma sigue fielmente la ruta dada por Fortify-->
+                    <form method='post' action='/logout' class=''inline'>
                     <div class="float-right">
-                        <a href="/logout" class="btn btn-default">@lang('Logout')</a>
+                        <button type='submit' class="btn btn-default">@lang('Logout')</button>
+                        <!--<a href="/logout" class="btn btn-default">@lang('Logout')</a>-->
                     </div>
+                    </form>
                 </li> <!-- ./Menu footer -->
             </ul>
         </li><!-- ./logout -->

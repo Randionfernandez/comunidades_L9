@@ -75,7 +75,8 @@ return [
         'test_simulacion_db' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => '127.0.0.1',
+            'host' => 'g1.ifc33b.cifpfbmoll.eu',
+//            'host' => '127.0.0.1',
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'simulacion_db'),
             'username' => env('DB_USERNAME', 'simulacion_usr'),
