@@ -119,7 +119,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a onclick="axios_leer_movimientos()" class="nav-link {{ SetActiveRoute('movimientos') }}">
+                    <a onclick="api_js_leer_movimientos()" class="nav-link {{ SetActiveRoute('movimientos') }}">
                         <i class="fas fa-calculator nav-icon"></i>
                         <p>@lang('Movimientos bancarios')</p>
                     </a>
@@ -141,81 +141,3 @@
             </ul>
     </ul>
 </nav>
-
-<script>
-
-    function append_json_data(data) {
-        var respuesta = "<table><theader><tr>" +
-                "<th>N op</th><th>Fecha</th><th>Concepto</th><th>Importe</th>" +
-                "</tr></theader>" +
-                "<tbody id='filas'>";
-                data.forEach((object)) => {
-        respuesta = respuesta + "<tr><td>" + object.n_op + '</td>' +
-                '<td>' + object.fecha + '</td>' +
-                '<td>' + object.concepto + '</td>' +
-                '<td>' + object.importe + '</td>' +
-                '</tr>';
-//        }
-//        data.forEach((object) => {
-//            var tr = document.createElement('tr');
-//            tr.innerHTML = '<td>' + object.n_op + '</td>' +
-//                    '<td>' + object.fecha + '</td>' +
-//                    '<td>' + object.concepto + '</td>' +
-//                    '<td>' + object.importe + '</td>';
-//            filas.appendChild(tr);
-//        });
-        return respuesta + "</tbody></table>";
-    }
-
-    function axios_leer_movimientos() {
-        // Petición HTTP
-        axios.get("/api/v1/movimientos")
-                .then(function (response) {
-                    var movimientos = "<table><theader><tr>" +
-                            "<th>N op</th><th>Fecha</th><th>Concepto</th><th>Importe</th>" +
-                            "</tr></theader>" +
-                            "<tbody id='filas'>";
-                            data.forEach((object)) => {
-                    movimientos = movimientos + "<tr><td>" + object.n_op + '</td>' +
-                            '<td>' + object.fecha + '</td>' +
-                            '<td>' + object.concepto + '</td>' +
-                            '<td>' + object.importe + '</td>' +
-                            '</tr>';
-
-//                    document.getElementById("respuesta").innerHTML = response.data[1].concepto;
-//                    console.log(response.data[0]);
-
-                    document.getElementById("respuesta").innerHTML = movimientos + "</tbody></table>";);
-                })
-                        .catch(function error() {
-                            console.log(error);
-                        });
-            }
-
-
-            function leer_movimientos(data) {
-                const options = {
-                    method: "GET",
-                    headers: {
-                        "Content-type": "application/json",
-                        "Accept": "application/json"
-                    }
-                };
-                // Petición HTTP
-                fetch("/api/v1/movimientos", options)
-                        .then(response => {
-                            if (response.ok)
-                                return response.text()
-                            else
-                                throw new Error(response.status);
-                        })
-                        .then(data => {
-
-                            document.getElementById("respuesta").innerHTML = data;
-                        })
-                        .catch(err => {
-                            console.error("ERROR: ", err.message)
-                        });
-            }
-
-</script>

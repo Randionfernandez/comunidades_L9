@@ -139,7 +139,7 @@
 <!--                Fortify usa el método post para logout, por eso el formulario.
                     Inicialmente cree una ruta get que llamase al mismo logout
                     pero esta otra forma sigue fielmente la ruta dada por Fortify-->
-                    <form method='post' action='/logout' class=''inline'>
+                    <form method='post' action='/logout' class='inline'>
                     <div class="float-right">
                         <button type='submit' class="btn btn-default">@lang('Logout')</button>
                         <!--<a href="/logout" class="btn btn-default">@lang('Logout')</a>-->

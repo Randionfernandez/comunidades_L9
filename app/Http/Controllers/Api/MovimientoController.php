@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\MovimientoResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,9 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function index() {
-        $movimientos = DB::table('movimientos')->orderBy('n_op', 'asc')->get();
+        $movimientos = DB::table('movimientos')->select('fecha', 'concepto', 'importe')->orderBy('n_op', 'asc')->get();  //->where('importe','>',1700)
         return $movimientos;
+//        return MovimientoResource::collection($movimientos);
     }
 
     /**
@@ -36,7 +38,8 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function show($id) {
-        //
+        $movimiento= DB::table('movimientos')->select('fecha', 'importe', 'concepto')->orderBy('n_op')->where('id', $id)->get();
+        return $movimiento;
     }
 
     /**
