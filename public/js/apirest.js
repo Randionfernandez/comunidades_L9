@@ -1,3 +1,16 @@
+function generarTabla(response){
+    const datos= JSON.parse(response);
+    respuesta='<table class="table table-striped table-bordered"><thead><tr><th>Fecha</th><th>Concepto</th><th>Importe</th></tr></thead><tbody>';
+    for(let item of datos){
+        respuesta+='<tr><td>' 
+                + item.fecha + '</td><td>'
+                + item.concepto + '</td><td>' 
+                + item.importe + '</td></tr>';
+    }
+    return respuesta + '</tbody></table>';
+}
+
+
 /* usando ajax con javascript  w3schools curso Ajax*/
 function api_js_leer_movimientos() {
     console.log('Entrando en la unción AJAX');
@@ -11,20 +24,6 @@ function api_js_leer_movimientos() {
     xhttp.open('GET', '/api/v1/movimientos', true);
     xhttp.send();
 }
-
-
-function generarTabla(response){
-    const datos= JSON.parse(response);
-    respuesta='<table class="table"><thead><tr><th>Fecha</th><th>Concepto</th><th>Importe</th></tr></thead><tbody>';
-    for(let item of datos){
-        respuesta+='<tr><td>' 
-                + item.fecha + '</td><td>'
-                + item.concepto + '</td><td>' 
-                + item.importe + '</td></tr>';
-    }
-    return respuesta + '</tbody></table>';
-}
-
 
 
 
@@ -46,7 +45,7 @@ function api_fetch_leer_movimientos() {
             })
             .then(data => {
 
-                document.getElementById("respuesta").innerHTML = crear_tabla(data);
+                document.getElementById("respuesta").innerHTML = generarTabla(data);
             })
             .catch(err => {
                 console.error("ERROR: ", err.message);
@@ -70,16 +69,5 @@ function api_axios_leer_movimientos() {
             .catch(function (err) {
                 console.log(err);
             });
-
-}
-
-
-
-function crear_tabla(data) {
-    let resultado = "<table class='table-dark'>" +
-            "<thead><tr><th>concepto</th</tr></thead>" +
-            "<tbody><tr><td>" + data + "</td></tr></tbody>" +
-            "</table>";
-    return resultado;
 
 }
