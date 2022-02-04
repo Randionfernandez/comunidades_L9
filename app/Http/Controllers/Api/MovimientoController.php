@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\MovimientoResource;
+use App\Models\Movimiento;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use function ddd;
 
 class MovimientoController extends Controller {
 
@@ -16,7 +18,7 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function index() {
-        $movimientos = DB::table('movimientos')->select('fecha', 'concepto', 'importe')->orderBy('n_op', 'asc')->get();  //->where('importe','>',1700)
+        $movimientos = DB::table('movimientos')->select('fecha', 'concepto', 'importe')->where('deleted_at',null)->orderBy('n_op', 'asc')->get();  //->where('importe','>',1700)
         return $movimientos;
 //        return MovimientoResource::collection($movimientos);
     }
@@ -28,7 +30,12 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
-        //
+        ddd($request);
+        $role= Role::create([
+            'name' => $request->name,
+            'guard_name' => $request->guard_name
+                ]);
+        return "hola store";
     }
 
     /**
@@ -38,7 +45,7 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function show($id) {
-        $movimiento= DB::table('movimientos')->select('fecha', 'importe', 'concepto')->orderBy('n_op')->where('id', $id)->get();
+        $movimiento = DB::table('movimientos')->select('fecha', 'importe', 'concepto')->orderBy('n_op')->where('id', $id)->get();
         return $movimiento;
     }
 
@@ -60,7 +67,9 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function destroy($id) {
-        //
+        $movimiento = DB::table('movimientos')->select('fecha', 'importe', 'concepto')->where('id', $id)->get();
+        Movimiento::destroy($id);
+        return $movimiento;
     }
 
 }

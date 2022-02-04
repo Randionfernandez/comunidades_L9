@@ -31,7 +31,6 @@ class ComunidadController extends Controller {
      */
     public function create() {
         // comprobar si tiene licencia para crear comunidades de pago (pendiente)
-
         if (Gate::allows('create-comunidad'))
             return view('comunidades.create');
 

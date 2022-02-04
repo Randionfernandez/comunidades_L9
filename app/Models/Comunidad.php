@@ -12,7 +12,6 @@ class Comunidad extends Model {
     use SoftDeletes;
 
     protected $table = 'comunidades';
-
     protected $fillable = [
         'cif',
         'fechalta',
@@ -48,10 +47,6 @@ class Comunidad extends Model {
 
     public function usuarios() {
         return $this->belongsToMany(User::class)->withTimestamps();
-    }
-
-    public function pais() {
-        return $this->belongsTo(Pais::class);
     }
 
     public function documentos() {

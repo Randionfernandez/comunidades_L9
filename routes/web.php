@@ -11,7 +11,6 @@ use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\PropiedadController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\PaisController;
 use App\Models\Comunidad;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
@@ -66,11 +65,11 @@ Route::middleware('auth')->get('/seleccionar/{comunidad}', [ComunidadController:
 Route::middleware('auth')->resource('cuentas', CuentaController::class);
 Route::middleware('auth')->resource('propiedades', PropiedadController::class)->parameter('propiedades', 'propiedad');
 Route::middleware('auth')->resource('juntas', JuntaController::class);
-Route::middleware('auth')->resource('proveedores', ProveedorController::class)->parameter('proveedores', 'proveedor');;
+Route::middleware('auth')->resource('proveedores', ProveedorController::class)->parameter('proveedores', 'proveedor');
+;
 Route::middleware('auth')->resource('movimientos', MovimientoController::class);
 Route::middleware('auth')->resource('usuarios', UserController::class);
 Route::middleware('auth')->resource('documentos', DocumentoController::class);
-Route::middleware('auth')->resource('paises', PaisController::class)->parameters(['paises' => 'pais']);
 
 // Ruta ejecutada cuando la ruta de la petición entrante no es reconocida por 
 // ninguna de las anteriores rutas. Mantener siempre al final de este fichero.
