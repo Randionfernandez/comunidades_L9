@@ -1,14 +1,14 @@
 function generarTabla(response) {
 //    const datos = response;
 //    const datos = JSON.parse(response);
-    respuesta = '<table class="table table-striped table-bordered"><thead><tr><th>Fecha</th><th>Concepto</th><th>Importe</th></tr></thead><tbody>';
+    respuesta = '<div class="content"><table class="table table-head-fixed text-nowrap table-striped table-bordered"><thead><tr><th>Fecha</th><th>Concepto</th><th>Importe</th></tr></thead><tbody>';
     for (let item of response) {
         respuesta += '<tr><td>'
                 + item.fecha + '</td><td>'
                 + item.concepto + '</td><td>'
                 + item.importe + '</td></tr>';
     }
-    return respuesta + '</tbody></table>';
+    return respuesta + '</tbody></table></div>';
 }
 
 function api_js_leer_movimientos() {

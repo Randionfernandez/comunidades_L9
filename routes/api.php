@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
   |
  */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 Route::name('api.v1')->apiResource('comunidades', ComunidadController::class)->parameter('comunidades', 'comunidad'); 
 Route::name('api.v1')->apiResource('movimientos', MovimientoController::class);

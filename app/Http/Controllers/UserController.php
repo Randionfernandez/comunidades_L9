@@ -14,8 +14,10 @@ class UserController extends Controller {
      */
     public function index() {
         $comunidad = session('cmd_seleccionada');
-        $users=$comunidad->usuarios;
-        return view('usuarios.index', compact('users','comunidad'));
+        $users = $comunidad->usuarios;
+        return view('usuarios.index', ['users' => $users,
+            'comunidad' => $comunidad
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        
+        //
     }
 
     /**

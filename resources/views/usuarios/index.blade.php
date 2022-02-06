@@ -95,7 +95,6 @@
 
     </tbody>
 </table>
-
 @endif
 
 @endsection
