@@ -18,7 +18,11 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function index() {
-        $movimientos = DB::table('movimientos')->select('fecha', 'concepto', 'importe')->where('deleted_at',null)->orderBy('n_op', 'asc')->get();  //->where('importe','>',1700)
+        $movimientos = DB::table('movimientos')->select('siglas', 'fecha', 'concepto', 'importe', 'saldo')
+                ->orderBy('cuenta_id', 'asc')
+                ->orderBy('n_op', 'asc')
+                ->orderBy('fecha', 'asc')
+                ->get();  //->where('importe','>',1700)
         return $movimientos;
 //        return MovimientoResource::collection($movimientos);
     }
@@ -31,10 +35,10 @@ class MovimientoController extends Controller {
      */
     public function store(Request $request) {
         ddd($request);
-        $role= Role::create([
-            'name' => $request->name,
-            'guard_name' => $request->guard_name
-                ]);
+        $role = Role::create([
+                    'name' => $request->name,
+                    'guard_name' => $request->guard_name
+        ]);
         return "hola store";
     }
 

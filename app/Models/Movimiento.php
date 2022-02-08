@@ -12,6 +12,8 @@ class Movimiento extends Model {
     use SoftDeletes;
 
     protected $fillable = [
+        'siglas',
+        'cuenta_id',
         'n_op',
         'fecha',
         'fecha_valor',

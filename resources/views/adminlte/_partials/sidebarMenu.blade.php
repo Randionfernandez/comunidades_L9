@@ -87,7 +87,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('usuarios.index')}}" class="nav-link {{ SetActiveRoute('usuarios.*') }}">
+                    <a href="{{ route('usuarios.index')}}" class="nav-link {{ SetActiveRoute('incidencias.*') }}">
                         <i class="fa fa-tools nav-icon"></i>
                         <p>Incidencias</p>
                     </a>

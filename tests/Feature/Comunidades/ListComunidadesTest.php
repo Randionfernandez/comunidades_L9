@@ -10,7 +10,6 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ListComunidadesTest extends TestCase {
 //  use RefreshDatabase; // No ejecuta las migraciones
-
 // // cambios sugeridos desde aprendible desarrollo api lección 4 Instalación del proyecto con Blueprint
 //    public function setUp(): void {
 //        parent::setUp();
@@ -47,10 +46,11 @@ class ListComunidadesTest extends TestCase {
     public function can_fetch_all_comunidades() {
         $this->withoutExceptionHandling();
 
-        $comunidades = Comunidad::factory()->count(3)->create();
+//        $comunidades = Comunidad::factory()->count(3)->create();
+        $comunidades = Comunidad::last(3);
 
         $response = $this->getJson(route('api.v1.comunidades.index'));
-        $response->asserExacttJson([
+        $response->assertExactJson([
             'data' => [
                 [
                     'type' => 'comunidades',
@@ -61,7 +61,7 @@ class ListComunidadesTest extends TestCase {
                         'email' => $comunidades[0]->email,
                     ],
                     'links' => [
-                        'self' => route('api.v1.comunidades.index')
+                        'self' => route('api.v1.comunidades.show', $comunidades[0]->getRouteKey())
                     ],
                 ],
                 [
@@ -73,7 +73,7 @@ class ListComunidadesTest extends TestCase {
                         'email' => $comunidades[1]->email,
                     ],
                     'links' => [
-                        'self' => route('api.v1.comunidades.index')
+                        'self' => route('api.v1.comunidades.show', $comunidades[1]->getRouteKey())
                     ],
                 ],
                 [
@@ -85,18 +85,11 @@ class ListComunidadesTest extends TestCase {
                         'email' => $comunidades[2]->email,
                     ],
                     'links' => [
-                        'self' => route('api.v1.comunidades.index')
+                        'self' => route('api.v1.comunidades.show', $comunidades[2]->getRouteKey())
                     ],
                 ],
             ],
         ]);
-    }
-
-    public function test_ejemplo_sencillo() {
-        $response = $this->get('/comunidades');
-//        $response->assertJson();
-
-        $this->assertSame(1, 1);
     }
 
 }

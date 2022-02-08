@@ -1,12 +1,27 @@
-function generarTabla(response) {
+//function generarTabla(response) {
+////    const datos = response;
+////    const datos = JSON.parse(response);
+//    respuesta = '<div class="content"><table class="table table-head-fixed text-nowrap table-striped table-bordered"><thead><tr><th>Fecha</th><th>Concepto</th><th>Importe</th></tr></thead><tbody>';
+//    for (let item of response) {
+//        respuesta += '<tr><td>'
+//                + item.fecha + '</td><td>'
+//                + item.concepto + '</td><td>'
+//                + item.importe + '</td></tr>';
+//    }
+//    return respuesta + '</tbody></table></div>';
+//}
+
+function generar2Tabla(response) {
 //    const datos = response;
 //    const datos = JSON.parse(response);
-    respuesta = '<div class="content"><table class="table table-head-fixed text-nowrap table-striped table-bordered"><thead><tr><th>Fecha</th><th>Concepto</th><th>Importe</th></tr></thead><tbody>';
+    respuesta = '<div class="content"><table class="table table-head-fixed text-nowrap table-striped table-bordered">'
+            + '<thead><tr><th>Siglas</th><th>Fecha</th><th>Concepto</th><th>Importe</th><th>Saldo</th></tr></thead><tbody>';
     for (let item of response) {
         respuesta += '<tr><td>'
+                + item.siglas + '</td><td>'
                 + item.fecha + '</td><td>'
-                + item.concepto + '</td><td>'
-                + item.importe + '</td></tr>';
+                + item.concepto + '</td><td class="text-right">' + item.importe + '</td><td class="text-right">'
+                + item.saldo + '</td></tr>';
     }
     return respuesta + '</tbody></table></div>';
 }
@@ -21,7 +36,7 @@ function api_js_index_movimientos() {
     console.log('Entrando en la unción AJAX');
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
-        document.getElementById('respuesta').innerHTML = generarTabla(JSON.parse(this.responseText));
+        document.getElementById('respuesta').innerHTML = generar2Tabla(JSON.parse(this.responseText));
 //   también
 //        document.getElementById('respuesta').innerHTML=xhttp.responseText;
     };
@@ -100,7 +115,7 @@ function api_axios_leer_movimientos() {
             .then(function (res) {
                 if (res.status == 200) {
                     console.log(res.data);
-                    document.getElementById("respuesta").innerHTML = generarTabla( res.data);
+                    document.getElementById("respuesta").innerHTML = generarTabla(res.data);
 
                 }
             })

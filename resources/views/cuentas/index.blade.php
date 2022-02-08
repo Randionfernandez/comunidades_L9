@@ -3,7 +3,7 @@
 @section('header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">Tus cuentas bancarias</h1>
+        <h1 class="m-0">@lang('Cuentas bancarias de esta comunidad')</h1>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">

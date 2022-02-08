@@ -15,6 +15,7 @@ class UserController extends Controller {
     public function index() {
         $comunidad = session('cmd_seleccionada');
         $users = $comunidad->usuarios;
+//        $users = User::get();
         return view('usuarios.index', ['users' => $users,
             'comunidad' => $comunidad
         ]);
