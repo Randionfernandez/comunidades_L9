@@ -75,4 +75,4 @@ Route::middleware('auth')->resource('documentos', DocumentoController::class);
 // ninguna de las anteriores rutas. Mantener siempre al final de este fichero.
 Route::fallback(function () {
     return view('fallback');
-});
+})->middleware('auth');

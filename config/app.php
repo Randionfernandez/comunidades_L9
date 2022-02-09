@@ -79,7 +79,7 @@ return [
       | the language folders that are provided through your application.
       |
      */
-    'fallback_locale' => 'es',
+    'fallback_locale' => 'en',
     /*
       |--------------------------------------------------------------------------
       | Faker Locale
