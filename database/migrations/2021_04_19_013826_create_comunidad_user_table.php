@@ -21,11 +21,12 @@ class CreateComunidadUserTable extends Migration {
             $table->string('role_name');
 //            $table->foreignId('role_name')->constrained()
 //                    ->onDelete('restrict')->default('2');
-
-            $table->foreign('role_name')->references('name')->on('roles')->default('Invitado');  // definir ondelete y onupdate
-            $table->unique(['comunidad_id', 'user_id']);
             $table->timestamps();
             $table->softDeletes();
+            
+            $table->foreign('role_name')->references('name')->on('roles')->default('Invitado');  // definir ondelete y onupdate
+            $table->unique(['comunidad_id', 'user_id']);
+
         });
     }
 

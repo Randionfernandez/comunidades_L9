@@ -15,7 +15,7 @@ class DivisaSeeder extends Seeder {
     public function run() {
 
         DB::table('divisas')->insert([
-            ['codigo' => 'AED', 'nombre' => 'Dirham de Emiratos Árabes Unidos'],
+            ['codigo' => 'AED', 'nombre' => 'Dirham-Emiratos Árabes Unidos'],
             ['codigo' => 'ANG', 'nombre' => 'Florín antillano neerlandés'],
             ['codigo' => 'ARS', 'nombre' => 'Peso argentino'],
             ['codigo' => 'AUD', 'nombre' => 'Dólar australiano'],

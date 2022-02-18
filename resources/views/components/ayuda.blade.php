@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-danger float-right" id="ayuda" data-toggle="modal" data-target="#help_comunidades">
+<button type="button" class="btn btn-secondary float-right" id="ayuda" data-toggle="modal" data-target="#help_comunidades">
     <i class="fa fa-info"></i> Ayuda
 </button>
 

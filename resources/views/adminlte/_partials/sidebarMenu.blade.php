@@ -24,7 +24,16 @@
                         <p>Propiedades</p>
                     </a>
                 </li>
-
+                
+                <!--Probando función no testada-->
+                <li class="nav-item">
+                     <a onclick="api_axios_crear_propiedades()" class="nav-link {{ SetActiveRoute('propiedades') }}">
+                        <i class="fas fa-building nav-icon"></i>
+                        <p>Propiedades crear</p>
+                    </a>
+                </li>
+    
+                
                 <li class="nav-item">
                     <a href="{{ route('cuentas.index')}}" class="nav-link {{ SetActiveRoute('cuentas.*') }}">
                         <i class="fa fa-euro-sign nav-icon"></i>
@@ -93,8 +102,6 @@
                     </a>
                 </li>
             </ul>
-
-
 
         <li class="nav-item">
             <a href="{{ route('comunidades.index')}}" class="nav-link active">

@@ -36,11 +36,11 @@ class AuthServiceProvider extends ServiceProvider {
     public function boot() {
         $this->registerPolicies();
 
-//////////////////           Definición de las gates de la aplicación
-        Gate::before(function ($user) {
-            if (isSuperAdmin($user))
-                return true;
-        });
+////////////////           Definición de las gates de la aplicación
+//        Gate::before(function ($user) {
+//            if (isSuperAdmin($user))
+//                return true;
+//        });
 
 // Solo el susuario indicado puede crear comunidades        
         Gate::define('create-comunidad', function (User $user) {
@@ -48,6 +48,7 @@ class AuthServiceProvider extends ServiceProvider {
             if (count($cmd) <= env('MAX_FREE_COMMUNITIES'))
                 return true;
         });
+        
 
 // Edita solo si el usuario es miembro de esa comunidad con rol 'Admin'
 //        No testado

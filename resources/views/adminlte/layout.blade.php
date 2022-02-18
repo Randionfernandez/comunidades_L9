@@ -90,7 +90,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <!-- Default to the left -->
                 <strong>Copyright &copy; 2022 <a href="https://github.com/randionfernandez/comunidades">Randion</a></strong>
             </footer>
-        </div>x
+        </div>
         <!-- ./wrapper -->
 
         <!-- REQUIRED SCRIPTS -->
@@ -107,6 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- AdminLTE App -->
         <script src="/adminlte/js/adminlte.min.js"></script>
         <script src="/js/apirest.js"></script>
+        <script src="js/api_propiedades.js"></script>
 
 
         @stack('scripts')

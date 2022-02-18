@@ -33,7 +33,6 @@ function api_js_leer_movimientos() {
 
 /* usando ajax con javascript  w3schools curso Ajax*/
 function api_js_index_movimientos() {
-    console.log('Entrando en la unción AJAX');
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
         document.getElementById('respuesta').innerHTML = generar2Tabla(JSON.parse(this.responseText));

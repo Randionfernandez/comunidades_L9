@@ -77,7 +77,7 @@ class User extends Authenticatable {
     ];
 
     public function comunidades() {
-        return $this->belongsToMany(Comunidad::class, 'comunidad_user', 'user_id', 'comunidad_id')->withTimestamps();
+        return $this->belongsToMany(Comunidad::class, 'comunidad_user', 'comunidad_id', 'user_id')->withPivot('role_name')->withTimestamps();
     }
 
     public function propiedads() {

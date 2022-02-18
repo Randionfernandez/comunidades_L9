@@ -50,7 +50,8 @@ class PropiedadController extends Controller {
      */
     public function store(Request $request) {
         $cmd = session('cmd_seleccionada');
-
+        dd($request);
+        
         $prop = new Propiedad($request->all());
         //dd($prop);
         $prop->comunidad_id = $cmd->id;
@@ -81,7 +82,7 @@ class PropiedadController extends Controller {
         $cmd = session('cmd_seleccionada');
         $tipos_propiedad = DB::table('tipos_propiedad')->get();
         $users = $cmd->usuarios()->get();
-        return view('propiedades.edit', compact('cmd', 'tipos_propiedad','propiedad', 'users'));
+        return view('propiedades.edit', compact('cmd', 'tipos_propiedad', 'propiedad', 'users'));
     }
 
     /**

@@ -13,6 +13,7 @@ class CuentaController extends Controller {
     public $cmd;
 
     public function __construct(Comunidad $comunidad) {
+        $this->authorizeResource(Cuenta::class, 'cuenta');
         $this->cmd = session('cmd_seleccionada');
         $this->comunidad= $comunidad;
     }

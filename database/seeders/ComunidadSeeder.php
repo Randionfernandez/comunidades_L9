@@ -17,7 +17,7 @@ class ComunidadSeeder extends Seeder {
     public function run() {
               
         Comunidad::create([
-            'cif' => '111222333A',
+            'cif' => '11122233A',
             'denom' => 'C.P. El Gallinero', // denom: máximo 35 char
             'fechalta' => '2011-05-11',
             'partes' => 11,

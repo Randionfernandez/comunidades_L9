@@ -5,7 +5,9 @@ namespace App\View\Components;
 use Illuminate\View\Component;
 
 class Ayuda extends Component {
-
+ 
+    
+    public $saludo="Saludando";
     /**
      * 
      * @var type
