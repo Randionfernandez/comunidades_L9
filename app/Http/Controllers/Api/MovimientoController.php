@@ -18,7 +18,7 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function index() {
-        $movimientos = DB::table('movimientos')->select('siglas', 'fecha', 'concepto', 'importe', 'saldo')
+        $movimientos = DB::table('movimientos')->select('siglas', 'fecha', 'propiedad', 'concepto', 'importe', 'saldo')
                 ->orderBy('cuenta_id', 'asc')
                 ->orderBy('n_op', 'asc')
                 ->orderBy('fecha', 'asc')

@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^7.4|^8.1",
         "dragon-code/pretty-array": "^3.0",
         "dragon-code/support": "^5.4",
         "fideloper/proxy": "^4.4",
