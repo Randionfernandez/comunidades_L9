@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/var/www/comunidades/config/database.php</file>
+            <file>file:/var/www/comunidades/config/sanctum.php</file>
+            <file>file:/var/www/comunidades/stubs/controller.stub</file>
+            <file>file:/var/www/comunidades/public/js/apirest.js</file>
+            <file>file:/var/www/comunidades/public/js/api_xhr_propiedades.js</file>
+            <file>file:/var/www/comunidades/app/collection.json</file>
+        </group>
     </open-files>
 </project-private>

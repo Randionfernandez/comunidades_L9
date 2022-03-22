@@ -21,13 +21,13 @@
                         </div>
                     </div>
 
-                    <!-- Tipo de propiedad -->
+                    <!-- Tipo de propiedad    ERROR: En actualizaciones (edit) no se obtiene el old value -->
                     <div class="col-3">
                         <div class="form-group">
                             <label for="tipo" class="form-label">@lang('Tipo')</label>
                             <select class="form-control select2" name="tipo" id="tipo" required>
                                 @foreach($tipos_propiedad as $item)
-                                <option value="{{ $item->codigo }}" @if (old('tipo') === "{{ $item->codigo}}") selected @endif>
+                                <option value="{{ $item->codigo }}" @if (old('tipo', $propiedad->tipo ?? '') === "{{ $item->codigo}}") selected @endif>
                                     {{ $item->descripcion }}</option>
                                 @endforeach
                             </select>

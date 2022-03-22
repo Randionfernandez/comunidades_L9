@@ -36,6 +36,10 @@ class CreatePropiedadesTable extends Migration {
 
             // Las opciones de una FK se pueden consultar en la fuente:
             //    https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Schema/ForeignKeyDefinition.php
+
+            $table->foreign('comunidad_id')->references('id')->on('comunidades')
+                    ->onDelete('cascade');
+            
             $table->foreign('user_id')->references('id')->on('users')
                     ->onDelete('set null');
 
@@ -43,8 +47,6 @@ class CreatePropiedadesTable extends Migration {
                     ->onUpdate('cascade')
                     ->onDelete('restrict'); //comprobar cómo procesa PostgreSql la opción 'restrict'
 
-            $table->foreign('comunidad_id')->references('id')->on('comunidades')
-                    ->onDelete('cascade');
 
             $table->unique(['comunidad_id', 'parte']);
             $table->unique(['comunidad_id', 'denominacion']);

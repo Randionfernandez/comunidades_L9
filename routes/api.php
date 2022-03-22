@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ComunidadController;
 use App\Http\Controllers\Api\MovimientoController;
+use App\Http\Controllers\Api\PropiedadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::name('api.v1')->apiResource('comunidades', ComunidadController::class)->parameter('comunidades', 'comunidad'); 
 Route::name('api.v1')->apiResource('movimientos', MovimientoController::class);
+Route::name('api.v1')->apiResource('propiedades', PropiedadController::class)->parameter('propiedades', 'propiedad');

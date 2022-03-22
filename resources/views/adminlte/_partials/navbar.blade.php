@@ -134,7 +134,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <div class="float-left">
-                        <a href="#" class="btn btn-default">@lang('Profile')</a>
+                        <a href="#" class="btn btn-info">@lang('Profile')</a>
                     </div>
                     <!--                Fortify usa el método post para logout, por eso el formulario.
                                         Inicialmente cree una ruta get que llamase al mismo logout
@@ -142,7 +142,7 @@
                     <form method='post' action='/logout' class='inline'>
                         @csrf
                         <div class="float-right">
-                            <button type='submit' class="btn btn-default">@lang('Logout')</button>
+                            <button type='submit' class="btn btn-danger">@lang('Logout')</button>
                             <!--<a href="/logout" class="btn btn-default">@lang('Logout')</a>-->
                         </div>
                     </form>

@@ -25,15 +25,6 @@
                     </a>
                 </li>
                 
-                <!--Probando función no testada-->
-                <li class="nav-item">
-                     <a onclick="api_axios_crear_propiedades()" class="nav-link {{ SetActiveRoute('propiedades') }}">
-                        <i class="fas fa-building nav-icon"></i>
-                        <p>Propiedades crear</p>
-                    </a>
-                </li>
-    
-                
                 <li class="nav-item">
                     <a href="{{ route('cuentas.index')}}" class="nav-link {{ SetActiveRoute('cuentas.*') }}">
                         <i class="fa fa-euro-sign nav-icon"></i>
@@ -120,7 +111,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a onclick="api_js_leer_movimientos()" class="nav-link {{ SetActiveRoute('movimientos') }}">
+                    <a id="movimientos" class="nav-link {{ SetActiveRoute('movimientos') }}">
                         <i class="fas fa-calculator nav-icon"></i>
                         <p>@lang('Movimientos bancarios')</p>
                     </a>

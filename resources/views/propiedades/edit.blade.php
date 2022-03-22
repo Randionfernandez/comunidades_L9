@@ -27,7 +27,7 @@
 </form>
 
 <form class="d-none" id="delete-propiedad" onsubmit="return confirm('Estas seguro de querer eliminar esta propiedad')"
-      method="POST" action="{{ route('propiedad.destroy', $propiedad) }}">
+      method="POST" action="{{ route('propiedades.destroy', $propiedad) }}">
     @csrf @method('DELETE')
 </form>
 <!-- /.content -->

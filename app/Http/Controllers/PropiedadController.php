@@ -24,6 +24,7 @@ class PropiedadController extends Controller {
      */
     public function index() {
         $cmd = session('cmd_seleccionada');
+        $cmd->refresh();
         return view('propiedades.index', ['propiedades' => $cmd->propiedades,
             'comunidad' => $cmd]);
     }
@@ -50,14 +51,11 @@ class PropiedadController extends Controller {
      */
     public function store(Request $request) {
         $cmd = session('cmd_seleccionada');
-        dd($request);
-        
+
         $prop = new Propiedad($request->all());
-        //dd($prop);
         $prop->comunidad_id = $cmd->id;
 
         $prop->save();
-
         return back();
     }
 
@@ -79,10 +77,10 @@ class PropiedadController extends Controller {
      */
     public function edit(Propiedad $propiedad) {
         // Incompleto, duda de miquel
-        $cmd = session('cmd_seleccionada');
+        $comunidad = session('cmd_seleccionada');
         $tipos_propiedad = DB::table('tipos_propiedad')->get();
-        $users = $cmd->usuarios()->get();
-        return view('propiedades.edit', compact('cmd', 'tipos_propiedad', 'propiedad', 'users'));
+        $users = $comunidad->usuarios()->get();
+        return view('propiedades.edit', compact('comunidad', 'tipos_propiedad', 'propiedad', 'users'));
     }
 
     /**
@@ -93,7 +91,9 @@ class PropiedadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Propiedad $propiedad) {
-        //
+        $propiedad->update($request->all());
+
+        return redirect()->route('propiedades.index');
     }
 
     /**
@@ -103,7 +103,10 @@ class PropiedadController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Propiedad $propiedad) {
-        //
+        $propiedad->delete();
+
+        $msj = "La propiedad: " . $propiedad->denominacion . " ha sido dada de baja";
+        return redirect()->route('propiedades.index')->with('status', ['msj' => $msj, 'alert' => 'alert-danger']);
     }
 
 }

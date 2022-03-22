@@ -1,5 +1,5 @@
 function generarTabla(response) {
-    respuesta = '<div class="content"><table id="movimientos" class="table table-head-fixed text-nowrap table-striped table-bordered">'
+    respuesta = '<div class="content"><table id="movimientos_table" class="table table-head-fixed text-nowrap table-striped table-bordered">'
             + '<thead><tr><th>Siglas</th><th>Fecha</th><th>Cod</th><th>Concepto</th><th>Importe</th><th>Saldo</th></tr></thead><tbody>';
     for (let item of response) {
         respuesta += '<tr><td>'
@@ -14,45 +14,47 @@ function generarTabla(response) {
 }
 
 function api_js_leer_movimientos() {
+    // esta rellamada se eliminará, llamando directamente a la función correspndiente
+    // se hace porque así pruebo el crud usando el mismo botón en la página; por pereza ;-)
     api_js_index_movimientos();
 //    api_js_create_movimiento();
 }
 
 /* usando ajax con javascript  w3schools curso Ajax*/
 function api_js_index_movimientos() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-        document.getElementById('respuesta').innerHTML = generarTabla(JSON.parse(this.responseText));
-//   también
-//        document.getElementById('respuesta').innerHTML=xhttp.responseText;
-        $(document).ready(function () {
-            $('#movimientos').DataTable({
-                "scrollY": "550px",
-                "scrollCollapse": true,
-                "paging": false
-            });
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';   // parsea la respuesta a formato json
+
+    xhr.onload = function () {
+        document.getElementById('respuesta').innerHTML = generarTabla(this.response);
+        $('#movimientos_table').DataTable({
+            "scrollY": "525px",
+            "scrollCollapse": true,
+            "paging": false,
         });
+//   también
+//        document.getElementById('respuesta').innerHTML=xhr.response;
     };
 
-    xhttp.open('GET', '/api/v1/movimientos', true);
-    xhttp.setRequestHeader('Content-Type', 'application/vnd.api+json');
-    xhttp.setRequestHeader('Accept', 'application/vnd.api+json');
-    xhttp.send();
+    xhr.open('GET', '/api/v1/movimientos', true);
+    xhr.setRequestHeader('Content-Type', 'application/vnd.api+json');
+    xhr.setRequestHeader('Accept', 'application/vnd.api+json');
+    xhr.send();
 }
 
 /* usando ajax con javascript  w3schools curso Ajax*/
 function api_js_create_movimiento() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-        document.getElementById('respuesta').innerHTML = "<p>Movimiento creado</p>";
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        document.getElementById('respuesta').innerHTML = 'Peito' + xhr.response + "<p>Movimiento creado</p>";
 //   también
-//        document.getElementById('respuesta').innerHTML=xhttp.responseText;
+//        document.getElementById('respuesta').innerHTML=xhr.responseText;
     };
 
-    xhttp.open('POST', '/api/v1/movimientos', true);
-    xhttp.setRequestHeader('Content-Type', 'application/vnd.api+json');
-    xhttp.setRequestHeader('Accept', 'application/vnd.api+json');
-    xhttp.send("name=Observador&guard_name=web");
+    xhr.open('POST', '/api/v1/movimientos', true);
+    xhr.setRequestHeader('Content-Type', 'application/vnd.api+json');
+    xhr.setRequestHeader('Accept', 'application/vnd.api+json');
+    xhr.send("name=RafaelAndión&apellido=Fernandez"); // {"name": "Rafael Andiión"}
 }
 
 //  Añadir o eliminar filar en una tabla
@@ -88,17 +90,17 @@ function deleteRow(r) {
 
 /* usando ajax con javascript  w3schools curso Ajax*/
 function api_js_destroy_movimientos() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function () {
         document.getElementById('respuesta').innerHTML = "<p>Movimiento borrado</p>";
 //   también
-//        document.getElementById('respuesta').innerHTML=xhttp.responseText;
+//        document.getElementById('respuesta').innerHTML=xhr.responseText;
     };
 
-    xhttp.open('DELETE', '/api/v1/movimientos/3', true);
-    xhttp.setRequestHeader('Content-Type', 'application/vnd.api+json');
-    xhttp.setRequestHeader('Accept', 'application/vnd.api+json');
-    xhttp.send();
+    xhr.open('DELETE', '/api/v1/movimientos/3', true);
+    xhr.setRequestHeader('Content-Type', 'application/vnd.api+json');
+    xhr.setRequestHeader('Accept', 'application/vnd.api+json');
+    xhr.send();
 }
 
 
@@ -145,3 +147,9 @@ function api_axios_index_movimientos() {
             });
 
 }
+
+$(document).ready(function () {
+    document.getElementById('movimientos').addEventListener('click', api_js_leer_movimientos);
+});
+
+

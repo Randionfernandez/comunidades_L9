@@ -19,7 +19,7 @@ class PropiedadFactory extends Factory {
      *
      * @return array
      */
-    public function definition() {     // Mejorar este factory, especial- denominacion y parte
+    public function definition() {     // Mejorar este factory, especialmente denominacion y parte
         return [
             //  'user_id' => '',  // Solo consideramos un propietario por propiedad
             'denominacion' => 'piso ' . $this->getLetra(),
@@ -28,6 +28,7 @@ class PropiedadFactory extends Factory {
             'domiciliada' => true,
             'iban' => $this->faker->iban('ES'),
             'tipo' => $this->faker->randomElement(['VIV', 'ATC', 'APT', 'LOC']),
+            'comunidad_id' => 1
         ];
     }
 

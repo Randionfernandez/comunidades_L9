@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Movimiento;
-use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use function ddd;
 
 class MovimientoController extends Controller {
 
@@ -18,12 +16,15 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function index() {
-        $movimientos = DB::table('movimientos')->select('siglas', 'fecha', 'propiedad', 'concepto', 'importe', 'saldo')
+//        $cmd= session('cmd_seleccionada');
+        
+        return Movimiento::select('siglas', 'fecha', 'propiedad', 'concepto', 'importe', 'saldo')
+                ->where('comunidad_id', 1)
+//                ->where('importe','>', 1700)
                 ->orderBy('cuenta_id', 'asc')
                 ->orderBy('n_op', 'asc')
                 ->orderBy('fecha', 'asc')
-                ->get();  //->where('importe','>',1700)
-        return $movimientos;
+                ->get();
 //        return MovimientoResource::collection($movimientos);
     }
 
@@ -34,12 +35,12 @@ class MovimientoController extends Controller {
      * @return Response
      */
     public function store(Request $request) {
-        ddd($request);
-        $role = Role::create([
-                    'name' => $request->name,
-                    'guard_name' => $request->guard_name
-        ]);
-        return "hola store";
+        
+        return "Nombre: " . $request->name;
+//        $role = Role::create([
+//                    'name' => $request->name,
+//                    'guard_name' => $request->guard_name
+//        ]);
     }
 
     /**

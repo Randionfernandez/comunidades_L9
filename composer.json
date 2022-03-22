@@ -15,7 +15,6 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "intervention/image": "^2.7",
-        "laravel-json-api/laravel": "^1.1",
         "laravel-lang/lang": "^10.4",
         "laravel-lang/publisher": "^12.2",
         "laravel/framework": "^8.61",

@@ -107,6 +107,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- AdminLTE App -->
         <script src="/adminlte/js/adminlte.min.js"></script>
         <script src="/js/apirest.js"></script>
+        <script src="/js/api_xhr_propiedades.js"></script>
 
 
         @stack('scripts')
