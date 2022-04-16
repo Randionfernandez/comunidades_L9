@@ -21,14 +21,13 @@ class PropiedadFactory extends Factory {
      */
     public function definition() {     // Mejorar este factory, especialmente denominacion y parte
         return [
-            //  'user_id' => '',  // Solo consideramos un propietario por propiedad
+//            'user_id' => factory(App\Models\User::class), // Solo consideramos un propietario por propiedad
             'denominacion' => 'piso ' . $this->getLetra(),
             'parte' => $this->getParte(),
             'coeficiente' => '10',
-            'domiciliada' => true,
             'iban' => $this->faker->iban('ES'),
             'tipo' => $this->faker->randomElement(['VIV', 'ATC', 'APT', 'LOC']),
-            'comunidad_id' => 1
+            'comunidad_id' => 2, // factory(App\Models\Comunidad::class),
         ];
     }
 
@@ -37,6 +36,7 @@ class PropiedadFactory extends Factory {
 
         return $num_parte++;
     }
+
     protected function getLetra() {
         static $letra = 'A';
 

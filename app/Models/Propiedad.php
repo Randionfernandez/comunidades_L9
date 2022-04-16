@@ -13,11 +13,11 @@ class Propiedad extends Model {
 
     protected $table = "propiedades";
     protected $fillable = [
+        "comunidad_id",
         'denominacion',
         'user_id',
         'parte',
         'coeficiente',
-        'domiciliada',
         'iban',
         'bic',
         'tipo',

@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/comunidades/config/database.php</file>
-            <file>file:/var/www/comunidades/config/sanctum.php</file>
-            <file>file:/var/www/comunidades/stubs/controller.stub</file>
-            <file>file:/var/www/comunidades/public/js/apirest.js</file>
-            <file>file:/var/www/comunidades/public/js/api_xhr_propiedades.js</file>
-            <file>file:/var/www/comunidades/app/collection.json</file>
+            <file>file:/var/www/comunidades/tests/Feature/Propiedades/PropiedadesTest.php</file>
+            <file>file:/var/www/comunidades/tests/Feature/Comunidades/ComunidadesTest.php</file>
+            <file>file:/var/www/comunidades/routes/web.php</file>
+            <file>file:/var/www/comunidades/composer.json</file>
         </group>
     </open-files>
 </project-private>

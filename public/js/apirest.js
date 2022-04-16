@@ -28,7 +28,7 @@ function api_js_index_movimientos() {
     xhr.onload = function () {
         document.getElementById('respuesta').innerHTML = generarTabla(this.response);
         $('#movimientos_table').DataTable({
-            "scrollY": "525px",
+            "scrollY": "43vW",
             "scrollCollapse": true,
             "paging": false,
         });
@@ -54,10 +54,10 @@ function api_js_create_movimiento() {
     xhr.open('POST', '/api/v1/movimientos', true);
     xhr.setRequestHeader('Content-Type', 'application/vnd.api+json');
     xhr.setRequestHeader('Accept', 'application/vnd.api+json');
-    xhr.send("name=RafaelAndión&apellido=Fernandez"); // {"name": "Rafael Andiión"}
+    xhr.send("name=RafaelAndión&apellido=Fernandez"); // {"name": "Rafael Andión"}
 }
 
-//  Añadir o eliminar filar en una tabla
+//  Añadir o eliminar filas en una tabla
 // https://programmerclick.com/article/526019720/
 
 

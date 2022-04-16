@@ -12,6 +12,9 @@ class Comunidad extends Model {
     use SoftDeletes;
 
     protected $table = 'comunidades';
+
+//    protected $guarded = [];
+//    protedcted $hidden= [];
     protected $fillable = [
         'cif',
         'fechalta',

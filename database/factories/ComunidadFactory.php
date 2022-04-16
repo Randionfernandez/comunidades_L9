@@ -25,15 +25,15 @@ class ComunidadFactory extends Factory {
       
         return [
             'cif' => $this->faker->unique()->dni(),
-            'denom' => 'C.P. ' . substr($this->faker->name, 0, 34), // denom: máximo 35 char
             'fechalta' => $this->faker->dateTimeBetween('-2 year'),
             'partes' => 10,
+            'denom' => 'C.P. ' . substr($this->faker->name, 0, 30), // denom: máximo 35 char
             'email' => $this->faker->unique()->safeEmail,
-            'direccion' => $this->faker->streetAddress(), //secondaryAddress(),
+            'direccion' => $this->faker->streetAddress(35), //secondaryAddress(), direccion: máximo 40 char
+            'cp' => '070' . $cp,
             'localidad' => $this->faker->text(10), // localidad: máximo 35 char
             'municipio' => 'Palma de Mallorca',
             'provincia' => 'I.Baleares', //$this->faker->community(),
-            'cp' => '070' . $cp,
             'pais' => 'ESP',
         ];
     }

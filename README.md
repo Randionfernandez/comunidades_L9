@@ -14,7 +14,7 @@ https://styde.net/diferencias-entre-composer-install-y-composer-update/
 
 Luego, desde la raíz del proyecto ejecuta: php artisan key:generate
 
-Despliegue: http://cmd.ifc33b.cifpfbmoll.eu
+Despliegue: http://cmd.randion.es
   (misma IP que la máquina virtual de la base de datos)
 
 Usa la plantilla AdminLTE 3 ( que incluye bootstrap 4.3+).
@@ -23,7 +23,7 @@ Instalado paquete debugbar, para depuración.
 Idioma predeterminado fallback_locale = 'es'
   
 Base de datos postgres en
-g1.ifc33b.cifpfbmoll.eu/adminer.php
+adminer.randion.es
 
 Nombre de la B.D.: simulacion_db<br/>
 Usuario: simulacion_usr<br/>
