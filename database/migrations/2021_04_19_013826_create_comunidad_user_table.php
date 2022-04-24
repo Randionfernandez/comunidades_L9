@@ -18,7 +18,7 @@ class CreateComunidadUserTable extends Migration {
                     ->onDelete('cascade');
             $table->foreignId('user_id')->constrained()
                     ->onDelete('cascade');
-            $table->string('role_name');
+            $table->string('role_name')->default('Invitado');
 //            $table->foreignId('role_name')->constrained()
 //                    ->onDelete('restrict')->default('2');
             $table->timestamps();

@@ -75,7 +75,7 @@ return [
         'test_simulacion_db' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => 'cmd.randion.es',
+            'host' => 'localhost',
 //            'host' => '127.0.0.1',
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'simulacion_db'),

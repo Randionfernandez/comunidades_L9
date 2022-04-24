@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder {
 
@@ -14,7 +16,7 @@ class UserSeeder extends Seeder {
      */
     public function run() {
         $user = User::create([
-                    'doi' => $this->faker->unique()->dni(),
+//                    'doi' => $this->faker->unique()->dni(),  // doi es nullable
                     'name' => 'Rafael',
                     'apellidos' => 'Andión',
                     'fechalta' => "2010-05-01",
@@ -35,7 +37,7 @@ class UserSeeder extends Seeder {
             'remember_token' => Str::random(10),
         ]);
 
-        \App\Models\User::factory(10)->create();
+        User::factory(10)->create();
     }
 
 }

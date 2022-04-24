@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -21,7 +21,9 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function index() {
-        return view('comunidades.index', ['comunidades' => auth()->user()->comunidades]);
+        $user=auth()->user()->comunidades;
+        return view('comunidades.index', ['comunidades' => $user]);
+//        return view('comunidades.index', ['comunidades' => auth()->user()->comunidades]);
     }
 
     /**
@@ -63,7 +65,10 @@ class ComunidadController extends Controller {
 
 // asignamos el rol de 'Admin' en la tabla 'comunidad_user'
         $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->first();
-        $cu->assignRole('Admin');
+        $cu->role_name= 'Admin';
+        $cu->save();
+        $comunidad->refresh();
+        auth()->user()->comunidades->refresh();
 
         return redirect()->route('comunidades.index')->with('status', [
                     'msj' => "La comunidad $comunidad->denom, fue creada correctamente",

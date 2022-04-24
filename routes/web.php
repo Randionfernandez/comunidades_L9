@@ -1,23 +1,23 @@
 <?php
-
+declare(strict_types=1);
 // Notación abreviada  a partir de la versión 7
-
-
-use App\Http\Controllers\ComunidadController;
-use App\Http\Controllers\CuentaController;
-use App\Http\Controllers\DocumentoController;
-use App\Http\Controllers\JuntaController;
-use App\Http\Controllers\MovimientoController;
-use App\Http\Controllers\PropiedadController;
-use App\Http\Controllers\ProveedorController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\{
+    ComunidadController,
+    CuentaController,
+    DocumentoController,
+    MovimientoController,
+    PropiedadController,
+    ProveedorController,
+    JuntaController,
+    UserController,
+};
 use App\Models\Comunidad;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 //use App\Serv/ices\RedisEventPusher;
-/*
+/*  
   |--------------------------------------------------------------------------
   | Web Routes
   |--------------------------------------------------------------------------

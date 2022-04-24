@@ -13,7 +13,7 @@ class Comunidad_User extends Model {
     use \Spatie\Permission\Traits\HasRoles;
 
     protected $table = 'comunidad_user';
-    protected $guard_name='web';
+//    protected $guard_name='web';
 
     protected $fillable = [
         'comunidad_id',

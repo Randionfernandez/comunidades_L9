@@ -10,7 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 // use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
+//use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable {
 
@@ -18,7 +18,7 @@ class User extends Authenticatable {
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
-    use HasRoles;
+//    use HasRoles;
     use TwoFactorAuthenticatable;
     use \Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -77,7 +77,7 @@ class User extends Authenticatable {
     ];
 
     public function comunidades() {
-        return $this->belongsToMany(Comunidad::class, 'comunidad_user', 'comunidad_id', 'user_id')->withPivot('role_name')->withTimestamps();
+        return $this->belongsToMany(Comunidad::class, 'comunidad_user', 'user_id', 'comunidad_id')->withPivot('role_name')->withTimestamps();
     }
 
     public function propiedads() {

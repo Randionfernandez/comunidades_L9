@@ -75,10 +75,6 @@
                 </div><!-- ./row -->
 
 
-
-
-
-
                 <div class="row">
                     <!-- Domiciliada -->
                     <div class="form-group col-2">
@@ -124,7 +120,6 @@
         <div class="card-footer">
             <a class="btn btn-primary"
                href="{{ route('propiedades.index') }}">@lang('Ver todas')</a>
-
 
 
             @if ((Request::route()->getName()=='propiedades.create'))

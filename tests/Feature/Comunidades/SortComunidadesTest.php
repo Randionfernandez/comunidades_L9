@@ -17,8 +17,6 @@ class SortComunidadesTest extends TestCase {
 //        });
         $this->getJson($url);
         $this->assertTrue(true);
-
-
     }
 
 }
