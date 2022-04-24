@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Exceptions;
 
+use App\Http\Responses\JsonApiValidationErrorResponse;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
-use function response;
 
 class Handler extends ExceptionHandler {
 
@@ -67,23 +69,31 @@ class Handler extends ExceptionHandler {
         return parent::render($request, $exception);
     }
 
-    protected function invalidJson($request, ValidationException $exception) {
-        $errors = [];
-        foreach ($exception->errors() as $field => $message) {
-            $pointer = "/" . str_replace('.', '/', $field);
-            $errors = [
-                [
-                    'title' => $field,
-                    'detail' => $message,
-                    'source' => [
-                        'pointer' => $pointer
-                    ]
-                ]
-            ];
-        };
-        
-        $errors = ['errors' => $errors];
-        return response()->json($errors);
+//    protected function invalidJson($request, ValidationException $exception): JsonResponse {
+//        $errors = [];
+//
+//        foreach ($exception->errors() as $field => $message) {
+//            $pointer = "/" . str_replace('.', '/', $field);
+//            $errors [] = [
+//                'title' => $field,
+//                'detail' => $message,
+//                'source' => [
+//                    'pointer' => $pointer
+//                ]
+//            ];
+//        }
+//
+//        $errors = ['errors' => $errors];
+//
+//        if (!$request->routeIs('api.v1.login')) {
+//            return response()->json($errors);
+//        }
+//
+//        return parent::invalidJson($request, $exception);
+//    }
+
+    function invalidJson($request, ValidationException $exception) {
+        return new JsonApiValidationErrorResponse($exception);
     }
 
 }

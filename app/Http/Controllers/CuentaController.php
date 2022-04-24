@@ -112,7 +112,7 @@ class CuentaController extends Controller {
         }
 
         $cuenta->update($request->all());
-        $cmd->refresh();
+        $cmd->usuarios()->refresh();
         $msj = 'La cuenta ' . $cuenta->denominacion . ', fue actualizada con éxito';
 
         return redirect()->route('cuentas.index')->with('status', ['msj' => $msj, 'alert' => 'alert-info']);
