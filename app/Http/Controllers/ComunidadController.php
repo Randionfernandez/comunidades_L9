@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -21,7 +23,7 @@ class ComunidadController extends Controller {
      * @return Response
      */
     public function index() {
-        $user=auth()->user()->comunidades;
+        $user = auth()->user()->comunidades;
         return view('comunidades.index', ['comunidades' => $user]);
 //        return view('comunidades.index', ['comunidades' => auth()->user()->comunidades]);
     }
@@ -65,7 +67,7 @@ class ComunidadController extends Controller {
 
 // asignamos el rol de 'Admin' en la tabla 'comunidad_user'
         $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->first();
-        $cu->role_name= 'Admin';
+        $cu->role_name = 'Admin';
         $cu->save();
         $comunidad->refresh();
         auth()->user()->comunidades->refresh();
@@ -137,15 +139,16 @@ class ComunidadController extends Controller {
         }
 
         $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->get();
-        $aux = $cu->where('user_id', auth()->id())->first();
-        if ($aux->hasRole('Admin')) {//  $aux ¿accede a la BD? comprobar
+        try {
+            $aux = $cu->where('user_id', auth()->id());
+//        if ($aux->hasRole('Admin')) {//  $aux ¿accede a la BD? comprobar
             $cu = Comunidad_User::where('comunidad_id', $comunidad->id)->get();
 
             $this->msj = "La comunidad -- " . $comunidad->denom . " --, fue eliminada con éxito";
 
-            foreach ($cu as $cmd_usr) {
-                $cmd_usr->roles()->detach();
-            }
+//            foreach ($cu as $cmd_usr) {
+//                $cmd_usr->roles()->detach();
+//            }
 // Elimina los enlaces de usuarios que tienen acceso a la comunidad. No aplica SoftDeletes,
 //  a pesar de constar en el modelo Comunidad_User; pendiente de solucionar para no perder esa información
             $comunidad->usuarios()->detach();
@@ -153,6 +156,9 @@ class ComunidadController extends Controller {
 
             session()->forget('cmd_seleccionada');
             return redirect()->route('comunidades.index')->with('status', ['msj' => $this->msj, 'alert' => 'alert-danger']);
+//        }
+        } catch (Exception $e) {
+            return "Salto el error: ". $e->getMessage();
         }
 
         Abort(403);

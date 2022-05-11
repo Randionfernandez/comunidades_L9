@@ -338,4 +338,24 @@ class ComunidadesTest extends TestCase {
 //        ]);
     }
 
+    // cambios sugeridos desde aprendible desarrollo api lección 4 Instalación del proyecto con Blueprint
+    // ¿Eliminar?
+
+    /** @test */
+    public function it_can_sort_comunidades() {
+        $user = User::first();
+
+//        Sanctum::actingAs($user);
+
+//        $comunidad = Comunidad::factory()->create();
+        $url = route('api.v1.comunidades.index', ['sort' => 'denom']);
+
+//        DB::listen(function ($db) {
+//           dump( $db->sql);
+//        });
+        $response = $this->getJson($url);
+        dump($response);
+        $this->assertTrue(true);
+    }
+
 }

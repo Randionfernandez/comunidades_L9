@@ -61,7 +61,7 @@ class CuentaController extends Controller {
         }
 
         $this->cmd->cuentas()->create($request->all());
-        $this->cmd->refresh();   // ver también push() en Eloquent: Relationships
+//        $this->cmd->refresh();   // ver también push() en Eloquent: Relationships
 
         return view('cuentas.index', ['cuentas' => $this->cmd->cuentas, 'comunidad' => $this->cmd])->with('status', ['msj' => "La cuenta ha sido creada correctamente", 'alert' => 'alert-success']);
     }

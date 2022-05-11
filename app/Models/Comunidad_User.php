@@ -10,7 +10,6 @@ class Comunidad_User extends Model {
 
     use HasFactory;
     use SoftDeletes;
-    use \Spatie\Permission\Traits\HasRoles;
 
     protected $table = 'comunidad_user';
 //    protected $guard_name='web';

@@ -148,7 +148,7 @@
                     onclick="document.getElementById('update-comunidad').submit()">
                 @lang('Actualizar')</button>
 
-            <button class="btn btn-danger"
+            <button name="Borrar" class="btn btn-danger" enabled
                     @if (Gate::allows('delete-comunidad', $comunidad)) enabled @else disabled @endif
                     onclick="document.getElementById('delete-comunidad').submit()">
                 @lang('Dar de baja')

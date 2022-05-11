@@ -25,7 +25,6 @@
         <x-ayuda>
             {{__('help.comunidades')}}    
         </x-ayuda>
-
     </div>
 </div>
 @endsection
