@@ -2,26 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/var/www/comunidades/routes/api.php</file>
-            <file>file:/var/www/comunidades/tests/Feature/AccessTokenTest.php</file>
-            <file>file:/var/www/comunidades/database/seeders/PaisSeeder.php</file>
-            <file>file:/var/www/comunidades/resources/views/comunidades/_comunidad.blade.php</file>
-            <file>file:/var/www/comunidades/database/seeders/MovimientosSeeder.php</file>
-            <file>file:/var/www/comunidades/config/app.php</file>
-            <file>file:/var/www/comunidades/resources/views/comunidades/index.blade.php</file>
-            <file>file:/var/www/comunidades/app/Models/Comunidad_User.php</file>
-            <file>file:/var/www/comunidades/database/seeders/DivisaSeeder.php</file>
-            <file>file:/var/www/comunidades/app/Http/Requests/ComunidadApiRequest.php</file>
-            <file>file:/var/www/comunidades/app/Http/Controllers/ComunidadController.php</file>
-            <file>file:/var/www/comunidades/resources/views/comunidades/create.blade.php</file>
-            <file>file:/var/www/comunidades/app/Providers/AuthServiceProvider.php</file>
-            <file>file:/var/www/comunidades/database/seeders/UserSeeder.php</file>
-            <file>file:/var/www/comunidades/tests/Feature/Comunidades/ComunidadesTest.php</file>
-            <file>file:/var/www/comunidades/app/Http/Requests/ComunidadRequest.php</file>
-            <file>file:/var/www/comunidades/resources/views/comunidades/edit.blade.php</file>
-            <file>file:/var/www/comunidades/composer.json</file>
-            <file>file:/var/www/comunidades/database/seeders/RoleSeeder.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
