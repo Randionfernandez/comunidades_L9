@@ -1,4 +1,5 @@
 <?php
+declare('stric_types=1');
 
 namespace Database\Factories;
 

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 /**
  * TODO
- * 
+ *
  * Revisar test para create, utilizando un FormRequest para la validación
  * preferentemente con un ComunidadRequest válido para apirest y formulario
- * 
+ *
  * Revisar también denom_is_required
  */
 
@@ -21,7 +21,8 @@ use Illuminate\Support\Facades\App;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
-class ComunidadesTest extends TestCase {
+class ComunidadesTest extends TestCase
+{
 
 // No ejecuta los seeders, ni las migraciones, (si estuviesen
 // actualizadas)
@@ -29,7 +30,8 @@ class ComunidadesTest extends TestCase {
 
 //    protected $seed = true;  // Ejecuta los seeders
 // cambios sugeridos desde aprendible.com 'desarrollo api' Lección 4.- Instalación del proyecto con Blueprint
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
         $this->seed([
             PaisSeeder::class
@@ -39,7 +41,8 @@ class ComunidadesTest extends TestCase {
     /**
      * @test
      */
-    public function can_fetch_all_comunidades() {
+    public function can_fetch_all_comunidades()
+    {
         $this->withoutExceptionHandling();
 
         $comunidades = Comunidad::factory()->count(3)->create();
@@ -52,7 +55,7 @@ class ComunidadesTest extends TestCase {
             'data' => [
                 [
                     'type' => 'comunidades',
-                    'id' => (string) $comunidades[0]->getRouteKey(),
+                    'id' => (string)$comunidades[0]->getRouteKey(),
                     'attributes' => [
                         'cif' => $comunidades[0]->cif,
                         'denom' => $comunidades[0]->denom,
@@ -64,7 +67,7 @@ class ComunidadesTest extends TestCase {
                 ],
                 [
                     'type' => 'comunidades',
-                    'id' => (string) $comunidades[1]->getRouteKey(),
+                    'id' => (string)$comunidades[1]->getRouteKey(),
                     'attributes' => [
                         'cif' => $comunidades[1]->cif,
                         'denom' => $comunidades[1]->denom,
@@ -76,7 +79,7 @@ class ComunidadesTest extends TestCase {
                 ],
                 [
                     'type' => 'comunidades',
-                    'id' => (string) $comunidades[2]->getRouteKey(),
+                    'id' => (string)$comunidades[2]->getRouteKey(),
                     'attributes' => [
                         'cif' => $comunidades[2]->cif,
                         'denom' => $comunidades[2]->denom,
@@ -93,7 +96,8 @@ class ComunidadesTest extends TestCase {
     /**
      * @test
      */
-    public function can_fetch_single_comunidad() {
+    public function can_fetch_single_comunidad()
+    {
         $this->withoutExceptionHandling();
 
         $comunidad = Comunidad::factory()->create();
@@ -103,13 +107,13 @@ class ComunidadesTest extends TestCase {
         $response->assertStatus(200);
 
         $response->assertHeader(
-                'Content-Type', "application/vnd.api+json"
+            'Content-Type', "application/vnd.api+json"
         );
 
         $response->assertJson([
             'data' => [
                 'type' => 'comunidades',
-                'id' => (string) $comunidad->getRouteKey(),
+                'id' => (string)$comunidad->getRouteKey(),
                 'attributes' => [
                     'cif' => $comunidad->cif,
                     'denom' => $comunidad->denom,
@@ -127,7 +131,8 @@ class ComunidadesTest extends TestCase {
     /**
      * @test
      */
-    public function can_create_comunidad() {
+    public function can_create_comunidad()
+    {
         $this->withoutExceptionHandling();
 
         $user = User::factory()->create();
@@ -148,7 +153,7 @@ class ComunidadesTest extends TestCase {
                     'pais' => 'ESP',
                 ],
             ]
-                ], [
+        ], [
             'Content-Type' => 'application/vnd.api+json'
         ]);
 
@@ -157,17 +162,17 @@ class ComunidadesTest extends TestCase {
         $comunidad = Comunidad::first();
 
         $response->assertHeader(
-                'Location', route('api.v1.comunidades.show', $comunidad),
+            'Location', route('api.v1.comunidades.show', $comunidad),
         );
 
         $response->assertHeader(
-                'Content-Type', "application/vnd.api+json"
+            'Content-Type', "application/vnd.api+json"
         );
 
         $response->assertJson([
             'data' => [
                 'type' => 'comunidades',
-                'id' => (string) $comunidad->getRouteKey(),
+                'id' => (string)$comunidad->getRouteKey(),
                 'attributes' => [
                     'cif' => "12345678w",
                     'fechalta' => $comunidad->fechalta,
@@ -182,23 +187,26 @@ class ComunidadesTest extends TestCase {
         ]);
     }
 
-    public function assertForbbiden() {
+    public function assertForbbiden()
+    {
         return $this->assertStatus(403);
     }
 
-    public function assertUnAuthorized() {
+    public function assertUnAuthorized()
+    {
         return $this->assertStatus(401);
     }
 
     /**
      * @test
      */
-    public function guests_cannot_create_comunidad() {
+    public function guests_cannot_create_comunidad()
+    {
 //        $this->withoutExceptionHandling();
 
         $this->postJson(route('api.v1.comunidades.store'), [],
-                        ['Content-Type' => 'application/vnd.api+json'])
-                ->assertUnAuthorized();
+            ['Content-Type' => 'application/vnd.api+json'])
+            ->assertUnAuthorized();
 
 //        $response = $this->assertJsonApiError();
 
@@ -207,10 +215,11 @@ class ComunidadesTest extends TestCase {
 
     /**
      * Con assertExactJson no pasa
-     * 
+     *
      * @test
      */
-    public function can_update_comunidad() {
+    public function can_update_comunidad()
+    {
 //        $this->withoutExceptionHandling();
 
         $user = User::factory()->create();
@@ -218,6 +227,26 @@ class ComunidadesTest extends TestCase {
         Sanctum::actingAs($user);
 
         $comunidad = Comunidad::factory()->create();
+
+//        $response = $this->patchJson(route('api.v1.comunidades.update', $comunidad), [
+//            'data' => [
+//                'type' => 'comunidades',
+//                'attributes' => [
+//                    'cif' => "12345678w",
+//                    'fechalta' => "2022-02-28",
+//                    'partes' => 10,
+//                    'denom' => "Testeando comunidad",
+//                    'email' => "123456@gmail.com",
+//                    'direccion' => "quinto pino",
+//                    'cp' => '07007',
+//                    'pais' => "ESP",
+//                    'provincia' => "Caceres",
+//                    'municipio' => 'Palma de Mallorca',
+//                ],
+//            ]
+//                ], [
+//            'Content-Type' => 'application/vnd.api+json'
+//        ]);
 
         $response = $this->patchJson(route('api.v1.comunidades.update', $comunidad), [
             'data' => [
@@ -235,23 +264,23 @@ class ComunidadesTest extends TestCase {
                     'municipio' => 'Palma de Mallorca',
                 ],
             ]
-                ], [
+        ], [
             'Content-Type' => 'application/vnd.api+json'
         ]);
 
-        $response->assertOk();
+        $response->dump()->assertOk();
 
         $response->assertHeader(
-                'Location', route('api.v1.comunidades.show', $comunidad),
+            'Location', route('api.v1.comunidades.show', $comunidad),
         );
         $response->assertHeader(
-                'Content-Type', "application/vnd.api+json"
+            'Content-Type', "application/vnd.api+json"
         );
 
         $response->assertJson([
             'data' => [
                 'type' => 'comunidades',
-                'id' => (string) $comunidad->getRouteKey(),
+                'id' => (string)$comunidad->getRouteKey(),
                 'attributes' => [
                     'cif' => "12345678w",
                     'fechalta' => "2022-02-28",
@@ -271,7 +300,8 @@ class ComunidadesTest extends TestCase {
     /**
      * @test
      */
-    function can_delete_comunidad() {
+    function can_delete_comunidad()
+    {
         $user = User::factory()->create();
 
         Sanctum::actingAs($user);
@@ -279,7 +309,7 @@ class ComunidadesTest extends TestCase {
         $comunidad = Comunidad::factory()->create();
 
         $this->deleteJson(route('api.v1.comunidades.destroy', $comunidad))
-                ->assertNoContent();  // Estado 204, que indica "Sin contenido"
+            ->assertNoContent();  // Estado 204, que indica "Sin contenido"
 
         $this->assertSoftDeleted($comunidad);
     }
@@ -287,7 +317,8 @@ class ComunidadesTest extends TestCase {
     /**
      * @test
      */
-    function denom_is_required() {
+    function denom_is_required()
+    {
 //        $this->withoutExceptionHandling();
 
         $user = User::factory()->create();
@@ -309,7 +340,7 @@ class ComunidadesTest extends TestCase {
                     'pais' => 'ESP',
                 ],
             ]
-                ], [
+        ], [
             'Content-Type' => 'application/vnd.api+json'
         ]);
 //        $response->dump();
@@ -323,9 +354,10 @@ class ComunidadesTest extends TestCase {
     }
 
     /**
-     * 
+     *
      */
-    public function it_can_returns_a_json_api_error_object_when_a_comunidad_is_not_found() {
+    public function it_can_returns_a_json_api_error_object_when_a_comunidad_is_not_found()
+    {
         $this->withoutExceptionHandling();
 
         $response = $this->getJson(route('api.v1.comunidades.show', '1234'));
@@ -342,7 +374,8 @@ class ComunidadesTest extends TestCase {
     // ¿Eliminar?
 
     /** @test */
-    public function it_can_sort_comunidades() {
+    public function it_can_sort_comunidades()
+    {
         $user = User::first();
 
 //        Sanctum::actingAs($user);

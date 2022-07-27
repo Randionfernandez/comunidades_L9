@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/var/www/comunidades/app/Http/Controllers/Api/ComunidadController.php</file>
+            <file>file:/var/www/comunidades/public/js/app.js</file>
+            <file>file:/var/www/comunidades/composer.json</file>
+            <file>file:/var/www/comunidades/app/Http/Controllers/MovimientoController.php</file>
+            <file>file:/var/www/comunidades/resources/views/adminlte/_partials/sidebarMenu.blade.php</file>
+            <file>file:/var/www/comunidades/public/js/apirest.js</file>
+            <file>file:/var/www/comunidades/resources/views/adminlte/js/api_propiedades.js</file>
+        </group>
     </open-files>
 </project-private>

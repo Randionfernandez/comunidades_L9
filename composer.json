@@ -2,6 +2,13 @@
     "name": "randionfernandez/comunidades",
     "type": "project",
     "description": "Gestión de comunidades de vecinos.",
+    "authors": [
+        {
+            "name": "randion",
+            "email": "randion@cifpfbmoll.eu",
+	    "role" : "Developer"
+        }
+    ],
     "keywords": [
         "framework",
         "laravel"
@@ -26,7 +33,7 @@
         "symfony/mailer": "^6.1"
     },
     "require-dev": {
-	"spatie/laravel-ignition": "^1.0",
+        "spatie/laravel-ignition": "^1.0",
         "fakerphp/faker": "^1.14",
         "laravel/dusk": "^6.18",
         "laravel/sail": "^1.0.1",

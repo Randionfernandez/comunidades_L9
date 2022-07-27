@@ -1,7 +1,7 @@
-    <div class="row">
+<div class="row">
     <div class="col-md-8">
 
-        <div class= "card card-warning"> 
+        <div class="card card-warning">
             <div class="card-header">
                 <h3 class="card-title">Ficha de la comunidad</h3>
             </div>
@@ -23,7 +23,8 @@
                     <div class="col-2">
                         <div class="form-group">
                             <label>CIF</label>
-                            <input type="text" name="cif" value="{{ old('cif', $comunidad->cif ?? '') }}" class="form-control">
+                            <input type="text" name="cif" value="{{ old('cif', $comunidad->cif ?? '') }}"
+                                   class="form-control">
                             {{$errors->first('cif')}}
                         </div>
                     </div>
@@ -33,11 +34,12 @@
                     <div class="col-5">
                         <div class="form-group">
                             <label>Denominación</label>
-                            <input type="text" class="form-control" name="denom" value="{{ old('denom', $comunidad->denom ?? '')}}">
+                            <input type="text" class="form-control" name="denom"
+                                   value="{{ old('denom', $comunidad->denom ?? '')}}">
                         </div>
                     </div>
 
-                    <!-- Número de propiedades, es decir, unidades registrales 
+                    <!-- Número de propiedades, es decir, unidades registrales
                          min y max validan pero solo si usamos las flechas del widget; al menos en firefox y chrome
                     Admite valor 1 y negativos en validación cliente. Validar limites en lado servidor.
                     -->
@@ -57,7 +59,8 @@
                             <label for="email">@lang('Correo electrónico')</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $comunidad->email ?? '') }}">
+                                <input type="email" class="form-control" id="email" name="email"
+                                       value="{{ old('email', $comunidad->email ?? '') }}">
                             </div>
 
                         </div>
@@ -102,7 +105,7 @@
                         <div class="form-group">
                             <label>Municipio</label>
                             <input type="text" class="form-control"
-                                   name="municipio"  value="{{ old('municipio', $comunidad->municipio ?? '') }}">
+                                   name="municipio" value="{{ old('municipio', $comunidad->municipio ?? '') }}">
                         </div>
                     </div>
                     <!-- localidad -->
@@ -117,7 +120,6 @@
                 </div>
 
 
-
                 <!-- logo -->
 
 
@@ -128,7 +130,7 @@
                               name="observaciones">{{ old('observaciones', $comunidad->observaciones ?? '') }}
                     </textarea>
                 </div>
-            </div>   <!-- ./card-body -->  
+            </div>   <!-- ./card-body -->
         </div> <!-- ./card card-warning -->
 
 
@@ -137,22 +139,22 @@
                href="{{ route('comunidades.index') }}">@lang('Ver todas')</a>
 
             @if ((Request::route()->getName()=='comunidades.create'))
-            <button id="guardar" 
-                    @if (Gate::allows('create-comunidad')) enabled @else disabled @endif 
-                    class="btn btn-secondary"
-                    onclick="document.getElementById('create-comunidad').submit()">
-                @lang('Guardar')</button>
+                <button id="guardar"
+                        @if (Gate::allows('create-comunidad')) enabled @else disabled @endif
+                        class="btn btn-secondary"
+                        onclick="document.getElementById('create-comunidad').submit()">
+                    @lang('Guardar')</button>
             @else
-            <button name="actualizar" class="btn btn-secondary"
-                    @if (Gate::allows('edit-comunidad', $comunidad)) enabled @else disabled @endif
-                    onclick="document.getElementById('update-comunidad').submit()">
-                @lang('Actualizar')</button>
+                <button name="actualizar" class="btn btn-secondary"
+                        @if (Gate::allows('edit-comunidad', $comunidad)) enabled @else disabled @endif
+                        onclick="document.getElementById('update-comunidad').submit()">
+                    @lang('Actualizar')</button>
 
-            <button name="Borrar" class="btn btn-danger" enabled
-                    @if (Gate::allows('delete-comunidad', $comunidad)) enabled @else disabled @endif
-                    onclick="document.getElementById('delete-comunidad').submit()">
-                @lang('Dar de baja')
-            </button>
+                <button name="Borrar" class="btn btn-danger" enabled
+                        @if (Gate::allows('delete-comunidad', $comunidad)) enabled @else disabled @endif
+                        onclick="document.getElementById('delete-comunidad').submit()">
+                    @lang('Dar de baja')
+                </button>
             @endif
 
             <button class="btn btn-primary float-right" data-toggle="modal" data-target="#ayuda">
@@ -182,7 +184,7 @@
 
                     </div>
                 </div>
-            </div>      <!-- the modal ayuda -->  
+            </div>      <!-- the modal ayuda -->
 
 
         </div><!-- ./card-footer -->
@@ -204,7 +206,7 @@
                         <label>Presidente</label>
                         <input type="text" class="form-control" maxlength="35"
                                name="presidente" value="{{ old('presidente', $comunidad->presidente ?? '') }}">
-                    </div>             
+                    </div>
                     <!-- secretario -->
                     <div class="form-group">
                         <label>Secretario</label>
@@ -214,7 +216,7 @@
                     <!-- administrador -->
                     <div class="form-group">
                         <label>Administrador</label>
-                        <input type="text" class="form-control"  maxlength="35"
+                        <input type="text" class="form-control" maxlength="35"
                                name="administrador" value="{{ old('administrador', $comunidad->administrador ?? '') }}">
                     </div>
                 </div>
@@ -234,7 +236,7 @@
                     <!-- Título -->
                     <div class="form-group">
                         <label>Título</label>
-                        <input type="text" class="form-control"  maxlength="35"
+                        <input type="text" class="form-control" maxlength="35"
                                name="titulo" value="{{ old('titulo')}}">
                     </div>
 

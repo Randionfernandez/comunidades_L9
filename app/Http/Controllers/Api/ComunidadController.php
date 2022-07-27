@@ -67,9 +67,11 @@ class ComunidadController extends Controller {
      */
     function update(Request $request, Comunidad $comunidad): ComunidadResource {
 //        dump($request->data);
+        
         $request->validate([
             'data.attributes.cif' => ['required', 'alpha_num', 'size:9',
-                Rule::unique('comunidades')->ignore($this->route('comunidades.update'))],
+                Rule::unique('comunidades','cif')->ignore($comunidad)],
+//                Rule::unique('comunidades')->ignore($this->route('comunidades.update'))],
             'data.attributes.fechalta' => 'required|date',
 //            'activa' => ['boolean'], // Estos dos checkbox ya no se manejan por el usuario.
 //            'gratuita' => ['boolean'],
@@ -88,6 +90,8 @@ class ComunidadController extends Controller {
             'data.attributes.secretario' => 'nullable|string|max:35',
             'data.attributes.administrador' => 'nullable|string|max:35',
         ]);
+        
+
 //        $comunidad::update($request->validated());
         $comunidad->update([  // Falta añadir el resto de campos. Estos son sufi para que el test creado funcione.
             'cif' => $request->input('data.attributes.cif'),
