@@ -12,6 +12,7 @@ class Proveedor extends Model {
     use SoftDeletes;
 
     protected $table = 'proveedores';
+
     protected $fillable = [
         'fechalta',
         'doi', // documento oficial de identidad: pasaporte, dni, cif, nie
@@ -30,7 +31,8 @@ class Proveedor extends Model {
         'comentario'
     ];
 
-    public function comunidades() {
+    public function comunidades(): BelonsToMany
+    {
         return $this->belongsToMany(Comunidad::class, 'comunidad_proveedor', 'proveedor_id', 'comunidad_id')->withTimestamps();
     }
 }

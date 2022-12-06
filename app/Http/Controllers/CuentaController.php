@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -25,9 +26,11 @@ class CuentaController extends Controller {
      */
     public function index() {
 //        $user = auth()->user();
-        
+
         $cmd = session('cmd_seleccionada');
-        return view('cuentas.index', ['cuentas' => $cmd->cuentas,
+        $cuentas = $cmd->cuentas;
+
+        return view('cuentas.index', ['cuentas' => $cuentas,
             'comunidad' => $cmd]);
     }
 
@@ -50,7 +53,7 @@ class CuentaController extends Controller {
 
 
         if (request()->hasFile('doc')) {
-            // guarda el documento en una subcarpeta cuyo nombre es el cif de la comunidad        
+            // guarda el documento en una subcarpeta cuyo nombre es el cif de la comunidad
             $this->cmd->documentos()->create([
                 'carpeta' => "Cuentas",
                 'titulo' => $request->titulo,
@@ -63,7 +66,10 @@ class CuentaController extends Controller {
         $this->cmd->cuentas()->create($request->all());
 //        $this->cmd->refresh();   // ver también push() en Eloquent: Relationships
 
-        return view('cuentas.index', ['cuentas' => $this->cmd->cuentas, 'comunidad' => $this->cmd])->with('status', ['msj' => "La cuenta ha sido creada correctamente", 'alert' => 'alert-success']);
+        return view('cuentas.index', [
+            'cuentas' => $this->cmd->cuentas,
+            'comunidad' => $this->cmd])->with('status',
+            ['msj' => "La cuenta ha sido creada correctamente",'alert' => 'alert-success']);
     }
 
     /**
@@ -83,7 +89,8 @@ class CuentaController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Cuenta $cuenta) {
-        return view('cuentas.edit', ['cuenta' => $cuenta,
+        return view('cuentas.edit', [
+            'cuenta' => $cuenta,
             'comunidad' => $cuenta->comunidad]);
     }
 
@@ -96,9 +103,9 @@ class CuentaController extends Controller {
      */
     public function update(Request $request, Cuenta $cuenta) {
 
-        $cmd = session('cmd_seleccionada');
+        $cmd = Comunidad::first(session('cmd_seleccionada'));
         if (request()->hasFile('doc')) {
-            // guarda el fichero en una subcarpeta cuyo nombre es el {cif de la comunidad}/cuentas       
+            // guarda el fichero en una subcarpeta cuyo nombre es el {cif de la comunidad}/cuentas
             Documento::Insert([
                 'comunidad_id' => $cmd->id,
                 'model_id' => $cuenta->id,
@@ -112,7 +119,7 @@ class CuentaController extends Controller {
         }
 
         $cuenta->update($request->all());
-        $cmd->usuarios()->refresh();
+        $cmd->users()->refresh();
         $msj = 'La cuenta ' . $cuenta->denominacion . ', fue actualizada con éxito';
 
         return redirect()->route('cuentas.index')->with('status', ['msj' => $msj, 'alert' => 'alert-info']);

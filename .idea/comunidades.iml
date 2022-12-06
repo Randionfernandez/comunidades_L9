@@ -134,8 +134,44 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/nette/utils" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/dusk" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/php-webdriver/webdriver" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-json-api/core" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-json-api/laravel" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-json-api/encoder-neomerx" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-json-api/neomerx-json-api" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-json-api/spec" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-json-api/validation" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-json-api/exceptions" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-json-api/eloquent" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/mailer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/publisher" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel-lang/lang" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/brianium/paratest" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/backtrace" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/flare-client-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/fruitcake/php-cors" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dragon-code/contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dragon-code/support" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/dragon-code/pretty-array" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/jean85/pretty-package-versions" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/serializer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/property-info" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/property-access" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/phpunit-snapshot-assertions" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nunomaduro/termwind" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/uid" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/app" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/framework" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="social-network" />
+    <orderEntry type="module" module-name="eliminar" />
+    <orderEntry type="module" module-name="clone_reddit" />
   </component>
 </module>

@@ -13,13 +13,14 @@ class PaisSeeder extends Seeder {
      *
      * @return void
      */
-    public function run() {
+    public function run(): void
+    {
 
         // Código ISO 3166-1 alfa-3 del país
         // Código ISO 3166-1 alfa-2 del país
         // Código ISO 3166-1 numérico del país
-        // Nombre del país    
-        // En la wikipedia figuran 9 paises más (4 Agosto 2021)
+        // Nombre del país
+        // En la wikipedia figuran 9 países más (4 Agosto 2021)
         $paises = [
             ['codigoISO3' => 'AND', 'codigoISO2' => 'AD', 'cod_numerico' => '20', 'nombre' => 'Andorra'],
             ['codigoISO3' => 'ARE', 'codigoISO2' => 'AE', 'cod_numerico' => '784', 'nombre' => 'Emiratos Árabes Unidos'],
@@ -263,10 +264,10 @@ class PaisSeeder extends Seeder {
             ['codigoISO3' => 'ZAF', 'codigoISO2' => 'ZA', 'cod_numerico' => '710', 'nombre' => 'Sudáfrica'],
         ];
 
-        // Tiempo aproximado de ejecución de este seeder = (151ms, ...) 
+        // Tiempo aproximado de ejecución de este seeder = (151ms, ...)
         DB::table('paises')->insert($paises);
 
-        // Tiempo aproximado de ejecución de este seeder = 40 segundos 
+        // Tiempo aproximado de ejecución de este seeder = 40 segundos
 //        foreach ($paises as $pais) {
 //            Pais::create([
 //                'codigoISO3' => $pais['codigoISO3'],

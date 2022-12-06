@@ -41,7 +41,7 @@ class AccessTokenTest extends TestCase {
 
         $token = $response->json('plain-text-token');
         $dbToken = PersonalAccessToken::findToken($token);
-
+        
         //verify the token
         $this->assertTrue($dbToken->tokenable->is($user));
     }

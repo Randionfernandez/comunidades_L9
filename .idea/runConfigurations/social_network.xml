@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="social-network" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/../laravel/docencia/social-network/public/index.php">
+    <method v="2" />
+  </configuration>
+</component>

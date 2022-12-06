@@ -4,14 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDivisasTable extends Migration {
+class CreateDivisasTable extends Migration
+{
 
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
+    public function up(): void
+    {
         Schema::create('divisas', function (Blueprint $table) {
             $table->char('codigo', 3)->primary()->default('EUR')->comment('Código ISO-4217 de la divisa');
             $table->string('nombre', 32)->default('Euro');
@@ -23,7 +25,8 @@ class CreateDivisasTable extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down(): void
+    {
         Schema::dropIfExists('divisas');
     }
 

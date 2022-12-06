@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -20,7 +23,7 @@ class User extends Authenticatable {
     use Notifiable;
 //    use HasRoles;
     use TwoFactorAuthenticatable;
-    use \Illuminate\Database\Eloquent\SoftDeletes;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -76,11 +79,11 @@ class User extends Authenticatable {
         'profile_photo_url',
     ];
 
-    public function comunidades() {
+    public function comunidades(): BelongsToMany {
         return $this->belongsToMany(Comunidad::class, 'comunidad_user', 'user_id', 'comunidad_id')->withPivot('role_name')->withTimestamps();
     }
 
-    public function propiedads() {
+    public function propiedades(): HasMany {
         return $this->hasMany(Propiedad::class);
     }
     // Instalado paquete Spatie/laravel-permission que es incompatible con el método roles().

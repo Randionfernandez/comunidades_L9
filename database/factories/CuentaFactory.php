@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Database\Factories;
 
@@ -19,13 +20,14 @@ class CuentaFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'iban' => $this->faker->iban('ES'),
-            'fecha_apertura' => $this->faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
-            'bic' => $this->faker->swiftBicNumber(),
-            
+            'iban' => fake()->iban('ES'),
+            'fecha_apertura' => fake()->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
+            'bic' => fake()->swiftBicNumber(),
+            'divisa' => 'EUR',
+
         ];
     }
 }

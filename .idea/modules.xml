@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../laravel/docencia/clone_reddit/.idea/clone_reddit.iml" filepath="$PROJECT_DIR$/../laravel/docencia/clone_reddit/.idea/clone_reddit.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/comunidades.iml" filepath="$PROJECT_DIR$/.idea/comunidades.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../laravel/docencia/eliminar/.idea/eliminar.iml" filepath="$PROJECT_DIR$/../laravel/docencia/eliminar/.idea/eliminar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../laravel/docencia/social-network/.idea/social-network.iml" filepath="$PROJECT_DIR$/../laravel/docencia/social-network/.idea/social-network.iml" />
     </modules>
   </component>
 </project>

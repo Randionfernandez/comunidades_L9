@@ -12,7 +12,8 @@ class DivisaSeeder extends Seeder {
      *
      * @return void
      */
-    public function run() {
+    public function run(): void
+    {
 
         DB::table('divisas')->insert([
             ['codigo' => 'AED', 'nombre' => 'Dirham-Emiratos Árabes Unidos'],

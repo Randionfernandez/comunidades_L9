@@ -11,7 +11,7 @@ class CreateActividadesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('actividades', function (Blueprint $table) {
             $table->char('codigo', 6)->primary();
@@ -24,7 +24,7 @@ class CreateActividadesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('actividades');
     }

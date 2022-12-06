@@ -29,7 +29,7 @@ if (file_exists(__DIR__ . '/../storage/framework/maintenance.php')) {
 /* Register The Auto Loader
   |--------------------------------------------------------------------------
   |
-  | Composer provides a convenient, automatically generated class loader for
+  | Composer provides a convenient¿Cómo retornar una función en , automatically generated class loader for
   | our application. We just need to utilize it! We'll simply require it
   | into the script here so that we don't have to worry about manual
   | loading any of our classes later on. It feels great to relax.

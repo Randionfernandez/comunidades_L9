@@ -24,7 +24,7 @@
                         <p>Propiedades</p>
                     </a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a href="{{ route('cuentas.index')}}" class="nav-link {{ SetActiveRoute('cuentas.*') }}">
                         <i class="fa fa-euro-sign nav-icon"></i>
@@ -42,7 +42,7 @@
                 <li class="nav-item">
                     <a href="{{ route('usuarios.index')}}" class="nav-link {{ SetActiveRoute('usuarios.*') }}">
                         <i class="fa fa-users nav-icon"></i>
-                        <p>Usuarios</p>
+                        <p>Usuarios - Comunidad</p>
                     </a>
                 </li>
 
@@ -86,10 +86,18 @@
                         <p>Incidencias</p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ route('documentos.index')}}" class="nav-link {{ SetActiveRoute('documentos.*') }}">
                         <i class="fa fa-file-alt nav-icon"></i>
                         <p>Documentos</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('users_all')}}" class="nav-link {{ SetActiveRoute('usuarios.*') }}">
+                        <i class="fa fa-users nav-icon"></i>
+                        <p>Usuarios - Todos</p>
                     </a>
                 </li>
             </ul>

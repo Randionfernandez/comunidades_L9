@@ -16,7 +16,8 @@ class ComunidadApiRequest extends FormRequest {
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize(): bool
+    {
 
         return true;
         // podemos acceder al usuario con $this->user()
@@ -29,7 +30,8 @@ class ComunidadApiRequest extends FormRequest {
      *
      * @return array
      */
-    public function rules() {
+    public function rules(): array
+    {
         return [
             'data.attributes.cif' => ['required', 'alpha_num', 'size:9',
                 Rule::unique('comunidades')->ignore($this->route('comunidad'))],
@@ -57,7 +59,8 @@ class ComunidadApiRequest extends FormRequest {
 //        parent::__construct();
 //    }
 
-    public function messages() {
+    public function messages(): array
+    {
         return [
             'denom.required' => __('The community needs a name'),
             'cif.required' => __('The community needs an unique cif')

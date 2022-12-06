@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Actividad;
+use Illuminate\Support\Facades\DB;
 
 class ActividadSeeder extends Seeder
 {
@@ -12,39 +12,32 @@ class ActividadSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        //
-        
-        
         $actividades = [
-        'Ad_Pub' => 'Admin. Pública',
-        'TEL' => 'Telefonía',
-        'AGUA' => 'Agua',
-        'ANT' => 'Antenas',
-        'PLAGAS' => 'Antiplagas',
-        'ASCN' => 'Ascensores',
-        'CONT' => 'Contraincendios',
-        'DES' => 'Desatascos',
-        'ELEC' => 'Electriciad',
-        'BANCO' => 'Entidad financiera',
-        'FON' => 'Fontaneŕía',
-        'IMP' => 'Impermiabilizaciones',
-        'JAR' => 'Jardinería',
-        'JUR' => 'Jurídico',
-        'LMP' => 'Limpieza',
-        'PISC' => 'Piscinas',
-        'PA' => 'Porteros automáticos',
-        'PG' => 'Puertas garajes',
-        'REH' => 'Rehabilitación',
-        'SEG' => 'Seguros',
+            ['codigo' => 'Ad_Pub', 'actividad' => 'Admin. Pública'],
+            ['codigo' => 'TEL', 'actividad' => 'Telefonía'],
+            ['codigo' => 'AGUA', 'actividad' => 'Agua'],
+            ['codigo' => 'ANT', 'actividad' => 'Antenas'],
+            ['codigo' => 'PLAGAS', 'actividad' => 'Antiplagas'],
+            ['codigo' => 'ASCN', 'actividad' => 'Ascensores'],
+            ['codigo' => 'CONT', 'actividad' => 'Contraincendios'],
+            ['codigo' => 'DES', 'actividad' => 'Desatascos'],
+            ['codigo' => 'ELEC', 'actividad' => 'Electriciad'],
+            ['codigo' => 'BANCO', 'actividad' => 'Entidad financiera'],
+            ['codigo' => 'FON', 'actividad' => 'Fontaneŕía'],
+            ['codigo' => 'IMP', 'actividad' => 'Impermiabilizaciones'],
+            ['codigo' => 'JAR', 'actividad' => 'Jardinería'],
+            ['codigo' => 'JUR', 'actividad' => 'Jurídico'],
+            ['codigo' => 'LMP', 'actividad' => 'Limpieza'],
+            ['codigo' => 'PISC', 'actividad' => 'Piscinas'],
+            ['codigo' => 'PA', 'actividad' => 'Porteros automáticos'],
+            ['codigo' => 'PG', 'actividad' => 'Puertas garajes'],
+            ['codigo' => 'REH', 'actividad' => 'Rehabilitación'],
+            ['codigo' => 'SEG', 'actividad' => 'Seguros'],
         ];
-        
-        foreach ($actividades as $codigo => $actividad) {
-            Actividad::create([
-                'codigo' => $codigo,
-                'actividad' => $actividad,
-            ]);
-        }
+
+        DB::table('actividades')->insert($actividades);
+
     }
 }

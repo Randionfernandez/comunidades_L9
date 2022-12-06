@@ -4,36 +4,38 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration {
+class CreateUsersTable extends Migration
+{
 
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
+    public function up(): void
+    {
         Schema::create('users', function (Blueprint $table) {
 
             $table->id();
             $table->timestamps();
             $table->softDeletes();
-            
+
             $table->string('name', 35)->comment('No modificar el nombre de este campo, o dejará de funcionar la autenticación');
             $table->string('apellidos', 40)->nullable();
             $table->date('fechalta')->default(now());      //   ¿Es necesaria?
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->default('$2y$10$QlfN7CbALaYJSTPmQ69CdeW5uFOd3pcm.Gke78.pypt.zQljlso/2');
             $table->string('language', 3)->default('es')->comment('Idioma preferente del usuario');
             $table->rememberToken();
             $table->text('profile_photo_path')->nullable();
             $table->integer('MaxFreeCommunities')->default(env('APP_MAX_FREE_COMMUNITIES', 3));
-            
+
 
             /*
              * Al integrar usuarios y propietarios en la misma tabla estos campos
              * deben ser opcionales
-             * 
+             *
              */
             $table->enum('tratamiento', ['Sr.', 'Sra.'])->default('Sr.')->nullable();
             $table->enum('tipo', ['física', 'jurídica'])->nullable()->comment('Tipo de persona');
@@ -58,7 +60,8 @@ class CreateUsersTable extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down(): void
+    {
         Schema::dropIfExists('users');
     }
 

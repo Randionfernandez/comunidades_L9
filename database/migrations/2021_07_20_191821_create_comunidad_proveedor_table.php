@@ -4,21 +4,23 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComunidadProveedorTable extends Migration {
+class CreateComunidadProveedorTable extends Migration
+{
 
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
+    public function up(): void
+    {
         Schema::create('comunidad_proveedor', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
             $table->foreignId('comunidad_id')->constrained('comunidades')
-                    ->onDelete('cascade');
-            $table->foreignId('proveedor_id')->constrained('proveedores')->comment('onDelete debería asignar un valor que informase de la relación rota, p.e., "Elliminado"');
+                ->onDelete('cascade');
+            $table->foreignId('proveedor_id')->constrained('proveedores')->comment('onDelete debería asignar un valor que informase de la relación rota, p.e., "Eliminado"');
 
             $table->unique(['comunidad_id', 'proveedor_id']);
         });
@@ -29,7 +31,8 @@ class CreateComunidadProveedorTable extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down(): void
+    {
         Schema::dropIfExists('comunidad_proveedor');
     }
 

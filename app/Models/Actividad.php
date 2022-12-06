@@ -10,10 +10,13 @@ class Actividad extends Model {
     use HasFactory;
 
     protected $table = 'actividades';
+
     protected $keyType = 'string';
     protected $primaryKey = 'codigo';
+    public $incrementing = false;
+
     public $timestamps = false;
-    
+
     protected $fillable = [
         'codigo',
         'actividad'

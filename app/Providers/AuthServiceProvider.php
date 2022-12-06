@@ -14,14 +14,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use function isSuperAdmin;
 
-class AuthServiceProvider extends ServiceProvider {
+class AuthServiceProvider extends ServiceProvider
+{
 
     /**
      * The policy mappings for the application.
      * eam::class => TeamPolicy::class,
-      ];
-
-      /**
+     * ];
+     *
+     * /**
      * @var array
      */
     protected $policies = [
@@ -33,18 +34,28 @@ class AuthServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function boot() {
+    public function boot()
+    {
         $this->registerPolicies();
 
 ////////////////           Definición de las gates de la aplicación
-//        Gate::before(function ($user) {
-//            if (isSuperAdmin($user))
-//                return true;
-//        });
+        Gate::before(function ($user) {
+            if (isSuperAdmin($user))
+                return true;
+        });
+
+        /**
+         * Solo el superusuario puede ver todos los usuarios de la base de datos
+         */
+        Gate::define('is_superadmin', function (User $user) {
+            if (isSuperAdmin($user))
+                return true;
+            return false;
+        });
 
 
         /**
-          El susuario puede crear comunidades si no supera el límite de comunidades gratuitas
+         * El susuario puede crear comunidades si no supera el límite de comunidades gratuitas
          */
         Gate::define('create-comunidad', function (User $user) {
             $cmd = $user->comunidades->where('gratuita', true);
@@ -57,10 +68,10 @@ class AuthServiceProvider extends ServiceProvider {
 //        No testado
         Gate::define('edit-comunidad', function (User $user, Comunidad $comunidad) {
             $num_items = DB::table('comunidad_user')
-                    ->where('comunidad_id', $comunidad->id)
-                    ->where('user_id', $user->id)
-                    ->where('role_name', 'Admin')
-                    ->count();
+                ->where('comunidad_id', $comunidad->id)
+                ->where('user_id', $user->id)
+                ->where('role_name', 'Admin')
+                ->count();
             if ($num_items === 1)  // más de un item no puede haber
                 return true;
             return false;

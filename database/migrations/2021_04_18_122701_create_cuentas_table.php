@@ -4,14 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCuentasTable extends Migration {
+class CreateCuentasTable extends Migration
+{
 
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() {
+    public function up(): void
+    {
         Schema::create('cuentas', function (Blueprint $table) {
             $table->id();
 
@@ -31,10 +33,10 @@ class CreateCuentasTable extends Migration {
             $table->softDeletes();
 
             $table->foreign('comunidad_id')->references('id')->on('comunidades')
-                    ->onDelete('cascade');
-            
+                ->onDelete('cascade');
+
             $table->foreign('divisa')->references('codigo')->on('divisas')
-                    ->onUpdate('cascade');
+                ->onUpdate('cascade');
         });
     }
 
@@ -43,7 +45,8 @@ class CreateCuentasTable extends Migration {
      *
      * @return void
      */
-    public function down() {
+    public function down(): void
+    {
         Schema::dropIfExists('cuentas');
     }
 

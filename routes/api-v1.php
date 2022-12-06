@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\ComunidadController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\MovimientoController;
 use App\Http\Controllers\Api\PropiedadController;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

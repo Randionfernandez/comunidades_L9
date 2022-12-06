@@ -15,8 +15,8 @@ class ComunidadRequest extends FormRequest {
      *
      * @return bool
      */
-    public function authorize() {
-               
+    public function authorize(): bool {
+
         return true;
         // podemos acceder al usuario con $this->user()
         // podemos verificar que es administrador con
@@ -28,10 +28,13 @@ class ComunidadRequest extends FormRequest {
      *
      * @return array
      */
-    public function rules() {
+    public function rules(): array
+    {
         return [
             'cif' => ['required', 'alpha_num', 'size:9',
-                Rule::unique('comunidades')->ignore($this->route('comunidad'))],
+                Rule::unique('comunidades')->ignore(request('comunidad'))],
+// Abajo la forma original del Rule:unique, debe verificarse que la de arriba es correcta. Propuesta en curso 'Refactorización'.
+//                Rule::unique('comunidades')->ignore($this->route('comunidad'))],
             'fechalta' => 'required|date',
 //            'activa' => ['boolean'], // Estos dos checkbox ya no se manejan por el usuario.
 //            'gratuita' => ['boolean'],
@@ -52,7 +55,8 @@ class ComunidadRequest extends FormRequest {
         ];
     }
 
-    public function messages() {
+    public function messages(): array
+    {
         return [
             'denom.required' => __('The community needs a name'),
             'cif.required' => __('The community needs an unique cif')

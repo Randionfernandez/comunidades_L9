@@ -12,7 +12,8 @@ class GruposDistribucionSeeder extends Seeder {
      *
      * @return void
      */
-    public function run() {
+    public function run(): void
+    {
 
         DB::table('grupos_distribucion')->insert([
             ['orden' => '1',  'codigo' => 'COEF', 'nombre' => 'Coeficiente'],

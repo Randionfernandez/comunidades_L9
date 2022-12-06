@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -12,16 +11,15 @@ class CreateTiposPropiedadTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::create('tipos_propiedad', function (Blueprint $table) {
-            $table->char('codigo',3)->default('NoC');
-            $table->string('descripcion',20);
-            
+            $table->char('codigo', 3)->default('NoC');
+            $table->string('descripcion', 20);
+
             $table->primary('codigo');
-            
-            
-            
+
+
         });
     }
 
@@ -30,7 +28,7 @@ class CreateTiposPropiedadTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('tipos_propiedad');
     }

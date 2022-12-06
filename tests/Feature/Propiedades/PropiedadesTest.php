@@ -45,6 +45,7 @@ class PropiedadesTest extends TestCase {
                     'observaciones' => null
                 ]
             ]], [
+            'Accept' => 'application/vnd.api+json',  // revisar si es requerida esta cabecera
             'Content-Type' => 'application/vnd.api+json'
         ]);
         $propiedad= Propiedad::all();

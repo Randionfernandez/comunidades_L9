@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use \Illuminate\Database\Eloquent\SoftDeletes;
 
 class Documento extends Model {
@@ -20,7 +21,8 @@ class Documento extends Model {
         'hash_name',
     ];
 
-    public function comunidad() {
+    public function comunidad(): BelongsTo
+    {
         return $this->belongsTo(Comunidad::class);
     }
 
