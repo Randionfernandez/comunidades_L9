@@ -3,7 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/comunidades.wiki" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../laravel/docencia/clone_reddit" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../laravel/docencia/social-network" vcs="Git" />
   </component>
 </project>

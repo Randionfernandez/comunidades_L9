@@ -94,8 +94,6 @@ class ComunidadController extends Controller
             'data.attributes.secretario' => 'nullable|string|max:35',
             'data.attributes.administrador' => 'nullable|string|max:35',
         ]);
-
-
 //        $comunidad::update($request->validated());
         $comunidad->update([  // Falta añadir el resto de campos. Estos son sufi para que el test creado funcione.
             'cif' => $request->input('data.attributes.cif'),

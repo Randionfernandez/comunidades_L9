@@ -34,7 +34,7 @@ Route::get('lang/{locale?}', function ($locale = 'en') {
 //    $lang= App::currentLocale();
     switch ($locale) {
         case 'es':
-            echo "El idioma seleccionado es: " . App::currentLocale();
+            echo "El idiomma seleccionado es: " . App::currentLocale();
             break;
         default:
             echo "Qué mal se me da el inglés";
@@ -70,18 +70,13 @@ Route::middleware('auth')->get('/seleccionar/{comunidad}', [ComunidadController:
 Route::middleware('auth')->resource('cuentas', CuentaController::class);
 Route::middleware('auth')->resource('propiedades', PropiedadController::class)->parameter('propiedades', 'propiedad');
 Route::middleware('auth')->resource('juntas', JuntaController::class);
-Route::middleware('auth')->resource('proveedores', ProveedorController::class)->parameter('proveedores', 'proveedor');;
-//Route::middleware('auth')->resource('movimientos', MovimientoController::class);
+Route::middleware('auth')->resource('proveedores', ProveedorController::class)->parameter('proveedores', 'proveedor');
+Route::middleware('auth')->resource('movimientos', MovimientoController::class);
 Route::middleware('auth')->resource('usuarios', UserController::class);
 Route::middleware('auth')->get('/users_all/', [UserController::class, 'index_all'])->name('users_all');
 Route::middleware('auth')->resource('documentos', DocumentoController::class);
 
-
-Route::get('borrar', function(){
-    return view('borrar');
-});
-
-// Ruta ejecutada cuando la ruta de la petición entrante no es reconocida por
+// Ruta ejecutada cuando la ruta de la petición entrante no es reconocida por 
 // ninguna de las anteriores rutas. Mantener siempre al final de este fichero.
 Route::fallback(function () {
     return view('fallback');

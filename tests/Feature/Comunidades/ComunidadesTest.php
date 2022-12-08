@@ -26,9 +26,9 @@ class ComunidadesTest extends TestCase
     */
     use RefreshDatabase;
 
-// protected $seed = true;  // Ejecuta los seeders
-// No existe en nueva versión->eliminar este comentario.- Cambios sugeridos desde aprendible.com 'desarrollo api' Lección 4.- Instalación del proyecto con Blueprint
-    protected function setUp(): void
+//    protected $seed = true;  // Ejecuta los seeders
+// cambios sugeridos desde aprendible.com 'desarrollo api' Lección 4.- Instalación del proyecto con Blueprint
+    public function setUp(): void
     {
         parent::setUp();
         $this->seed([
@@ -102,31 +102,32 @@ class ComunidadesTest extends TestCase
         $this->withoutExceptionHandling();
 
         $comunidad = Comunidad::factory()->create();
-//$comunidad= Comunidad::first()->get();
+
         $response = $this->getJson(route('api.v1.comunidades.show', $comunidad));
 
         $response->assertStatus(200);
-//
-//        $response->assertHeader(
-//            'Content-Type', "application/vnd.api+json"
-//        );
 
-//        $response->assertJson([
-//            'data' => [
-//                'type' => 'comunidades',
-//                'id' => (string)$comunidad->getRouteKey(),
-//                'attributes' => [
-//                    'cif' => $comunidad->cif,
-//                    'denom' => $comunidad->denom,
-//                    'email' => $comunidad->email,
-//                    'direccion' => $comunidad->direccion,
-//                    'cp' => $comunidad->cp
-//                ],
-//                'links' => [
-//                    'self' => route('api.v1.comunidades.show', $comunidad->getRouteKey())
-//                ]
-//            ],
-//        ]);
+
+        $response->assertHeader(
+            'Content-Type', "application/vnd.api+json"
+        );
+
+        $response->assertJson([
+            'data' => [
+                'type' => 'comunidades',
+                'id' => (string)$comunidad->getRouteKey(),
+                'attributes' => [
+                    'cif' => $comunidad->cif,
+                    'denom' => $comunidad->denom,
+                    'email' => $comunidad->email,
+                    'direccion' => $comunidad->direccion,
+                    'cp' => $comunidad->cp
+                ],
+                'links' => [
+                    'self' => route('api.v1.comunidades.show', $comunidad->getRouteKey())
+                ]
+            ],
+        ]);
     }
 
     /**
@@ -188,10 +189,20 @@ class ComunidadesTest extends TestCase
         ]);
     }
 
+    public function assertForbbiden()
+    {
+        return $this->assertStatus(403);
+    }
+
+    public function assertUnAuthorized()
+    {
+        return $this->assertStatus(401);
+    }
+
     /**
      * @test
      */
-    public function guest_cannot_create_comunidad()
+    public function guests_cannot_create_comunidad()
     {
 //        $this->withoutExceptionHandling();
 
@@ -219,6 +230,7 @@ class ComunidadesTest extends TestCase
 
         $comunidad = Comunidad::factory()->create();
 
+
         $response = $this->patchJson(route('api.v1.comunidades.update', $comunidad), [
             'data' => [
                 'type' => 'comunidades',
@@ -239,7 +251,7 @@ class ComunidadesTest extends TestCase
             'Content-Type' => 'application/vnd.api+json'
         ]);
 
-        $response->assertOk();
+        $response->dump()->assertOk();
 
         $response->assertHeader(
             'Location', route('api.v1.comunidades.show', $comunidad),
@@ -325,9 +337,11 @@ class ComunidadesTest extends TestCase
     }
 
     /**
-     * Pendiente de completar
-     * @test
+     *
      */
+    public function it_can_returns_a_json_api_error_object_when_a_comunidad_is_not_found()
+    {
+        $this->withoutExceptionHandling();
     public function it_can_returns_a_json_api_error_object_when_a_comunidad_is_not_found()
     {
 //        $this->withoutExceptionHandling();
@@ -342,6 +356,12 @@ class ComunidadesTest extends TestCase
         ]);
     }
 
+    // cambios sugeridos desde aprendible desarrollo api lección 4 Instalación del proyecto con Blueprint
+    // ¿Eliminar?
+
+    /** @test */
+    public function it_can_sort_comunidades()
+    {
     /**
      * @test
      *
