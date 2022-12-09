@@ -73,10 +73,10 @@ Route::middleware('auth')->resource('juntas', JuntaController::class);
 Route::middleware('auth')->resource('proveedores', ProveedorController::class)->parameter('proveedores', 'proveedor');
 Route::middleware('auth')->resource('movimientos', MovimientoController::class);
 Route::middleware('auth')->resource('usuarios', UserController::class);
-Route::middleware('auth')->get('/users_all/', [UserController::class, 'index_all'])->name('users_all');
+Route::middleware('auth')->get('users_all', [UserController::class, 'index_all'])->name('users_all');
 Route::middleware('auth')->resource('documentos', DocumentoController::class);
 
-// Ruta ejecutada cuando la ruta de la petición entrante no es reconocida por 
+// Ruta ejecutada cuando la ruta de la petición entrante no es reconocida por
 // ninguna de las anteriores rutas. Mantener siempre al final de este fichero.
 Route::fallback(function () {
     return view('fallback');
