@@ -14,7 +14,8 @@ namespace Tests\Feature\Comunidades;
 
 use App\Models\Comunidad;
 use App\Models\User;
-use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\DivisaSeeder;
+use Database\Seeders\PaisSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -32,10 +33,10 @@ class ComunidadesTest extends TestCase
     {
         parent::setUp();
         $this->seed([
-            DatabaseSeeder::class,
-//            DivisaSeeder::class,
-//            PaisSeeder::class,
-//            ComunidadSeeder::class,
+            //      DatabaseSeeder::class,
+            DivisaSeeder::class,
+            PaisSeeder::class,
+            //    UserSeeder::class,
         ]);
     }
 
@@ -109,7 +110,7 @@ class ComunidadesTest extends TestCase
 
 
         $response->assertHeader(
-            'Content-Type', "application/vnd.api+json"
+            'Content-Type', 'application/vnd.api+json'
         );
 
         $response->assertJson([
@@ -216,13 +217,11 @@ class ComunidadesTest extends TestCase
     }
 
     /**
-     * Con assertExactJson no pasa
-     *
      * @test
      */
     public function can_update_comunidad()
     {
-//        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = User::factory()->create();
 
@@ -235,15 +234,15 @@ class ComunidadesTest extends TestCase
             'data' => [
                 'type' => 'comunidades',
                 'attributes' => [
-                    'cif' => "12345678w",
-                    'fechalta' => "2022-02-28",
+                    'cif' => '12345678w',
+                    'fechalta' => '2022-02-28',
                     'partes' => 10,
-                    'denom' => "Testeando comunidad",
-                    'email' => "123456@gmail.com",
-                    'direccion' => "quinto pino",
+                    'denom' => 'Testeando comunidad',
+                    'email' => '123456@gmail.com',
+                    'direccion' => 'quinto pino',
                     'cp' => '07007',
                     'pais' => "ESP",
-                    'provincia' => "Caceres",
+                    'provincia' => 'Cáceres',
                     'municipio' => 'Palma de Mallorca',
                 ],
             ]
@@ -251,7 +250,7 @@ class ComunidadesTest extends TestCase
             'Content-Type' => 'application/vnd.api+json'
         ]);
 
-        $response->dump()->assertOk();
+        $response->assertOk();
 
         $response->assertHeader(
             'Location', route('api.v1.comunidades.show', $comunidad),
@@ -260,22 +259,32 @@ class ComunidadesTest extends TestCase
             'Content-Type', "application/vnd.api+json"
         );
 
-        $response->assertJson([
+        $response->assertExactJson([
             'data' => [
                 'type' => 'comunidades',
                 'id' => (string)$comunidad->getRouteKey(),
                 'attributes' => [
-                    'cif' => "12345678w",
-                    'fechalta' => "2022-02-28",
+                    'cif' => '12345678w',
+                    'fechalta' => '2022-02-28',
                     'partes' => 10,
-                    'denom' => "Testeando comunidad",
-                    'email' => "123456@gmail.com",
-                    'direccion' => "quinto pino",
+                    'denom' => 'Testeando comunidad',
+                    'email' => '123456@gmail.com',
+                    'direccion' => 'quinto pino',
                     'cp' => '07007',
-                    'pais' => "ESP",
-                    'provincia' => "Cáceres",
+                    'pais' => 'ESP',
+                    'provincia' => 'Cáceres',
                     'municipio' => 'Palma de Mallorca',
+                    'localidad' => $comunidad->localidad,
+                    'activa' => true,
+                    'gratuita' => true,
+                    'observaciones' => $comunidad->observaciones,
+                    'administrador' => $comunidad->administrador,
+                    'presidente' => $comunidad->presidente,
+                    'secretario' => $comunidad->secretario,
                 ],
+                'links' => [
+                    'self' => route('api.v1.comunidades.show', $comunidad)
+                ]
             ]
         ]);
     }
@@ -341,14 +350,12 @@ class ComunidadesTest extends TestCase
      */
     public function it_can_returns_a_json_api_error_object_when_a_comunidad_is_not_found()
     {
+
         $this->withoutExceptionHandling();
-    public function it_can_returns_a_json_api_error_object_when_a_comunidad_is_not_found()
-    {
-//        $this->withoutExceptionHandling();
 
         $response = $this->getJson(route('api.v1.comunidades.show', '1234'));
-        $response->dump();
-//        $response->assertJsonApiError();
+
+        //        $response->assertJsonApiError();
         $response->assertJsonStructure([
             'errors' => [
                 '*' => []
@@ -360,8 +367,8 @@ class ComunidadesTest extends TestCase
     // ¿Eliminar?
 
     /** @test */
-    public function it_can_sort_comunidades()
-    {
+//    public function it_can_sort_comunidades()
+//    {
     /**
      * @test
      *
@@ -382,16 +389,6 @@ class ComunidadesTest extends TestCase
         $response = $this->getJson($url);
 
         $this->assertTrue(true);
-    }
-
-    public function assertForbbiden()
-    {
-        return $this->assertStatus(403);
-    }
-
-    public function assertUnAuthorized()
-    {
-        return $this->assertStatus(401);
     }
 
 }

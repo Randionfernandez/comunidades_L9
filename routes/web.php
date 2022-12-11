@@ -71,7 +71,7 @@ Route::middleware('auth')->resource('cuentas', CuentaController::class);
 Route::middleware('auth')->resource('propiedades', PropiedadController::class)->parameter('propiedades', 'propiedad');
 Route::middleware('auth')->resource('juntas', JuntaController::class);
 Route::middleware('auth')->resource('proveedores', ProveedorController::class)->parameter('proveedores', 'proveedor');
-Route::middleware('auth')->resource('movimientos', MovimientoController::class);
+//Route::middleware('auth')->resource('movimientos', MovimientoController::class);
 Route::middleware('auth')->resource('usuarios', UserController::class);
 Route::middleware('auth')->get('users_all', [UserController::class, 'index_all'])->name('users_all');
 Route::middleware('auth')->resource('documentos', DocumentoController::class);

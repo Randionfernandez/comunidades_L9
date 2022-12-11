@@ -22,7 +22,7 @@ class ComunidadFactory extends Factory {
     public function definition(): array
     {
         if (($cp = fake()->numberBetween(1, 15)) < 10)
-            $cp = '0' . (string) $cp;
+            $cp = '0' . $cp;
 
         return [
             'cif' => fake()->unique()->vat(),

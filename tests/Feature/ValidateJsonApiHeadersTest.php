@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Comunidades;
+namespace Tests\Feature;
 
 use App\Http\Middleware\ValidateJsonApiHeaders;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +39,7 @@ class ValidateJsonApiHeadersTest extends TestCase
         $this->post('test_route')->assertStatus(406);
 
         $this->post('test_route', [], [
-            'Accept' => 'application/vnd.ap           i+json',
+            'Accept' => 'application/vnd.api+json',
         ])->assertStatus(415);
 
         $this->post('test_route', [], [

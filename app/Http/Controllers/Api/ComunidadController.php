@@ -36,9 +36,10 @@ class ComunidadController extends Controller
         return ComunidadCollection::make(Comunidad::all());
     }
 
-    function show(Comunidad $comunidad): ComunidadResource
+    function show(Comunidad $comunidad)
     {
-        if (!$comunidad->find($comunidad)) return json_encode(['errors' => 'No existe comunidad']);
+        if (!$comunidad) return json_encode(['errors' => 'No existe comunidad']);
+
         return ComunidadResource::make($comunidad);
     }
 
@@ -59,6 +60,7 @@ class ComunidadController extends Controller
         }
 
         $comunidad = Comunidad::create($request->input('data.attributes'));
+
         return ComunidadResource::make($comunidad);
     }
 

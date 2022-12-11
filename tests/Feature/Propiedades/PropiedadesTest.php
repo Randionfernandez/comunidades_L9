@@ -12,7 +12,7 @@ use Tests\TestCase;
 
 /**
  * Test Incompleto, con fallos
- * @group excluidos
+ * group excluidos
  */
 class PropiedadesTest extends TestCase {
 
@@ -29,6 +29,7 @@ class PropiedadesTest extends TestCase {
     /** @test */
     public function can_create_propiedad() {
         $this->withoutExceptionHandling();
+
         $comunidad = Comunidad::Factory()->create();
 
         $response = $this->postJson(route('api.v1.propiedades.store'), [
@@ -52,7 +53,7 @@ class PropiedadesTest extends TestCase {
 
         $response->assertStatus(201);   // Podríamos usar assertCreated() que comprueba 201
         $response->assertHeader(
-                'Location', route('api.v1.propiedades.show', $propiedad)
+                'Location', route('api.v1.propiedades.show', [$propiedad])
         );
         $response->assertJson([
             'data' => [
