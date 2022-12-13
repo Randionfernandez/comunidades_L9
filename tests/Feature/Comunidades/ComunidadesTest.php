@@ -191,7 +191,7 @@ class ComunidadesTest extends TestCase
     }
 
 /*
- * Estas funciones existen en Respoonse. Igonoro porqué se incluyen en el código
+ * Estas funciones existen en Response. Ignoro porqué se incluyen en el código
   public function assertForbidden()
     {
         return $this->assertStatus(403);
