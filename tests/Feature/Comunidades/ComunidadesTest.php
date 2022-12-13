@@ -190,7 +190,9 @@ class ComunidadesTest extends TestCase
         ]);
     }
 
-    public function assertForbbiden()
+/*
+ * Estas funciones existen en Respoonse. Igonoro porqué se incluyen en el código
+  public function assertForbidden()
     {
         return $this->assertStatus(403);
     }
@@ -198,7 +200,7 @@ class ComunidadesTest extends TestCase
     public function assertUnAuthorized()
     {
         return $this->assertStatus(401);
-    }
+    }*/
 
     /**
      * @test
