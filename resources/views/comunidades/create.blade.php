@@ -3,7 +3,7 @@
 @section('header')
 <div class="row mb-2">
     <div class="col-sm-6">
-        <h1 class="m-0">Introduzca los datos de la comunidad</h1>
+        <h1 class="m-0">@lang('Introduzca los datos de la comunidad')</h1>
     </div><!-- /.col -->
 </div><!-- /.row -->
 @endsection
@@ -14,7 +14,7 @@
 <!--<section class="content">-->
 <form method="post" id="create-comunidad" enctype="multipart/form-data"
       action="{{route('comunidades.store')}}">
-    @csrf 
+    @csrf
     @include('comunidades._comunidad')
 </form>
 

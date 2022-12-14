@@ -3,7 +3,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Comunidad;
 use App\Models\Propiedad;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -11,14 +13,15 @@ use Illuminate\Support\Facades\DB;
 class PropiedadController extends Controller
 {
 
-    var mixed $cmd;
+    var Comunidad $cmd;
+
     /**
      *  Los métodos fallan si acceden a esta variable. No sé por qué
      *  $cmd debe tomar el valor de session en cada método
      */
     public function __construct()
     {
-        //        $this->cmd= session('cmd_seleccionada');
+//        $this->cmd = session('cmd_seleccionada');
     }
 
     /**
@@ -54,7 +57,7 @@ class PropiedadController extends Controller
      * Store a newly created resource in storage.
      *
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return Response
      */
     public function store(Request $request): Response
@@ -62,7 +65,7 @@ class PropiedadController extends Controller
         $cmd = session('cmd_seleccionada');
 
         $prop = new Propiedad($request->all());
-        $prop->comunidad_id = $cmd->id;
+        $prop->comunidad_id = $cmd;
 
         $prop->save();
         return back();
@@ -71,7 +74,7 @@ class PropiedadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Propiedad $propiedad
+     * @param Propiedad $propiedad
      * @return Response
      */
     public function show(Propiedad $propiedad): Response
@@ -82,7 +85,7 @@ class PropiedadController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\Models\Propiedad $propiedad
+     * @param Propiedad $propiedad
      * @return Response
      */
     public function edit(Propiedad $propiedad)
@@ -94,14 +97,15 @@ class PropiedadController extends Controller
         return view('propiedades.edit', compact('comunidad', 'tipos_propiedad', 'propiedad', 'users'));
     }
 
+
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Propiedad $propiedad
-     * @return Response
+     * @param Request $request
+     * @param Propiedad $propiedad
+     * @return RedirectResponse
      */
-    public function update(Request $request, Propiedad $propiedad): Response
+    public function update(Request $request, Propiedad $propiedad)
     {
         $propiedad->update($request->all());
 
@@ -111,7 +115,7 @@ class PropiedadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Propiedad $propiedad
+     * @param Propiedad $propiedad
      * @return Response
      */
     public function destroy(Propiedad $propiedad): Response

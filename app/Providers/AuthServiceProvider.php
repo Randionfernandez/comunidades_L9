@@ -55,7 +55,7 @@ class AuthServiceProvider extends ServiceProvider
 
 
         /**
-         * El susuario puede crear comunidades si no supera el límite de comunidades gratuitas
+         * El usuario puede crear comunidades si no supera el límite de comunidades gratuitas
          */
         Gate::define('create-comunidad', function (User $user) {
             $cmd = $user->comunidades->where('gratuita', true);

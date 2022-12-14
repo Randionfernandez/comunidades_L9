@@ -3,7 +3,7 @@
 
         <div class="card card-warning">
             <div class="card-header">
-                <h3 class="card-title">Ficha de la comunidad</h3>
+                <h3 class="card-title">@lang('Ficha de la comunidad')</h3>
             </div>
 
             <div class="card-body">
@@ -13,7 +13,7 @@
                     <div class="col-3">
                         <!-- fecha de alta -->
                         <div class="form-group">
-                            <label>Fecha de alta</label>
+                            <label>@lang('Fecha de alta')</label>
                             <input type="date" class="form-control"
                                    name="fechalta" value="{{ old('fechalta', $comunidad->fechalta ?? '') }}">
                         </div>
@@ -33,9 +33,11 @@
                     <!-- denominación -->
                     <div class="col-5">
                         <div class="form-group">
-                            <label>Denominación</label>
+                            <label>@lang('Denominación')</label>
                             <input type="text" class="form-control" name="denom"
                                    value="{{ old('denom', $comunidad->denom ?? '')}}">
+                            {{$errors->first('denom')}}
+
                         </div>
                     </div>
 
@@ -45,7 +47,7 @@
                     -->
                     <div class="col-2">
                         <div class="form-group">
-                            <label>Núm. partes</label>
+                            <label>@lang('Núm. partes')</label>
                             <input type="number" class="form-control" min="2" max="1000"
                                    name="partes" value="{{ old('partes', $comunidad->partes ?? '') }}">
                         </div>
@@ -56,7 +58,7 @@
                     <div class="col-6">
                         <!-- email de la comunidad -->
                         <div class="form-group">
-                            <label for="email">@lang('Correo electrónico')</label>
+                            <label for="email">@lang('Email')</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                 <input type="email" class="form-control" id="email" name="email"
@@ -75,7 +77,7 @@
                     <!-- dirección postal -->
                     <div class="col-10">
                         <div class="form-group">
-                            <label>Dirección postal</label>
+                            <label>@lang('Dirección postal')</label>
                             <input type="text" class="form-control" maxlength="35" required
                                    name="direccion" value="{{ old('direccion', $comunidad->direccion ??'') }}"
                                    placeholder="Entre la dirección completa, incluido número, piso, etc.">
@@ -84,7 +86,7 @@
                     <!-- País -->
                     <div class="col-2">
                         <div class="form-group">
-                            <label>País</label>
+                            <label>@lang('País')</label>
                             <input type="text" class="form-control" maxlength="3" required
                                    name="pais" value="{{ old('pais', $comunidad->pais??'ESP') }}">
                         </div>
@@ -95,7 +97,7 @@
                     <!-- código postal -->
                     <div class="col-2">
                         <div class="form-group">
-                            <label>Código postal</label>
+                            <label>@lang('Código postal')</label>
                             <input type="text" maxlength="5" class="form-control" required
                                    name="cp" value="{{ old('cp', $comunidad->cp ?? '') }}">
                         </div>
@@ -103,7 +105,7 @@
                     <!-- Municipio -->
                     <div class="col-5">
                         <div class="form-group">
-                            <label>Municipio</label>
+                            <label>@lang('Municipio')</label>
                             <input type="text" class="form-control"
                                    name="municipio" value="{{ old('municipio', $comunidad->municipio ?? '') }}">
                         </div>
@@ -111,7 +113,7 @@
                     <!-- localidad -->
                     <div class="col-5">
                         <div class="form-group">
-                            <label>Localidad</label>
+                            <label>@lang('Localidad')</label>
                             <input type="text" class="form-control" required
                                    name="localidad" value="{{ old('localidad', $comunidad->localidad ?? '') }}">
                         </div>
@@ -125,7 +127,7 @@
 
                 <!-- observaciones -->
                 <div class="form-group">
-                    <label>Observaciones</label>
+                    <label>@lang('Observaciones')</label>
                     <textarea class="form-control" rows="3"
                               name="observaciones">{{ old('observaciones', $comunidad->observaciones ?? '') }}
                     </textarea>
@@ -152,13 +154,15 @@
 
                 <button name="Borrar" class="btn btn-danger" enabled
                         @if (Gate::allows('delete-comunidad', $comunidad)) enabled @else disabled @endif
-                        onclick="document.getElementById('delete-comunidad').submit()">
+                        onclick="return confirm('Estas seguro de querer eliminar esta comunidad')"
+                    {{--                        onclick="document.getElementById('delete-comunidad').submit()"--}}
+                >
                     @lang('Dar de baja')
                 </button>
             @endif
 
             <button class="btn btn-primary float-right" data-toggle="modal" data-target="#ayuda">
-                <i class="fa fa-info"></i> Ayuda
+                <i class="fa fa-info"></i> @lang('Ayuda')
             </button>
 
             <!-- The Modal -->
@@ -196,26 +200,26 @@
 
         <div class="card card-warning">
             <div class="card-header"><!-- comment -->
-                <h3 class="card-title">Cargos</h3>
+                <h3 class="card-title">@lang('Cargos')</h3>
             </div> <!-- ./card-header -->
 
             <div class="card-body">
                 <div class="form-group">
                     <!-- presidente -->
                     <div class="form-group">
-                        <label>Presidente</label>
+                        <label>@lang('Presidente')</label>
                         <input type="text" class="form-control" maxlength="35"
                                name="presidente" value="{{ old('presidente', $comunidad->presidente ?? '') }}">
                     </div>
                     <!-- secretario -->
                     <div class="form-group">
-                        <label>Secretario</label>
+                        <label>@lang('Secretario')</label>
                         <input type="text" class="form-control" maxlength="35"
                                name="secretario" value="{{ old('secretario', $comunidad->secretario ?? '' ) }}">
                     </div>
                     <!-- administrador -->
                     <div class="form-group">
-                        <label>Administrador</label>
+                        <label>@lang('Administrador')</label>
                         <input type="text" class="form-control" maxlength="35"
                                name="administrador" value="{{ old('administrador', $comunidad->administrador ?? '') }}">
                     </div>
@@ -227,7 +231,7 @@
 
         <div class="card card-warning">
             <div class="card-header">
-                <h3 class="card-title">Añadir documento</h3>
+                <h3 class="card-title">@lang('Añadir documento')</h3>
             </div> <!-- ./card-header -->
 
             <div class="card-body">
@@ -235,14 +239,14 @@
 
                     <!-- Título -->
                     <div class="form-group">
-                        <label>Título</label>
+                        <label>@lang('Título')</label>
                         <input type="text" class="form-control" maxlength="35"
                                name="titulo" value="{{ old('titulo')}}">
                     </div>
 
                     <!-- Descripción -->
                     <div class="form-group">
-                        <label>Descripción</label>
+                        <label>@lang('Descripción')</label>
                         <textarea class="form-control" rows="2"
                                   name="descripcion">{{ old('descripcion') }}
                         </textarea>
@@ -252,7 +256,7 @@
                     <div class="custom-file">
                         <input name="doc" type="file" class="custom-file-input"
                                accept="image/*,.pdf" id="doc_comunidad" value="{{ old('doc') }}">
-                        <label class="custom-file-label" for="doc_comunidad">Elige un archivo</label>
+                        <label class="custom-file-label" for="doc_comunidad">@lang('Elige un archivo')</label>
                     </div>
                     <!--                        <div class="input-group-append">
                                                 <span class="input-group-text">Subir</span>

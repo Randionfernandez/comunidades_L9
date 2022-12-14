@@ -3,8 +3,6 @@
 
 @section('content')
 
-
-
 <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0 bg-light ">
     <div id="mobile-logo" class="{{-- col-md-1 pl-4 --}} text-center">
         <a href="{{ url('/') }}">
@@ -16,16 +14,16 @@
         {{ config('app.name') }}
     </h3>
 
-<!-- sustituir este blque if por una barra de navegación-->
+<!-- sustituir este bloque if por una barra de navegación-->
     @if (Route::has('login'))
     <div class="hidden fixed top-0 right-2 px-2 py-2 sm:block{{--  offset-md-4 col-md-3 --}} ">
         @auth
-        <a href="{{ route('comunidades.index') }}" class="text-sm text-gray-700 underline">@lang('Seleccionar comunidad')</a>
+        <a href="{{ route('comunidades.index') }}" class="btn btn-primary text-sm">@lang('Seleccionar comunidad')</a>
         @else
-        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">@lang('Login')</a>
+        <a href="{{ route('login') }}" class="btn btn-primary text-sm">@lang('Login')</a>
 
         @if (Route::has('register'))
-        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">@lang('Register')</a>
+        <a href="{{ route('register') }}" class="btn btn-primary ml-4 text-sm">@lang('Register')</a>
 
         @endif
         @endauth
@@ -44,9 +42,9 @@
                 <h5 class="card-title">RDN COMUNIDADES</h5>
                 <p class="card-text">Somos un equipo de desarrolladores que hemos implementado
                     un software sencillo y económico para facilitar la gestión de comunidades
-                    desde una única aplicación web.<br/>
-                    Podrá tramitar todas las actividades de las comunidades y condominios, 
-                    desde la creación de una nueva comunidad, seguimiento de incidencias; 
+                    desde una sola aplicación web.<br/>
+                    Podrá tramitar todas las actividades de las comunidades y condominios,
+                    desde la creación de una nueva comunidad, seguimiento de incidencias,
                     hasta el cobro de los recibos de los propietarios por domiciliación bancaria.</p>
 
             </div>
@@ -64,7 +62,8 @@
                         <span>C/Caracas 6,
                             <br/>07007 Palma de Mallorca
                             <br/>Illes Balears <br/>
-                            Horario: lunes a viernes de 9:00h a 18:00h</span>
+                            Horario: lunes a viernes de 9:00h a 18:00h
+                        </span>
                     </div>
                 </div>
                 <div class=" col xs-col-1 sm-col-6 md-col-6 lg-col-3 ">
@@ -86,11 +85,10 @@
         </div>
     </div>
 
+
 <footer class="fixed-bottom bg-secondary text-center py-3">
     {{ config('app.name') }} | Copyright @ {{ date('Y') }}
 </footer>
-<!--</div>-->
+
 </div>
-
-
 @endsection
