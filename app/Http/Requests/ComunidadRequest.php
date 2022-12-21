@@ -32,7 +32,7 @@ class ComunidadRequest extends FormRequest {
     {
         return [
             'cif' => ['required', 'alpha_num', 'size:9',
-                Rule::unique('comunidades')->ignore(request('comunidad'))],
+                Rule::unique('  comunidades')->ignore(request('comunidad'))],
 // Abajo la forma original del Rule:unique, debe verificarse que la de arriba es correcta. Propuesta en curso 'Refactorización'.
 //                Rule::unique('comunidades')->ignore($this->route('comunidad'))],
             'fechalta' => 'required|date',

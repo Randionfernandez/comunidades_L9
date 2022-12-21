@@ -30,6 +30,8 @@ class CreateComunidadUserTable extends Migration
             $table->unique(['comunidad_id', 'user_id']);
 
         });
+
+
     }
 
     /**

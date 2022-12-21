@@ -252,7 +252,6 @@
                         </textarea>
                     </div>
 
-
                     <div class="custom-file">
                         <input name="doc" type="file" class="custom-file-input"
                                accept="image/*,.pdf" id="doc_comunidad" value="{{ old('doc') }}">
