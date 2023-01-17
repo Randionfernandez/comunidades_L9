@@ -42,9 +42,7 @@ class ComunidadController extends Controller
      * @throws AuthorizationException
      */
     public function store(ComunidadRequest $request): RedirectResponse
-    {
-        $this->authorize('create-comunidad');
-
+    { //autorización en ComunidadRequest
         $comunidad = Comunidad::create($request->all());
 
         if (request()->hasFile('doc')) {

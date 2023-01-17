@@ -104,7 +104,7 @@ class CuentaController extends Controller {
     public function update(Request $request, Cuenta $cuenta) {
 
         $cmd = Comunidad::first(session('cmd_seleccionada'));
-        if (request()->hasFile('doc')) {
+        if (request()-> hasFile('doc')) {
             // guarda el fichero en una subcarpeta cuyo nombre es el {cif de la comunidad}/cuentas
             Documento::Insert([
                 'comunidad_id' => $cmd->id,

@@ -19,13 +19,18 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * The policy mappings for the application.
-     * eam::class => TeamPolicy::class,
+     * Team::class => TeamPolicy::class,
      * ];
      *
      * /**
      * @var array
      */
     protected $policies = [
+        // Como siguen el convenio de denominación de Laravel, no es necesario registrar estas 'policies'
+//        Comunidad::class => ComunidadPolicy::class,
+//        Cuenta::class => CuentaPolicy::class,
+//        Movimiento::class => MovimientoPolicy::class,
+//        Propiedad::class => PropiedadPolicy::class,
         Team::class => TeamPolicy::class,
     ];
 
@@ -38,8 +43,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-////////////////           Definición de las gates de la aplicación
-        Gate::before(function ($user) {
+////////////////           Definición de las GATES de la aplicación
+        Gate::before(function (User $user) {
             if (isSuperAdmin($user))
                 return true;
         });
@@ -83,6 +88,13 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             return false;
         });
+
+
+//        Gate::after(function (User $user) {
+//            return true;
+//        });
+
+
 ////////////////            Fin definición de las gates
     }
 

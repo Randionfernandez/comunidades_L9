@@ -172,7 +172,7 @@
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">@lang('Ayuda')</h4>
+                            <h4 class="modal-title">{{__('Ayuda')}}</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 

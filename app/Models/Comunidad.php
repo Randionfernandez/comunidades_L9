@@ -18,7 +18,7 @@ class Comunidad extends Model {
     protected $table = 'comunidades';
 
 //    protected $guarded = [];
-//    protedcted $hidden= [];
+//    protected $hidden= [];
     protected $fillable = [
         'cif',
         'fechalta',
