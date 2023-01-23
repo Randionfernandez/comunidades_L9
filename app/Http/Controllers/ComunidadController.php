@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ComunidadRequest;
+use App\Http\Requests\UpdateComunidadRequest;
 use App\Models\Comunidad;
 use App\Models\Comunidad_User;
 
@@ -41,7 +41,7 @@ class ComunidadController extends Controller
     /**
      * @throws AuthorizationException
      */
-    public function store(ComunidadRequest $request): RedirectResponse
+    public function store(UpdateComunidadRequest $request): RedirectResponse
     {
         $comunidad = Comunidad::create($request->all());
 
@@ -77,12 +77,12 @@ class ComunidadController extends Controller
         return view('comunidades.edit', ['comunidad' => $comunidad]);
     }
 
-// ¿Es necesario el parámetro $comunidad  habiendo el ComunidadRequest? Parece que sí.
+// ¿Es necesario el parámetro $comunidad  habiendo el UpdateComunidadRequest? Parece que sí.
 
     /**
      * @throws AuthorizationException
      */
-    public function update(Comunidad $comunidad, ComunidadRequest $request): RedirectResponse
+    public function update(Comunidad $comunidad, UpdateComunidadRequest $request): RedirectResponse
     {
         $this->authorize('edit-comunidad', $comunidad);
 

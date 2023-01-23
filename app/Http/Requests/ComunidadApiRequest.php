@@ -18,11 +18,8 @@ class ComunidadApiRequest extends FormRequest {
      */
     public function authorize(): bool
     {
-
         return true;
         // podemos acceder al usuario con $this->user()
-        // podemos verificar que es administrador con
-        // $this->user()->isAdmin()
     }
 
     /**

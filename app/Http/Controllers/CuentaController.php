@@ -3,32 +3,37 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Comunidad;
 use App\Models\Cuenta;
 use App\Models\Documento;
-use App\Models\Comunidad;
 use Illuminate\Http\Request;
+
 //use Illuminate\Support\Facades\DB;
 
-class CuentaController extends Controller {
+class CuentaController extends Controller
+{
 
     public $cmd;
 
-    public function __construct(Comunidad $comunidad) {
+    public function __construct(Comunidad $comunidad)
+    {
         $this->authorizeResource(Cuenta::class, 'cuenta');
-        $this->cmd = session('cmd_seleccionada');
-        $this->comunidad= $comunidad;
+//        $this->cmd = session('cmd_seleccionada');    //no funciona
+        $this->comunidad = $comunidad;
     }
+
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\ResponseMovimiento
      */
-    public function index() {
+    public function index()
+    {
 //        $user = auth()->user();
 
         $cmd = session('cmd_seleccionada');
-        $cuentas = $cmd->cuentas;
+        $cuentas = $cmd->cuentas()->get();
 
         return view('cuentas.index', ['cuentas' => $cuentas,
             'comunidad' => $cmd]);
@@ -39,22 +44,31 @@ class CuentaController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function create() {
+    public function create()
+    {
         return view('cuentas.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-
+    public function store(Request $request)
+    {
+        request()->validate(
+            [
+                'iban' => ['required', 'string', 'max:24'],
+                'fecha_apertura' => ['required', 'date'],
+                'siglas' => ['required', 'string', 'min:3', 'max:4'],
+                'denominacion' => ['required', 'string', 'max:35'],
+            ]);
+        $cmd = session('cmd_seleccionada');
 
         if (request()->hasFile('doc')) {
             // guarda el documento en una subcarpeta cuyo nombre es el cif de la comunidad
-            $this->cmd->documentos()->create([
+            $cmd->documentos()->create([
                 'carpeta' => "Cuentas",
                 'titulo' => $request->titulo,
                 'descripcion' => $request->descripcion,
@@ -63,32 +77,35 @@ class CuentaController extends Controller {
             ]);
         }
 
-        $this->cmd->cuentas()->create($request->all());
-//        $this->cmd->refresh();   // ver también push() en Eloquent: Relationships
+        $cmd->cuentas()->create($request->all());
+        $cmd->refresh();   // ver también push() en Eloquent: Relationships
 
         return view('cuentas.index', [
-            'cuentas' => $this->cmd->cuentas,
-            'comunidad' => $this->cmd])->with('status',
-            ['msj' => "La cuenta ha sido creada correctamente",'alert' => 'alert-success']);
+            'cuentas' => $cmd->cuentas,
+            'comunidad' => $cmd])->with('status',
+            ['msj' => "La cuenta ha sido creada correctamente", 'alert' => 'alert-success']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cuenta  $cuenta
+     * @param \App\Models\Cuenta $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function show(Cuenta $cuenta) {
+    public function show(Cuenta $cuenta)
+    {
+        //se debe comprobar la autorización y la vinculación a la cmd_seleccionada.
         $this->edit($cuenta);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cuenta  $cuenta
+     * @param \App\Models\Cuenta $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cuenta $cuenta) {
+    public function edit(Cuenta $cuenta)
+    {
         return view('cuentas.edit', [
             'cuenta' => $cuenta,
             'comunidad' => $cuenta->comunidad]);
@@ -97,14 +114,22 @@ class CuentaController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cuenta  $cuenta
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Cuenta $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cuenta $cuenta) {
+    public function update(Request $request, Cuenta $cuenta)
+    {
+        request()->validate(
+            [
+                'iban' => ['required', 'string', 'max:24'],
+                'fecha_apertura' => ['required', 'date'],
+                'siglas' => ['required', 'string', 'min:3', 'max:4'],
+                'denominacion' => ['required', 'string', 'max:35'],
+            ]);
 
-        $cmd = Comunidad::first(session('cmd_seleccionada'));
-        if (request()-> hasFile('doc')) {
+        $cmd = session('cmd_seleccionada');
+        if (request()->hasFile('doc')) {
             // guarda el fichero en una subcarpeta cuyo nombre es el {cif de la comunidad}/cuentas
             Documento::Insert([
                 'comunidad_id' => $cmd->id,
@@ -119,7 +144,7 @@ class CuentaController extends Controller {
         }
 
         $cuenta->update($request->all());
-        $cmd->users()->refresh();
+        $cmd->refresh();
         $msj = 'La cuenta ' . $cuenta->denominacion . ', fue actualizada con éxito';
 
         return redirect()->route('cuentas.index')->with('status', ['msj' => $msj, 'alert' => 'alert-info']);
@@ -128,10 +153,11 @@ class CuentaController extends Controller {
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cuenta  $cuenta
+     * @param \App\Models\Cuenta $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cuenta $cuenta) {
+    public function destroy(Cuenta $cuenta)
+    {
         // autorizar operación
 
         $cuenta->delete();

@@ -5,7 +5,7 @@ declare(strict_types=1);
  * TODO
  *
  * Revisar test para create, utilizando un FormRequest para la validación
- * preferentemente con un ComunidadRequest válido para apirest y formulario
+ * preferentemente con un UpdateComunidadRequest válido para apirest y formulario
  *
  * Revisar también denom_is_required
  */

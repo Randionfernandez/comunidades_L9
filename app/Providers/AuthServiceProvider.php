@@ -44,10 +44,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
 ////////////////           Definición de las GATES de la aplicación
-        Gate::before(function (User $user) {
-            if (isSuperAdmin($user))
-                return true;
-        });
+//        Gate::before(function (User $user) {
+//            if (isSuperAdmin($user))
+//                return true;
+//        });
 
         /**
          * Solo el superusuario puede ver todos los usuarios de la base de datos

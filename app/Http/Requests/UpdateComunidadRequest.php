@@ -3,24 +3,45 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
 
-class ComunidadRequest extends FormRequest {
+class UpdateComunidadRequest extends FormRequest
+{
+
+    /**
+     * Indicates if the validator should stop on the first rule failure.
+     *
+     * @var bool
+     */
+    protected $stopOnFirstFailure = false;
+
+    /**
+     * The URI that users should be redirected to if validation fails.
+     *
+     * @var string
+     */
+//    protected $redirect = '/dashboard';
+
+    /**
+     * The route that users should be redirected to if validation fails.
+     *
+     * @var string
+     */
+//    protected $redirectRoute = 'dashboard';
+
+
 
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize(): bool {
+    public function authorize(): bool
+    {
 
         return true;
         // podemos acceder al usuario con $this->user()
-        // podemos verificar que es administrador con
-        // $this->user()->isAdmin()
     }
 
     /**
@@ -38,7 +59,7 @@ class ComunidadRequest extends FormRequest {
             'fechalta' => 'required|date',
 //            'activa' => ['boolean'], // Estos dos checkbox ya no se manejan por el usuario.
 //            'gratuita' => ['boolean'],
-            'partes' => ['required', 'integer', 'min:2','max:1000'],
+            'partes' => ['required', 'integer', 'min:2', 'max:1000'],
             'denom' => 'required|string|max:35',
             'email' => 'nullable|email',
             'direccion' => 'required|string',
@@ -48,7 +69,7 @@ class ComunidadRequest extends FormRequest {
             'cp' => 'required|string|size:5',
             'pais' => 'required|string|size:3',
             'logo' => 'nullable',
-            'observaciones' => 'string||nullable',
+            'observaciones' => 'string|nullable',
             'presidente' => 'nullable|string|max:35',
             'secretario' => 'nullable|string|max:35',
             'administrador' => 'nullable|string|max:35',
