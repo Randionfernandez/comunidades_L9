@@ -100,7 +100,7 @@ class ComunidadesTest extends TestCase
      */
     public function can_fetch_single_comunidad()
     {
-        $this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();   // informará del error pero con más detalle
 
         $comunidad = Comunidad::factory()->create();
 
@@ -112,6 +112,7 @@ class ComunidadesTest extends TestCase
         $response->assertHeader(
             'Content-Type', 'application/vnd.api+json'
         );
+//        $response->assertSee($comunidad->denom);
 
         $response->assertJson([
             'data' => [
@@ -190,17 +191,17 @@ class ComunidadesTest extends TestCase
         ]);
     }
 
-/*
- * Estas funciones existen en Response. Ignoro porqué se incluyen en el código
-  public function assertForbidden()
-    {
-        return $this->assertStatus(403);
-    }
+    /*
+     * Estas funciones existen en Response. Ignoro porqué se incluyen en el código
+      public function assertForbidden()
+        {
+            return $this->assertStatus(403);
+        }
 
-    public function assertUnAuthorized()
-    {
-        return $this->assertStatus(401);
-    }*/
+        public function assertUnAuthorized()
+        {
+            return $this->assertStatus(401);
+        }*/
 
     /**
      * @test
