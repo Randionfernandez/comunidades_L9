@@ -12,13 +12,13 @@
             <directory suffix="Test.php">./tests/Feature/Comunidades</directory>
         </testsuite>
     </testsuites>
-    
+
     <groups>
         <exclude>
             <group>excluidos</group>
         </exclude>
     </groups>
-    
+
     <coverage processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./app</directory>
@@ -28,8 +28,8 @@
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
-        <server name="DB_CONNECTION" value="test_simulacion_db"/> 
-        <!--<server name="DB_DATABASE" value=":memory:"/>--> 
+        <server name="DB_CONNECTION" value="test_simulacion_db"/>
+<!--        <server name="DB_DATABASE" value=":memory:"/>-->
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>

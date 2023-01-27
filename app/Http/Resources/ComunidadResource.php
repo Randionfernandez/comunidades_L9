@@ -6,7 +6,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ComunidadResource extends JsonResource {
 
-    public function toArray($request) {
+    public function toArray($request)
+    {
 //        return Comunidad::make($request);
 
         return [
@@ -40,7 +41,7 @@ class ComunidadResource extends JsonResource {
     function toResponse($request) {
         return parent::toResponse($request)->withHeaders([
                     'Location' => route('api.v1.comunidades.show', $this->resource),
-                    'Content-Type' => "application/vnd.api+json"
+//                    'Content-Type' => "application/vnd.api+json",   // esta cabecera la añade el middleware 'ValidationJsonApiHeaders'.
         ]);
     }
 

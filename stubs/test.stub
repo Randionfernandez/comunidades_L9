@@ -8,15 +8,17 @@ use Tests\TestCase;
 
 class {{ class }} extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic feature test example.
      *
+     * @test
      * @return void
      */
-    public function test_example()
+    public function it_can_test()
     {
-        $response = $this->get('/');
+    //
 
-        $response->assertStatus(200);
     }
 }
