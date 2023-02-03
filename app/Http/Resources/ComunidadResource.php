@@ -4,7 +4,11 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ComunidadResource extends JsonResource {
+class ComunidadResource extends JsonResource
+{
+
+    public $preserveKeys = true;
+    public static $wrap = 'pico';
 
     public function toArray($request)
     {
@@ -12,7 +16,7 @@ class ComunidadResource extends JsonResource {
 
         return [
             'type' => 'comunidades',
-            'id' => (string) $this->resource->getRouteKey(),
+            'id' => (string)$this->resource->getRouteKey(),
             'attributes' => [
                 'cif' => $this->resource->cif,
                 'fechalta' => $this->resource->fechalta,
@@ -38,9 +42,10 @@ class ComunidadResource extends JsonResource {
         ];
     }
 
-    function toResponse($request) {
+    function toResponse($request)
+    {
         return parent::toResponse($request)->withHeaders([
-                    'Location' => route('api.v1.comunidades.show', $this->resource),
+            'Location' => route('api.v1.comunidades.show', $this->resource),
 //                    'Content-Type' => "application/vnd.api+json",   // esta cabecera la añade el middleware 'ValidationJsonApiHeaders'.
         ]);
     }

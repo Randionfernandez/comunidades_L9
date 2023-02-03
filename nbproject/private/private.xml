@@ -5,6 +5,7 @@
         <group>
             <file>file:/var/www/comunidades/routes/web.php</file>
             <file>file:/var/www/comunidades/public/index.php</file>
+            <file>file:/var/www/comunidades/tests/Feature/Comunidades/ComunidadesTest.php</file>
             <file>file:/var/www/comunidades/app/Http/Controllers/ComunidadController.php</file>
         </group>
     </open-files>

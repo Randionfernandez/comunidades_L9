@@ -47,7 +47,7 @@ class Kernel extends HttpKernel {
             'throttle:api',
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\ValidateJsonApiHeaders::class
+//            \App\Http\Middleware\ValidateJsonApiHeaders::class
         ],
     ];
 
@@ -59,6 +59,8 @@ class Kernel extends HttpKernel {
      * @var array
      */
     protected $routeMiddleware = [
+        'abilities' => \Laravel\Sanctum\Http\Middleware\CheckAbilities::class,
+        'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,

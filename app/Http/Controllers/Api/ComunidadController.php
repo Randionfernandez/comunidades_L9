@@ -29,6 +29,8 @@ class ComunidadController extends Controller
 
     function index(): ComunidadCollection
     {
+//        return Comunidad::all();
+
 //        $comunidades = Comunidad::all();
 //        return ComunidadResource::collection($comunidades);
 //

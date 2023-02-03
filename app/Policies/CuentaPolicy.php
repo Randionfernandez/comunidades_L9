@@ -67,6 +67,7 @@ class CuentaPolicy
     public function delete(User $user, Cuenta $cuenta)
     {
         return false;
+        $user->tok
     }
 
     /**

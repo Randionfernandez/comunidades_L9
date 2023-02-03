@@ -114,7 +114,7 @@ class ComunidadesTest extends TestCase
         );
 
         // Si la 'denom' contiene acentos, falla el test, probablemente debido a la codificación en json
-       // $response->assertSee($comunidad->denom);  // eliminar, ya se comprueba en el json
+        // $response->assertSee($comunidad->denom);  // eliminar, ya se comprueba en el json
 
         $response->assertSee($comunidad->email);  // eliminar, ya se comprueba en el json
 
@@ -294,6 +294,18 @@ class ComunidadesTest extends TestCase
                 ]
             ]
         ]);
+    }
+
+    /**
+     * @test
+     */
+    public function todobien()
+    {
+        $this->withoutExceptionHandling();
+
+        $response = $this->get('/');
+//        $response->dumpHeaders();
+        $response->assertOk();
     }
 
     /**
