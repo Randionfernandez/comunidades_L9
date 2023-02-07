@@ -30,7 +30,7 @@ class CreatePropiedadesTable extends Migration
                     . "transferencia (o banco destino). Se trata de un código internacional alfanumérico que puede constar"
                     . " de 8 u 11 caracteres: Código de ocho caracteres: incluye información de la entidad, de cada país y"
                     . " de la localidad");
-            $table->char('tipo', 4)->default('NCN')->comment("Tipo de propiedad: piso, ático, local,...; el default 'NCN' significa 'No consta'");
+            $table->char('tipo', 4)->default('NoC')->comment("Tipo de propiedad: piso, ático, local,...; el default 'NCN' significa 'No consta'");
             $table->decimal('valor_catastral', 10, 2)->nullable();
             $table->string('observaciones')->nullable();
 

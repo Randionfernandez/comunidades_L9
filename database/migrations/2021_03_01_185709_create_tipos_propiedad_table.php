@@ -14,7 +14,7 @@ class CreateTiposPropiedadTable extends Migration
     public function up(): void
     {
         Schema::create('tipos_propiedad', function (Blueprint $table) {
-            $table->char('codigo', 3)->default('NoC');
+            $table->char('codigo', 3);
             $table->string('descripcion', 20);
 
             $table->primary('codigo');

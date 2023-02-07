@@ -36,8 +36,14 @@ class PropiedadController extends Controller
                 'comunidad_id' => $request->input('data.attributes.comunidad_id'),  // Antes asignaba el comunidad_id=1
                 'denominacion' => $request->input('data.attributes.denominacion'),
                 'parte' => $request->input('data.attributes.parte'),
+                'tipo' => $request->input('data.attributes.tipo'),
                 'coeficiente' => $request->input('data.attributes.coeficiente'),
+                'iban' => $request->input('data.attributes.iban'),
+                'bic' => $request->input('data.attributes.bic'),
+                'valor_catastral' => $request->input('data.attributes.valor_catastral'),
+                'observaciones' => $request->input('data.attributes.observaciones'),
             ]
+
         );
         return PropiedadResource::make($propiedad);
 //        return response()->json($propiedad, 201);

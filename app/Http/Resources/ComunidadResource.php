@@ -8,7 +8,7 @@ class ComunidadResource extends JsonResource
 {
 
     public $preserveKeys = true;
-    public static $wrap = 'pico';
+//    public static $wrap = 'pico';
 
     public function toArray($request)
     {

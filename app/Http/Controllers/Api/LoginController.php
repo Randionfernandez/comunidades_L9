@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * Utiliza Sanctum para crear tokens
+ */
 class LoginController extends Controller
 {
 
@@ -26,9 +29,9 @@ class LoginController extends Controller
                 'email' => [__('auth.failed')]
             ]);
         }
-        $plainTextToken = $user->createToken($request->device_name, ['admin', 'create'])->plainTextToken;
+        $plainTextToken = $user->createToken($request->device_name, ['admin', 'comunidad:create'])->plainTextToken;
 
-        // enviamos al cliente el token en claro, para que se autentifique en sus consultas
+        // enviamos al cliente el token en claro, para que se autentifique en sus consultas posteriores
         return response()->json([
             'plain-text-token' => $plainTextToken]);
     }

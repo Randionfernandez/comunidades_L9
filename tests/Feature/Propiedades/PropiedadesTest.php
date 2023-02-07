@@ -35,13 +35,13 @@ class PropiedadesTest extends TestCase {
         $response = $this->postJson(route('api.v1.propiedades.store'), [
             'data' => [
                 'attributes' => [
-                    'comunidad_id' => $comunidad->id,
+                    'comunidad_id' => (string) $comunidad->id,
                     'denominacion' => 'Local A',
                     'parte' => 100,
+                    'tipo' => 'LOC',
                     'coeficiente' => 4.51,
                     'iban' => null,
                     'bic' => null,
-                    'tipo' => 'LOC',
                     'valor_catastral' => null,
                     'observaciones' => null
                 ]
@@ -49,24 +49,24 @@ class PropiedadesTest extends TestCase {
             'Accept' => 'application/vnd.api+json',  // revisar si es requerida esta cabecera
             'Content-Type' => 'application/vnd.api+json'
         ]);
-        $propiedad= Propiedad::all();
+        $propiedad= Propiedad::first();
 
         $response->assertStatus(201);   // Podríamos usar assertCreated() que comprueba 201
         $response->assertHeader(
-                'Location', route('api.v1.propiedades.show', [$propiedad])
+                'Location', route('api.v1.propiedades.show', $propiedad)
         );
         $response->assertJson([
             'data' => [
                 'type' => 'propiedades',
 //                'id' => (string) 26,
                 'attributes' => [
-                    'comunidad_id' => $comunidad->id,
+                    'comunidad_id' => (string) $comunidad->id,
                     'denominacion' => 'Local A',
                     'parte' => 100,
+                    'tipo' => 'LOC',
                     'coeficiente' => 4.51,
                     'iban' => null,
                     'bic' => null,
-                    'tipo' => 'LOC',
                     'valor_catastral' => null,
                     'observaciones' => null
                 ],

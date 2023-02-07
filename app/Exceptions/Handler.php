@@ -92,7 +92,9 @@ class Handler extends ExceptionHandler {
 //        return parent::invalidJson($request, $exception);
 //    }
 
-    function invalidJson($request, ValidationException $exception) {
+    function invalidJson($request, ValidationException $exception): JsonApiValidationErrorResponse
+    {
+//        dd($exception->errors());
         return new JsonApiValidationErrorResponse($exception);
     }
 

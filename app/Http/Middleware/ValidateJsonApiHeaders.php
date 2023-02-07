@@ -16,7 +16,8 @@ class ValidateJsonApiHeaders {
      * @return mixed
      */
     public function handle(Request $request, Closure $next) {
-        if ($request->header('accept') !== 'application/vnd.api+json') {
+//        dump($request);
+        if ($request->header('Accept') !== 'application/vnd.api+json') {
             throw new HttpException(406, __('Not Acceptable'));
         }
 

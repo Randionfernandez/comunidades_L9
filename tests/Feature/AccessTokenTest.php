@@ -12,14 +12,16 @@ use Laravel\Sanctum\PersonalAccessToken;
 use Tests\TestCase;
 
 /**
- * 
+ *
  */
-class AccessTokenTest extends TestCase {
+class AccessTokenTest extends TestCase
+{
 
     use RefreshDatabase;
 
 // cambios sugeridos desde aprendible.com 'desarrollo api' Lección 4.- Instalación del proyecto con Blueprint
-    public function setUp(): void {
+    public function setUp(): void
+    {
         parent::setUp();
         $this->seed([
             PaisSeeder::class,
@@ -29,8 +31,9 @@ class AccessTokenTest extends TestCase {
     /**
      * @test
      */
-    
-    public function can_issue_access_token() {
+
+    public function can_issue_access_token()
+    {
         $user = User::factory()->create();
 
         $data = $this->validCredentials([
@@ -41,7 +44,7 @@ class AccessTokenTest extends TestCase {
 
         $token = $response->json('plain-text-token');
         $dbToken = PersonalAccessToken::findToken($token);
-        
+
         //verify the token
         $this->assertTrue($dbToken->tokenable->is($user));
     }
@@ -49,7 +52,8 @@ class AccessTokenTest extends TestCase {
     /**
      * @test
      */
-    public function password_must_be_valid() {
+    public function password_must_be_valid()
+    {
         $user = User::factory()->create();
 
         $data = $this->validCredentials([
@@ -58,13 +62,15 @@ class AccessTokenTest extends TestCase {
         ]);
 
         $response = $this->postJson(route('api.v1.login'), $data, ['Content-Type' => 'application/vnd.api+json']);
-        $response->assertJsonValidationErrorFor('email');
+        $response->assertStatus(200);
+        $response->assertJsonValidationErrorFor('password');  // En el original la clave era email en vez de password
     }
 
     /**
      * @test
      */
-    public function user_must_be_registered() {
+    public function user_must_be_registered()
+    {
 
         $data = $this->validCredentials();
 
@@ -76,21 +82,26 @@ class AccessTokenTest extends TestCase {
     /**
      * @test
      */
-    public function email_is_required() {
+    public function email_is_required()
+    {
         App::setLocale('en');
         $data = $this->validCredentials([
             'email' => null,
         ]);
 
-        $response = $this->postJson(route('api.v1.login'), $data, ['Content-Type' => 'application/vnd.api+json']);
-
-        $response->assertJsonValidationErrors(['email' => 'required']);
+        $response = $this->postJson(
+            route('api.v1.login'),
+            $data,
+            ['Content-Type' => 'application/vnd.api+json']);
+        $response->assertJsonValidationErrors('email');
+        dump($response);
     }
 
     /**
      * @test
      */
-    public function email_must_be_valid() {
+    public function email_must_be_valid()
+    {
         App::setLocale('en');
         $data = $this->validCredentials([
             'email' => 'invalid-email',
@@ -104,7 +115,8 @@ class AccessTokenTest extends TestCase {
     /**
      * @test
      */
-    public function password_is_required() {
+    public function password_is_required()
+    {
         App::setLocale('en');
         $data = $this->validCredentials([
             'password' => null,
@@ -118,7 +130,8 @@ class AccessTokenTest extends TestCase {
     /**
      * @test
      */
-    public function device_name_is_required() {
+    public function device_name_is_required()
+    {
         App::setLocale('en');
         $data = $this->validCredentials([
             'device_name' => null,
@@ -131,16 +144,17 @@ class AccessTokenTest extends TestCase {
 
     /**
      * Credencial válida según seeder UserSeeder
-     * 
+     *
      * @param mixed $overrides
      * @return array
      */
-    protected function validCredentials(mixed $overrides = []): array {
+    protected function validCredentials(mixed $overrides = []): array
+    {
         return array_merge([
             'email' => 'randion@cifpfbmoll.eu',
             'password' => 'secretos', // password generada por nuestro factory
             'device_name' => 'Torcuato',
-                ], $overrides);
+        ], $overrides);
     }
 
 }

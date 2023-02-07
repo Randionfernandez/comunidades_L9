@@ -47,7 +47,6 @@ class ComunidadController extends Controller
 
     function store(Request $request): ComunidadResource
     {
-        try {
             $request->validate([
                 'data.attributes.cif' => ['required'],
                 'data.attributes.fechalta' => ['required', 'date'],
@@ -57,9 +56,6 @@ class ComunidadController extends Controller
                 'data.attributes.cp' => ['required'],
                 'data.attributes.pais' => ['required'],
             ]);
-        } catch (Exception $e) {
-            $e->getMessage();
-        }
 
         $comunidad = Comunidad::create($request->input('data.attributes'));
 

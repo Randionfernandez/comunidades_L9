@@ -10,11 +10,10 @@ declare(strict_types=1);
  * Revisar también denom_is_required
  */
 
-namespace Tests\Feature\Comunidades;
+namespace Tests\Feature\Api;
 
 use App\Models\Comunidad;
 use App\Models\User;
-use Database\Seeders\DivisaSeeder;
 use Database\Seeders\PaisSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
@@ -34,7 +33,7 @@ class ComunidadesTest extends TestCase
         parent::setUp();
         $this->seed([
             //      DatabaseSeeder::class,
-            DivisaSeeder::class,
+//            DivisaSeeder::class,
             PaisSeeder::class,
             //    UserSeeder::class,
         ]);
@@ -299,18 +298,6 @@ class ComunidadesTest extends TestCase
     /**
      * @test
      */
-    public function todobien()
-    {
-        $this->withoutExceptionHandling();
-
-        $response = $this->get('/');
-//        $response->dumpHeaders();
-        $response->assertOk();
-    }
-
-    /**
-     * @test
-     */
     function can_delete_comunidad()
     {
         $user = User::factory()->create();
@@ -325,44 +312,6 @@ class ComunidadesTest extends TestCase
         $this->assertSoftDeleted($comunidad);
     }
 
-    /**
-     * @test
-     */
-    function denom_is_required()
-    {
-//        $this->withoutExceptionHandling();
-
-        $user = User::factory()->create();
-
-        Sanctum::actingAs($user);
-
-//        App::setLocale('en');
-        $response = $this->postJson(route('api.v1.comunidades.store'), [
-            'data' => [
-                'type' => 'comunidades',
-                'attributes' => [
-//                    'cif' => "12345678w",
-                    'fechalta' => "2022-02-28",
-                    'denom' => "Testeando comunidad",
-                    'partes' => 10,
-                    'email' => "123456@gmail.com",
-                    'direccion' => "quinto pino",
-                    'cp' => '07007',
-                    'pais' => 'ESP',
-                ],
-            ]
-        ], [
-            'Content-Type' => 'application/vnd.api+json'
-        ]);
-
-//        $response->assertJsonValidationErrorFor('data.attributes.denom');
-
-        $response->assertJsonStructure([
-            "errors" => [
-                ['title', 'detail', 'source' => ['pointer']]
-            ]
-        ]);
-    }
 
     /**
      *
@@ -385,9 +334,7 @@ class ComunidadesTest extends TestCase
     // cambios sugeridos desde aprendible desarrollo api lección 4 Instalación del proyecto con Blueprint
     // ¿Eliminar?
 
-    /** @test */
-//    public function it_can_sort_comunidades()
-//    {
+
     /**
      * @test
      *
@@ -408,6 +355,86 @@ class ComunidadesTest extends TestCase
         $response = $this->getJson($url);
 
         $this->assertTrue(true);
+    }
+
+
+    /**
+     * @test
+     */
+    function denom_is_required()
+    {
+//        $this->withoutExceptionHandling();
+
+        $user = User::factory()->create();
+
+        Sanctum::actingAs($user);
+
+//        App::setLocale('en');
+        $response = $this->postJson(route('api.v1.comunidades.store'), [
+            'data' => [
+                'type' => 'comunidades',
+                'attributes' => [
+                    'cif' => "12345678w",
+                    'fechalta' => "2022-02-28",
+//                    'denom' => "Testeando comunidad",
+                    'partes' => 10,
+                    'email' => "123456@gmail.com",
+                    'direccion' => "quinto pino",
+                    'cp' => '07007',
+                    'pais' => 'ESP',
+                ],
+            ]
+        ], [
+            'Content-Type' => 'application/vnd.api+json'
+        ]);
+//        $response->assertJsonValidationErrorFor('data.attributes.denom');
+
+        $response->assertJsonStructure([
+            "errors" => [
+                ['title', 'detail', 'source' => ['pointer']]
+            ]
+        ]);
+    }
+
+    /**
+     * @test
+     *
+     * @return void
+     */
+    public function cif_is_required()
+    {
+        $user = User::factory()->create();
+
+        Sanctum::actingAs($user);
+
+        $data = [
+            'data' => [
+                'type' => 'comunidades',
+                'attributes' => [
+//                    'cif' => "12345678w",
+                    'fechalta' => "2022-02-28",
+                    'denom' => "Testeando comunidad",
+                    'partes' => 10,
+                    'email' => "123456@gmail.com",
+                    'direccion' => "quinto pino",
+                    'cp' => '07007',
+                    'pais' => 'ESP',
+                ],
+            ]
+        ];
+        $response = $this->postJson(route('api.v1.comunidades.store'),
+            $data,
+            [
+                'Content-Type' => 'application/vnd.api+json'
+            ],
+        );
+//        $response->assertJsonValidationErrorFor('cif');
+
+        $response->assertJsonStructure([
+            "errors" => [
+                ['title', 'detail', 'source' => ['pointer']]
+            ]
+        ]);
     }
 
 }

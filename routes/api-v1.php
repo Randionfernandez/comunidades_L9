@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', LoginController::class)->name('api/v1/login');
+Route::post('login', LoginController::class)->name('api.v1.login');
 
 Route::name('api.v1')->apiResource('comunidades', ComunidadController::class)->parameter('comunidades', 'comunidad');
 Route::name('api.v1')->apiResource('movimientos', MovimientoController::class);
