@@ -23,7 +23,7 @@ class ComunidadController extends Controller
     function __construct()
     {
         $this->middleware('auth:sanctum', [
-            'only' => ['store', 'update', 'destroy'],
+            'only' => ['update', 'destroy'],
         ]);
     }
 

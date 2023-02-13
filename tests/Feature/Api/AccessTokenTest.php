@@ -42,7 +42,7 @@ class AccessTokenTest extends TestCase
         $response = $this->postJson(route('api.v1.login'),
             $data,
             [
-//                'Accept' => 'application/vnd.api+json',   // no es necesaria, añadida por una función que creé, no recuerdo cual :-)
+//                'Accept' => 'application/vnd.api+json',   // no es necesaria, añadida en TestCase
                 'content-type' => 'application/vnd.api+json',
             ]
         );

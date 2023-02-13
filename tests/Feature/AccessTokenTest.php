@@ -40,7 +40,7 @@ class AccessTokenTest extends TestCase
             'email' => $user->email,
         ]);
 
-        $response = $this->postJson(route('api.v1.login'), $data, ['Content-Type' => 'application/vnd.api+json']);
+        $response = $this->postJson(route('api.v1.login'), $data);
 
         $token = $response->json('plain-text-token');
         $dbToken = PersonalAccessToken::findToken($token);

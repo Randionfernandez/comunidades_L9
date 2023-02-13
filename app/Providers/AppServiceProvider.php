@@ -2,18 +2,20 @@
 
 namespace App\Providers;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
+use Illuminate\Testing\TestResponse;
 
-class AppServiceProvider extends ServiceProvider {
+class AppServiceProvider extends ServiceProvider
+{
 
     /**
      * Register any application services.
      *
      * @return void
      */
-    public function register() {
+    public function register()
+    {
         //
     }
 
@@ -22,8 +24,30 @@ class AppServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function boot() {
-    //    JsonResource::withoutWrapping();
+    public function boot()
+    {
+        //    JsonResource::withoutWrapping();
+
+        TestResponse::macro('assertJsonApiValidationErrors',
+            function ($attribute) {
+                $pointer = Str::of($attribute)->startsWith('data')
+                    ? "/" . str_replace('.', '/', $attribute)
+                    : "/data/attributes/{$attribute}";
+
+                $this->assertJsonStructure([
+                    "errors" => [
+                        ['title', 'detail', 'source' => ['pointer']]
+                    ]
+                ]);
+
+                $this->assertStatus(422);
+
+                $this->assertJsonFragment([
+                    'source' => ['pointer' => $pointer]
+                ]);
+
+                $this->assertHeader('Content-Type', 'application/vnd.api+json');
+            });
     }
 
 }

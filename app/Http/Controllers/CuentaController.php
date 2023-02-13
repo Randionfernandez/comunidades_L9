@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Models\Comunidad;
-use App\Models\Cuenta;
-use App\Models\Documento;
+use App\Models\{Comunidad, Cuenta, Documento};
 use Illuminate\Http\Request;
 
 //use Illuminate\Support\Facades\DB;

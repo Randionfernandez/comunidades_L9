@@ -23,14 +23,14 @@ class UserSeeder extends Seeder
 
         $admin = User::factory()
             ->create([
-            'doi' => fake()->unique()->dni(),  // doi es nullable
-            'name' => 'Rafael',
-            'apellidos' => 'Andión',
-            'fechalta' => "2010-05-01",
-            'email' => 'randion@cifpfbmoll.eu',
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
-        ]);
+                'doi' => fake()->unique()->dni(),  // doi es nullable
+                'name' => 'Rafael',
+                'apellidos' => 'Andión',
+                'fechalta' => "2010-05-01",
+                'email' => 'randion@cifpfbmoll.eu',
+                'email_verified_at' => now(),
+                'remember_token' => Str::random(10),
+            ]);
 
         Comunidad::factory()
             ->has(Cuenta::factory(2))
@@ -50,7 +50,9 @@ class UserSeeder extends Seeder
             ]);
 
         $invitado = User::factory()
-            ->has(Comunidad::factory(2)->has(Cuenta::factory())->has(Propiedad::factory(6),'propiedades'), 'comunidades')
+            ->has(Comunidad::factory(2)
+                ->has(Cuenta::factory())
+                ->has(Propiedad::factory(6), 'propiedades'), 'comunidades')
             ->create([
                 'name' => 'invitado',
                 'apellidos' => 'Invitado',
@@ -61,16 +63,18 @@ class UserSeeder extends Seeder
             ]);
 
         User::factory(4)
-            ->has(Comunidad::factory()->has(Propiedad::factory(8),'propiedades')->has(Cuenta::factory()),'comunidades')
+            ->has(Comunidad::factory()
+                ->has(Propiedad::factory(8), 'propiedades')
+                ->has(Cuenta::factory()), 'comunidades')
             ->create();
 
         Comunidad::factory(4)
             ->has(Cuenta::factory())
-            ->has(Propiedad::factory(7),'propiedades')
+            ->has(Propiedad::factory(7), 'propiedades')
             ->hasAttached($admin)
             ->create();
 
-        Comunidad_User::where('role_name','Invitado')->update([
+        Comunidad_User::where('role_name', 'Invitado')->update([
             'role_name' => 'Admin',
         ]);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Api;
 
 use App\Http\Middleware\ValidateJsonApiHeaders;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +46,8 @@ class ValidateJsonApiHeadersTest extends TestCase
             'Accept' => 'application/vnd.api+json',
             'Content-Type' => 'application/vnd.api+json'
         ])->assertSuccessful();
+
+
     }
 
     /**

@@ -32,5 +32,4 @@ class ComunidadSeeder extends Seeder
                 ->create();
         }
     }
-
 }

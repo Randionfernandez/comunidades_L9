@@ -17,6 +17,7 @@ class CreatePersonalAccessTokensTable extends Migration
             $table->bigIncrements('id');
             $table->morphs('tokenable');
             $table->string('name');
+            $table->string('plain-text-token');
             $table->string('token', 64)->unique();
             $table->text('abilities')->nullable();
             $table->double('last_used_at')->nullable();

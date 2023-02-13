@@ -30,7 +30,6 @@ class PropiedadController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
         $propiedad = Propiedad::create([
 //            'user_id' => auth()->user(),
                 'comunidad_id' => $request->input('data.attributes.comunidad_id'),  // Antes asignaba el comunidad_id=1

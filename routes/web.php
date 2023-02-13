@@ -2,21 +2,17 @@
 declare(strict_types=1);
 
 // Notación abreviada a partir de la versión 7
-use App\Http\Controllers\{
-    ComunidadController,
+use App\Http\Controllers\{ComunidadController,
     CuentaController,
     DocumentoController,
+    JuntaController,
     PropiedadController,
     ProveedorController,
-    JuntaController,
     UserController,
 };
-use App\Models\Comunidad;
-use App\Models\User;
+use App\Models\{Comunidad, User};
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-
-use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 //use App\Serv/ices\RedisEventPusher;
 /*
