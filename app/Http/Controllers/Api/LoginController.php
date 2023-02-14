@@ -18,18 +18,19 @@ class LoginController extends Controller
     public function __invoke(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required', 'string'],
-            'device_name' => ['required', 'string'],
+            'data.attributes.email' => ['required', 'email'],
+            'data.attributes.password' => ['required', 'string'],
+            'data.attributes.device_name' => ['required', 'string'],
         ]);
-        $user = User::whereEmail($request->email)->first();
+        $email=$request->input('data.attributes.email');
+        $user = User::whereEmail($email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->input('data.attributes.password'), $user->password)) {
             throw ValidationException::withMessages([
                 'email' => [__('auth.failed')]
             ]);
         }
-        $plainTextToken = $user->createToken($request->device_name, ['admin', 'comunidad:create'])->plainTextToken;
+        $plainTextToken = $user->createToken($request->input('data.attributes.device_name'), ['admin', 'comunidad:create'])->plainTextToken;
 
         // enviamos al cliente el token en claro, para que se autentifique en sus consultas posteriores
         return response()->json([

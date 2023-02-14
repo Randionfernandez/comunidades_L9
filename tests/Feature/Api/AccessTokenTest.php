@@ -32,17 +32,23 @@ class AccessTokenTest extends TestCase
     public function can_issue_access_tokens()
     {
         $user = User::factory()->create();
-
-        $data = $this->validCredentials(
+        $attributes = $this->validCredentials(
             [
                 'email' => $user->email,
                 'password' => 'secretos',
                 'device_name' => 'MiToken'
             ]);
+
+        $data = [
+            'data' => [
+                'type' => 'tokens',
+                'attributes' => $attributes,
+              ]
+        ];
+
         $response = $this->postJson(route('api.v1.login'),
             $data,
             [
-//                'Accept' => 'application/vnd.api+json',   // no es necesaria, añadida en TestCase
                 'content-type' => 'application/vnd.api+json',
             ]
         );
@@ -66,8 +72,13 @@ class AccessTokenTest extends TestCase
     public function email_is_required()
     {
         $data = [
-            'password' => 'secretos',
-//            'device_name' => 'MiToken',
+            'data' => [
+                'type' => 'personal_access_token',
+                'attributes' => [
+                    'password' => 'secretos',
+                    'device_name' => 'MiToken',
+                ]]
+
         ];
 
         $response = $this->postJson(
@@ -76,27 +87,17 @@ class AccessTokenTest extends TestCase
             ['content-type' => 'application/vnd.api+json',]
         );
 
-        $response->assertJsonStructure([
-            "errors" => [
-                ['title', 'detail', 'source' => ['pointer']]
-            ]
-        ]);
-//dump($response);
-//        $response->assertJsonFragment([
-//            "source" => ['pointer' => 'data.attributes.email']
-//        ]);
-
-//        $response->assertJsonApiValidationErrors('email');
-//        $response->assertJsonValidationErrorFor('data.attributes.email');
+        $response->assertJsonApiValidationErrors('email');
+//        $response->assertJsonValidationErrorFor('detail');
     }
 
-    protected function validCredentials(array $data): array
+    protected function validCredentials(array $attributes): array
     {
         return array_merge(
             [
                 'email' => 'randion@cifpfbmoll.eu',
                 'password' => 'secretos',
                 'device_name' => 'MiToken',
-            ], $data);
+            ], $attributes);
     }
 }
