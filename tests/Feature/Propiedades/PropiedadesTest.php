@@ -34,6 +34,7 @@ class PropiedadesTest extends TestCase {
 
         $response = $this->postJson(route('api.v1.propiedades.store'), [
             'data' => [
+                'type' => 'propiedades',
                 'attributes' => [
                     'comunidad_id' => (string) $comunidad->id,
                     'denominacion' => 'Local A',

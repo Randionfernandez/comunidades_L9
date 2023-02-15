@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\PersonalAccessToken;
 use Tests\TestCase;
 
-class AccessTokenTest extends TestCase
+class   AccessTokenTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -63,7 +63,6 @@ class AccessTokenTest extends TestCase
 
     }
 
-
     /**
      * @test
      *
@@ -90,6 +89,16 @@ class AccessTokenTest extends TestCase
         $response->assertJsonApiValidationErrors('email');
 //        $response->assertJsonValidationErrorFor('detail');
     }
+
+    public function email_must_be_valid(){}
+
+    public function password_is_required(){}
+
+    public function password_must_be_valid(){}
+
+    public function device_name_is_required(){}
+
+    public function user_must_be_registered(){}
 
     protected function validCredentials(array $attributes): array
     {

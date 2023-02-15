@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Http\Middleware\ValidateJsonApiDocument;
+use App\Http\Middleware\ValidateJsonApiHeaders;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
@@ -15,9 +16,12 @@ class ValidateJsonApiDocumentTest extends TestCase
     protected function setup(): void
     {
         parent::setup();
-
         Route::any('test_route', fn() => 'OK')
-            ->middleware(ValidateJsonApiDocument::class);
+            ->middleware([
+                ValidateJsonApiHeaders::class,
+                ValidateJsonApiDocument::class,
+            ]);
+
     }
 
 
@@ -28,9 +32,9 @@ class ValidateJsonApiDocumentTest extends TestCase
      */
     public function data_is_required()
     {
-        $response = $this->getJson('test_route');
+        $response = $this->postJson('test_route');
 
-        $response->dump()->assertJsonApiValidationErrors('data');  //  El método es una macro definido en TestResponse
+        $response->assertJsonApiValidationErrors('data');  //  El método es una macro definido en TestResponse
 
     }
 
@@ -56,7 +60,7 @@ class ValidateJsonApiDocumentTest extends TestCase
      */
     public function data_id_is_required()  // 'data.id' required solo en PATCH
     {
-        $response= $this->patchJson('test_route', [
+        $response = $this->patchJson('test_route', [
             'data' => [
                 'type' => 'string',
                 'attributes' => [
@@ -64,7 +68,7 @@ class ValidateJsonApiDocumentTest extends TestCase
                 ]
             ]
         ],
-        ['Content-type' => 'application/vnd.api+json']);
+            ['Content-type' => 'application/vnd.api+json']);
 
         $response->assertJsonApiValidationErrors('data.id');
     }
@@ -73,7 +77,7 @@ class ValidateJsonApiDocumentTest extends TestCase
     {
     }
 
-    public function onliy_accept_valid_json_api_document()
+    public function only_accept_valid_json_api_document()
     {
     }
 }

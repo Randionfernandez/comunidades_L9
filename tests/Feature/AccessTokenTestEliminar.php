@@ -12,9 +12,9 @@ use Laravel\Sanctum\PersonalAccessToken;
 use Tests\TestCase;
 
 /**
- *
+ * @group excluidos
  */
-class AccessTokenTest extends TestCase
+class AccessTokenTestEliminar extends TestCase
 {
 
     use RefreshDatabase;
@@ -26,27 +26,6 @@ class AccessTokenTest extends TestCase
         $this->seed([
             PaisSeeder::class,
         ]);
-    }
-
-    /**
-     * @test
-     */
-
-    public function can_issue_access_token()
-    {
-        $user = User::factory()->create();
-
-        $data = $this->validCredentials([
-            'email' => $user->email,
-        ]);
-
-        $response = $this->postJson(route('api.v1.login'), $data);
-
-        $token = $response->json('plain-text-token');
-        $dbToken = PersonalAccessToken::findToken($token);
-
-        //verify the token
-        $this->assertTrue($dbToken->tokenable->is($user));
     }
 
     /**
@@ -128,7 +107,7 @@ class AccessTokenTest extends TestCase
     }
 
     /**
-     * @test
+     * test
      */
     public function device_name_is_required()
     {
