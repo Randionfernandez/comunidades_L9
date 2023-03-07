@@ -17,7 +17,6 @@ use App\Models\User;
 use Database\Seeders\PaisSeeder;
 use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Testing\TestResponse;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -28,19 +27,45 @@ class ComunidadesTest extends TestCase
         RefresDatabase NO ejecuta los seeders, ni las migraciones (si estuviesen actualizadas)
     */
     use RefreshDatabase;
-
     // Más eficiente que el trait DatabaseMigrations
 
-//    protected $seed = true;  // Ejecuta los seeders
-// cambios sugeridos desde aprendible.com 'desarrollo api' Lección 4.- Instalación del proyecto con Blueprint
-    public function setUp(): void
+    /**
+     * @test
+     */
+    public function can_fetch_single_comunidad()
     {
-        parent::setUp();
-        $this->seed([
-            PaisSeeder::class,
+        $this->withoutExceptionHandling();   // informará del error pero con más detalle
+
+        $comunidad = Comunidad::factory()->create();
+
+        // headers añadidos por el trait Test\MakesJsonApiRequests
+        $response = $this->getJson(route('api.v1.comunidades.show', $comunidad));
+
+        $response->assertStatus(200);
+        $response->assertHeader(
+            'Content-Type', 'application/vnd.api+json'
+        );
+        // Si la 'denom' contiene acentos, falla el test, probablemente debido a la codificación en json
+        // $response->assertSee($comunidad->denom);  // eliminar, ya se comprueba en el json
+
+        $response->assertSee($comunidad->email);  // eliminar, ya se comprueba en el json
+
+        $response->assertJson([
+            'data' => [
+                'type' => 'comunidades',
+                'id' => (string)$comunidad->getRouteKey(),
+                'attributes' => [
+                    'cif' => $comunidad->cif,
+                    'denom' => $comunidad->denom,
+                    'email' => $comunidad->email,
+                    'direccion' => $comunidad->direccion,
+                    'cp' => $comunidad->cp
+                ],
+                'links' => [
+                    'self' => route('api.v1.comunidades.show', $comunidad->getRouteKey())
+                ]
+            ],
         ]);
-
-
     }
 
     /**
@@ -55,6 +80,7 @@ class ComunidadesTest extends TestCase
         $response = $this->getJson(route('api.v1.comunidades.index'));
 
         $response->assertStatus(200);
+        $response->assertHeader('Content-Type', 'application/vnd.api+json');
 
         $response->assertJson([
             'data' => [
@@ -101,50 +127,7 @@ class ComunidadesTest extends TestCase
     /**
      * @test
      */
-    public function can_fetch_single_comunidad()
-    {
-        $this->withoutExceptionHandling();   // informará del error pero con más detalle
-
-        $comunidad = Comunidad::factory()->create();
-
-        // headers añadidos por el trait Test\MakesJsonApiRequests
-        $response = $this->getJson(route('api.v1.comunidades.show', $comunidad));
-
-        $response->assertStatus(200);
-
-
-        $response->assertHeader(
-            'Content-Type', 'application/vnd.api+json'
-        );
-
-
-        // Si la 'denom' contiene acentos, falla el test, probablemente debido a la codificación en json
-        // $response->assertSee($comunidad->denom);  // eliminar, ya se comprueba en el json
-
-        $response->assertSee($comunidad->email);  // eliminar, ya se comprueba en el json
-
-        $response->assertJson([
-            'data' => [
-                'type' => 'comunidades',
-                'id' => (string)$comunidad->getRouteKey(),
-                'attributes' => [
-                    'cif' => $comunidad->cif,
-                    'denom' => $comunidad->denom,
-                    'email' => $comunidad->email,
-                    'direccion' => $comunidad->direccion,
-                    'cp' => $comunidad->cp
-                ],
-                'links' => [
-                    'self' => route('api.v1.comunidades.show', $comunidad->getRouteKey())
-                ]
-            ],
-        ]);
-    }
-
-    /**
-     * @test
-     */
-    public function can_create_comunidad()
+    public function can_create_comunidades()
     {
 //        $this->withoutExceptionHandling();
 
@@ -168,7 +151,7 @@ class ComunidadesTest extends TestCase
             ]
         ]);
 
-        $response->assertCreated();
+        $response->assertCreated();  // Devuelve status 201, cumpliendo json:api
 
         $comunidad = Comunidad::first();
 
@@ -180,21 +163,35 @@ class ComunidadesTest extends TestCase
             'Content-Type', "application/vnd.api+json"
         );
 
-        $response->assertJson([
+        $response->assertExactJson([
             'data' => [
                 'type' => 'comunidades',
                 'id' => (string)$comunidad->getRouteKey(),
                 'attributes' => [
+                    'activa' => null,
                     'cif' => "12345678w",
                     'fechalta' => $comunidad->fechalta,
+                    'gratuita' => null,
+                    'localidad' => null,
+                    'municipio' => null,
+                    'provincia' => null,
                     'denom' => "Testeando comunidad",
                     'partes' => 10,
                     'email' => "123456@gmail.com",
                     'direccion' => "quinto pino",
                     'cp' => '07007',
-                    'pais' => 'ESP'
+                    'pais' => 'ESP',
+                    'presidente' => null,
+                    'administrador' => null,
+                    'secretario' => null,
+                    'observaciones' => null,
                 ],
+                'links' => [
+                    'self' => route('api.v1.comunidades.show', $comunidad)
+                ]
             ]
+        ])->withHeaders([
+            'Location' => route('api.v1.comunidades.show', $comunidad)
         ]);
     }
 
@@ -261,7 +258,7 @@ class ComunidadesTest extends TestCase
             'Content-Type' => 'application/vnd.api+json'
         ]);
 
-        $response->assertOk();
+        $response->assertOk();      
 
         $response->assertHeader(
             'Location', route('api.v1.comunidades.show', $comunidad),
@@ -395,12 +392,7 @@ class ComunidadesTest extends TestCase
                     'pais' => 'ESP',
                 ],
             ]
-        ], [
-            'Content-Type' => 'application/vnd.api+json'
-        ]);
-
-//        $response->assertJsonValidationErrors(['data.attributes.denom']);
-
+        ]); // header Content-Type añadido por el middleware ValidateJsonApiHeaders
 
         $response->assertJsonApiValidationErrors('denom');
 
@@ -434,11 +426,7 @@ class ComunidadesTest extends TestCase
         ];
         $response = $this->postJson(route('api.v1.comunidades.store'),
             $data,
-            [
-                'Content-Type' => 'application/vnd.api+json'
-            ],
         );
-//        $response->assertJsonValidationErrorFor('cif');
 
         $response->assertJsonApiValidationErrors('cif');
     }

@@ -31,7 +31,8 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail,
             'email_verified_at' => now(),
             //          'password' => Hash::make('secretos'),
-            //          'password' => '$2y$10$QlfN7CbALaYJSTPmQ69CdeW5uFOd3pcm.Gke78.pypt.zQljlso/2', // password hardcoded to 'secretos'
+                      'password' => '$2y$10$QlfN7CbALaYJSTPmQ69CdeW5uFOd3pcm.Gke78.pypt.zQljlso/2', // password hardcoded to 'secretos'
+            // la password está hardcodeada en la migración de la tabla users a 'secretos'.
             'remember_token' => Str::random(10),
         ];
     }

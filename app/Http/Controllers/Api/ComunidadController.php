@@ -38,9 +38,9 @@ class ComunidadController extends Controller
         return ComunidadCollection::make(Comunidad::all());
     }
 
-    function show(Comunidad $comunidad)
+    function show(Comunidad $comunidad):ComunidadResource
     {
-        if (!$comunidad) return json_encode(['errors' => 'No existe comunidad']);
+        if (!$comunidad) return json_encode(['errors' => __('No existe comunidad')]);
 
         return ComunidadResource::make($comunidad);
     }

@@ -3,12 +3,11 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
-use Database\Seeders\PaisSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\PersonalAccessToken;
 use Tests\TestCase;
 
-class   AccessTokenTest extends TestCase
+class AccessTokenTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -18,7 +17,7 @@ class   AccessTokenTest extends TestCase
         $this->seed([
             //      DatabaseSeeder::class,
 //            DivisaSeeder::class,
-            PaisSeeder::class,
+            //   PaisSeeder::class,
             //    UserSeeder::class,
         ]);
     }
@@ -31,26 +30,30 @@ class   AccessTokenTest extends TestCase
      */
     public function can_issue_access_tokens()
     {
+//        $this->withoutJsonApiDocumentFormatting();
+
         $user = User::factory()->create();
-        $attributes = $this->validCredentials(
-            [
-                'email' => $user->email,
-                'password' => 'secretos',
-                'device_name' => 'MiToken'
-            ]);
+//        $data = $this->validCredentials(
+//            [
+//                'email' => $user->email,
+//                'password' => 'secretos',
+//                'device_name' => 'MiToken'
+//            ]);
 
         $data = [
             'data' => [
-                'type' => 'tokens',
-                'attributes' => $attributes,
-              ]
+                'type' => 'personal_access_tokens',
+                'attributes' => [
+                    'email' => $user->email,
+                    'password' => 'secretos',
+                    'device_name' => 'MiToken'
+                ]
+            ]
         ];
 
-        $response = $this->postJson(route('api.v1.login'),
+        $response = $this->postJson(
+            route('api.v1.login'),
             $data,
-            [
-                'content-type' => 'application/vnd.api+json',
-            ]
         );
 
         $token = $response->json('plain-text-token');
@@ -70,10 +73,44 @@ class   AccessTokenTest extends TestCase
      */
     public function email_is_required()
     {
+        $user = User::factory()->create();
+//        $data = [
+//            'data' => [
+//                'type' => 'personal_access_tokens',
+//                'attributes' => [
+//                    'password' => 'secretos',
+//                    'device_name' => 'MiToken',
+//                ]]
+//
+//        ];
+
+        $data = $this->validCredentials(
+            [
+                'email' => $user->email,
+                'password' => 'secretos',
+                'device_name' => 'MiToken'
+            ]);
+
+        $response = $this->postJson(
+            route('api.v1.login'),
+            $data,
+            ['content-type' => 'application/vnd.api+json',]
+        );
+
+        $response->assertJsonApiValidationErrors('email');
+    }
+
+    /**
+     * @test
+     * @return void
+     */
+    public function email_must_be_valid()
+    {
         $data = [
             'data' => [
-                'type' => 'personal_access_token',
+                'type' => 'personal_access_tokens',
                 'attributes' => [
+                    'email' => 'falsoemail',
                     'password' => 'secretos',
                     'device_name' => 'MiToken',
                 ]]
@@ -83,24 +120,75 @@ class   AccessTokenTest extends TestCase
         $response = $this->postJson(
             route('api.v1.login'),
             $data,
-            ['content-type' => 'application/vnd.api+json',]
         );
 
         $response->assertJsonApiValidationErrors('email');
-//        $response->assertJsonValidationErrorFor('detail');
     }
 
-    public function email_must_be_valid(){}
+    /**
+     * @test
+     * @return void
+     */
+    public function password_is_required()
+    {
+        $user = User::factory()->create();
 
-    public function password_is_required(){}
+        $data = [
+            'data' => [
+                'type' => 'personal_access_tokens',
+                'attributes' => [
+                    'email' => $user->email,
+                    'device_name' => 'MiToken',
+                ]]
 
-    public function password_must_be_valid(){}
+        ];
 
-    public function device_name_is_required(){}
+        $response = $this->postJson(
+            route('api.v1.login'),
+            $data,
+        );
 
-    public function user_must_be_registered(){}
+        $response->assertJsonApiValidationErrors('password');
+    }
 
-    protected function validCredentials(array $attributes): array
+    /**
+     * @test
+     * @return void
+     */
+    public function password_must_be_valid()
+    {
+        $user = User::factory()->create();
+        $attributes = $this->validCredentials(
+            [
+                'email' => $user->email,
+                'password' => 'dd',
+                'device_name' => 'MiToken'
+            ]);
+        $data = [
+            'data' => [
+                'type' => 'personal_access_tokens',
+                'attributes' => $attributes
+            ]
+
+        ];
+
+        $response = $this->postJson(
+            route('api.v1.login'),
+            $data,
+        );
+
+        $response->assertJsonApiValidationErrors('password');
+    }
+
+    public function device_name_is_required()
+    {
+    }
+
+    public function user_must_be_registered()
+    {
+    }
+
+    protected function validCredentials(mixed $attributes): array
     {
         return array_merge(
             [

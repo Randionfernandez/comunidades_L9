@@ -10,7 +10,7 @@ class ComunidadResource extends JsonResource
     public $preserveKeys = true;
 //    public static $wrap = 'pico';
 
-    public function toArray($request)
+    public function toArray($request):array
     {
 //        return Comunidad::make($request);
 
@@ -37,7 +37,7 @@ class ComunidadResource extends JsonResource
                 'administrador' => $this->resource->administrador,
             ],
             'links' => [
-                'self' => route('api.v1.comunidades.show', $this->resource->getRouteKey())
+                'self' => route('api.v1.comunidades.show', $this->resource)
             ]
         ];
     }

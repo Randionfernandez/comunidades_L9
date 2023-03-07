@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
             TiposGastoSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
-//            ComunidadSeeder::class,
-//            MovimientosSeeder::class,
+            ComunidadSeeder::class,
+            MovimientosSeeder::class,
         ]);
     }
 

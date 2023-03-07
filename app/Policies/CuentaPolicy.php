@@ -6,7 +6,7 @@ use App\Models\Cuenta;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CuentaPolicy
+class enCuentaPolicy
 {
     use HandlesAuthorization;
 
@@ -67,7 +67,6 @@ class CuentaPolicy
     public function delete(User $user, Cuenta $cuenta)
     {
         return false;
-        $user->tok
     }
 
     /**
