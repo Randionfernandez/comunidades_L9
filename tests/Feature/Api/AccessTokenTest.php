@@ -7,10 +7,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\PersonalAccessToken;
 use Tests\TestCase;
 
+//use GuzzleHttp\Psr7\Request;
+
 class AccessTokenTest extends TestCase
 {
     use RefreshDatabase;
 
+//protected $request;
     public function setUp(): void
     {
         parent::setUp();
@@ -21,6 +24,7 @@ class AccessTokenTest extends TestCase
             //    UserSeeder::class,
         ]);
     }
+
 
     /**
      * A basic feature test example.
@@ -33,12 +37,6 @@ class AccessTokenTest extends TestCase
 //        $this->withoutJsonApiDocumentFormatting();
 
         $user = User::factory()->create();
-//        $data = $this->validCredentials(
-//            [
-//                'email' => $user->email,
-//                'password' => 'secretos',
-//                'device_name' => 'MiToken'
-//            ]);
 
         $data = [
             'data' => [
@@ -55,6 +53,7 @@ class AccessTokenTest extends TestCase
             route('api.v1.login'),
             $data,
         );
+
 
         $token = $response->json('plain-text-token');
 
@@ -74,15 +73,6 @@ class AccessTokenTest extends TestCase
     public function email_is_required()
     {
         $user = User::factory()->create();
-//        $data = [
-//            'data' => [
-//                'type' => 'personal_access_tokens',
-//                'attributes' => [
-//                    'password' => 'secretos',
-//                    'device_name' => 'MiToken',
-//                ]]
-//
-//        ];
 
         $data = $this->validCredentials(
             [
@@ -91,10 +81,20 @@ class AccessTokenTest extends TestCase
                 'device_name' => 'MiToken'
             ]);
 
+        $data = [
+            'data' => [
+                'type' => 'personal_access_tokens',
+                'attributes' => [
+//                'email' => $user->email,
+                    'password' => 'secretos',
+                    'device_name' => 'MiToken'
+                ]
+            ]
+        ];
+
         $response = $this->postJson(
             route('api.v1.login'),
-            $data,
-            ['content-type' => 'application/vnd.api+json',]
+            $data
         );
 
         $response->assertJsonApiValidationErrors('email');
@@ -119,7 +119,7 @@ class AccessTokenTest extends TestCase
 
         $response = $this->postJson(
             route('api.v1.login'),
-            $data,
+            $data
         );
 
         $response->assertJsonApiValidationErrors('email');
@@ -145,7 +145,7 @@ class AccessTokenTest extends TestCase
 
         $response = $this->postJson(
             route('api.v1.login'),
-            $data,
+            $data
         );
 
         $response->assertJsonApiValidationErrors('password');
