@@ -13,11 +13,11 @@ trait MakesJsonApiRequests
     // protected $seed = true;  // Ejecuta los seeders
     protected function setup(): void
     {
-        parent::setUp();
-
-        $this->seed([
-            PaisSeeder::class,
-        ]);
+//        parent::setUp();
+//
+//        $this->seed([
+//            PaisSeeder::class,
+//        ]);
 
         TestResponse::macro(
             'assertJsonApiValidationErrors',
@@ -69,12 +69,12 @@ trait MakesJsonApiRequests
                 ? "/" . str_replace('.', '/', $attribute)
                 : "/data/attributes/{$attribute}";
 
-//            $this->assertJsonStructure([
-//                    "errors" => [
-//                        ['title', 'detail', 'source' => ['pointer']]
-//                    ]
-//                ]
-//            );
+            $this->assertJsonStructure([
+                    "errors" => [
+                        ['title', 'detail', 'source' => ['pointer']]
+                    ]
+                ]
+            );
 
             $this->assertStatus(422);
 

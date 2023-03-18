@@ -23,7 +23,7 @@
         "intervention/image": "^2.7",
         "laravel-lang/lang": "^9.0",
         "laravel-lang/publisher": "^12.2",
-        "laravel/framework": "^10.0",
+        "laravel/framework": "^9.52",
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7",

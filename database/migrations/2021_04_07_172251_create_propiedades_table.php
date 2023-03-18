@@ -30,7 +30,7 @@ class CreatePropiedadesTable extends Migration
                     . "transferencia (o banco destino). Se trata de un código internacional alfanumérico que puede constar"
                     . " de 8 u 11 caracteres: Código de ocho caracteres: incluye información de la entidad, de cada país y"
                     . " de la localidad");
-            $table->char('tipo', 4)->default('NoC')->comment("Tipo de propiedad: piso, ático, local,...; el default 'NCN' significa 'No consta'");
+            $table->char('tipo', 3)->default('NoC')->comment("Código asociado al tipo de propiedad: piso, ático, local,...; el default 'NCN' significa 'No consta'");
             $table->decimal('valor_catastral', 10, 2)->nullable();
             $table->string('observaciones')->nullable();
 
@@ -40,15 +40,15 @@ class CreatePropiedadesTable extends Migration
             // Las opciones de una FK se pueden consultar en la fuente:
             //    https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Schema/ForeignKeyDefinition.php
 
-//            $table->foreign('comunidad_id')->references('id')->on('comunidades')
-//                    ->onDelete('cascade');
-//
+            $table->foreign('comunidad_id')->references('id')->on('comunidades')
+                    ->onDelete('cascade');
+
 //            $table->foreign('user_id')->references('id')->on('users')
 //                    ->onDelete('set null');
 //
-//            $table->foreign('tipo')->references('codigo')->on('tipos_propiedad')
-//                    ->onUpdate('cascade')
-//                    ->onDelete('restrict'); //comprobar cómo procesa PostgreSql la opción 'restrict'
+            $table->foreign('tipo')->references('codigo')->on('tipos_propiedad')
+                    ->onUpdate('cascade')
+                    ->onDelete('restrict'); //comprobar cómo procesa PostgreSql la opción 'restrict'
 
 
             $table->unique(['comunidad_id', 'parte']);

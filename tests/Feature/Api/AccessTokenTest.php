@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
+use Database\Seeders\DatabaseSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\PersonalAccessToken;
 use Tests\TestCase;
@@ -18,9 +19,9 @@ class AccessTokenTest extends TestCase
     {
         parent::setUp();
         $this->seed([
-            //      DatabaseSeeder::class,
+//                  DatabaseSeeder::class,
 //            DivisaSeeder::class,
-            //   PaisSeeder::class,
+//               PaisSeeder::class,
             //    UserSeeder::class,
         ]);
     }
@@ -55,7 +56,7 @@ class AccessTokenTest extends TestCase
         );
 
 
-        $token = $response->json('plain-text-token');
+        $token = $response->json('plainTextToken');
 
         $dbToken = PersonalAccessToken::findToken($token);
 
@@ -74,12 +75,12 @@ class AccessTokenTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $data = $this->validCredentials(
-            [
-                'email' => $user->email,
-                'password' => 'secretos',
-                'device_name' => 'MiToken'
-            ]);
+//        $data = $this->validCredentials(
+//            [
+//                'email' => $user->email,
+//                'password' => 'secretos',
+//                'device_name' => 'MiToken'
+//            ]);
 
         $data = [
             'data' => [

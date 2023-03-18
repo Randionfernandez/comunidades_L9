@@ -17,6 +17,7 @@ class LoginController extends Controller
 
     public function __invoke(Request $request)
     {
+
         $request->validate([
             'data.attributes.email' => ['required', 'email'],
             'data.attributes.password' => ['required', 'string', 'min:4'],
@@ -36,7 +37,7 @@ class LoginController extends Controller
 
         // enviamos al cliente el token en claro, para que se autentifique en sus consultas posteriores
         return response()->json([
-            'plain-text-token' => $plainTextToken]);
+            'plainTextToken' => $plainTextToken]);
     }
 
 }

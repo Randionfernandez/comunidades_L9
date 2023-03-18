@@ -77,11 +77,11 @@ class Handler extends ExceptionHandler
 
     public function invalidJson($request, ValidationException $exception)
     {
-        if (! $request->routeIs('api.v1.login')){ // esta ruta no cumple json:api
+/*        if (! $request->routeIs('api.v1.login')){ // esta ruta no cumple json:api
             return new JsonApiValidationErrorResponse($exception);
-        }
+        }*/
 
-        return parent::invalidJson($request, $exception);
+//        return parent::invalidJson($request, $exception);
 
 
 
