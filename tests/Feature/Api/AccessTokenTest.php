@@ -14,15 +14,16 @@ class AccessTokenTest extends TestCase
 {
     use RefreshDatabase;
 
-//protected $request;
+    protected $request;
+
     public function setUp(): void
     {
         parent::setUp();
         $this->seed([
-//                  DatabaseSeeder::class,
-//            DivisaSeeder::class,
+            DatabaseSeeder::class
+        //            DivisaSeeder::class,
 //               PaisSeeder::class,
-            //    UserSeeder::class,
+//                UserSeeder::class,
         ]);
     }
 
@@ -158,7 +159,7 @@ class AccessTokenTest extends TestCase
      */
     public function password_must_be_valid()
     {
-        $user = User::factory()->create();
+        $user = User::Factory()->create();
         $attributes = $this->validCredentials(
             [
                 'email' => $user->email,

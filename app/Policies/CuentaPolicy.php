@@ -6,7 +6,7 @@ use App\Models\Cuenta;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class enCuentaPolicy
+class CuentaPolicy
 {
     use HandlesAuthorization;
 

@@ -18,6 +18,8 @@ class ComunidadSeeder extends Seeder
      */
     public function run(): void
     {
+        @todo Modificar esta línea tal que se asignen a este usuario todas las comunidades creadas más abajo
+        @todo Sustituir find(1) por una función que devuelva el primer usuario de la tabla, (no siempre existirá el id=1)
         $user = User::find(1);
 
 

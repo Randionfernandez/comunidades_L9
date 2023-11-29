@@ -33,7 +33,7 @@ Route::get('lang/{locale?}', function ($locale = 'en') {
             echo "El idiomma seleccionado es: " . App::currentLocale();
             break;
         default:
-            echo "Qué mal se me da el inglés";
+            echo "¡Qué mal se me da el inglés!";
     }
 });
 

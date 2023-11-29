@@ -24,7 +24,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'doi' => fake()->unique()->dni(),
+            'doi' => $this->faker->unique()->randomNumber(6),
             'name' => fake()->firstname,
             'apellidos' => fake()->lastname,
             'fechalta' => fake()->dateTimeBetween('-10 years', 'now'),
